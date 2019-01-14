@@ -1,0 +1,16 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 625%;
+}
+
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "PingFangSC-Regular", sans-serif;
+}
