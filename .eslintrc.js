@@ -23,9 +23,10 @@ module.exports = {
       "error",
       {
         singleQuote: true,
-        semi: false
+        semi: false,
       }
     ],
+    "react/prop-types": 0,
     "react-hooks/rules-of-hooks": "error"
   }
 };
