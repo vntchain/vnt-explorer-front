@@ -1,0 +1,17 @@
+@import '../assets/base';
+
+.app {
+}
+.margin {
+  & > div {
+    width: 12rem;
+    margin: 0 auto;
+    @include respondTo(1230px) {
+      width: auto;
+      padding: 0 .6rem;
+    }
+  }
+  &:last-child {
+    background-color: $color-light-3;
+  }
+}

@@ -1,0 +1,23 @@
+@import '../../assets/base';
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+
+  &__icon {
+    margin-right: .04rem;
+  }
+
+  &__icon-text {
+    margin-right: .1rem;
+  }
+
+  &__text {
+    color: $color-light-1;
+    border: 1px solid $color-light-2;
+    padding: .05rem;
+    border-radius: .03rem;
+    font-size: .08rem;
+  }
+}

@@ -14,3 +14,30 @@ html {
 body {
   font-family: "Microsoft YaHei", "微软雅黑", "PingFangSC-Regular", sans-serif;
 }
+
+// horizontal menu generates submenu outside root node dynamically !
+:global {
+  .ant-menu-submenu-popup {
+    .ant-menu-vertical.ant-menu-sub {
+      min-width: 1.3rem;
+    }
+    .ant-menu-item > a {
+      font-size: .14rem;
+      color: #333;
+    }
+    .ant-menu-item:not(:last-child) {
+      border-bottom: 1px solid #e6e6e6;
+    }
+    // remove top&bottom margin of menu item
+    .ant-menu-vertical .ant-menu-item {
+      margin-top: 0;
+    }
+    .ant-menu-vertical .ant-menu-item:not(:last-child) {
+      margin-bottom: 0;
+    }
+    /* remove the last menu item's bottom margin */
+    .ant-menu-vertical .ant-menu-item {
+      margin-bottom: 0;
+    }
+  }
+}

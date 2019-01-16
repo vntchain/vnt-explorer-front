@@ -1,0 +1,28 @@
+@import '../../assets/base';
+
+.header {
+  // without font-size, the other length-related rules go wrong
+  font-size: .16rem;
+
+  height: .7rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 3rem;
+  margin-left: .5rem;
+  margin-right: .3rem;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  span {
+    font-size: .14rem;
+    color: $color-light-1;
+    margin-left: .05rem;
+  }
+}

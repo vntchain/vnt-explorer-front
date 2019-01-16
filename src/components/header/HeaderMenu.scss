@@ -1,0 +1,17 @@
+@import '../../assets/base';
+
+.menu {
+  color: $color-dark-1;
+  :global {
+
+    // change submenu text font-size
+    .ant-menu-submenu-title {
+      font-size: .16rem;
+    }
+    // hide border-bottom
+    .ant-menu-horizontal {
+      border-bottom: 1px solid transparent;
+    }
+
+  }
+}

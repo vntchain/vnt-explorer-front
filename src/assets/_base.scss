@@ -1,0 +1,26 @@
+/* colors */
+$color-primary: #3389ff;
+$color-dark-1: #333;
+$color-light-1: #999;
+$color-light-2: #dbdbdb;
+$color-light-3: #f3f3f3;
+$color-light-4: #e6e6e6;
+
+
+/* breakpoints */
+$bp-desktop: 12.3rem;
+
+
+/* mixins */
+@mixin respondTo($breakpoint, $max-width: true) {
+  @if $max-width == true {
+    @media only screen and (max-width: $breakpoint) {
+      @content;
+    }
+  }
+  @if $max-width == false {
+    @media only screen and (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
