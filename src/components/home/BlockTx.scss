@@ -1,0 +1,72 @@
+@import '../../assets/base';
+
+.block-tx {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section {
+  flex-basis: calc(50% - .1rem);
+  background-color: #fff;
+  border-radius: .04rem;
+}
+
+.header {
+  padding: .15rem .3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $color-light-5;
+
+  font-size: .14rem;
+  &__title {
+    span {
+      font-size: .2rem;
+      color: $color-dark-1;
+    }
+  }
+}
+
+.content {
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-light-5;
+  }
+}
+
+.item {
+  padding: .2rem .3rem;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: .1rem;
+    }
+  }
+
+  &__row--1 {
+    justify-content: flex-start;
+    i {
+      display: flex;
+      align-items: center;
+    }
+    & > span {
+      margin-left: .1rem;
+      align-items: center;
+      font-size: .2rem;
+      color: $color-dark-1;
+    }
+  }
+  &__row--2 {
+    color: $color-dark-1;
+    font-size: .14rem;
+    span:last-child {
+      font-size: .16rem;
+    }
+  }
+  &__row--3 {
+    color: $color-light-1;
+    font-size: .12rem;
+  }
+}

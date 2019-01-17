@@ -1,0 +1,9 @@
+.home {
+  padding: .3rem 0 1rem;
+
+  & > * {
+    &:not(:last-child) {
+      margin-bottom: .3rem;
+    }
+  }
+}

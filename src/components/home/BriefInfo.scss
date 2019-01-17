@@ -1,0 +1,23 @@
+@import '../../assets/base';
+
+.brief {
+  background-color: $color-primary;
+  border-radius: .04rem;
+  padding: .4rem .5rem;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.brief-item {
+  color: #fff;
+  &__title {
+    margin-bottom: .2rem;
+    font-size: .14rem;
+  }
+  &__number {
+    margin-bottom: 0;
+    font-size: .28rem;
+  }
+}
