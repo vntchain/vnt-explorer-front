@@ -9,7 +9,7 @@ import styles from './HeaderMenu.scss'
 
 const SubMenu = Menu.SubMenu
 
-const menuItemFactory = (menu, lang) => {
+export const menuItemFactory = (menu, lang) => {
   return menu.map(m => {
     if (m.children) {
       return (

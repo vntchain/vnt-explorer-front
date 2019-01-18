@@ -5,6 +5,7 @@ import HeaderLogo from './HeaderLogo'
 import HeaderMenu from './HeaderMenu'
 import HeaderInput from './HeaderInput'
 import HeaderLang from './HeaderLang'
+import MobileHeaderMenu from './MobileHeaderMenu'
 
 import styles from './Header.scss'
 
@@ -21,6 +22,7 @@ export default connect(mapStateToProps)(function Header(props) {
       <HeaderMenu lang={props.language} />
       <HeaderInput lang={props.language} />
       <HeaderLang lang={props.language} dispatch={props.dispatch} />
+      <MobileHeaderMenu lang={props.language} dispatch={props.dispatch} />
     </div>
   )
 })
