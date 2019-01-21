@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'antd'
+import { Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import menu from 'utils/menu.js'
@@ -13,7 +13,15 @@ export const menuItemFactory = (menu, lang) => {
   return menu.map(m => {
     if (m.children) {
       return (
-        <SubMenu key={m.key} title={m.title[index(lang)]}>
+        <SubMenu
+          key={m.key}
+          title={
+            <span className={styles.menu__subMenu}>
+              {m.title[index(lang)]}
+              <Icon type="down" />
+            </span>
+          }
+        >
           {menuItemFactory(m.children, lang)}
         </SubMenu>
       )

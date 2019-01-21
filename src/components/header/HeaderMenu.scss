@@ -2,8 +2,12 @@
 
 .menu {
   color: $color-dark-1;
-  :global {
+  &__subMenu {
+    display: flex;
+    align-items: center;
+  }
 
+  :global {
     // change submenu text font-size
     .ant-menu-submenu-title {
       font-size: .16rem;
@@ -13,5 +17,17 @@
       border-bottom: 1px solid transparent;
     }
 
+    .ant-menu-submenu-active {
+      .anticon {
+        transform: rotate(180deg);
+      }
+    }
+
+    .anticon {
+      font-size: .08rem;
+      margin-right: 0;
+      margin-left: .03rem;
+      line-height: 1;
+    }
   }
 }
