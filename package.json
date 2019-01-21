@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@antv/data-set": "^0.10.1",
     "antd": "^3.12.3",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
+    "bizcharts": "^3.4.3",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
     "history": "^4.7.2",
