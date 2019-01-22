@@ -13,5 +13,13 @@
   }
   &:last-child {
     background-color: $color-light-3;
+
+    padding: .3rem 0 1rem;
+
+    & > div > * {
+      &:not(:last-child) {
+        margin-bottom: .3rem;
+      }
+    }
   }
 }
