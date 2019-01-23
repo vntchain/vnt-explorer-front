@@ -1,0 +1,35 @@
+@import '../assets/base';
+
+@mixin main-width {
+  width: 60%;
+}
+
+@mixin main-width-small {
+  width: 40%;
+}
+
+.newWallet {
+  border-radius: .04rem;
+}
+
+.main {
+  background-color: #fff;
+}
+
+.steps {
+  @include main-width;
+
+  width: 60%;
+  margin: 0 auto;
+  padding: .4rem 0;
+}
+
+.content {
+  border-top: 1px solid $color-light-5;
+  & > div {
+    @include main-width-small;
+    margin: 0 auto;
+    padding-top: .6rem;
+    padding-bottom: .4rem;
+  }
+}
