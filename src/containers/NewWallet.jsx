@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Steps } from 'antd'
 
@@ -21,12 +21,13 @@ const mapStateToProps = ({ global: { language } }) => {
 }
 
 export default connect(mapStateToProps)(function NewWallet(props) {
+  const [currentStep, setCurrentStep] = useState(0)
   return (
     <div className={styles.newWallet}>
       <Banner title={docs[NS].mainTitle[index(props.language)]} />
       <div className={styles.main}>
         <div className={styles.steps}>
-          <Steps current={0}>
+          <Steps current={currentStep}>
             {docs[NS].steps.map(item => (
               <Step
                 key={item[index(props.language)]}
@@ -37,21 +38,27 @@ export default connect(mapStateToProps)(function NewWallet(props) {
         </div>
 
         <div className={styles.content}>
-          <InputPassword
-            data={docs[NS].password}
-            lang={props.language}
-            index={index}
-          />
-          <SaveKeystore
-            data={docs[NS].keystore}
-            lang={props.language}
-            index={index}
-          />
-          <SavePrivateKey
-            data={docs[NS].privateKey}
-            lang={props.language}
-            index={index}
-          />
+          {currentStep === 0 ? (
+            <InputPassword
+              data={docs[NS].password}
+              lang={props.language}
+              index={index}
+              next={setCurrentStep}
+            />
+          ) : currentStep === 1 ? (
+            <SaveKeystore
+              data={docs[NS].keystore}
+              lang={props.language}
+              index={index}
+              next={setCurrentStep}
+            />
+          ) : (
+            <SavePrivateKey
+              data={docs[NS].privateKey}
+              lang={props.language}
+              index={index}
+            />
+          )}
         </div>
       </div>
     </div>

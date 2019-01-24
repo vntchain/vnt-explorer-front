@@ -4,7 +4,7 @@ import { Button, Input } from 'antd'
 import styles from './NWallet.scss'
 
 export default function InputPassword(props) {
-  const { lang, index, data } = props
+  const { lang, index, data, next } = props
   return (
     <div className={styles.content}>
       <h3 className={styles.title}>{data.title[index(lang)]}</h3>
@@ -17,7 +17,7 @@ export default function InputPassword(props) {
         size="large"
         placeholder={data.inputPlaceholder[index(lang)]}
       />
-      <Button size="large" type="primary" block>
+      <Button size="large" type="primary" block onClick={() => next(1)}>
         {data.buttonName[index(lang)]}
       </Button>
     </div>

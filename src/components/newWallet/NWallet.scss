@@ -16,7 +16,13 @@
     .ant-input-password {
       margin-bottom: .2rem;
     }
+    .anticon-copy {
+      cursor: pointer;
+    }
   }
+}
+.content--wider {
+  width: 60% !important;
 }
 
 .title {
@@ -27,4 +33,5 @@
   list-style: none;
   font-size: .14rem;
 }
+
 

@@ -1,14 +1,24 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button, Icon, Input } from 'antd'
 
 import styles from './NWallet.scss'
 
 export default function SavePrivateKey(props) {
   const { lang, index, data } = props
+  const copy = () => {
+    document.querySelector('#copy').select()
+    document.execCommand('copy')
+  }
   return (
-    <div className={styles.content}>
+    <div className={`${styles.content} ${styles['content--wider']}`}>
       <h3 className={styles.title}>{data.title[index(lang)]}</h3>
-      <p>ac5966fdff98014e9c8666d7d4e8fbe2a2b62880e6938d1becedfce74c8aaa29</p>
+      <Input
+        id="copy"
+        value="ac5966fdff98014e9c8666d7d4e8fbe2a2b62880e6938d1becedfce74c8aaa29"
+        readOnly
+        size="large"
+        suffix={<Icon onClick={copy} type="copy" />}
+      />
       <Button size="large" type="primary" block>
         {data.buttonName[index(lang)]}
       </Button>
