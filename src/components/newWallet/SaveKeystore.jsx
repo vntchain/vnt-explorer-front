@@ -9,7 +9,12 @@ export default function SaveKeystore(props) {
     <div className={styles.content}>
       <h3 className={styles.title}>{data.title[index(lang)]}</h3>
       <Button size="large" type="primary" block>
-        {data.buttonName[index(lang)]}
+        <a
+          href="data:application/octet-stream;charset=utf-8;base64,Zm9vIGJhcg=="
+          download="Keystore"
+        >
+          {data.buttonName[index(lang)]}
+        </a>
       </Button>
       <ul className={styles.list}>
         {data.notes.map(item => (
