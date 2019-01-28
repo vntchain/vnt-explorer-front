@@ -39,5 +39,17 @@ export default {
       buttonNext: ['全部就绪，进入账户页面', 'placeholder5']
     }
   },
-  open: {}
+  open: {
+    mainTitle: ['打开你的钱包', 'Open Your Wallet'],
+    title1: ['请选择打开钱包的方式', 'placeholder0'],
+    title2: ['请输入私钥', 'placeholder1'],
+    inputPlaceholder1: ['请输入密码', 'placeholder2'],
+    inputPlaceholder2: ['请输入你的钱包私钥', 'placeholder3'],
+    btn1: ['Keystore 文件', 'Keystore file'],
+    btn2: ['私钥', 'Private Key'],
+    title3: ['请选择Keystore文件', 'placeholder4'],
+    title4: ['请输入密码', 'placeholder5'],
+    btn3: ['打开钱包', 'Open Wallet'],
+    upload: ['选择文件', 'Select File']
+  }
 }
