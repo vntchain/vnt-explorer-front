@@ -58,7 +58,8 @@ export default [
   },
   {
     title: ['钱包', 'Wallet'],
-    key: 'wallet',
+    condition: false, // before auth
+    key: 'walletB',
     children: [
       {
         title: ['创建钱包', 'Create Wallet'],
@@ -69,6 +70,33 @@ export default [
         title: ['打开钱包', 'View Wallet'],
         key: 'viewWallet',
         path: '/view-wallet'
+      }
+    ]
+  },
+  {
+    title: ['钱包', 'Wallet'],
+    condition: true, // after auth
+    key: 'walletA',
+    children: [
+      {
+        title: ['钱包账户', 'Account'],
+        key: 'account',
+        path: '/account'
+      },
+      {
+        title: ['发送', 'Send'],
+        key: 'send',
+        path: '/send'
+      },
+      {
+        title: ['接收', 'Receive'],
+        key: 'receive',
+        path: '/receive'
+      },
+      {
+        btn: true,
+        title: ['退出登录', 'Logout'],
+        key: 'logout'
       }
     ]
   }

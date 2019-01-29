@@ -9,9 +9,14 @@ import styles from './HeaderMenu.scss'
 
 const SubMenu = Menu.SubMenu
 
-export const menuItemFactory = (menu, lang) => {
+export const menuItemFactory = (menu, lang, auth, dispatch) => {
   return menu.map(m => {
     if (m.children) {
+      if (m.hasOwnProperty('condition')) {
+        if (m.condition !== auth) {
+          return
+        }
+      }
       return (
         <SubMenu
           key={m.key}
@@ -22,13 +27,22 @@ export const menuItemFactory = (menu, lang) => {
             </span>
           }
         >
-          {menuItemFactory(m.children, lang)}
+          {menuItemFactory(m.children, lang, auth, dispatch)}
         </SubMenu>
       )
     }
     return (
       <Menu.Item key={m.key}>
-        <Link to={m.path}>{m.title[index(lang)]}</Link>
+        {m.hasOwnProperty('btn') ? (
+          <span
+            style={{ color: 'red' }}
+            onClick={() => dispatch({ type: 'auth/logout' })}
+          >
+            {m.title[index(lang)]}
+          </span>
+        ) : (
+          <Link to={m.path}>{m.title[index(lang)]}</Link>
+        )}
       </Menu.Item>
     )
   })
@@ -38,7 +52,7 @@ export default function HeaderMenu(props) {
   return (
     <div className={styles.menu}>
       <Menu theme="light" mode="horizontal">
-        {menuItemFactory(menu, props.lang)}
+        {menuItemFactory(menu, props.lang, props.auth, props.dispatch)}
       </Menu>
     </div>
   )

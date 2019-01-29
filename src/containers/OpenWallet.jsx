@@ -29,6 +29,14 @@ export default connect(mapStateToProps)(function OpenWallet(props) {
       setMethod(e.target.name)
     }
   }
+
+  const handleOpenWallet = () => {
+    props.dispatch({
+      type: 'auth/setAuth',
+      payload: true
+    })
+    props.history.push('account')
+  }
   const [method, setMethod] = useState('ks')
   return (
     <div className={styles.open}>
@@ -80,7 +88,9 @@ export default connect(mapStateToProps)(function OpenWallet(props) {
                 : `${docs[NS].inputPlaceholder2[index(props.language)]}：`
             }
           />
-          <Button type="primary">{docs[NS].btn3[index(props.language)]}</Button>
+          <Button type="primary" onClick={handleOpenWallet}>
+            {docs[NS].btn3[index(props.language)]}
+          </Button>
         </div>
       </div>
     </div>
