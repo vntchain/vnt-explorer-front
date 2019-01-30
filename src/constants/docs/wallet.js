@@ -51,5 +51,24 @@ export default {
     title4: ['请输入密码', 'placeholder5'],
     btn3: ['打开钱包', 'Open Wallet'],
     upload: ['选择文件', 'Select File']
+  },
+  receive: {
+    main: ['接收', 'Receive'],
+    title1: ['钱包账户地址', 'Wallet Address'],
+    title2: ['地址二维码', 'Address QRCode']
+  },
+  send: {
+    main: ['发送', 'Send'],
+    title1: ['钱包账户地址', 'Wallet Address'],
+    title2: ['接收账户', 'Receiver Account'],
+    title3: ['币种', 'Currency'],
+    title4: ['数量', 'Amount'],
+    title5: ['附加信息', 'Additional information'],
+    btn1: ['全部', 'All'],
+    btn2: ['确认发送', 'Confirm Sending'],
+    ph1: ['请输入账户地址', 'Input Account Address'],
+    ph2: ['请输入数量', 'Input Amount'],
+    ph3: ['选填', 'Optional'],
+    balance: ['可用余额', 'Balance']
   }
 }
