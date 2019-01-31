@@ -7,6 +7,7 @@ import OpenWallet from './OpenWallet'
 import Account from './Account'
 import Receive from './Receive'
 import Send from './Send'
+import SuperNode from './SuperNode'
 import Header from 'components/header/Header'
 
 import styles from './App.scss'
@@ -24,6 +25,7 @@ export default function App() {
         <Route exact path="/account" component={Account} />
         <Route exact path="/receive" component={Receive} />
         <Route exact path="/send" component={Send} />
+        <Route exact path="/super-node" component={SuperNode} />
       </div>
     </div>
   )
