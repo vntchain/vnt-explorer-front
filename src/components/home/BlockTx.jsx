@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
-import index from 'utils/locale'
+import LocalText from 'i18n/LocalText'
 import calcAge from 'utils/age'
 
 import styles from './BlockTx.scss'
@@ -35,10 +35,15 @@ export default function BlockTx(props) {
       <div className={styles.section}>
         <div className={styles.header}>
           <div className={styles.header__title}>
-            <span>{fields.block[index(props.lang)]}</span>
+            <span>
+              <LocalText id="lTitle" />
+            </span>
           </div>
           <span>
-            <Link to="">{fields.viewAll[index(props.lang)] + ' >'}</Link>
+            <Link to="">
+              <LocalText id="lField1" />
+              {' >'}
+            </Link>
           </span>
         </div>
 
@@ -56,11 +61,13 @@ export default function BlockTx(props) {
                 className={`${styles['item__row']} ${styles['item__row--2']}`}
               >
                 <span>
-                  {`${fields.blockItem[1][index(props.lang)]}：${item[1]}`}
+                  <LocalText id="lField2" />
+                  {item[1]}
                 </span>
-                <span>{`${fields.blockItem[2][index(props.lang)]}：${
-                  item[2]
-                }`}</span>
+                <span>
+                  <LocalText id="lField3" />
+                  {item[2]}
+                </span>
               </div>
 
               <div
@@ -68,7 +75,7 @@ export default function BlockTx(props) {
               >
                 <span>{calcAge(item[3], props.lang)}</span>
                 <span>
-                  {`${fields.blockItem[4][index(props.lang)]}：`}
+                  <LocalText id="lField4" />
                   <Link to="">{`${item[4]}`}</Link>
                 </span>
               </div>
@@ -80,10 +87,14 @@ export default function BlockTx(props) {
       <div className={`${styles.section} ${styles['section--2']}`}>
         <div className={styles.header}>
           <div className={styles.header__title}>
-            <span>{fields.tx[index(props.lang)]}</span>
+            <span>
+              <LocalText id="rTitle" />
+            </span>
           </div>
           <span>
-            <Link to="">{fields.viewAll[index(props.lang)] + ' >'}</Link>
+            <Link to="">
+              <LocalText id="rField1" />
+            </Link>
           </span>
         </div>
 
@@ -101,16 +112,17 @@ export default function BlockTx(props) {
                 className={`${styles['item__row']} ${styles['item__row--2']}`}
               >
                 <span>
-                  {`${fields.txItem[1][index(props.lang)]}：`}
+                  <LocalText id="rField2" />
                   <Link to="">{item[1].slice(0, 15) + '...'}</Link>
                 </span>
                 <span>
-                  {`${fields.txItem[2][index(props.lang)]}：`}
+                  <LocalText id="rField3" />
                   <Link to="">{item[2].slice(0, 15) + '...'}</Link>
                 </span>
-                <span>{`${fields.txItem[3][index(props.lang)]}：${
-                  item[3]
-                }`}</span>
+                <span>
+                  <LocalText id="rField4" />
+                  {item[3]}
+                </span>
               </div>
 
               <div

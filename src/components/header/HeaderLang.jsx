@@ -1,18 +1,22 @@
 import React from 'react'
 
-import lang from 'assets/images/lang.png'
+import { LangContext } from 'i18n/LangContext'
+import LocalText from 'i18n/LocalText'
+import langIcon from 'assets/images/lang.png'
 
 import styles from './Header.scss'
 
-export default function HeaderLogo({ lang: language, dispatch }) {
-  const setLocale = () => {
-    const lang = language === 'cn' ? 'en' : 'cn'
-    dispatch({ type: 'global/setLanguage', payload: lang })
-  }
+export default function HeaderLogo() {
   return (
-    <div className={styles.lang} onClick={setLocale}>
-      <img src={lang} alt="" />
-      <span>{language === 'cn' ? '中文' : 'English'}</span>
-    </div>
+    <LangContext.Consumer>
+      {({ dsdtUpdateLang: alterLang }) => (
+        <div className={styles.lang} onClick={alterLang}>
+          <img src={langIcon} alt="" />
+          <span>
+            <LocalText id="language" />
+          </span>
+        </div>
+      )}
+    </LangContext.Consumer>
   )
 }

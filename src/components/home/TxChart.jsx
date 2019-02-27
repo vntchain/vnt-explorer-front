@@ -2,6 +2,7 @@ import React from 'react'
 import { Chart, Geom, Axis, Tooltip } from 'bizcharts'
 import DataSet from '@antv/data-set'
 
+import LocalText from 'i18n/LocalText'
 import fontZoomLevel from 'utils/zoomLevel'
 
 import styles from './TxChart.scss'
@@ -88,7 +89,9 @@ export default function AreaChart({ data }) {
   }
   return (
     <div className={styles.txChart}>
-      <h3 className={styles.heading}>VNT 14天内交易历史</h3>
+      <h3 className={styles.heading}>
+        <LocalText id="chartTitle" />
+      </h3>
       <div className={styles.chart}>
         <Chart
           height={225 * fontZoomLevel}

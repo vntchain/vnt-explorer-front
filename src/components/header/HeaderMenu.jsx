@@ -2,8 +2,8 @@ import React from 'react'
 import { Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
+import LocalText from 'i18n/LocalText'
 import menu from 'utils/menu.js'
-import index from 'utils/locale.js'
 
 import styles from './HeaderMenu.scss'
 
@@ -22,7 +22,7 @@ export const menuItemFactory = (menu, lang, auth, dispatch) => {
           key={m.key}
           title={
             <span className={styles.menu__subMenu}>
-              {m.title[index(lang)]}
+              <LocalText id={m.title} />
               <Icon type="down" />
             </span>
           }
@@ -38,10 +38,12 @@ export const menuItemFactory = (menu, lang, auth, dispatch) => {
             style={{ color: 'red' }}
             onClick={() => dispatch({ type: 'auth/logout' })}
           >
-            {m.title[index(lang)]}
+            <LocalText id={m.title} />
           </span>
         ) : (
-          <Link to={m.path}>{m.title[index(lang)]}</Link>
+          <Link to={m.path}>
+            <LocalText id={m.title} />
+          </Link>
         )}
       </Menu.Item>
     )

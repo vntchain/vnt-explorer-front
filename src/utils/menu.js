@@ -1,101 +1,101 @@
 export default [
   {
-    title: ['区块链', 'Blockchain'],
+    title: 'nav1',
     key: 'blockchain',
     children: [
       {
-        title: ['概览', 'Overview'],
+        title: 'nav1Sub1',
         key: 'brief',
         path: '/'
       },
       {
-        title: ['区块', 'Blocks'],
+        title: 'nav1Sub2',
         key: 'blocks',
         path: '/blocks'
       },
       {
-        title: ['交易', 'Transactions'],
+        title: 'nav1Sub3',
         key: 'transactions',
         path: '/transactions'
       },
       {
-        title: ['账户', 'Account'],
+        title: 'nav1Sub4',
         key: 'account',
         path: '/account'
       },
       {
-        title: ['合约', 'Chaincodes'],
+        title: 'nav1Sub5',
         key: 'chaincode',
         path: '/chaincode'
       },
       {
-        title: ['代币', 'Token'],
+        title: 'nav1Sub6',
         key: 'token',
         path: '/token'
       },
       {
-        title: ['超级节点', 'Super Node'],
+        title: 'nav1Sub7',
         key: 'superNode',
         path: '/super-node'
       }
     ]
   },
   {
-    title: ['开发者', 'Developer'],
+    title: 'nav2',
     key: 'develop',
     children: [
       {
-        title: ['VNT开发者指南', 'VNT Developer Guides'],
+        title: 'nav2Sub1',
         key: 'devGuides',
         path: '/developer'
       },
       {
-        title: ['合约工具', 'Chaincode Tools'],
+        title: 'nav2Sub2',
         key: 'chaincodeTools',
         path: '/chaincode'
       }
     ]
   },
   {
-    title: ['钱包', 'Wallet'],
+    title: 'nav3',
     condition: false, // before auth
     key: 'walletB',
     children: [
       {
-        title: ['创建钱包', 'Create Wallet'],
+        title: 'nav3Sub1',
         key: 'createWallet',
         path: '/new-wallet'
       },
       {
-        title: ['打开钱包', 'View Wallet'],
+        title: 'nav3Sub2',
         key: 'viewWallet',
         path: '/view-wallet'
       }
     ]
   },
   {
-    title: ['钱包', 'Wallet'],
+    title: 'nav3',
     condition: true, // after auth
     key: 'walletA',
     children: [
       {
-        title: ['钱包账户', 'Account'],
+        title: 'nav3AuthSub1',
         key: 'account',
         path: '/account'
       },
       {
-        title: ['发送', 'Send'],
+        title: 'nav3AuthSub2',
         key: 'send',
         path: '/send'
       },
       {
-        title: ['接收', 'Receive'],
+        title: 'nav3AuthSub3',
         key: 'receive',
         path: '/receive'
       },
       {
+        title: 'nav3AuthSub4',
         btn: true,
-        title: ['退出登录', 'Logout'],
         key: 'logout'
       }
     ]

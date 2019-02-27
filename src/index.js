@@ -12,6 +12,8 @@ import createHistory from 'history/createBrowserHistory'
 // import registerServiceWorker from 'registerServiceWorker'
 
 import App from 'containers/App'
+import LangProvider from 'i18n/LangProvider'
+
 import 'normalize.css'
 import './index.scss'
 
@@ -30,11 +32,13 @@ const store = new Sirius({
 }).store()
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
+  <LangProvider>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+  </LangProvider>,
   document.getElementById('root')
 )
 // registerServiceWorker()
