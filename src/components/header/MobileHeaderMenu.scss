@@ -55,48 +55,74 @@
 
   &__nav {
     height: 100vh;
-    background-image: radial-gradient($color-primary-light, $color-primary);
+    overflow: scroll;
+    // background-image: radial-gradient($color-primary-light, $color-primary);
+    background-color: #fff;
 
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 0rem;
     right: 0;
     z-index: 1500;
+    // margin-bottom: .7rem;
 
+
+    // hide nav at initial state
     opacity: 0;
     width: 0;
 
     transition: all .3s cubic-bezier(.68, -.55, .265, 1.55);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     :global {
+      .ant-menu-root {
+        margin-top: .7rem;
+
+        & > .ant-menu-submenu:last-child {
+          .ant-menu-submenu-arrow {
+            display: none;
+          }
+        }
+      }
+
       .ant-menu {
         background-color: transparent;
-        width: 40%;
+        width: 100%;
         color: $color-primary;
         border-right: none;
 
         li {
-          margin-bottom: .3rem;
-          border-radius: .04rem;
           padding: .04rem 0;
         }
-        li:last-child {
-          margin-bottom: 0;
+
+        & > .ant-menu-submenu {
+          border-bottom: 1px solid $color-light-4;
+
+          &:first-child {
+            border-top: 1px solid $color-light-4;
+          }
         }
       }
+
+      .ant-menu-item {
+        border-top: 1px solid $color-light-4;
+      }
+
       .ant-menu-submenu, .ant-menu-item {
         background-color: #fff;
       }
+
+      .ant-menu-submenu-arrow {
+        margin-right: .15rem;
+      }
+
       .ant-menu-submenu-arrow::before,
-      .ant-menu-submenu-arrow::after, {
+      .ant-menu-submenu-arrow::after {
         background: $color-primary !important;
       }
+
       .ant-menu-item > a {
         color: $color-primary;
       }
+
       .ant-menu-submenu-title {
         font-size: .2rem;
       }
@@ -104,21 +130,30 @@
   }
 
   &__checkbox:checked ~ &__nav {
-      opacity: 1;
-      width: 100%;
-      overflow: scroll;
+    // show nav
+    opacity: 1;
+    width: 100%;
+    overflow: scroll;
   }
+
   &__checkbox:checked + &__button &__icon {
     background-color: transparent;
   }
+
   &__checkbox:checked + &__button &__icon::before {
-      background-color: #fff;
-      transform: rotate(135deg);
-      top: 0;
-    }
-    &__checkbox:checked + &__button &__icon::after {
-      background-color: #fff;
-      transform: rotate(-135deg);
-      top: 0;
+    // background-color: #fff;
+    transform: rotate(135deg);
+    top: 0;
   }
+
+  &__checkbox:checked + &__button &__icon::after {
+    // background-color: #fff;
+    transform: rotate(-135deg);
+    top: 0;
+  }
+}
+
+.body {
+  height: 100vh;
+  overflow: hidden;
 }

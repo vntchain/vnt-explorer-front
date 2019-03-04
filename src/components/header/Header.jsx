@@ -9,9 +9,9 @@ import MobileHeaderMenu from './MobileHeaderMenu'
 
 import styles from './Header.scss'
 
-const mapStateToProps = ({ global: { language }, auth: { auth } }) => {
+const mapStateToProps = ({ global: { isMobile }, auth: { auth } }) => {
   return {
-    language,
+    isMobile,
     auth
   }
 }
@@ -20,18 +20,14 @@ export default connect(mapStateToProps)(function Header(props) {
   return (
     <div className={styles.header}>
       <HeaderLogo />
-      <HeaderMenu
-        lang={props.language}
-        auth={props.auth}
-        dispatch={props.dispatch}
-      />
-      <HeaderInput lang={props.language} />
-      <HeaderLang lang={props.language} dispatch={props.dispatch} />
+      <HeaderMenu auth={props.auth} dispatch={props.dispatch} />
+      <HeaderInput />
+      <HeaderLang />
 
       <MobileHeaderMenu
-        lang={props.language}
-        dispatch={props.dispatch}
         auth={props.auth}
+        dispatch={props.dispatch}
+        isMobile={props.isMobile}
       />
     </div>
   )

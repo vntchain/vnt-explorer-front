@@ -4,11 +4,15 @@ import { Menu } from 'antd'
 import { menuItemFactory } from './HeaderMenu'
 
 import menu from 'utils/menu.js'
-// import index from 'utils/locale.js'
 
 import styles from './MobileHeaderMenu.scss'
+import SubMenu from 'antd/lib/menu/SubMenu'
 
 export default function MobileHeaderMenu(props) {
+  const toggleNav = () => {
+    document.querySelector('body').classList.toggle(styles.body)
+  }
+
   return (
     <div className={styles.navigation}>
       <input
@@ -18,13 +22,15 @@ export default function MobileHeaderMenu(props) {
       />
 
       <label htmlFor="nav-toggle" className={styles.navigation__button}>
-        <span className={styles.navigation__icon}>&nbsp;</span>
+        <span className={styles.navigation__icon} onClick={toggleNav}>
+          &nbsp;
+        </span>
       </label>
 
       <nav className={styles.navigation__nav}>
         <Menu theme="light" mode="inline">
-          {menuItemFactory(menu, props.lang)}
-          <Menu.Item>中/EN</Menu.Item>
+          {menuItemFactory(menu, props.auth, true, props.dispatch)}
+          <SubMenu key="lang" title="中/EN" />
         </Menu>
       </nav>
     </div>

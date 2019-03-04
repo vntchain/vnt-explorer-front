@@ -9,7 +9,7 @@ import styles from './HeaderMenu.scss'
 
 const SubMenu = Menu.SubMenu
 
-export const menuItemFactory = (menu, lang, auth, dispatch) => {
+export const menuItemFactory = (menu, auth, isMobile = false, dispatch) => {
   return menu.map(m => {
     if (m.children) {
       if (m.hasOwnProperty('condition')) {
@@ -23,11 +23,11 @@ export const menuItemFactory = (menu, lang, auth, dispatch) => {
           title={
             <span className={styles.menu__subMenu}>
               <LocalText id={m.title} />
-              <Icon type="down" />
+              {!isMobile && <Icon type="down" />}
             </span>
           }
         >
-          {menuItemFactory(m.children, lang, auth, dispatch)}
+          {menuItemFactory(m.children, auth, isMobile, dispatch)}
         </SubMenu>
       )
     }
@@ -54,7 +54,7 @@ export default function HeaderMenu(props) {
   return (
     <div className={styles.menu}>
       <Menu theme="light" mode="horizontal">
-        {menuItemFactory(menu, props.lang, props.auth, props.dispatch)}
+        {menuItemFactory(menu, props.auth, props.isMobile, props.dispatch)}
       </Menu>
     </div>
   )
