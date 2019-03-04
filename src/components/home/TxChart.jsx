@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Chart, Geom, Axis, Tooltip } from 'bizcharts'
 import DataSet from '@antv/data-set'
 
@@ -8,22 +9,7 @@ import fontZoomLevel from 'utils/zoomLevel'
 import styles from './TxChart.scss'
 
 const TICK_COUNT_Y = 4
-const labelX = {
-  textStyle: {
-    fill: '#333',
-    fontSize: 14 * fontZoomLevel
-    // ,textAlign: 'start'
-  },
-  offset: 24 * fontZoomLevel
-}
-const labelY = {
-  textStyle: {
-    fill: '#333',
-    fontSize: 14 * fontZoomLevel
-    // textAlign: 'start'
-  },
-  offset: 22 * fontZoomLevel
-}
+
 const tooltipConfig = {
   containerTpl:
     "<div class='g2-tooltip'><p class='g2-tooltip-title'></p><table class='g2-tooltip-list'></table></div>",
@@ -43,7 +29,29 @@ const tooltipConfig = {
   }
 }
 
-export default function AreaChart({ data }) {
+const mapStateToProps = ({ global: { isMobile } }) => {
+  return {
+    isMobile
+  }
+}
+
+export default connect(mapStateToProps)(function AreaChart({ data, isMobile }) {
+  const labelX = {
+    textStyle: {
+      fill: '#333',
+      fontSize: isMobile ? 12 * fontZoomLevel : 14 * fontZoomLevel
+      // ,textAlign: 'start'
+    },
+    offset: 24 * fontZoomLevel
+  }
+  const labelY = {
+    textStyle: {
+      fill: '#333',
+      fontSize: isMobile ? 12 * fontZoomLevel : 14 * fontZoomLevel
+      // textAlign: 'start'
+    },
+    offset: 22 * fontZoomLevel
+  }
   const chartData = data
 
   const dv = new DataSet.View().source(chartData)
@@ -83,7 +91,7 @@ export default function AreaChart({ data }) {
     },
     time: {
       range: [0, 1],
-      tickCount: 7
+      tickCount: isMobile ? 4 : 7
     },
     type: 'linear'
   }
@@ -126,4 +134,4 @@ export default function AreaChart({ data }) {
       </div>
     </div>
   )
-}
+})

@@ -8,12 +8,28 @@
 
   display: flex;
   align-items: center;
+
+  @include respondTo($bp-phone) {
+    height: 1rem;
+    align-content: space-around;
+    flex-wrap: wrap;
+
+    box-sizing: content-box;
+    padding-top: .14rem !important;
+    padding-bottom: .2rem !important;
+  }
 }
 
 .input {
   width: 3rem;
   margin-left: .5rem;
   margin-right: .3rem;
+
+  @include respondTo($bp-phone) {
+    order: 3;
+    flex: 1 0 100%;
+    margin: 0;
+  }
 }
 
 .lang {
@@ -24,5 +40,9 @@
     font-size: .14rem;
     color: $color-light-1;
     margin-left: .05rem;
+  }
+
+  @include respondTo($bp-phone) {
+    display: none;
   }
 }

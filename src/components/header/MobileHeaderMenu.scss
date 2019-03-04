@@ -4,6 +4,10 @@
   display: none;
   margin-left: .3rem;
 
+  @include respondTo($bp-phone) {
+    display: initial;
+  }
+
   &__checkbox {
     display: none;
   }

@@ -34,13 +34,13 @@ export default {
  ** Home brief info box (left and right)
  */
   lTitle: 'Blocks',
-  lField1: 'View All',
+  lField1: 'View All >',
   lField2: 'Transactions: ',
   lField3: 'Block Reward',
   lField4: 'Produced by: ',
 
   rTitle: 'Transfers',
-  rField1: 'View All',
+  rField1: 'View All >',
   rField2: 'From: ',
   rField3: 'To: ',
   rField4: 'Amount: ',

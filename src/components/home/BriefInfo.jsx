@@ -10,7 +10,7 @@ export default function BriefInfo(props) {
       {Array(5)
         .fill('')
         .map((item, i) => (
-          <div key={item[0]} className={styles['brief-item']}>
+          <div key={i} className={styles['brief-item']}>
             <p className={styles['brief-item__title']}>
               <LocalText id={'hbField' + (i + 1)} />
             </p>

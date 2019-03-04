@@ -12,7 +12,9 @@ $color-light-6: #666;
 
 
 /* breakpoints */
-$bp-desktop: 12.3rem;
+$bp-desktop: 76.875em; // 1230px
+$bp-tab-port: 48em; // 768px
+$bp-phone: 37.5em; // 600px
 
 
 /* mixins */

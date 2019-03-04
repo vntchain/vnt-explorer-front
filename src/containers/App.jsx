@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 
 import Home from './Home'
@@ -12,7 +13,39 @@ import Header from 'components/header/Header'
 
 import styles from './App.scss'
 
-export default function App() {
+const mapStateToProps = ({ global: { isMobile } }) => {
+  return {
+    isMobile
+  }
+}
+
+export default connect(mapStateToProps)(function App(props) {
+  const handleResize = () => {
+    const clientWidth = Math.min(
+      window.innerWidth,
+      document.documentElement.clientWidth
+    )
+    if (!props.isMobile && clientWidth <= 600) {
+      props.dispatch({
+        type: 'global/setIsMobile',
+        payload: true
+      })
+    } else if (props.isMobile && clientWidth > 600) {
+      props.dispatch({
+        type: 'global/setIsMobile',
+        payload: false
+      })
+    }
+  }
+
+  useEffect(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
+
   return (
     <div className={styles.app}>
       <div className={styles.margin}>
@@ -29,4 +62,4 @@ export default function App() {
       </div>
     </div>
   )
-}
+})

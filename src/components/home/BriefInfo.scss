@@ -7,7 +7,13 @@
 
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+
+  @include respondTo($bp-phone) {
+    flex-wrap: wrap;
+    background-color: transparent;
+    padding: 0 0rem;
+    margin: 0 -.075rem;
+  }
 }
 
 .brief-item {
@@ -19,5 +25,28 @@
   &__number {
     margin-bottom: 0;
     font-size: .28rem;
+  }
+
+  @include respondTo($bp-phone) {
+    border-radius: .04rem;
+
+    flex: 0 1 calc(50% - .15rem);
+    background-color: #fff;
+    color: $color-primary;
+
+    padding: .2rem .15rem;
+
+    margin: 0 .075rem;
+    margin-bottom: 5%;
+
+    &__title {
+      color: $color-dark-1;
+      font-size: .12rem;
+    }
+
+    &__number {
+      font-size: .2rem;
+    }
+
   }
 }

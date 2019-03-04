@@ -1,6 +1,7 @@
 export default {
   state: {
-    language: 'cn'
+    language: 'cn',
+    isMobile: false
   },
   reducers: {}
 }

@@ -34,13 +34,13 @@ export default {
   ** Home brief info box (left and right)
   */
   lTitle: '区块',
-  lField1: '查看全部',
+  lField1: '查看全部 >',
   lField2: '交易数：',
   lField3: '区块奖励',
   lField4: '出块者：',
 
   rTitle: '交易',
-  rField1: '查看全部',
+  rField1: '查看全部  >',
   rField2: '发送方：',
   rField3: '接收方：',
   rField4: '数额：',

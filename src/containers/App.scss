@@ -3,22 +3,46 @@
 .app {
 }
 .margin {
+  min-width: 12rem;
+
+  @include respondTo($bp-phone) {
+    min-width: auto;
+    & > div {
+      margin: 0;
+    }
+  }
+
   & > div {
     width: 12rem;
     margin: 0 auto;
-    @include respondTo(1230px) {
-      width: auto;
-      padding: 0 .6rem;
+
+    @include respondTo($bp-desktop) {
+      padding: 0 .3rem;
     }
+
+    @include respondTo($bp-phone) {
+      padding: 0 .15rem;
+      width: auto;
+    }
+
   }
+
   &:last-child {
     background-color: $color-light-3;
 
     padding: .3rem 0 1rem;
 
+    @include respondTo($bp-phone) {
+      padding: .2rem 0 .2rem;
+      width: auto;
+    }
+
     & > div > * {
       &:not(:last-child) {
         margin-bottom: .3rem;
+        @include respondTo($bp-phone) {
+          margin-bottom: 0;
+        }
       }
     }
   }

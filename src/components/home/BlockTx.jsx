@@ -42,7 +42,6 @@ export default function BlockTx(props) {
           <span>
             <Link to="">
               <LocalText id="lField1" />
-              {' >'}
             </Link>
           </span>
         </div>
@@ -105,11 +104,13 @@ export default function BlockTx(props) {
                 className={`${styles['item__row']} ${styles['item__row--1']}`}
               >
                 <Icon type={fields.txItem[fields.txItem.length - 1]} />
-                <span>{item[0].slice(0, 30) + '...'}</span>
+                <span>{item[0].slice(0, 24) + '...'}</span>
               </div>
 
               <div
-                className={`${styles['item__row']} ${styles['item__row--2']}`}
+                className={`${styles['item__row']} ${
+                  styles['item__row--resp']
+                }`}
               >
                 <span>
                   <LocalText id="rField2" />
@@ -123,11 +124,6 @@ export default function BlockTx(props) {
                   <LocalText id="rField4" />
                   {item[3]}
                 </span>
-              </div>
-
-              <div
-                className={`${styles['item__row']} ${styles['item__row--3']}`}
-              >
                 <span>{calcAge(item[4], props.lang)}</span>
               </div>
             </div>

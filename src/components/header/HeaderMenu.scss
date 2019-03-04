@@ -30,4 +30,8 @@
       line-height: 1;
     }
   }
+
+  @include respondTo($bp-phone) {
+    display: none;
+  }
 }

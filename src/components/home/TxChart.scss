@@ -2,6 +2,7 @@
 
 .txChart {
   background-color: #fff;
+  border-radius: .04rem;
 }
 
 .heading {
@@ -9,8 +10,18 @@
   border-bottom: 1px solid $color-light-5;
   color: #333;
   font-size: .18rem;
+  margin-bottom: 0;
+
+  @include respondTo($bp-phone) {
+    padding: .1rem .15rem;
+    font-size: .16rem;
+  }
 }
 
 .chart {
   padding: .3rem .3rem;
+
+  @include respondTo($bp-phone) {
+    padding: .15rem;
+  }
 }
