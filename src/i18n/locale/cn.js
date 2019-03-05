@@ -1,5 +1,6 @@
 export default {
   language: '中文',
+
   /*
   ** Header Fields
   */
@@ -47,5 +48,39 @@ export default {
   /*
   ** Home chart
   */
-  chartTitle: 'VNT 14天内交易历史'
+  chartTitle: 'VNT 14天内交易历史',
+
+  /*
+  ** Create wallet
+  */
+  CWBanner: '创建新的钱包',
+  stage1: '输入密码',
+  stage2: '保存文件',
+  stage3: '保存私钥',
+  /*
+  ** Create wallet stage1
+  */
+  st1Title: '请输入密码',
+  st1Note1: '密码用于加密你的私钥，不作为生成私钥的种子',
+  st1Note2: '你需要密码+私钥解锁你的钱包',
+  st1InputPH: '请输入至少 6 位字符',
+  st1Btn: '创建钱包',
+  /*
+  ** Create wallet stage2
+  */
+  st2Title: '请保存你的Keystore文件',
+  st2Note1: '请勿遗失Keystore文件，丢失后无法找回',
+  st2Note2: '请勿分享Keystore文件，否则你的数字资产可能面临被盗风险',
+  st2Note3: '请及时备份你的Keystore文件',
+  st2Btn1: '下载Keystore文件',
+  st2Btn2: '我已下载，下一步',
+  /*
+  ** Create wallet stage3
+  */
+  st3Title: '请保存你的私钥',
+  st3Note1: '请勿遗失私钥，丢失后无法找回',
+  st3Note2: '请勿分享私钥，否则您的数字资产可能面临被盗风险',
+  st3Note3: '请及时备份私钥',
+  st3Btn1: '打印纸钱包',
+  st3Btn2: '全部就绪，进入账户页面'
 }

@@ -1,66 +1,48 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
 import { Steps } from 'antd'
 
 import Banner from 'components/Banner'
 import InputPassword from 'components/newWallet/InputPassword'
 import SaveKeystore from 'components/newWallet/SaveKeystore'
 import SavePrivateKey from 'components/newWallet/SavePK'
-import docs from 'constants/docs/wallet'
-import index from 'utils/locale'
+
+import LocalText from 'i18n/LocalText'
 
 import styles from './NewWallet.scss'
 
-const NS = 'create'
 const Step = Steps.Step
 
-const mapStateToProps = ({ global: { language } }) => {
-  return {
-    language
-  }
-}
-
-export default connect(mapStateToProps)(function NewWallet(props) {
+export default function NewWallet() {
   const [currentStep, setCurrentStep] = useState(0)
+  const [keyStore, setKeyStore] = useState(null)
+  const [account, setAccount] = useState(null)
+
   return (
     <div className={styles.newWallet}>
-      <Banner title={docs[NS].mainTitle[index(props.language)]} />
+      <Banner id="CWBanner" />
       <div className={styles.main}>
         <div className={styles.steps}>
           <Steps current={currentStep}>
-            {docs[NS].steps.map(item => (
-              <Step
-                key={item[index(props.language)]}
-                title={item[index(props.language)]}
-              />
-            ))}
+            <Step key={1} title={<LocalText id="stage1" />} />
+            <Step key={2} title={<LocalText id="stage2" />} />
+            <Step key={3} title={<LocalText id="stage3" />} />
           </Steps>
         </div>
 
         <div className={styles.content}>
           {currentStep === 0 ? (
             <InputPassword
-              data={docs[NS].password}
-              lang={props.language}
-              index={index}
+              setKS={ks => setKeyStore(ks)}
+              setAcc={pk => setAccount(pk)}
               next={setCurrentStep}
             />
           ) : currentStep === 1 ? (
-            <SaveKeystore
-              data={docs[NS].keystore}
-              lang={props.language}
-              index={index}
-              next={setCurrentStep}
-            />
+            <SaveKeystore ks={keyStore} next={setCurrentStep} />
           ) : (
-            <SavePrivateKey
-              data={docs[NS].privateKey}
-              lang={props.language}
-              index={index}
-            />
+            <SavePrivateKey account={account} />
           )}
         </div>
       </div>
     </div>
   )
-})
+}

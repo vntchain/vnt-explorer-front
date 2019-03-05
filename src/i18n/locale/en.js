@@ -1,5 +1,6 @@
 export default {
   language: 'EN',
+
   /*
   ** Header Fields
   */
@@ -45,7 +46,47 @@ export default {
   rField3: 'To: ',
   rField4: 'Amount: ',
   /*
- ** Home chart
- */
-  chartTitle: 'VNT 14 days Transaction History'
+  ** Home chart
+  */
+  chartTitle: 'VNT 14 days Transaction History',
+
+  /*
+  ** Create wallet
+  */
+  CWBanner: 'Create New Wallet',
+  stage1: 'Input Password',
+  stage2: 'Save Keystore',
+  stage3: 'Save Private Key',
+  /*
+  ** Create wallet stage1
+  */
+  st1Title: 'Enter a Password',
+  st1Note1:
+    'This password encrypts your private key. This does not act as a seed to generate your keys.',
+  st1Note2:
+    'You will need this password and your private key to unlock your wallet.',
+  st1InputPH: 'Please Enter at least 6 characters',
+  st1Btn: 'Create New Wallet',
+  /*
+  ** Create wallet stage2
+  */
+  st2Title: 'Save Your Keystore File',
+  st2Note1:
+    'Do not lose it! VNT Foundation cannot help you recover a lost key.',
+  st2Note2:
+    'Do not share it! Your funds may be stolen if you use this file a malicious site',
+  st2Note3: 'Make a backup!',
+  st2Btn1: 'Download Keystore File',
+  st2Btn2: "I've downloaded, next",
+  /*
+  ** Create wallet stage3
+  */
+  st3Title: 'Save Your Private Key',
+  st3Note1:
+    'Do not lose it! VNT Foundation cannot help you recover a lost key.',
+  st3Note2:
+    'Do not share it! Your funds may be stolen if you use this file a malicious site',
+  st3Note3: 'Make a backup!',
+  st3Btn1: 'Print Paper Wallet',
+  st3Btn2: 'All set. Continue!'
 }
