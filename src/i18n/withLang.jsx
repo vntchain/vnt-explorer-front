@@ -9,7 +9,7 @@ export const locale = {
   en
 }
 
-export default function hocLangPasser(Component) {
+export default function withLang(Component) {
   return function WrapperComponent(props) {
     return (
       <LangContext.Consumer>

@@ -1,5 +1,5 @@
 export default {
-  language: '中文',
+  language: 'EN',
 
   /*
   ** Header Fields
@@ -37,7 +37,7 @@ export default {
   lTitle: '区块',
   lField1: '查看全部 >',
   lField2: '交易数：',
-  lField3: '区块奖励',
+  lField3: '区块奖励 ',
   lField4: '出块者：',
 
   rTitle: '交易',

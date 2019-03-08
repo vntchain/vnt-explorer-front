@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+// import DataProvider from 'containers/RPDataProvider'
 import BriefInfo from 'components/home/BriefInfo'
 import BlockTx from 'components/home/BlockTx'
 import TxChart from 'components/home/TxChart'
+// import apis from 'utils/apis'
 
 import styles from './Home.scss'
 
@@ -13,15 +15,18 @@ const mapStateToProps = ({ global: { language } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function Home(props) {
+export default connect(mapStateToProps)(function Home() {
   return (
     <div className={styles.home}>
-      <BriefInfo
-        lang={props.language}
-        data={[1234567, 123456789, '18/211', 123456, '21/100']}
-      />
+      {/* <DataProvider
+        options={{ path: apis.accounts }}
+        render={() => (
+          <BriefInfo data={[1234567, 123456789, '18/211', 123456, '21/100']} />
+        )}
+      /> */}
+      <BriefInfo data={[1234567, 123456789, '18/211', 123456, '21/100']} />
+
       <BlockTx
-        lang={props.language}
         data={{
           blocks: Array(5).fill([12345, 12, 123.45, 13, 'abcdefg']),
           txs: Array(5).fill([

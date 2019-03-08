@@ -14,6 +14,9 @@
   background-color: #fff;
   border-radius: .04rem;
 
+  position: relative;
+  min-height: 5.5rem;
+
   @include respondTo($bp-phone) {
     flex-basis: 100%;
 
@@ -115,7 +118,7 @@
     } */
     span:last-child {
       display: inline-block;
-      margin-top: .1rem;
+      margin-top: .13rem;
       flex: 0 1 100%;
       color: $color-light-1;
       font-size: .12rem;
@@ -133,7 +136,7 @@
       span:nth-child(3) {
         font-size: .14rem;
         flex: 0 0 50%;
-        margin-top: .1rem;
+        margin-top: .13rem;
       }
     }
   }

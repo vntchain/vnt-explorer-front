@@ -1,0 +1,40 @@
+@import '../assets/base';
+
+.alert {
+  width: 60%;
+
+  position: absolute;
+  right: 0;
+  top: .7rem;
+  right: .1rem;
+
+  :global {
+    .ant-alert-with-description {
+      padding: .1rem .15rem;
+    }
+    .ant-alert-message {
+      padding-left: .42rem;
+    }
+    .ant-alert-icon {
+      left: .15rem;
+      top: .1rem;
+      font-size: .24rem;
+    }
+    .ant-alert-close-icon {
+      top: .1rem;
+      right: .15rem;
+      font-size: .14rem;
+    }
+  }
+  @include respondTo($bp-phone) {
+    width: 100%;
+    top: .7rem;
+    right: 0;
+
+    :global {
+      .ant-alert-description {
+        font-size: .12rem;
+      }
+    }
+  }
+}

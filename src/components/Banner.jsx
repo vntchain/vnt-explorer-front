@@ -1,6 +1,6 @@
 import React from 'react'
 
-import hocLangPasser from 'i18n/hocLangPasser'
+import withLang from 'i18n/withLang'
 
 import styles from './Banner.scss'
 
@@ -12,4 +12,4 @@ function Banner(props) {
   )
 }
 
-export default hocLangPasser(Banner)
+export default withLang(Banner)

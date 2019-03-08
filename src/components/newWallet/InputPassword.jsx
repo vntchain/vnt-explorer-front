@@ -3,7 +3,7 @@ import { Button, Input } from 'antd'
 import elliptic from 'elliptic'
 import * as vntKit from 'vnt-kit'
 
-import hocLangPasser from 'i18n/hocLangPasser'
+import withLang from 'i18n/withLang'
 import LocalText from 'i18n/LocalText'
 
 import styles from './NWallet.scss'
@@ -79,4 +79,4 @@ function InputPassword(props) {
   )
 }
 
-export default hocLangPasser(InputPassword)
+export default withLang(InputPassword)

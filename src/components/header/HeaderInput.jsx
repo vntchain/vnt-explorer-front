@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'antd'
 
-import hocLangPasser from 'i18n/hocLangPasser'
+import withLang from 'i18n/withLang'
 
 import styles from './Header.scss'
 
@@ -25,4 +25,4 @@ function HeaderInput(props) {
   )
 }
 
-export default hocLangPasser(HeaderInput)
+export default withLang(HeaderInput)

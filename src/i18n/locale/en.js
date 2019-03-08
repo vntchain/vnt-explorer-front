@@ -1,5 +1,5 @@
 export default {
-  language: 'EN',
+  language: '中文',
 
   /*
   ** Header Fields
@@ -37,7 +37,7 @@ export default {
   lTitle: 'Blocks',
   lField1: 'View All >',
   lField2: 'Transactions: ',
-  lField3: 'Block Reward',
+  lField3: 'Block Reward ',
   lField4: 'Produced by: ',
 
   rTitle: 'Transfers',
