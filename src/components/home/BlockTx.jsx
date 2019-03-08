@@ -8,9 +8,9 @@ import apis from 'utils/apis'
 
 import styles from './BlockTx.scss'
 
-const pollingInterval = 400
+const pollingInterval = 200
 
-export default function BlockTx(props) {
+export default function BlockTx() {
   return (
     <div className={styles['block-tx']}>
       <DataProvider
@@ -27,7 +27,20 @@ export default function BlockTx(props) {
           />
         )}
       />
-      <TxBrief dataTemp={props.data.txs} />
+      <DataProvider
+        options={{
+          path: apis.txs + '?offset=0&limit=5',
+          type: 'transactions/setTxs',
+          ns: 'transactions',
+          polling: pollingInterval
+        }}
+        render={data => (
+          <TxBrief
+            context={data}
+            errComp={<ErrorMessenger msg={data.error} />}
+          />
+        )}
+      />
     </div>
   )
 }

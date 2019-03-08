@@ -7,8 +7,8 @@ const { put, call } = effects
 export default {
   state: {},
   reducers: {},
-  effects: ({ takeLatest }) => ({
-    fetchData: takeLatest(function*({ payload }) {
+  effects: ({ takeEvery }) => ({
+    fetchData: takeEvery(function*({ payload }) {
       const { path, type, ns, method } = payload
       yield put({
         type: `${ns}/setIsLoading`,
