@@ -88,5 +88,11 @@ export default {
     'Do not share it! Your funds may be stolen if you use this file a malicious site',
   st3Note3: 'Make a backup!',
   st3Btn1: 'Print Paper Wallet',
-  st3Btn2: 'All set. Continue!'
+  st3Btn2: 'All set. Continue!',
+
+  /*
+  ** Block list page
+  */
+  blpTitle: 'Blocks',
+  blpSubTitle: num => `A Total of ${num} Blocks`
 }

@@ -9,6 +9,7 @@ import Account from './Account'
 import Receive from './Receive'
 import Send from './Send'
 import SuperNode from './SuperNode'
+import Blocks from './Blocks'
 import Header from 'components/header/Header'
 
 import styles from './App.scss'
@@ -60,6 +61,7 @@ export default withRouter(
           <Route exact path="/receive" component={Receive} />
           <Route exact path="/send" component={Send} />
           <Route exact path="/super-node" component={SuperNode} />
+          <Route exact path="/blocks" component={Blocks} />
         </div>
       </div>
     )

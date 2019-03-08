@@ -28,7 +28,8 @@ export default function BlockBrief(props) {
           </span>
         </div>
 
-        {props.context.data &&
+        {props.context &&
+          props.context.data &&
           props.context.data.length && (
             <span>
               <Link to="">
@@ -38,9 +39,11 @@ export default function BlockBrief(props) {
           )}
       </div>
 
-      {props.context.error && <Fragment>{props.errComp}</Fragment>}
+      {props.context &&
+        props.context.error && <Fragment>{props.errComp}</Fragment>}
 
-      {props.context.data &&
+      {props.context &&
+        props.context.data &&
         props.context.data.length && (
           <Fragment>
             {formattedData(props.context.data).map((item, i) => (

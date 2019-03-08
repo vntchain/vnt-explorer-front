@@ -9,10 +9,13 @@ export default {
   reducers: {},
   effects: ({ takeEvery }) => ({
     fetchData: takeEvery(function*({ payload }) {
-      const { path, type, ns, method } = payload
+      const { path, ns, field, method } = payload
       yield put({
-        type: `${ns}/setIsLoading`,
-        payload: true
+        type: `${ns}/loadingStatus`,
+        payload: {
+          field,
+          isLoading: true
+        }
       })
       try {
         const { data: resp } = yield call(axios, {
@@ -21,15 +24,13 @@ export default {
         })
 
         yield put({
-          type,
+          type: `${ns}/setState`,
           payload: {
             error: !resp.ok ? resp.err : null,
-            data: resp.ok ? resp.data : null
+            data: resp.ok ? resp.data : null,
+            isLoading: false,
+            field
           }
-        })
-        yield put({
-          type: `${ns}/setIsLoading`,
-          payload: false
         })
       } catch (e) {
         /* eslint-disable */
@@ -37,15 +38,13 @@ export default {
         console.log(e.message)
         /* eslint-enable */
         yield put({
-          type,
+          type: `${ns}/setState`,
           payload: {
             error: e.message,
-            data: null
+            data: null,
+            isLoading: false,
+            field
           }
-        })
-        yield put({
-          type: `${ns}/setIsLoading`,
-          payload: false
         })
       }
     })

@@ -6,13 +6,16 @@ import styles from './ErrorMessenger.scss'
 export default function ErrorMessenger(props) {
   return (
     <div className={styles.alert}>
-      <Alert
-        message="Error"
-        description={props.msg}
-        type="error"
-        showIcon
-        closable
-      />
+      {props.context &&
+        props.context.error && (
+          <Alert
+            message="Error"
+            description={props.context.error}
+            type="error"
+            showIcon
+            closable
+          />
+        )}
     </div>
   )
 }

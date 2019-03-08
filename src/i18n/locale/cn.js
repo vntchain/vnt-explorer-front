@@ -82,5 +82,11 @@ export default {
   st3Note2: '请勿分享私钥，否则您的数字资产可能面临被盗风险',
   st3Note3: '请及时备份私钥',
   st3Btn1: '打印纸钱包',
-  st3Btn2: '全部就绪，进入账户页面'
+  st3Btn2: '全部就绪，进入账户页面',
+
+  /*
+  ** Block list page
+  */
+  blpTitle: '区块',
+  blpSubTitle: num => `当前共${num}区块`
 }

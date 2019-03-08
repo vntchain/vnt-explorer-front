@@ -1,15 +1,21 @@
 export default {
   state: {
-    error: null,
-    data: null,
-    isLoading: false
+    count: null,
+    blocks: null
   },
   reducers: {
-    setBlocks: (state, { payload: { error, data } }) => {
+    setState: (state, { payload }) => {
+      const { field, ...data } = payload
       return {
         ...state,
-        error,
-        data
+        [field]: data
+      }
+    },
+    loadingStatus: (state, { payload }) => {
+      const { field, ...data } = payload
+      return {
+        ...state,
+        [field]: { ...data }
       }
     }
   }

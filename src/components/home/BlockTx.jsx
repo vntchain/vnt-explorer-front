@@ -15,29 +15,27 @@ export default function BlockTx() {
       <DataProvider
         options={{
           path: apis.blocks + '?offset=0&limit=5',
-          type: 'blocks/setBlocks',
           ns: 'blocks',
+          field: 'blocks',
           polling: pollingInterval
         }}
         render={data => (
           <BlockBrief
             context={data}
-            errComp={<ErrorMessenger msg={data.error} />}
+            errComp={<ErrorMessenger context={data} />}
           />
         )}
       />
+
       <DataProvider
         options={{
           path: apis.txs + '?offset=0&limit=5',
-          type: 'transactions/setTxs',
           ns: 'transactions',
+          field: 'txs',
           polling: pollingInterval
         }}
         render={data => (
-          <TxBrief
-            context={data}
-            errComp={<ErrorMessenger msg={data.error} />}
-          />
+          <TxBrief context={data} errComp={<ErrorMessenger context={data} />} />
         )}
       />
     </div>

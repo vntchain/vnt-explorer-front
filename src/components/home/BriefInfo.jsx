@@ -5,10 +5,19 @@ import LocalText from 'i18n/LocalText'
 import styles from './BriefInfo.scss'
 
 export default function BriefInfo(props) {
-  const formattedData = data => {
-    if (data === null && typeof null === 'object') {
-      return [0, 0, '0/0', 0, '0/0']
+  const initial = ['--', '--', '--/--', '--', '--/--']
+  const formattedData = context => {
+    if (context === null && typeof context === 'object') {
+      return initial
     }
+    if (typeof context === 'object' && !context.hasOwnProperty('data')) {
+      return initial
+    }
+    if (context !== null && context.hasOwnProperty('error') && context.error) {
+      return initial
+    }
+    const { data } = context
+
     return [
       data.Height,
       data.TxCount,
@@ -20,7 +29,7 @@ export default function BriefInfo(props) {
 
   return (
     <div className={styles.brief}>
-      {formattedData(props.context.data).map((item, i) => {
+      {formattedData(props.context).map((item, i) => {
         return (
           <div key={i} className={styles['brief-item']}>
             <p className={styles['brief-item__title']}>

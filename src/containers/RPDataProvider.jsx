@@ -6,19 +6,16 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(function RPDataProvider(props) {
-  const [context, setContext] = useState({
-    data: props[props.options.ns].data,
-    error: props[props.options.ns].error,
-    isLoading: props[props.options.ns].isLoading
-  })
+  const {
+    options: { type, path, ns, field }
+  } = props
+
+  const [context, setContext] = useState(props[props.options.ns][field])
 
   useEffect(() => {
-    const {
-      options: { type, path, ns }
-    } = props
     props.dispatch({
       type: 'dataRelay/fetchData',
-      payload: { path, type, ns, method: props.method || 'get' }
+      payload: { path, type, ns, field, method: props.method || 'get' }
     })
 
     const requirePolling = props.options.polling && props.options.polling > 0
@@ -40,9 +37,9 @@ export default connect(mapStateToProps)(function RPDataProvider(props) {
 
   useEffect(
     () => {
-      setContext({ ...props[props.options.ns] })
+      setContext({ ...props[props.options.ns][field] })
     },
-    [props[props.options.ns].isLoading]
+    [props[props.options.ns][field]]
   )
 
   return <Fragment>{props.render(context)}</Fragment>

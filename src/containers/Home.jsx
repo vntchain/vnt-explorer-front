@@ -22,8 +22,8 @@ export default connect(mapStateToProps)(function Home() {
       <DataProvider
         options={{
           path: apis.stats,
-          type: 'stats/setStats',
           ns: 'stats',
+          field: 'stats',
           polling: pollingInterval
         }}
         render={data => <BriefInfo context={data} />}
