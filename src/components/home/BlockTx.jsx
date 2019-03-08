@@ -5,10 +5,9 @@ import BlockBrief from './BlockBrief'
 import TxBrief from './TxBrief'
 import ErrorMessenger from 'components/ErrorMessenger'
 import apis from 'utils/apis'
+import { pollingInterval } from 'constants/config'
 
 import styles from './BlockTx.scss'
-
-const pollingInterval = 200
 
 export default function BlockTx() {
   return (

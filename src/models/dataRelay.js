@@ -24,8 +24,7 @@ export default {
           type,
           payload: {
             error: !resp.ok ? resp.err : null,
-            data: resp.ok ? resp.data : null,
-            respReceived: true
+            data: resp.ok ? resp.data : null
           }
         })
         yield put({
@@ -41,8 +40,7 @@ export default {
           type,
           payload: {
             error: e.message,
-            data: null,
-            respReceived: true
+            data: null
           }
         })
         yield put({
