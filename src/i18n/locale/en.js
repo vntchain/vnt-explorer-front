@@ -94,5 +94,11 @@ export default {
   ** Block list page
   */
   blpTitle: 'Blocks',
-  blpSubTitle: num => `A Total of ${num} Blocks`
+  blpSubTitle: num => `A Total of ${num} Blocks`,
+  blpColumn1: 'Block Height',
+  blpColumn2: 'Block Age',
+  blpColumn3: 'Transactions',
+  blpColumn4: 'Producer',
+  blpColumn5: 'Block Reward',
+  blpColumn6: 'Capacity'
 }

@@ -9,7 +9,8 @@ export default {
   reducers: {},
   effects: ({ takeEvery }) => ({
     fetchData: takeEvery(function*({ payload }) {
-      const { path, ns, field, method } = payload
+      const { path, ns, field } = payload
+      const method = payload.method || 'get'
       yield put({
         type: `${ns}/loadingStatus`,
         payload: {

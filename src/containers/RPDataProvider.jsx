@@ -7,7 +7,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(function RPDataProvider(props) {
   const {
-    options: { type, path, ns, field }
+    options: { path, ns, field }
   } = props
 
   const [context, setContext] = useState(props[props.options.ns][field])
@@ -15,7 +15,7 @@ export default connect(mapStateToProps)(function RPDataProvider(props) {
   useEffect(() => {
     props.dispatch({
       type: 'dataRelay/fetchData',
-      payload: { path, type, ns, field, method: props.method || 'get' }
+      payload: { path, ns, field, method: props.method }
     })
 
     const requirePolling = props.options.polling && props.options.polling > 0
@@ -24,7 +24,7 @@ export default connect(mapStateToProps)(function RPDataProvider(props) {
       polling = setInterval(() => {
         props.dispatch({
           type: 'dataRelay/fetchData',
-          payload: { path, type, ns, method: props.method || 'get' }
+          payload: { path, ns, method: props.method || 'get' }
         })
       }, props.options.polling * 1000)
     }

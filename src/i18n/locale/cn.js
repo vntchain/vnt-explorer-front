@@ -88,5 +88,11 @@ export default {
   ** Block list page
   */
   blpTitle: '区块',
-  blpSubTitle: num => `当前共${num}区块`
+  blpSubTitle: num => `当前共${num}区块`,
+  blpColumn1: '区块高度',
+  blpColumn2: '块龄',
+  blpColumn3: '交易',
+  blpColumn4: '出块者',
+  blpColumn5: '区块奖励',
+  blpColumn6: '容量'
 }

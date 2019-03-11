@@ -61,7 +61,7 @@ export default withRouter(
           <Route exact path="/receive" component={Receive} />
           <Route exact path="/send" component={Send} />
           <Route exact path="/super-node" component={SuperNode} />
-          <Route exact path="/blocks" component={Blocks} />
+          <Route path="/blocks" component={Blocks} />
         </div>
       </div>
     )
