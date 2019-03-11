@@ -1,7 +1,8 @@
 export default {
   state: {
     count: null,
-    blocks: null
+    blocks: null,
+    blockDetail: null
   },
   reducers: {
     setState: (state, { payload }) => {

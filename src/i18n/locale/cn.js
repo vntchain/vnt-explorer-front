@@ -94,5 +94,20 @@ export default {
   blpColumn3: '交易',
   blpColumn4: '出块者',
   blpColumn5: '区块奖励',
-  blpColumn6: '容量'
+  blpColumn6: '容量',
+
+  /*
+  ** Block detail page
+  */
+  bdpTitle: '高度',
+  bdpField1: '时间戳',
+  bdpField2: '交易',
+  bdpField3: '哈希值',
+  bdpField4: '父哈希值',
+  bdpField5: '出块者',
+  bdpField6: '容量',
+  bdpField7: '燃料费用',
+  bdpField8: '燃料限制',
+  bdpField9: '区块奖励',
+  bdpField10: '额外数据'
 }

@@ -80,7 +80,7 @@ function PagedTable(props) {
       key: 'blockHeight',
       // eslint-disable-next-line react/display-name
       render: blockHeight => (
-        <Link to={'/' + apis.block + blockHeight}>{blockHeight}</Link>
+        <Link to={`${apis.block}/${blockHeight}`}>{blockHeight}</Link>
       )
     },
     {
@@ -118,7 +118,6 @@ function PagedTable(props) {
     props.context.data &&
     Array.isArray(props.context.data)
   ) {
-    // eslint-disable-next-line
     props.context.data.forEach((item, i) => {
       data.push({
         key: item.Hash + i,

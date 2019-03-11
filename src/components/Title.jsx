@@ -5,10 +5,11 @@ import withLang from 'i18n/withLang'
 import styles from './Title.scss'
 
 export default withLang(function Title(props) {
+  const suffix = props.suffix || ''
   return (
     <div>
       <p className={styles.title}>
-        {props.locale[props.language][props.titleID]}
+        {props.locale[props.language][props.titleID] + suffix}
       </p>
 
       {props.subTitleID && (

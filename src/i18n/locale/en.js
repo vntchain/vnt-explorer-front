@@ -100,5 +100,20 @@ export default {
   blpColumn3: 'Transactions',
   blpColumn4: 'Producer',
   blpColumn5: 'Block Reward',
-  blpColumn6: 'Capacity'
+  blpColumn6: 'Capacity',
+
+  /*
+  ** Block detail page
+  */
+  bdpTitle: 'Height',
+  bdpField1: 'Timestamp',
+  bdpField2: 'Transactions',
+  bdpField3: 'Hash',
+  bdpField4: 'Parent Hash',
+  bdpField5: 'Producer',
+  bdpField6: 'Capacity',
+  bdpField7: 'Gas Used',
+  bdpField8: 'Gas Limit',
+  bdpField9: 'Block Reward',
+  bdpField10: 'Extra Data'
 }
