@@ -3,7 +3,7 @@ import { Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
-
+import apis from 'utils/apis'
 import calcAge from 'utils/age'
 
 import styles from './BlockTx.scss'
@@ -32,7 +32,7 @@ export default function BlockBrief(props) {
           props.context.data &&
           props.context.data.length && (
             <span>
-              <Link to="">
+              <Link to={apis.blocks}>
                 <LocalText id="lField1" />
               </Link>
             </span>

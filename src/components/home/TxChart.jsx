@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Chart, Geom, Axis, Tooltip } from 'bizcharts'
 import DataSet from '@antv/data-set'
+import { Spin } from 'antd'
 
 import LocalText from 'i18n/LocalText'
 import fontZoomLevel from 'utils/zoomLevel'
@@ -35,7 +36,18 @@ const mapStateToProps = ({ global: { isMobile } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function AreaChart({ data, isMobile }) {
+export default connect(mapStateToProps)(function TxChart({
+  isMobile,
+  context
+}) {
+  let chartData = []
+  if (context && context.data && Array.isArray(context.data)) {
+    chartData = context.data.map(item => ({
+      数量: item.Count,
+      time: `${item.Month}/${item.Day}`
+    }))
+  }
+
   const labelX = {
     textStyle: {
       fill: '#333',
@@ -52,7 +64,6 @@ export default connect(mapStateToProps)(function AreaChart({ data, isMobile }) {
     },
     offset: 22 * fontZoomLevel
   }
-  const chartData = data
 
   const dv = new DataSet.View().source(chartData)
   dv.transform({
@@ -100,38 +111,41 @@ export default connect(mapStateToProps)(function AreaChart({ data, isMobile }) {
       <h3 className={styles.heading}>
         <LocalText id="chartTitle" />
       </h3>
-      <div className={styles.chart}>
-        <Chart
-          height={225 * fontZoomLevel}
-          data={dv}
-          padding={'auto'}
-          scale={scale}
-          forceFit
-        >
-          <Tooltip crosshairs {...tooltipConfig} />
-          <Axis
-            name="time"
-            label={labelX}
-            tickLine={{ length: 0 }}
-            line={{ lineDash: [4], stroke: '#e5e5e5' }}
-          />
-          <Axis name="value" label={labelY} />
-          <Geom
-            type="area"
-            position="time*value"
-            tooltip={false}
-            color={['type', ['#d1e9ff', 'white']]}
-            shape="smooth"
-          />
-          <Geom
-            type="line"
-            position="time*value"
-            shape="smooth"
-            size={2}
-            color={['type', ['#3baeff', 'white']]}
-          />
-        </Chart>
-      </div>
+
+      <Spin spinning={!(context && !context.isLoading)}>
+        <div className={styles.chart}>
+          <Chart
+            height={225 * fontZoomLevel}
+            data={dv}
+            padding={'auto'}
+            scale={scale}
+            forceFit
+          >
+            <Tooltip crosshairs {...tooltipConfig} />
+            <Axis
+              name="time"
+              label={labelX}
+              tickLine={{ length: 0 }}
+              line={{ lineDash: [4], stroke: '#e5e5e5' }}
+            />
+            <Axis name="value" label={labelY} />
+            <Geom
+              type="area"
+              position="time*value"
+              tooltip={false}
+              color={['type', ['#d1e9ff', 'white']]}
+              shape="smooth"
+            />
+            <Geom
+              type="line"
+              position="time*value"
+              shape="smooth"
+              size={2}
+              color={['type', ['#3baeff', 'white']]}
+            />
+          </Chart>
+        </div>
+      </Spin>
     </div>
   )
 })
