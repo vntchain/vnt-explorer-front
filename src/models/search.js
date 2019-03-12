@@ -44,6 +44,7 @@ export default {
               path = `${apis.block}/${data[searchType].Number}`
               break
             case 'Tx':
+              path = `/transaction/${data[searchType].Hash}`
               break
             case 'Account':
               break

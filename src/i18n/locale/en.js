@@ -115,5 +115,36 @@ export default {
   bdpField7: 'Gas Used',
   bdpField8: 'Gas Limit',
   bdpField9: 'Block Reward',
-  bdpField10: 'Extra Data'
+  bdpField10: 'Extra Data',
+
+  /*
+  ** Tx list page
+  */
+  tlpTitle: 'Transactions',
+  tlpSubTitle: num => `A Total of ${num} Transactions`,
+  tlpField1: 'TxHash',
+  tlpField2: 'Block',
+  tlpField3: 'Age',
+  tlpField4: 'From',
+  tlpField5: 'To',
+  tlpField6: 'Value',
+
+  /*
+  ** Tx detail page
+  */
+  tdpTitle: 'Transaction',
+  tdpField1: 'Transaction Hash',
+  tdpField2: 'Status',
+  tdpField3: 'Block Height',
+  tdpField4: 'Timestamp',
+  tdpField5: 'From',
+  tdpField6: 'To',
+  tdpField7: 'Transfer',
+  tdpField8: 'Value',
+  tdpField9: 'Gas Limit',
+  tdpField10: 'Gas Used',
+  tdpField11: 'Gas Price',
+  tdpField12: 'Nonce',
+  tdpField13: 'Input Data',
+  tdpField14: 'Token Amount'
 }

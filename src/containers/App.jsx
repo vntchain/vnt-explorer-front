@@ -11,6 +11,8 @@ import Send from './Send'
 import SuperNode from './SuperNode'
 import Blocks from './Blocks'
 import BlockDetail from './BlockDetail'
+import Transactions from './Transactions'
+import TxDetail from './TxDetail'
 import Header from 'components/header/Header'
 
 import styles from './App.scss'
@@ -64,6 +66,8 @@ export default withRouter(
           <Route exact path="/super-node" component={SuperNode} />
           <Route path="/blocks" component={Blocks} />
           <Route path="/block" component={BlockDetail} />
+          <Route path="/transactions" component={Transactions} />
+          <Route path="/transaction" component={TxDetail} />
         </div>
       </div>
     )

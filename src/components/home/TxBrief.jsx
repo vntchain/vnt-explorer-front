@@ -31,7 +31,7 @@ export default function TxBrief(props) {
           props.context.data &&
           props.context.data.length && (
             <span>
-              <Link to="">
+              <Link to="/transactions">
                 <LocalText id="rField1" />
               </Link>
             </span>

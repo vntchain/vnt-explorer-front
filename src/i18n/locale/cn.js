@@ -109,5 +109,36 @@ export default {
   bdpField7: '燃料费用',
   bdpField8: '燃料限制',
   bdpField9: '区块奖励',
-  bdpField10: '额外数据'
+  bdpField10: '额外数据',
+
+  /*
+  ** Tx list page
+  */
+  tlpTitle: '交易',
+  tlpSubTitle: num => `当前共${num}交易`,
+  tlpColumn1: '交易哈希值',
+  tlpColumn2: '区块',
+  tlpColumn3: '块龄',
+  tlpColumn4: '发送方',
+  tlpColumn5: '接收方',
+  tlpColumn6: '价值',
+
+  /*
+  ** Tx detail page
+  */
+  tdpTitle: '交易',
+  tdpField1: '交易哈希值',
+  tdpField2: '状态',
+  tdpField3: '区块高度',
+  tdpField4: '时间戳',
+  tdpField5: '发送方',
+  tdpField6: '接收方',
+  tdpField7: '代币转移',
+  tdpField8: '价值',
+  tdpField9: '燃料限制',
+  tdpField10: '交易燃料费用',
+  tdpField11: '燃料价格',
+  tdpField12: '随机数',
+  tdpField13: '数据输入',
+  tdpField14: '代币数量'
 }

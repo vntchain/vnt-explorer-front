@@ -15,7 +15,7 @@ const mapStateToProps = ({ blocks: { blockDetail } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function Blocks(props) {
+export default connect(mapStateToProps)(function BlockDetail(props) {
   const urlPath = location.pathname.split('/').filter(item => item)
   const currentBlock = urlPath.length > 0 ? urlPath[urlPath.length - 1] : 0
 
