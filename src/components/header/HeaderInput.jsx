@@ -1,16 +1,26 @@
 import React from 'react'
-import { Input } from 'antd'
+import { connect } from 'react-redux'
+import { Input, message } from 'antd'
 
 import withLang from 'i18n/withLang'
+import apis from 'utils/apis'
 
 import styles from './Header.scss'
 
 function HeaderInput(props) {
   const handleSearch = v => {
-    /* eslint-disable */
-    console.log('%c%s\n%csearch content: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', )
-    console.log(v)
-    /* eslint-enable */
+    const keyword = v.trim()
+    if (keyword) {
+      message.info(`Searing keyword ${v}...`, 30)
+      props.dispatch({
+        type: 'dataRelay/fetchData',
+        payload: {
+          path: `${apis.search}/${keyword}`,
+          ns: 'search',
+          field: 'searchResult'
+        }
+      })
+    }
   }
 
   return (
@@ -25,4 +35,4 @@ function HeaderInput(props) {
   )
 }
 
-export default withLang(HeaderInput)
+export default connect()(withLang(HeaderInput))

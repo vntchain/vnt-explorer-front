@@ -5,5 +5,6 @@ export default {
   blockCount: '/blocks/count',
   txs: '/txs',
   txHistory: '/txs/history',
-  accounts: '/accounts'
+  accounts: '/accounts',
+  search: '/search'
 }
