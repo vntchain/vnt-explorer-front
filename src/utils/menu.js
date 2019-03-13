@@ -20,8 +20,8 @@ export default [
       },
       {
         title: 'nav1Sub4',
-        key: 'account',
-        path: '/account'
+        key: 'accounts',
+        path: '/accounts'
       },
       {
         title: 'nav1Sub5',

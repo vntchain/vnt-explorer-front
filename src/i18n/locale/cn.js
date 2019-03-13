@@ -142,5 +142,16 @@ export default {
   tdpField11: '燃料价格',
   tdpField12: '随机数',
   tdpField13: '数据输入',
-  tdpField14: ' 代币数量'
+  tdpField14: ' 代币数量',
+
+  /*
+  ** Account list page
+  */
+  alpTitle: '账户',
+  alpSubTitle: num => `当前共${num}账户`,
+  alpColumn1: '排名',
+  alpColumn2: '地址',
+  alpColumn3: '余额',
+  alpColumn4: '百分比',
+  alpColumn5: '交易数量'
 }

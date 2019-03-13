@@ -5,7 +5,7 @@ import { Route, withRouter } from 'react-router-dom'
 import Home from './Home'
 import NewWallet from './NewWallet'
 import OpenWallet from './OpenWallet'
-import Account from './Account'
+import Accounts from './AccountList'
 import Receive from './Receive'
 import Send from './Send'
 import SuperNode from './SuperNode'
@@ -60,7 +60,7 @@ export default withRouter(
           <Route exact path="/" component={Home} />
           <Route exact path="/view-wallet" component={OpenWallet} />
           <Route exact path="/new-wallet" component={NewWallet} />
-          <Route exact path="/account" component={Account} />
+          <Route path="/accounts" component={Accounts} />
           <Route exact path="/receive" component={Receive} />
           <Route exact path="/send" component={Send} />
           <Route exact path="/super-node" component={SuperNode} />

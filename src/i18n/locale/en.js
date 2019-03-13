@@ -148,5 +148,16 @@ export default {
   tdpField11: 'Gas Price',
   tdpField12: 'Nonce',
   tdpField13: 'Input Data',
-  tdpField14: ' Token Amount'
+  tdpField14: ' Token Amount',
+
+  /*
+  ** Account list page
+  */
+  alpTitle: 'Account',
+  alpSubTitle: num => `A Total of ${num} accounts`,
+  alpColumn1: 'Ranking',
+  alpColumn2: 'Address',
+  alpColumn3: 'Balance',
+  alpColumn4: 'Percentage',
+  alpColumn5: 'Transactions'
 }

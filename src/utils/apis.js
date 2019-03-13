@@ -8,5 +8,6 @@ export default {
   txCount: 'txs/count',
   tx: '/tx',
   accounts: '/accounts',
+  accountCount: '/accounts/count',
   search: '/search'
 }
