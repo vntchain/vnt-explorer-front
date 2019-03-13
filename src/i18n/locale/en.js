@@ -125,9 +125,11 @@ export default {
   tlpField1: 'TxHash',
   tlpField2: 'Block',
   tlpField3: 'Age',
-  tlpField4: 'From',
-  tlpField5: 'To',
+  tlpField4: 'From ',
+  tlpField5: 'To ',
   tlpField6: 'Value',
+  txFilterByBlock: 'Block',
+  txFilterByBlockSub: num => `A Total of ${num} Transactions`,
 
   /*
   ** Tx detail page
@@ -137,8 +139,8 @@ export default {
   tdpField2: 'Status',
   tdpField3: 'Block Height',
   tdpField4: 'Timestamp',
-  tdpField5: 'From',
-  tdpField6: 'To',
+  tdpField5: 'From ',
+  tdpField6: 'To ',
   tdpField7: 'Transfer',
   tdpField8: 'Value',
   tdpField9: 'Gas Limit',
@@ -146,5 +148,5 @@ export default {
   tdpField11: 'Gas Price',
   tdpField12: 'Nonce',
   tdpField13: 'Input Data',
-  tdpField14: 'Token Amount'
+  tdpField14: ' Token Amount'
 }

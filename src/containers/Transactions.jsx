@@ -1,59 +1,142 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Title from 'components/Title'
 import { Table, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import { push } from 'react-router-redux'
+import queryString from 'query-string'
 
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 
-const mapStateToProps = ({ transactions: { count } }) => {
+const mapStateToProps = ({ transactions: { count, filteredTxs } }) => {
   return {
-    count
+    count,
+    filteredTxs
+  }
+}
+
+const txFilter = location => {
+  let currentIndex = 1
+  let apiParam = ``
+  let filter, filterValue, fieldID
+  const filterType = ['block', 'account']
+  if (location.search) {
+    const paramArr = queryString.parse(location.search)
+
+    currentIndex = 'p' in paramArr ? paramArr.p : currentIndex
+
+    for (const ft of filterType) {
+      if (ft in paramArr) {
+        filter = ft
+        filterValue = paramArr[ft]
+        apiParam += `${ft}=${paramArr[ft]}`
+        break
+      }
+    }
+  }
+
+  switch (filter) {
+    case 'block':
+      fieldID = 'txFilterByBlock'
+      break
+
+    default:
+      break
+  }
+
+  return {
+    currentIndex: !isNaN(parseInt(currentIndex, 10))
+      ? parseInt(currentIndex, 10)
+      : 1,
+    apiParam, // e.g., block = 1
+    filter,
+    filterValue,
+    fieldID
   }
 }
 
 export default connect(mapStateToProps)(function Txs(props) {
-  const urlPath = location.pathname.split('/').filter(item => item)
-  let currentIndex = 1
-  if (urlPath.length > 0 && !isNaN(parseInt(urlPath[urlPath.length - 1], 10))) {
-    currentIndex = parseInt(urlPath[urlPath.length - 1], 10)
-  }
+  const { currentIndex, apiParam, filter, filterValue, fieldID } = txFilter(
+    props.location
+  )
+
+  useEffect(
+    () => {
+      props.dispatch({
+        type: 'dataRelay/fetchData',
+        payload: {
+          path: `${apis.txs}?${apiParam}`,
+          ns: 'transactions',
+          field: 'filteredTxs'
+        }
+      })
+    },
+    [location.href]
+  )
 
   return (
     <div>
-      <DataProvider
-        options={{
-          path: apis.txCount,
-          ns: 'transactions',
-          field: 'count'
-        }}
-        render={data => (
-          <Title titleID="tlpTitle" subTitleID="tlpSubTitle" context={data} />
-        )}
-      />
-      {props.count &&
-        props.count.data &&
-        props.count.data > 0 && (
-          <DataProvider
-            options={{
-              path: `${apis.txs}?offset=${(currentIndex - 1) * 20}&limit=20`,
-              ns: 'transactions',
-              field: 'txs'
-            }}
-            render={data => (
-              <PagedTable
-                size={props.count.data}
-                context={data}
-                dispatch={props.dispatch}
-                currentIndex={currentIndex}
-                changePath={path => props.dispatch(push(path))}
-              />
-            )}
-          />
-        )}
+      {!filter ? (
+        <DataProvider
+          options={{
+            path: apis.txCount,
+            ns: 'transactions',
+            field: 'count'
+          }}
+          render={data => (
+            <Title titleID="tlpTitle" subTitleID="tlpSubTitle" context={data} />
+          )}
+        />
+      ) : (
+        <DataProvider
+          options={{
+            path: `${apis.txs}?${apiParam}`,
+            ns: 'transactions',
+            field: 'filteredTxs'
+          }}
+          render={data => (
+            <Title
+              titleID={fieldID}
+              subTitleID={`${fieldID}Sub`}
+              suffix={' ' + filterValue}
+              context={{ data: data && data.data ? data.data.length : 0 }}
+            />
+          )}
+        />
+      )}
+
+      {(filter ||
+        (props.count && props.count.data && props.count.data > 0)) && (
+        <DataProvider
+          options={{
+            path: `${apis.txs}?${apiParam}&offset=${(currentIndex - 1) *
+              20}&limit=20`, // api params with paging
+            ns: 'transactions',
+            field: 'txs'
+          }}
+          key={props.location.href}
+          render={data => (
+            <PagedTable
+              size={
+                !filter
+                  ? props.count.data
+                  : props.filteredTxs && props.filteredTxs.data
+                    ? props.filteredTxs.data.length
+                    : 0
+              } // can change size to simulate page action
+              context={data}
+              apiParam={apiParam}
+              dispatch={props.dispatch}
+              currentIndex={currentIndex}
+              changePath={path => props.dispatch(push(path))}
+              key={props.location.href}
+              filtered={filter}
+            />
+          )}
+        />
+      )}
     </div>
   )
 })
@@ -61,17 +144,26 @@ export default connect(mapStateToProps)(function Txs(props) {
 function PagedTable(props) {
   const handlePageChange = e => {
     if (e !== props.currentIndex) {
-      props.changePath(`/transactions/${e}`)
+      props.changePath(`${apis.txs}?${props.apiParam}&p=${e}`)
+      setCurrent(e)
     }
-    props.dispatch({
-      type: 'dataRelay/fetchData',
-      payload: {
-        path: `${apis.txs}?offset=${(e - 1) * 20}&limit=20`,
-        ns: 'transactions',
-        field: 'txs'
-      }
-    })
   }
+
+  const [current, setCurrent] = useState(props.currentIndex)
+  useEffect(
+    () => {
+      props.dispatch({
+        type: 'dataRelay/fetchData',
+        payload: {
+          path: `${apis.txs}?${props.apiParam}&offset=${(current - 1) *
+            20}&limit=20`, // api params with paging
+          ns: 'transactions',
+          field: 'txs'
+        }
+      })
+    },
+    [location.href]
+  )
 
   const columns = [
     {
@@ -86,7 +178,14 @@ function PagedTable(props) {
     {
       title: <LocalText id="tlpColumn2" />,
       dataIndex: 'height',
-      key: 'height'
+      key: 'height',
+      // eslint-disable-next-line react/display-name
+      render: height =>
+        props.filtered ? (
+          height
+        ) : (
+          <Link to={`${apis.txs}?block=${height}`}>{height}</Link>
+        )
     },
     {
       title: <LocalText id="tlpColumn3" />,

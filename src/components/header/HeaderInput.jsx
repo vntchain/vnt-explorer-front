@@ -28,7 +28,6 @@ function HeaderInput(props) {
       <Input.Search
         placeholder={props.locale[props.language].hdSearchPh}
         enterButton
-        allowClear
         onSearch={handleSearch}
       />
     </div>

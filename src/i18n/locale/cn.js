@@ -119,9 +119,11 @@ export default {
   tlpColumn1: '交易哈希值',
   tlpColumn2: '区块',
   tlpColumn3: '块龄',
-  tlpColumn4: '发送方',
-  tlpColumn5: '接收方',
+  tlpColumn4: '发送方 ',
+  tlpColumn5: '接收方 ',
   tlpColumn6: '价值',
+  txFilterByBlock: '区块',
+  txFilterByBlockSub: num => `共 ${num} 交易`,
 
   /*
   ** Tx detail page
@@ -131,8 +133,8 @@ export default {
   tdpField2: '状态',
   tdpField3: '区块高度',
   tdpField4: '时间戳',
-  tdpField5: '发送方',
-  tdpField6: '接收方',
+  tdpField5: '发送方 ',
+  tdpField6: '接收方 ',
   tdpField7: '代币转移',
   tdpField8: '价值',
   tdpField9: '燃料限制',
@@ -140,5 +142,5 @@ export default {
   tdpField11: '燃料价格',
   tdpField12: '随机数',
   tdpField13: '数据输入',
-  tdpField14: '代币数量'
+  tdpField14: ' 代币数量'
 }

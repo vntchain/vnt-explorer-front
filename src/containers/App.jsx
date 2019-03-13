@@ -66,7 +66,7 @@ export default withRouter(
           <Route exact path="/super-node" component={SuperNode} />
           <Route path="/blocks" component={Blocks} />
           <Route path="/block" component={BlockDetail} />
-          <Route path="/transactions" component={Transactions} />
+          <Route exact path="/txs" component={Transactions} />
           <Route path="/transaction" component={TxDetail} />
         </div>
       </div>

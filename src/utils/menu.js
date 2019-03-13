@@ -16,7 +16,7 @@ export default [
       {
         title: 'nav1Sub3',
         key: 'transactions',
-        path: '/transactions'
+        path: '/txs'
       },
       {
         title: 'nav1Sub4',

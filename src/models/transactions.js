@@ -3,7 +3,8 @@ export default {
     txs: null,
     count: null,
     txHistory: null,
-    txDetail: null
+    txDetail: null,
+    filteredTxs: null
   },
   reducers: {
     setState: (state, { payload }) => {
