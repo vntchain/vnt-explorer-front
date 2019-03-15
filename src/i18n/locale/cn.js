@@ -124,6 +124,8 @@ export default {
   tlpColumn6: '价值',
   txFilterByBlock: '区块',
   txFilterByBlockSub: num => `共 ${num} 交易`,
+  txFilterByAccount: '地址',
+  txFilterByAccountSub: num => `共 ${num} 交易`,
 
   /*
   ** Tx detail page
@@ -153,5 +155,18 @@ export default {
   alpColumn2: '地址',
   alpColumn3: '余额',
   alpColumn4: '百分比',
-  alpColumn5: '交易数量'
+  alpColumn5: '交易数量',
+
+  /*
+  ** Account detail page
+  */
+  adpField1: '地址',
+  adpField2: '余额',
+  adpField3: '交易',
+  adpField4: '交易',
+  adpField5: '代币交易',
+  adpField6: '代币余额',
+  adpCount1: num => `当前共${num}交易`,
+  adpCount2: num => `当前共${num}代币交易`,
+  adpCount3: num => `当前共${num}代币`
 }

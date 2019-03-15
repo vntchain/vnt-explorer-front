@@ -17,11 +17,14 @@ const mapStateToProps = ({ transactions: { count, filteredTxs } }) => {
   }
 }
 
+const pageSize = 20
+
 const txFilter = location => {
   let currentIndex = 1
   let apiParam = ``
   let filter, filterValue, fieldID
   const filterType = ['block', 'account']
+
   if (location.search) {
     const paramArr = queryString.parse(location.search)
 
@@ -41,7 +44,9 @@ const txFilter = location => {
     case 'block':
       fieldID = 'txFilterByBlock'
       break
-
+    case 'account':
+      fieldID = 'txFilterByAccount'
+      break
     default:
       break
   }
@@ -59,7 +64,7 @@ const txFilter = location => {
 
 export default connect(mapStateToProps)(function Txs(props) {
   const { currentIndex, apiParam, filter, filterValue, fieldID } = txFilter(
-    props.location
+    location
   )
 
   useEffect(
@@ -112,11 +117,11 @@ export default connect(mapStateToProps)(function Txs(props) {
         <DataProvider
           options={{
             path: `${apis.txs}?${apiParam}&offset=${(currentIndex - 1) *
-              20}&limit=20`, // api params with paging
+              pageSize}&limit=${pageSize}`, // api params with paging
             ns: 'transactions',
             field: 'txs'
           }}
-          key={props.location.href}
+          key={location.href}
           render={data => (
             <PagedTable
               size={
@@ -131,7 +136,7 @@ export default connect(mapStateToProps)(function Txs(props) {
               dispatch={props.dispatch}
               currentIndex={currentIndex}
               changePath={path => props.dispatch(push(path))}
-              key={props.location.href}
+              key={location.href}
               filtered={filter}
             />
           )}
@@ -144,7 +149,9 @@ export default connect(mapStateToProps)(function Txs(props) {
 function PagedTable(props) {
   const handlePageChange = e => {
     if (e !== props.currentIndex) {
-      props.changePath(`${apis.txs}?${props.apiParam}&p=${e}`)
+      props.changePath(
+        `${location.pathname.split('?')[0]}?${props.apiParam}&p=${e}`
+      )
       setCurrent(e)
     }
   }
@@ -156,7 +163,7 @@ function PagedTable(props) {
         type: 'dataRelay/fetchData',
         payload: {
           path: `${apis.txs}?${props.apiParam}&offset=${(current - 1) *
-            20}&limit=20`, // api params with paging
+            pageSize}&limit=${pageSize}`, // api params with paging
           ns: 'transactions',
           field: 'txs'
         }
@@ -248,7 +255,7 @@ function PagedTable(props) {
       dataSource={data}
       pagination={{
         position: 'both',
-        pageSize: 20,
+        pageSize: pageSize,
         total: props.size,
         showQuickJumper: true,
         onChange: handlePageChange,

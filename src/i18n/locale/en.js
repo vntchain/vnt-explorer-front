@@ -154,10 +154,23 @@ export default {
   ** Account list page
   */
   alpTitle: 'Account',
-  alpSubTitle: num => `A Total of ${num} accounts`,
+  alpSubTitle: num => `A Total of ${num} Accounts`,
   alpColumn1: 'Ranking',
   alpColumn2: 'Address',
   alpColumn3: 'Balance',
   alpColumn4: 'Percentage',
-  alpColumn5: 'Transactions'
+  alpColumn5: 'Transactions',
+
+  /*
+  ** Account detail page
+  */
+  adpField1: 'Address',
+  adpField2: 'Balance',
+  adpField3: 'Transactions',
+  adpField4: 'Transactions',
+  adpField5: 'Token Txs',
+  adpField6: 'Token Balance',
+  adpCount1: num => `A Total of ${num} Txs`,
+  adpCount2: num => `A Total of ${num} Token Txs`,
+  adpCount3: num => `A Total of ${num} Tokens`
 }

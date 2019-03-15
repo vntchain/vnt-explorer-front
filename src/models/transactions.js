@@ -20,6 +20,13 @@ export default {
         ...state,
         [field]: { ...data }
       }
+    },
+    resetTxData: state => {
+      return {
+        ...state,
+        txs: null,
+        filteredTxs: null
+      }
     }
   }
 }

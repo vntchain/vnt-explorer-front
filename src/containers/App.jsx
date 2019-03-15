@@ -6,6 +6,7 @@ import Home from './Home'
 import NewWallet from './NewWallet'
 import OpenWallet from './OpenWallet'
 import Accounts from './AccountList'
+import AccountDetail from './AccountDetail'
 import Receive from './Receive'
 import Send from './Send'
 import SuperNode from './SuperNode'
@@ -61,6 +62,7 @@ export default withRouter(
           <Route exact path="/view-wallet" component={OpenWallet} />
           <Route exact path="/new-wallet" component={NewWallet} />
           <Route path="/accounts" component={Accounts} />
+          <Route path="/account" component={AccountDetail} />
           <Route exact path="/receive" component={Receive} />
           <Route exact path="/send" component={Send} />
           <Route exact path="/super-node" component={SuperNode} />
