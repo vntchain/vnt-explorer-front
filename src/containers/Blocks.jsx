@@ -98,7 +98,7 @@ function PagedTable(props) {
       key: 'producer',
       dataIndex: 'producer',
       // eslint-disable-next-line react/display-name
-      render: producer => <Link to="/todo">{producer}</Link>
+      render: producer => <Link to={`/account/${producer}`}>{producer}</Link>
     },
     {
       title: <LocalText id="blpColumn5" />,

@@ -94,7 +94,8 @@ function DetailTable(props) {
       GasUsed,
       GasLimit,
       BlockReward,
-      ExtraData
+      ExtraData,
+      Number
     } = props.context.data
     data.push({
       key: 'timeStamp',
@@ -104,22 +105,27 @@ function DetailTable(props) {
     data.push({
       key: 'txCount',
       fieldName: <LocalText id="bdpField2" />,
-      value: TxCount
+      value:
+        TxCount > 0 ? (
+          <Link to={`/txs?block=${Number}`}>{TxCount}</Link>
+        ) : (
+          TxCount
+        )
     })
     data.push({
       key: 'hash',
       fieldName: <LocalText id="bdpField3" />,
-      value: <Link to={`${apis.block}/${Hash}`}>{Hash}</Link>
+      value: Hash
     })
     data.push({
       key: 'parentHash',
       fieldName: <LocalText id="bdpField4" />,
-      value: <Link to={`${apis.block}/${ParentHash}`}>{ParentHash}</Link>
+      value: <Link to={`${apis.block}/${Number - 1}`}>{ParentHash}</Link>
     })
     data.push({
       key: 'producer',
       fieldName: <LocalText id="bdpField5" />,
-      value: Producer
+      value: <Link to={`/account/${Producer}`}>{Producer}</Link>
     })
     data.push({
       key: 'size',

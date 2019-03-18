@@ -56,7 +56,9 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       key: 'from',
       dataIndex: 'from',
       // eslint-disable-next-line react/display-name
-      render: from => <Link to="/todo">{from.slice(0, 12) + '...'}</Link>
+      render: from => (
+        <Link to={`/account/${from}`}>{from.slice(0, 12) + '...'}</Link>
+      )
     },
     {
       title: <LocalText id="tlpColumn5" />,
@@ -65,7 +67,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       // eslint-disable-next-line react/display-name
       render: ({ isContract, value }) => {
         return (
-          <Link to="/todo">
+          <Link to={`/account/${value}`}>
             {isContract && <Icon type="project" />}
             {' ' + value.slice(0, 12) + '...'}
           </Link>

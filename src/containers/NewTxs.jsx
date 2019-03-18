@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
-// eslint-disable-next-line
 import { push } from 'react-router-redux'
 
 import TxCount from 'components/txs/TxCount'
@@ -47,8 +46,7 @@ const pathProcessor = search => {
 // update url params (`location.search`) when page changes
 // page size, offset are hidden in url
 // page in url is `p`, in path is `offset`
-// eslint-disable-next-line
-const paramsProcessor = (p) => {
+const paramsProcessor = p => {
   const paramObj = queryString.parse(location.search)
   // update value for `p`
   paramObj.p = p
@@ -66,10 +64,6 @@ const paramsProcessor = (p) => {
 export default connect(mapStateToProps)(function Txs(props) {
   const turnPage = p => {
     const params = paramsProcessor(p)
-
-    /* eslint-disable */
-    console.log('%c%s\n%cparams: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', params)
-    /* eslint-enable */
 
     // update params
     // concatenate url

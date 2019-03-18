@@ -118,19 +118,17 @@ function DetailTable(props) {
     data.push({
       key: 'from',
       fieldName: <LocalText id="tdpField5" />,
-      value: <Link to="/todo">{From}</Link>
+      value: <Link to={`/account/${From}`}>{From}</Link>
     })
     data.push({
       key: 'to',
       fieldName: <LocalText id="tdpField6" />,
       value: ContractAddr ? (
-        <Fragment>
-          <Link to="/todo">
-            <Icon type="project" /> {ContractAddr}
-          </Link>
-        </Fragment>
+        <Link to={`/account/${ContractAddr}`}>
+          <Icon type="project" /> {ContractAddr}
+        </Link>
       ) : (
-        <Link to="todo">{To}</Link>
+        <Link to={`/account/${To}`}>{To}</Link>
       )
     })
     data.push({
@@ -139,17 +137,15 @@ function DetailTable(props) {
       value: (
         <Fragment>
           <LocalText id="tdpField5" />
-          <Link to="/todo">{From.slice(0, 12) + '...'}</Link>{' '}
+          <Link to={`/account/${From}`}>{From.slice(0, 12) + '...'}</Link>{' '}
           <LocalText id="tdpField6" />{' '}
-          <Link to="/todo">
-            {ContractAddr ? (
-              <Fragment>
-                <Icon type="project" /> {ContractAddr.slice(0, 12) + '...'}
-              </Fragment>
-            ) : (
-              To.slice(0, 12) + '...'
-            )}
-          </Link>
+          {ContractAddr ? (
+            <Link to={`/account/${ContractAddr}`}>
+              <Icon type="project" /> {ContractAddr.slice(0, 12) + '...'}
+            </Link>
+          ) : (
+            <Link to={`/account/${To}`}>{To.slice(0, 12) + '...'}</Link>
+          )}
           <LocalText id="tdpField14" /> {TokenAmount}
         </Fragment>
       )

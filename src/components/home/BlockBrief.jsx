@@ -81,7 +81,9 @@ export default function BlockBrief(props) {
                     <span>{calcAge(item.timeStamp, props.lang)}</span>
                     <span>
                       <LocalText id="lField4" />
-                      <Link to="">{`${item.producer}`}</Link>
+                      <Link to={`/account/${item.producer}`}>{`${
+                        item.producer
+                      }`}</Link>
                     </span>
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Title from 'components/Title'
 import { Table } from 'antd'
+
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import Tabs from 'components/Tabs'
@@ -18,19 +19,22 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
 }
 
 export default connect(mapStateToProps)(function AccountDetail(props) {
-  useEffect(() => {
-    props.dispatch({
-      type: 'dataRelay/fetchData',
-      payload: {
-        // `path` here not robust
-        path: `${apis.accountDetail}/${
-          props.location.pathname.split('/').filter(item => item)[1]
-        }`,
-        ns: 'accounts',
-        field: 'accountDetail'
-      }
-    })
-  }, [])
+  useEffect(
+    () => {
+      props.dispatch({
+        type: 'dataRelay/fetchData',
+        payload: {
+          // `path` here not robust
+          path: `${apis.accountDetail}/${
+            props.location.pathname.split('/').filter(item => item)[1]
+          }`,
+          ns: 'accounts',
+          field: 'accountDetail'
+        }
+      })
+    },
+    [location.pathname]
+  )
 
   const columns = [
     {
@@ -171,7 +175,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
 
       <Table columns={columns} dataSource={data} pagination={false} />
 
-      <Tabs tabs={tabs} dispatch={props.dispatch} />
+      <Tabs key={Date.now()} tabs={tabs} dispatch={props.dispatch} />
     </div>
   )
 })

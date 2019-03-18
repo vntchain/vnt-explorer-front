@@ -64,11 +64,15 @@ export default function TxBrief(props) {
                   >
                     <span>
                       <LocalText id="rField2" />
-                      <Link to="">{item.from.slice(0, 15) + '...'}</Link>
+                      <Link to={`/account/${item.from}`}>
+                        {item.from.slice(0, 15) + '...'}
+                      </Link>
                     </span>
                     <span>
                       <LocalText id="rField3" />
-                      <Link to="">{item.to.slice(0, 15) + '...'}</Link>
+                      <Link to={`/account/${item.to}`}>
+                        {item.to.slice(0, 15) + '...'}
+                      </Link>
                     </span>
                     <span>
                       <LocalText id="rField4" />
