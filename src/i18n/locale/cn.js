@@ -168,5 +168,15 @@ export default {
   adpField6: '代币余额',
   adpCount1: num => `当前共${num}交易`,
   adpCount2: num => `当前共${num}代币交易`,
-  adpCount3: num => `当前共${num}代币`
+  adpCount3: num => `当前共${num}代币`,
+
+  /*
+  ** Contract list page
+  */
+  clpTitle: '合约',
+  clpSubTitle: num => `当前共 ${num} 合约`,
+  clpColumn1: '地址',
+  clpColumn2: '合约名称',
+  clpColumn3: '余额',
+  clpColumn4: '交易数量'
 }

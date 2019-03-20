@@ -134,7 +134,7 @@ export default {
   /*
   ** Tx detail page
   */
-  tdpTitle: 'Transaction',
+  tdpTitle: 'Transactions',
   tdpField1: 'Transaction Hash',
   tdpField2: 'Status',
   tdpField3: 'Block Height',
@@ -153,7 +153,7 @@ export default {
   /*
   ** Account list page
   */
-  alpTitle: 'Account',
+  alpTitle: 'Accounts',
   alpSubTitle: num => `A Total of ${num} Accounts`,
   alpColumn1: 'Ranking',
   alpColumn2: 'Address',
@@ -164,7 +164,7 @@ export default {
   /*
   ** Account detail page
   */
-  adpField1: 'Address',
+  adpField1: 'Addresses',
   adpField2: 'Balance',
   adpField3: 'Transactions',
   adpField4: 'Transactions',
@@ -172,5 +172,15 @@ export default {
   adpField6: 'Token Balance',
   adpCount1: num => `A Total of ${num} Txs`,
   adpCount2: num => `A Total of ${num} Token Txs`,
-  adpCount3: num => `A Total of ${num} Tokens`
+  adpCount3: num => `A Total of ${num} Tokens`,
+
+  /*
+  ** Contract list page
+  */
+  clpTitle: 'Contracts',
+  clpSubTitle: num => `A Total of ${num} Contracts`,
+  clpColumn1: 'Address',
+  clpColumn2: 'Contract Name',
+  clpColumn3: 'Balance',
+  clpColumn4: 'TxCount'
 }

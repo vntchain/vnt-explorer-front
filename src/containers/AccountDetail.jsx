@@ -179,10 +179,3 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
     </div>
   )
 })
-
-{
-  /* <BlockBrief
-                context={data}
-                errComp={<ErrorMessenger context={data} />}
-              /> */
-}

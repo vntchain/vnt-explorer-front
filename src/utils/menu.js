@@ -25,8 +25,8 @@ export default [
       },
       {
         title: 'nav1Sub5',
-        key: 'chaincode',
-        path: '/chaincode'
+        key: 'contracts',
+        path: '/contracts'
       },
       {
         title: 'nav1Sub6',
