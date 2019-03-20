@@ -182,5 +182,10 @@ export default {
   clpColumn1: 'Address',
   clpColumn2: 'Contract Name',
   clpColumn3: 'Balance',
-  clpColumn4: 'TxCount'
+  clpColumn4: 'TxCount',
+
+  /*
+  ** Contract detail page
+  */
+  cdpField1: 'Chaincode'
 }

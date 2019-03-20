@@ -83,7 +83,7 @@ function PagedTable(props) {
       key: 'address',
       // eslint-disable-next-line react/display-name
       render: addr => (
-        <Link to="todo">
+        <Link to={`/contract/${addr}`}>
           <Icon type="project" /> {addr}
         </Link>
       )

@@ -66,11 +66,13 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       dataIndex: 'to',
       // eslint-disable-next-line react/display-name
       render: ({ isContract, value }) => {
-        return (
-          <Link to={`/account/${value}`}>
-            {isContract && <Icon type="project" />}
+        return isContract ? (
+          <Link to={`/contract/${value}`}>
+            <Icon type="project" />
             {' ' + value.slice(0, 12) + '...'}
           </Link>
+        ) : (
+          <Link to={`/account/${value}`}>{value.slice(0, 12) + '...'}</Link>
         )
       }
     },

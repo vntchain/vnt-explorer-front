@@ -15,6 +15,7 @@ import BlockDetail from './BlockDetail'
 import Transactions from './Transactions'
 import TxDetail from './TxDetail'
 import ContractList from './ContractList'
+import ContractDetail from './ContractDetail'
 import Header from 'components/header/Header'
 
 import styles from './App.scss'
@@ -72,6 +73,7 @@ export default withRouter(
           <Route exact path="/txs" component={Transactions} />
           <Route path="/transaction" component={TxDetail} />
           <Route path="/contracts" component={ContractList} />
+          <Route path="/contract" component={ContractDetail} />
         </div>
       </div>
     )

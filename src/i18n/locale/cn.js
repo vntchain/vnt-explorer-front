@@ -178,5 +178,10 @@ export default {
   clpColumn1: '地址',
   clpColumn2: '合约名称',
   clpColumn3: '余额',
-  clpColumn4: '交易数量'
+  clpColumn4: '交易数量',
+
+  /*
+  ** Contract detail page
+  */
+  cdpField1: '合约代码'
 }
