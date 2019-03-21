@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Table, Icon } from 'antd'
+import { Table } from 'antd'
 import { connect } from 'react-redux'
 
 import LocalText from 'i18n/LocalText'
 
 import { pageSize } from 'constants/config'
-import apis from 'utils/apis'
 
 const mapStateToProps = ({ accounts: { count } }) => {
   return {
@@ -36,13 +35,15 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       key: 'token',
       // eslint-disable-next-line react/display-name
       render: token => (
-        <Link to={`/account/${token.Address}`}>{token.ContractName || token.Address.slice(0, 12) + '...'}</Link>
+        <Link to={`/account/${token.Address}`}>
+          {token.ContractName || token.Address.slice(0, 12) + '...'}
+        </Link>
       )
     },
     {
       title: <LocalText id="adpField2" />,
       dataIndex: 'balance',
-      key: 'balance',
+      key: 'balance'
       // eslint-disable-next-line react/display-name
     },
     {
@@ -53,8 +54,8 @@ export default connect(mapStateToProps)(function PagedTable(props) {
     {
       title: <LocalText id="adpField9" />,
       key: 'valueInVNT',
-      dataIndex: 'valueInVNT',
-    },
+      dataIndex: 'valueInVNT'
+    }
     // {
     //   title: <LocalText id="tlpColumn5" />,
     //   key: 'to',
@@ -90,8 +91,8 @@ export default connect(mapStateToProps)(function PagedTable(props) {
         account: item.Account,
         token: item.Token,
         balance: item.Balance,
-        price: "-",
-        valueInVNT: "-",
+        price: '-',
+        valueInVNT: '-'
       })
     })
   }

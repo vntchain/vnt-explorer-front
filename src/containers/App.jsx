@@ -18,6 +18,7 @@ import ContractList from './ContractList'
 import ContractDetail from './ContractDetail'
 import TokenList from './TokenList'
 import TokenDetail from './TokenDetail'
+import DevGuides from './DevGuides'
 import Header from 'components/header/Header'
 
 import styles from './App.scss'
@@ -78,6 +79,7 @@ export default withRouter(
           <Route path="/contract" component={ContractDetail} />
           <Route path="/tokens" component={TokenList} />
           <Route path="/token" component={TokenDetail} />
+          <Route path="/developer" component={DevGuides} />
         </div>
       </div>
     )

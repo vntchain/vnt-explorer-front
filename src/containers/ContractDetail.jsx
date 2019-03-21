@@ -77,7 +77,8 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           {/* 获取当前账户所有交易，为计算交易数 */}
           <DataProvider
             options={{
-              path: `${apis.txCount}?account=` + location.pathname.split('/')[2],
+              path:
+                `${apis.txCount}?account=` + location.pathname.split('/')[2],
               ns: 'transactions',
               field: 'count'
             }}

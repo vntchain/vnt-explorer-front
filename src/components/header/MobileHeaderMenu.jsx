@@ -6,7 +6,8 @@ import { menuItemFactory } from './HeaderMenu'
 import menu from 'utils/menu.js'
 
 import styles from './MobileHeaderMenu.scss'
-import SubMenu from 'antd/lib/menu/SubMenu'
+
+const SubMenu = Menu.SubMenu
 
 export default function MobileHeaderMenu(props) {
   const toggleNav = () => {

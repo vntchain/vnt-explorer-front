@@ -4,7 +4,7 @@ export default {
     accounts: null,
     accountDetail: null,
     tokens: null,
-    tokenCount: null,
+    tokenCount: null
   },
   reducers: {
     setState: (state, { payload }) => {

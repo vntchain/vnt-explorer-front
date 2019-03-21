@@ -73,7 +73,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
 
         console.log("##### TXlist: ", isContractCreation, isToken, contractName, address)
         if (isContractCreation) {
-            return ""
+          return ''
         }
 
         if (isToken) {
@@ -113,9 +113,6 @@ export default connect(mapStateToProps)(function PagedTable(props) {
     Array.isArray(props.context.data)
   ) {
     props.context.data.forEach((item, i) => {
-
-      console.log("#### tx to: ", item.To)
-
       var d = {
         key: item.Hash + i,
         tx: item.Hash,

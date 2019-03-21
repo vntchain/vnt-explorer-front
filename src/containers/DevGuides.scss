@@ -1,0 +1,32 @@
+.devGuides {
+  .main {
+    display: flex;
+    background-color: #fff;
+
+    .nav {
+      flex: 0 0 20%;
+
+      :global {
+        .ant-menu-item {
+          // hard code
+          &:nth-last-child(1),
+          &:nth-last-child(2),
+          &:nth-last-child(3) {
+            a {
+              margin-left: 0.3rem;
+            }
+          }
+        }
+        .ant-menu {
+          height: 100%;
+        }
+      }
+    }
+
+    .content {
+      flex: 1;
+      max-height: 11rem;
+      overflow: scroll;
+    }
+  }
+}

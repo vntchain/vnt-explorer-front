@@ -188,7 +188,6 @@ export default {
   */
   cdpField1: '合约代码',
 
-
   /*
   ** Token list page
   */
@@ -202,4 +201,15 @@ export default {
   ** Contract detail page
   */
   tdpField1: '合约代码'
+  /*
+  ** Developer guide page
+  */
+  dgTitle: 'VNT开发者指南',
+  dgNav1: 'VNT介绍',
+  dgNav2: '网络搭建',
+  dgNav3: '共识投票',
+  dgNav4: 'DAPP开发指南',
+  dgNav4Sub1: '如何开发合约',
+  dgNav4Sub2: '如何编译合约',
+  dgNav4Sub3: '如何部署调用合约'
 }
