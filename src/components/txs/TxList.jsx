@@ -8,9 +8,9 @@ import LocalText from 'i18n/LocalText'
 import { pageSize } from 'constants/config'
 import apis from 'utils/apis'
 
-const mapStateToProps = ({ transactions: { txs } }) => {
+const mapStateToProps = ({ transactions: { count } }) => {
   return {
-    txs
+    count
   }
 }
 
@@ -65,13 +65,31 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       key: 'to',
       dataIndex: 'to',
       // eslint-disable-next-line react/display-name
-      render: ({ isContract, value }) => {
-        return isContract ? (
-          <Link to={`/contract/${value}`}>
-            <Icon type="project" />
-            {' ' + value.slice(0, 12) + '...'}
-          </Link>
-        ) : (
+      render: ({ isToken, name, value }) => {
+        var isContractCreation = false
+        if (isToken && !value) {
+            isContractCreation = true
+        }
+
+            console.log("##### TXlist: ", isContractCreation, isToken, name, value)
+        if (isContractCreation) {
+            return ""
+        }
+
+        if (isToken) {
+            if (value) {
+                return (
+                  <Link to={`/contract/${value}`}>
+                    <Icon type="project" />
+                    {name || ' ' + value.slice(0, 12) + '...'}
+                  </Link>
+                )
+            } else {
+                return ""
+            }
+        }
+
+        return (
           <Link to={`/account/${value}`}>{value.slice(0, 12) + '...'}</Link>
         )
       }
@@ -90,18 +108,23 @@ export default connect(mapStateToProps)(function PagedTable(props) {
     Array.isArray(props.context.data)
   ) {
     props.context.data.forEach((item, i) => {
-      data.push({
+
+      console.log("#### tx to: ", item.To)
+      var d = {
         key: item.Hash + i,
         tx: item.Hash,
         height: item.BlockNumber,
         age: item.TimeStamp,
         from: item.From,
         to: {
-          isContract: item.ContractAddr ? true : false,
-          value: item.ContractAddr ? item.ContractAddr : item.To
+          isToken: item.IsToken,
+          name: item.To?item.To.ContractName:"",
+          value: item.To ? item.To.Address:""
         },
         value: item.Value
-      })
+      }
+      console.log("##### tx data: ", d)
+      data.push(d)
     })
   }
 
@@ -112,7 +135,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       pagination={{
         position: 'both',
         pageSize: pageSize,
-        total: props.txs && props.txs.data ? props.txs.data.length : 0,
+        total: props.count && props.count.data ? props.count.data : 0,
         showQuickJumper: true,
         onChange: handlePageChange,
         current

@@ -213,12 +213,27 @@ function PagedTable(props) {
       key: 'to',
       dataIndex: 'to',
       // eslint-disable-next-line react/display-name
-      render: ({ isContract, value }) => {
+      render: ({ isToken, name, value }) => {
+        var isContractCreation = false
+        if (isToken && !value) {
+            isContractCreation = true
+        }
+
+        if (isContractCreation) {
+            return ""
+        }
+
+        if (isToken) {
+            return (
+              <Link to={`/contract/${value}`}>
+                <Icon type="project" />
+                {name || ' ' + value.slice(0, 12) + '...'}
+              </Link>
+            )
+        }
+
         return (
-          <Link to={`/account/${value}`}>
-            {isContract && <Icon type="project" />}
-            {' ' + value.slice(0, 12) + '...'}
-          </Link>
+          <Link to={`/account/${value}`}>{value.slice(0, 12) + '...'}</Link>
         )
       }
     },
@@ -243,8 +258,9 @@ function PagedTable(props) {
         age: item.TimeStamp,
         from: item.From,
         to: {
-          isContract: item.ContractAddr ? true : false,
-          value: item.ContractAddr ? item.ContractAddr : item.To
+            isToken: item.To?item.To.IsToken : false,
+            name: item.To?item.To.ContractName:"",
+            value: item.To ? item.To.Address:""
         },
         value: item.Value
       })

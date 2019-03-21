@@ -8,6 +8,8 @@ import DataProvider from 'containers/RPDataProvider'
 import Tabs from 'components/Tabs'
 import TxList from 'components/txs/TxList'
 import TxCount from 'components/txs/TxCount'
+import TokenList from 'components/tokens/TokenList'
+import TokenCount from 'components/tokens/TokenCount'
 
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
@@ -21,6 +23,7 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
 export default connect(mapStateToProps)(function AccountDetail(props) {
   useEffect(
     () => {
+        console.log("Props: ", props)
       props.dispatch({
         type: 'dataRelay/fetchData',
         payload: {
@@ -75,9 +78,9 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
           {/* 获取当前账户所有交易，为计算交易数 */}
           <DataProvider
             options={{
-              path: `${apis.txs}?account=` + location.pathname.split('/')[2],
+              path: `${apis.txCount}?account=` + location.pathname.split('/')[2],
               ns: 'transactions',
-              field: 'txs'
+              field: 'count'
             }}
             render={data => (
               <TxCount
@@ -118,10 +121,10 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
           <DataProvider
             options={{
               path:
-                `${apis.txs}?istoken=1&account=` +
+                `${apis.txCount}?istoken=1&account=` +
                 location.pathname.split('/')[2],
               ns: 'transactions',
-              field: 'txs'
+              field: 'count'
             }}
             render={data => (
               <TxCount
@@ -156,7 +159,40 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
     },
     {
       btnName: <LocalText id="adpField6" />,
-      comp: <p>tab 3</p>
+      comp: (
+        <Fragment key="3">
+          {/* 获取当前账户所有交易，为计算交易数 */}
+          <DataProvider
+            options={{
+              path: `${apis.accountDetail}/${props.match.params.acct}/tokens/count`,
+              ns: 'accounts',
+              field: 'tokenCount'
+            }}
+            render={data => (
+              <TokenCount
+                id="adpCount3"
+                context={data}
+                dispatch={props.dispatch}
+              />
+            )}
+          />
+          {/* 获取当前账户第一分页的交易 */}
+          <DataProvider
+            options={{
+              path: `${apis.accountDetail}/${props.match.params.acct}/tokens`,
+              ns: 'accounts',
+              field: 'tokens'
+            }}
+            render={data => (
+              <TokenList
+                context={data}
+                dispatch={props.dispatch}
+                basePath={`${apis.accountDetail}/${props.match.params.acct}/tokens`}
+              />
+            )}
+          />
+        </Fragment>
+      )
     }
   ]
 

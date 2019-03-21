@@ -2,7 +2,7 @@ import React from 'react'
 
 import withLang from 'i18n/withLang'
 
-export default withLang(function TxCount(props) {
+export default withLang(function TokenCount(props) {
   return (
     <div>
       {props.context && props.context.data

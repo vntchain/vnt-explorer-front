@@ -5,7 +5,7 @@ export default {
   blockCount: '/blocks/count',
   txs: '/txs',
   txHistory: '/txs/history',
-  txCount: 'txs/count',
+  txCount: '/txs/count',
   tx: '/tx',
   accounts: '/accounts',
   accountCount: '/accounts/count',

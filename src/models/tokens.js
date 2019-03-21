@@ -1,10 +1,8 @@
 export default {
   state: {
     count: null,
-    accounts: null,
-    accountDetail: null,
-    tokens: null,
-    tokenCount: null,
+    holderCount: null,
+    holders: null
   },
   reducers: {
     setState: (state, { payload }) => {

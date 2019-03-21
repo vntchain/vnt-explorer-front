@@ -12,7 +12,11 @@ export default function TxBrief(props) {
   const formattedData = data => {
     return data.map(item => ({
       from: item.From,
-      to: item.To,
+      to: {
+        isContract: item.To?item.To.isContract : false,
+        name: item.To?item.To.ContractName:"",
+        value: item.To ? item.To.Address:""
+      },
       txHash: item.Hash,
       timeStamp: item.TimeStamp,
       amount: item.Value
@@ -70,9 +74,20 @@ export default function TxBrief(props) {
                     </span>
                     <span>
                       <LocalText id="rField3" />
-                      <Link to={`/account/${item.to}`}>
-                        {item.to.slice(0, 15) + '...'}
-                      </Link>
+                      {
+                          function() {
+                              console.log("TxBrief: item.to: ", item.to)
+                              if(item.to.value != "") {
+                                  return (
+                                      <Link to={`/account/${item.to.value}`}>
+                                        { item.to.name || item.to.value.slice(0, 15) + '...'}
+                                      </Link>
+                                    )
+                              } else {
+                                  return ""
+                              }
+                          }()
+                      }
                     </span>
                     <span>
                       <LocalText id="rField4" />

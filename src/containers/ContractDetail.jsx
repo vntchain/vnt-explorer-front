@@ -75,9 +75,9 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           {/* 获取当前账户所有交易，为计算交易数 */}
           <DataProvider
             options={{
-              path: `${apis.txs}?account=` + location.pathname.split('/')[2],
+              path: `${apis.txCount}?account=` + location.pathname.split('/')[2],
               ns: 'transactions',
-              field: 'txs'
+              field: 'count'
             }}
             render={data => (
               <TxCount
@@ -118,10 +118,10 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           <DataProvider
             options={{
               path:
-                `${apis.txs}?istoken=1&account=` +
+                `${apis.txCount}?isToken=1&account=` +
                 location.pathname.split('/')[2],
               ns: 'transactions',
-              field: 'txs'
+              field: 'count'
             }}
             render={data => (
               <TxCount
@@ -135,7 +135,7 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           <DataProvider
             options={{
               path:
-                `${apis.txs}?istoken=1&limit=${pageSize}&offset=0&account=` +
+                `${apis.txs}?isToken=1&limit=${pageSize}&offset=0&account=` +
                 location.pathname.split('/')[2],
               ns: 'transactions',
               field: 'filteredTxs'
