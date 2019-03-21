@@ -13,9 +13,9 @@ export default function TxBrief(props) {
     return data.map(item => ({
       from: item.From,
       to: {
-        isContract: item.To?item.To.isContract : false,
-        name: item.To?item.To.ContractName:"",
-        value: item.To ? item.To.Address:""
+        isContract: item.To ? item.To.isContract : false,
+        name: item.To ? item.To.ContractName : '',
+        value: item.To ? item.To.Address : ''
       },
       txHash: item.Hash,
       timeStamp: item.TimeStamp,
@@ -74,20 +74,19 @@ export default function TxBrief(props) {
                     </span>
                     <span>
                       <LocalText id="rField3" />
-                      {
-                          function() {
-                              console.log("TxBrief: item.to: ", item.to)
-                              if(item.to.value != "") {
-                                  return (
-                                      <Link to={`/account/${item.to.value}`}>
-                                        { item.to.name || item.to.value.slice(0, 15) + '...'}
-                                      </Link>
-                                    )
-                              } else {
-                                  return ""
-                              }
-                          }()
-                      }
+                      {(function() {
+                        // console.log('TxBrief: item.to: ', item.to)
+                        if (item.to.value != '') {
+                          return (
+                            <Link to={`/account/${item.to.value}`}>
+                              {item.to.name ||
+                                item.to.value.slice(0, 15) + '...'}
+                            </Link>
+                          )
+                        } else {
+                          return ''
+                        }
+                      })()}
                     </span>
                     <span>
                       <LocalText id="rField4" />

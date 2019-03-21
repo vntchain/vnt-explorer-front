@@ -23,7 +23,7 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
 export default connect(mapStateToProps)(function AccountDetail(props) {
   useEffect(
     () => {
-        console.log("Props: ", props)
+      // console.log('Props: ', props)
       props.dispatch({
         type: 'dataRelay/fetchData',
         payload: {
@@ -78,7 +78,8 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
           {/* 获取当前账户所有交易，为计算交易数 */}
           <DataProvider
             options={{
-              path: `${apis.txCount}?account=` + location.pathname.split('/')[2],
+              path:
+                `${apis.txCount}?account=` + location.pathname.split('/')[2],
               ns: 'transactions',
               field: 'count'
             }}
@@ -164,7 +165,9 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
           {/* 获取当前账户所有交易，为计算交易数 */}
           <DataProvider
             options={{
-              path: `${apis.accountDetail}/${props.match.params.acct}/tokens/count`,
+              path: `${apis.accountDetail}/${
+                props.match.params.acct
+              }/tokens/count`,
               ns: 'accounts',
               field: 'tokenCount'
             }}
@@ -187,7 +190,9 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
               <TokenList
                 context={data}
                 dispatch={props.dispatch}
-                basePath={`${apis.accountDetail}/${props.match.params.acct}/tokens`}
+                basePath={`${apis.accountDetail}/${
+                  props.match.params.acct
+                }/tokens`}
               />
             )}
           />

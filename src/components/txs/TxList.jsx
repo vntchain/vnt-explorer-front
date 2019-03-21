@@ -68,25 +68,25 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       render: ({ isToken, name, value }) => {
         var isContractCreation = false
         if (isToken && !value) {
-            isContractCreation = true
+          isContractCreation = true
         }
 
-            console.log("##### TXlist: ", isContractCreation, isToken, name, value)
+        // console.log('##### TXlist: ', isContractCreation, isToken, name, value)
         if (isContractCreation) {
-            return ""
+          return ''
         }
 
         if (isToken) {
-            if (value) {
-                return (
-                  <Link to={`/contract/${value}`}>
-                    <Icon type="project" />
-                    {name || ' ' + value.slice(0, 12) + '...'}
-                  </Link>
-                )
-            } else {
-                return ""
-            }
+          if (value) {
+            return (
+              <Link to={`/contract/${value}`}>
+                <Icon type="project" />
+                {name || ' ' + value.slice(0, 12) + '...'}
+              </Link>
+            )
+          } else {
+            return ''
+          }
         }
 
         return (
@@ -108,8 +108,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
     Array.isArray(props.context.data)
   ) {
     props.context.data.forEach((item, i) => {
-
-      console.log("#### tx to: ", item.To)
+      // console.log('#### tx to: ', item.To)
       var d = {
         key: item.Hash + i,
         tx: item.Hash,
@@ -118,12 +117,12 @@ export default connect(mapStateToProps)(function PagedTable(props) {
         from: item.From,
         to: {
           isToken: item.IsToken,
-          name: item.To?item.To.ContractName:"",
-          value: item.To ? item.To.Address:""
+          name: item.To ? item.To.ContractName : '',
+          value: item.To ? item.To.Address : ''
         },
         value: item.Value
       }
-      console.log("##### tx data: ", d)
+      // console.log('##### tx data: ', d)
       data.push(d)
     })
   }
