@@ -101,3 +101,42 @@ export default [
     ]
   }
 ]
+
+// menu for developer guide page
+export const devGuideMenu = [
+  {
+    title: 'dgNav1',
+    key: 'developer',
+    path: '/developer'
+  },
+  {
+    title: 'dgNav2',
+    key: 'network',
+    path: '/developer/network'
+  },
+  {
+    title: 'dgNav3',
+    key: 'consensus',
+    path: '/developer/consensus'
+  },
+  {
+    title: 'dgNav4',
+    key: 'dapp',
+    path: '/developer/dapp'
+  },
+  {
+    title: 'dgNav4Sub1',
+    key: 'develop',
+    path: '/developer/dapp/develop'
+  },
+  {
+    title: 'dgNav4Sub2',
+    key: 'compile',
+    path: '/developer/dapp/compile'
+  },
+  {
+    title: 'dgNav4Sub3',
+    key: 'invoke',
+    path: '/developer/dapp/invoke'
+  }
+]
