@@ -53,12 +53,18 @@ export default connect(mapStateToProps)(function PagedTable(props) {
     },
     {
       title: <LocalText id="tlpColumn4" />,
-      key: 'from',
-      dataIndex: 'from',
+      key: 'tokenFrom',
+      dataIndex: 'tokenFrom',
       // eslint-disable-next-line react/display-name
-      render: from => (
-        <Link to={`/account/${from}`}>{from.slice(0, 12) + '...'}</Link>
-      )
+      render: from => {
+        if (from){
+          return (
+            <Link to={`/account/${from}`}>{from.slice(0, 12) + '...'}</Link>
+          )
+        } else {
+          return ""
+        }
+      }
     },
     {
       title: <LocalText id="blank" />,
@@ -67,48 +73,33 @@ export default connect(mapStateToProps)(function PagedTable(props) {
     },
     {
       title: <LocalText id="tlpColumn5" />,
-      key: 'to',
-      dataIndex: 'to',
+      key: 'tokenTo',
+      dataIndex: 'tokenTo',
       // eslint-disable-next-line react/display-name
-      render: ({ isContract, isToken, address, contractName }) => {
-        var isContractCreation = false
-        if (!address) {
-            isContractCreation = true
+      render: tokenTo => {
+        if(tokenTo) {
+          return (
+            <Link to={`/account/${tokenTo}`}>{tokenTo.slice(0, 12) + '...'}</Link>
+          )
+        } else {
+          return ""
         }
-
-        console.log("##### TXlist: ", isContractCreation, isToken, contractName, address)
-        if (isContractCreation) {
-          return ''
-        }
-
-        if (isToken) {
-            return (
-              <Link to={`/contract/${address}`}>
-                <Icon type="project" />
-                {contractName || ' ' + address.slice(0, 12) + '...'}
-              </Link>
-            )
-        }
-
-        if (isContract) {
-            return (
-              <Link to={`/contract/${address}`}>
-                <Icon type="project" />
-                {contractName || ' ' + address.slice(0, 12) + '...'}
-              </Link>
-            )
-        }
-
-        return (
-          <Link to={`/account/${address}`}>{address.slice(0, 12) + '...'}</Link>
-        )
       }
     },
     {
       title: <LocalText id="tlpColumn6" />,
-      dataIndex: 'value',
-      key: 'value'
-    }
+      dataIndex: 'tokenAmount',
+      key: 'tokenAmount'
+    },
+    {
+      title: <LocalText id="tklpTitle" />,
+      key: 'to',
+      dataIndex: 'to',
+      // eslint-disable-next-line react/display-name
+      render: to => (
+        <Link to={`/token/${to.address}`}>{to.contractName}</Link>
+      )
+    },
   ]
 
   const data = []
@@ -123,21 +114,18 @@ export default connect(mapStateToProps)(function PagedTable(props) {
         tx: item.Hash,
         height: item.BlockNumber,
         age: item.TimeStamp,
-        from: item.From,
-        value: item.Value
+        tokenFrom: item.TokenFrom,
+        tokenTo: item.TokenTo,
+        tokenAmount: item.TokenAmount,
       }
 
       if(item.To) {
           d.to = {
-              isContract: item.To.IsContract,
-              isToken: item.To.IsToken,
               address: item.To.Address,
               contractName: item.To.ContractName
           }
       } else {
           d.to = {
-              isContract: null,
-              isToken: null,
               address: null,
               contractName: null
           }
@@ -145,7 +133,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
 
       if (props.address == d.from) {
         d.direction = "OUT"
-      } else if(props.address == d.to.address) {
+      } else if(props.address == d.tokenTo) {
         d.direction = "TO"
       } else {
         d.direction = ""

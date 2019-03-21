@@ -7,6 +7,7 @@ import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import Tabs from 'components/Tabs'
 import TxList from 'components/txs/TxList'
+import TokenTxList from 'components/tokens/TokenTxList'
 import TxCount from 'components/txs/TxCount'
 import TokenList from 'components/tokens/TokenList'
 import TokenCount from 'components/tokens/TokenCount'
@@ -107,6 +108,7 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
                   `${apis.txs}?limit=${pageSize}&account=` +
                   location.pathname.split('/')[2]
                 }
+                address={location.pathname.split('/')[2]}
               />
             )}
           />
@@ -144,13 +146,14 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
               field: 'filteredTxs'
             }}
             render={data => (
-              <TxList
+              <TokenTxList
                 context={data}
                 dispatch={props.dispatch}
                 basePath={
-                  `${apis.txs}?limit=${pageSize}&account=` +
+                  `${apis.txs}?isToken=1&limit=${pageSize}&account=` +
                   location.pathname.split('/')[2]
                 }
+                address={location.pathname.split('/')[2]}
               />
             )}
           />

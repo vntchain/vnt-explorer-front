@@ -9,6 +9,8 @@ import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 
+import { pageSize } from 'constants/config'
+
 const mapStateToProps = ({ accounts: { count } }) => {
   return {
     count
@@ -60,14 +62,16 @@ export default connect(mapStateToProps)(function Accounts(props) {
 })
 
 function PagedTable(props) {
+  var currPage = 1
   const handlePageChange = e => {
+    currPage = e
     if (e !== props.currentIndex) {
       props.changePath(`${apis.accounts}/${e}`)
     }
     props.dispatch({
       type: 'dataRelay/fetchData',
       payload: {
-        path: `${apis.accounts}?offset=${(e - 1) * 20}&limit=20`,
+        path: `${apis.accounts}?offset=${(e - 1) * 20}&limit=${pageSize}`,
         ns: 'accounts',
         field: 'accounts'
       }
@@ -77,8 +81,8 @@ function PagedTable(props) {
   const columns = [
     {
       title: <LocalText id="alpColumn1" />,
-      dataIndex: 'ranking',
-      key: 'ranking'
+      dataIndex: 'index',
+      key: 'index'
     },
     {
       title: <LocalText id="alpColumn2" />,
@@ -117,10 +121,12 @@ function PagedTable(props) {
     props.context.data &&
     Array.isArray(props.context.data)
   ) {
+    var index = (currPage - 1) * pageSize
     props.context.data.forEach((item, i) => {
+      index ++
       data.push({
+        index: index,
         key: item.Address + i,
-        ranking: 'missing',
         address: { value: item.Address, isContract: item.IsContract },
         balance: item.Balance,
         percentage: 'missing',

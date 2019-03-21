@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 import Title from 'components/Title'
 import { Table } from 'antd'
 
+import { Link } from 'react-router-dom'
+
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import Tabs from 'components/Tabs'
 import TxList from 'components/txs/TxList'
+import TokenTxList from 'components/tokens/TokenTxList'
+import HolderList from 'components/tokens/HolderList'
 import TxCount from 'components/txs/TxCount'
 import TokenList from 'components/tokens/TokenList'
 import TokenCount from 'components/tokens/TokenCount'
@@ -40,32 +44,62 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
 
   const columns = [
     {
-      title: <LocalText id="adpField2" />,
-      dataIndex: 'fieldName',
-      key: 'fieldName'
+      title: <LocalText id="tklpColumn4" />,
+      dataIndex: 'col1',
+      key: 'col1'
     },
     {
       title:
         props.accountDetail &&
         props.accountDetail.data &&
-        props.accountDetail.data.hasOwnProperty('Balance')
-          ? `${props.accountDetail.data.Balance}`
+        props.accountDetail.data.hasOwnProperty('TokenAmount')
+          ? `${props.accountDetail.data.TokenAmount}`
           : '-/-',
-      dataIndex: 'value',
-      key: 'value'
+      dataIndex: 'col2',
+      key: 'col2'
+    },
+    {
+      title: <LocalText id="tklpColumn6" />,
+      dataIndex: 'col3',
+      key: 'col3'
+    },
+    {
+      title:
+        props.accountDetail &&
+        props.accountDetail.data &&
+        props.accountDetail.data.hasOwnProperty('Address')
+          ? (
+            <Link to={`/contract/${props.accountDetail.data.Address}`}>
+              {props.accountDetail.data.Address}
+            </Link>
+          )
+          : '-/-',
+      dataIndex: 'col4',
+      key: 'col4'
     }
   ]
 
   const data = [
     {
-      key: 'txs',
-      fieldName: <LocalText id="adpField3" />,
-      value:
+      key: '1',
+      col1: <LocalText id="tklpColumn5" />,
+      col2:
         props.accountDetail &&
         props.accountDetail.data &&
-        props.accountDetail.data.hasOwnProperty('TxCount')
-          ? `${props.accountDetail.data.TxCount}`
-          : '-/-'
+        props.accountDetail.data.hasOwnProperty('TokenAcctCount')
+          ? `${props.accountDetail.data.TokenAcctCount} 地址`
+          : '-/-',
+      col3: <LocalText id="tklpColumn7" />,
+      col4:
+        props.accountDetail &&
+        props.accountDetail.data &&
+        props.accountDetail.data.Home
+          ? (
+            <Link to={`/token/${props.accountDetail.data.Home}`}>
+              {props.accountDetail.data.Home}
+            </Link>
+          )
+          : '--'
     }
   ]
 
@@ -99,13 +133,14 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
               field: 'filteredTxs'
             }}
             render={data => (
-              <TxList
+              <TokenTxList
                 context={data}
                 dispatch={props.dispatch}
                 basePath={
                   `${apis.txs}?limit=${pageSize}&account=` +
                   location.pathname.split('/')[2]
                 }
+                address={location.pathname.split('/')[2]}
               />
             )}
           />
@@ -113,21 +148,20 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
       )
     },
     {
-      btnName: <LocalText id="adpField5" />,
+      btnName: <LocalText id="tkdpField2" />,
       comp: (
         <Fragment key="2">
           {/* 获取当前账户所有代币交易，为计算交易数 */}
           <DataProvider
             options={{
               path:
-                `${apis.txCount}?isToken=1&account=` +
-                location.pathname.split('/')[2],
+                `${apis.token}/${location.pathname.split('/')[2]}/holders/count`,
               ns: 'transactions',
               field: 'count'
             }}
             render={data => (
               <TxCount
-                id="adpCount2"
+                id="tkdpSubTitle"
                 context={data}
                 dispatch={props.dispatch}
               />
@@ -136,14 +170,12 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           {/* 获取当前账户第一分页的代币交易 */}
           <DataProvider
             options={{
-              path:
-                `${apis.txs}?isToken=1&limit=${pageSize}&offset=0&account=` +
-                location.pathname.split('/')[2],
+              path:`${apis.token}/${location.pathname.split('/')[2]}/holders?limit=${pageSize}`,
               ns: 'transactions',
               field: 'filteredTxs'
             }}
             render={data => (
-              <TxList
+              <HolderList
                 context={data}
                 dispatch={props.dispatch}
                 basePath={
@@ -156,58 +188,17 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
         </Fragment>
       )
     },
-    {
-      btnName: <LocalText id="adpField6" />,
-      comp: (
-        <Fragment key="3">
-          {/* 获取当前账户所有交易，为计算交易数 */}
-          <DataProvider
-            options={{
-              path: `${apis.accountDetail}/${props.match.params.acct}/tokens/count`,
-              ns: 'accounts',
-              field: 'tokenCount'
-            }}
-            render={data => (
-              <TokenCount
-                id="adpCount3"
-                context={data}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
-          {/* 获取当前账户第一分页的交易 */}
-          <DataProvider
-            options={{
-              path: `${apis.accountDetail}/${props.match.params.acct}/tokens`,
-              ns: 'accounts',
-              field: 'tokens'
-            }}
-            render={data => (
-              <TokenList
-                context={data}
-                dispatch={props.dispatch}
-                basePath={`${apis.accountDetail}/${props.match.params.acct}/tokens`}
-              />
-            )}
-          />
-        </Fragment>
-      )
-    },
-    // {
-    //   btnName: <LocalText id="cdpField1" />,
-    //   comp: <p>tab 4</p>
-    // }
   ]
 
   return (
     <div>
       <Title
-        titleID="adpField1"
+        titleID="tklpTitle"
         suffix={
           props.accountDetail &&
           props.accountDetail.data &&
           props.accountDetail.data.hasOwnProperty('Address')
-            ? ` # ${props.accountDetail.data.Address}`
+            ? ` ${props.accountDetail.data.ContractName}`
             : ''
         }
       />

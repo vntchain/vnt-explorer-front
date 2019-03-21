@@ -10,5 +10,6 @@ export default {
   accounts: '/accounts',
   accountCount: '/accounts/count',
   accountDetail: '/account',
+  token: '/token',
   search: '/search'
 }

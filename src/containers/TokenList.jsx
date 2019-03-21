@@ -32,7 +32,7 @@ export default connect(mapStateToProps)(function Tokens(props) {
           field: 'count'
         }}
         render={data => (
-          <Title titleID="tlpTitle" subTitleID="tlpSubTitle" context={data} />
+          <Title titleID="tklpTitle" subTitleID="tklpSubTitle" context={data} />
         )}
       />
       {props.count &&
@@ -61,7 +61,9 @@ export default connect(mapStateToProps)(function Tokens(props) {
 })
 
 function PagedTable(props) {
+  var currPage = 1
   const handlePageChange = e => {
+    currPage = e
     if (e !== props.currentIndex) {
       props.changePath(`/contracts/${e}`)
     }
@@ -80,30 +82,35 @@ function PagedTable(props) {
 
   const columns = [
     {
-      title: <LocalText id="tlpTitle" />,
-      dataIndex: 'address',
-      key: 'address',
+      title: <LocalText id="tklpColumn0" />,
+      dataIndex: 'index',
+      key: 'index'
+    },
+    {
+      title: <LocalText id="tklpTitle" />,
+      dataIndex: 'title',
+      key: 'title',
       // eslint-disable-next-line react/display-name
-      render: addr => (
-        <Link to={`/token/${addr}`}>
-          <Icon type="project" /> {props.context.data.ContractName}
+      render: title => (
+        <Link to={`/token/${title.address}`}>
+          {title.contractName}({title.tokenSymbol})
         </Link>
       )
     },
     {
-      title: <LocalText id="clpColumn2" />,
-      dataIndex: 'cname',
-      key: 'cname'
+      title: <LocalText id="tklpColumn1" />,
+      dataIndex: 'tokenAmount',
+      key: 'tokenAmount'
     },
     {
-      title: <LocalText id="clpColumn3" />,
-      dataIndex: 'balance',
-      key: 'balance'
+      title: <LocalText id="tklpColumn2" />,
+      dataIndex: 'acctCount',
+      key: 'acctCount'
     },
     {
-      title: <LocalText id="clpColumn4" />,
-      key: 'txCount',
-      dataIndex: 'txCount'
+      title: <LocalText id="tklpColumn3" />,
+      key: 'address',
+      dataIndex: 'address'
     }
   ]
 
@@ -113,13 +120,21 @@ function PagedTable(props) {
     props.context.data &&
     Array.isArray(props.context.data)
   ) {
+    console.log("")
+    var index = (currPage - 1) * pageSize
     props.context.data.forEach((item, i) => {
+      index ++
       data.push({
+        index: index,
         key: item.Address + i,
         address: item.Address,
-        cname: item.ContractName,
-        balance: item.Balance,
-        txCount: item.TxCount
+        tokenAmount: item.TokenAmount,
+        acctCount: item.TokenAcctCount,
+        title: {
+          address: item.Address,
+          contractName: item.ContractName,
+          tokenSymbol: item.TokenSymbol
+        }
       })
     })
   }

@@ -1,6 +1,8 @@
 export default {
   language: 'EN',
 
+  blank: '',
+  rank: '#',
   /*
   ** Header Fields
   */
@@ -151,7 +153,7 @@ export default {
   */
   alpTitle: '账户',
   alpSubTitle: num => `当前共${num}账户`,
-  alpColumn1: '排名',
+  alpColumn1: '#',
   alpColumn2: '地址',
   alpColumn3: '余额',
   alpColumn4: '百分比',
@@ -191,16 +193,26 @@ export default {
   /*
   ** Token list page
   */
-  tlpTitle: '代币',
-  tlpSubTitle: num => `当前共 ${num} 代币`,
-  tlpColumn1: '代币总量',
-  tlpColumn2: '持有地址',
-  tlpColumn3: '合约地址',
+  tklpColumn0: "#",
+  tklpTitle: '代币',
+  tklpSubTitle: num => `当前共 ${num} 代币`,
+  tklpColumn1: '代币总量',
+  tklpColumn2: '持有地址',
+  tklpColumn3: '合约地址',
+  tklpColumn4: '总供应量:',
+  tklpColumn5: '持有地址:',
+  tklpColumn6: '合约:',
+  tklpColumn7: '官网:',
 
   /*
   ** Contract detail page
   */
-  tdpField1: '合约代码'
+  tkdpField1: '合约代码',
+  tkdpSubTitle: num => `当前共 ${num} 持有人`,
+  tkdpField2: '持有人',
+  tkdpField3: '数量',
+  tkdpField4: '百分比',
+
   /*
   ** Developer guide page
   */

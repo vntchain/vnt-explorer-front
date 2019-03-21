@@ -1,6 +1,8 @@
 export default {
   language: '中文',
 
+  blank: '',
+  rank: '#',
   /*
   ** Header Fields
   */
@@ -155,7 +157,7 @@ export default {
   */
   alpTitle: 'Accounts',
   alpSubTitle: num => `A Total of ${num} Accounts`,
-  alpColumn1: 'Ranking',
+  alpColumn1: '#',
   alpColumn2: 'Address',
   alpColumn3: 'Balance',
   alpColumn4: 'Percentage',
@@ -190,7 +192,30 @@ export default {
   /*
   ** Contract detail page
   */
-  cdpField1: 'Chaincode',
+  cdpField1: 'Contract Code',
+
+  /*
+  ** Token list page
+  */
+  tklpColumn0: "#",
+  tklpTitle: 'Token',
+  tklpSubTitle: num => `${num} tokens in total`,
+  tklpColumn1: 'Total Supply',
+  tklpColumn2: 'Holders',
+  tklpColumn3: 'Address',
+  tklpColumn4: 'Total Supply:',
+  tklpColumn5: 'Holders:',
+  tklpColumn6: 'Contract Address:',
+  tklpColumn7: 'Home Page:',
+
+  /*
+  ** Contract detail page
+  */
+  tkdpField1: 'Contract Code',
+  tkdpSubTitle: num => `${num} Holders in total`,
+  tkdpField2: 'Holders',
+  tkdpField3: 'Amount',
+  tkdpField4: 'Percentage',
 
   /*
   ** Developer guide page
