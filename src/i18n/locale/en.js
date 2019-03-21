@@ -124,12 +124,12 @@ export default {
   */
   tlpTitle: 'Transactions',
   tlpSubTitle: num => `A Total of ${num} Transactions`,
-  tlpField1: 'TxHash',
-  tlpField2: 'Block',
-  tlpField3: 'Age',
-  tlpField4: 'From ',
-  tlpField5: 'To ',
-  tlpField6: 'Value',
+  tlpColumn1: 'TxHash',
+  tlpColumn2: 'Block',
+  tlpColumn3: 'Age',
+  tlpColumn4: 'From ',
+  tlpColumn5: 'To ',
+  tlpColumn6: 'Value',
   txFilterByBlock: 'Block',
   txFilterByBlockSub: num => `A Total of ${num} Transactions`,
 

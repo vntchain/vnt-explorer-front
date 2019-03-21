@@ -37,7 +37,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       key: 'index'
     },
     {
-      title: <LocalText id="adpField2" />,
+      title: <LocalText id="adpField1" />,
       dataIndex: 'address',
       key: 'address',
       // eslint-disable-next-line react/display-name
