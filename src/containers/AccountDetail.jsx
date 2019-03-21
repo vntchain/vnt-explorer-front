@@ -23,7 +23,7 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
 export default connect(mapStateToProps)(function AccountDetail(props) {
   useEffect(
     () => {
-        console.log("Props: ", props)
+      console.log("Props: ", props)
       props.dispatch({
         type: 'dataRelay/fetchData',
         payload: {

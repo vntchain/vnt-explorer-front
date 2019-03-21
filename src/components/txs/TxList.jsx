@@ -65,32 +65,37 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       key: 'to',
       dataIndex: 'to',
       // eslint-disable-next-line react/display-name
-      render: ({ isToken, name, value }) => {
+      render: ({ isContract, isToken, address, contractName }) => {
         var isContractCreation = false
-        if (isToken && !value) {
+        if (!address) {
             isContractCreation = true
         }
 
-            console.log("##### TXlist: ", isContractCreation, isToken, name, value)
+        console.log("##### TXlist: ", isContractCreation, isToken, contractName, address)
         if (isContractCreation) {
             return ""
         }
 
         if (isToken) {
-            if (value) {
-                return (
-                  <Link to={`/contract/${value}`}>
-                    <Icon type="project" />
-                    {name || ' ' + value.slice(0, 12) + '...'}
-                  </Link>
-                )
-            } else {
-                return ""
-            }
+            return (
+              <Link to={`/contract/${address}`}>
+                <Icon type="project" />
+                {contractName || ' ' + address.slice(0, 12) + '...'}
+              </Link>
+            )
+        }
+
+        if (isContract) {
+            return (
+              <Link to={`/contract/${address}`}>
+                <Icon type="project" />
+                {contractName || ' ' + address.slice(0, 12) + '...'}
+              </Link>
+            )
         }
 
         return (
-          <Link to={`/account/${value}`}>{value.slice(0, 12) + '...'}</Link>
+          <Link to={`/account/${address}`}>{address.slice(0, 12) + '...'}</Link>
         )
       }
     },
@@ -110,19 +115,32 @@ export default connect(mapStateToProps)(function PagedTable(props) {
     props.context.data.forEach((item, i) => {
 
       console.log("#### tx to: ", item.To)
+
       var d = {
         key: item.Hash + i,
         tx: item.Hash,
         height: item.BlockNumber,
         age: item.TimeStamp,
         from: item.From,
-        to: {
-          isToken: item.IsToken,
-          name: item.To?item.To.ContractName:"",
-          value: item.To ? item.To.Address:""
-        },
         value: item.Value
       }
+
+      if(item.To) {
+          d.to = {
+              isContract: item.To.IsContract,
+              isToken: item.To.IsToken,
+              address: item.To.Address,
+              contractName: item.To.ContractName
+          }
+      } else {
+          d.to = {
+              isContract: null,
+              isToken: null,
+              address: null,
+              contractName: null
+          }
+      }
+
       console.log("##### tx data: ", d)
       data.push(d)
     })

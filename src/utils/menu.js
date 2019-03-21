@@ -30,8 +30,8 @@ export default [
       },
       {
         title: 'nav1Sub6',
-        key: 'token',
-        path: '/token'
+        key: 'tokens',
+        path: '/tokens'
       },
       {
         title: 'nav1Sub7',

@@ -186,5 +186,20 @@ export default {
   /*
   ** Contract detail page
   */
-  cdpField1: '合约代码'
+  cdpField1: '合约代码',
+
+
+  /*
+  ** Token list page
+  */
+  tlpTitle: '代币',
+  tlpSubTitle: num => `当前共 ${num} 代币`,
+  tlpColumn1: '代币总量',
+  tlpColumn2: '持有地址',
+  tlpColumn3: '合约地址',
+
+  /*
+  ** Contract detail page
+  */
+  tdpField1: '合约代码'
 }

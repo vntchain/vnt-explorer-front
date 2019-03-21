@@ -91,6 +91,8 @@ function DetailTable(props) {
       From,
       To,
       ContractAddr,
+      IsToken,
+      TokenTo,
       TokenAmount,
       GasUsed,
       GasLimit,
@@ -99,6 +101,8 @@ function DetailTable(props) {
       Input,
       Value
     } = props.context.data
+
+    console.log(props.context.data)
 
     data.push({
       key: 'status',
@@ -123,61 +127,59 @@ function DetailTable(props) {
     data.push({
       key: 'to',
       fieldName: <LocalText id="tdpField6" />,
-      value: ContractAddr ? (
-        <Link to={`/account/${ContractAddr}`}>
-          <Icon type="project" /> {ContractAddr}
+      value: To ? (
+        <Link to={`/account/${To.Address}`}>
+          {To.Address}
         </Link>
       ) : (
-        <Link to={`/account/${To}`}>{To}</Link>
+        "-"
       )
     })
     data.push({
       key: 'transfer',
       fieldName: <LocalText id="tdpField7" />,
       value: (
-        <Fragment>
-          <LocalText id="tdpField5" />
-          <Link to={`/account/${From}`}>{From.slice(0, 12) + '...'}</Link>{' '}
-          <LocalText id="tdpField6" />{' '}
-          {ContractAddr ? (
-            <Link to={`/account/${ContractAddr}`}>
-              <Icon type="project" /> {ContractAddr.slice(0, 12) + '...'}
-            </Link>
-          ) : (
-            <Link to={`/account/${To}`}>{To.slice(0, 12) + '...'}</Link>
-          )}
-          <LocalText id="tdpField14" /> {TokenAmount}
-        </Fragment>
+        To && IsToken?(
+            <Fragment>
+              <LocalText id="tdpField5" />
+              <Link to={`/account/${From}`}>{From.slice(0, 12) + '...'}</Link>{' '}
+              <LocalText id="tdpField6" />{' '}
+                <Link to={`/account/${TokenTo}`}>
+                  <Icon type="project" /> {TokenTo.slice(0, 12) + '...'}
+                </Link>
+              <LocalText id="tdpField14" /> {TokenAmount}
+            </Fragment>
+        ) : ("-")
       )
     })
     data.push({
       key: 'value',
-      fieldName: <LocalText id="tdpField7" />,
+      fieldName: <LocalText id="tdpField8" />,
       value: Value
     })
     data.push({
       key: 'gasLimit',
-      fieldName: <LocalText id="tdpField8" />,
+      fieldName: <LocalText id="tdpField9" />,
       value: GasLimit
     })
     data.push({
       key: 'gasUsed',
-      fieldName: <LocalText id="tdpField9" />,
+      fieldName: <LocalText id="tdpField10" />,
       value: GasUsed
     })
     data.push({
       key: 'gasPrice',
-      fieldName: <LocalText id="tdpField10" />,
+      fieldName: <LocalText id="tdpField11" />,
       value: GasPrice
     })
     data.push({
       key: 'nonce',
-      fieldName: <LocalText id="tdpField11" />,
+      fieldName: <LocalText id="tdpField12" />,
       value: Nonce
     })
     data.push({
       key: 'input',
-      fieldName: <LocalText id="tdpField12" />,
+      fieldName: <LocalText id="tdpField13" />,
       value: <div>length: {Input.length}</div>
     })
   }
