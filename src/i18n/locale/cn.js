@@ -229,7 +229,7 @@ export default {
   ** Super Node page
   */
   snTitle: "超级节点",
-  snSubTitle: count => `超级节点：${count.super}  候选节点：${count.candi} 总计：${count.total}`,
+  snSubTitle: count => `超级节点：${count.Super}  候选节点：${count.Candi} 总计：${count.Total}`,
 
   /*
   ** Test network faucet
