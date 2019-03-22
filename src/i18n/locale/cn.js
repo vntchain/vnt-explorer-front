@@ -223,5 +223,14 @@ export default {
   dgNav4: 'DAPP开发指南',
   dgNav4Sub1: '如何开发合约',
   dgNav4Sub2: '如何编译合约',
-  dgNav4Sub3: '如何部署调用合约'
+  dgNav4Sub3: '如何部署调用合约',
+
+  /*
+  ** Test network faucet
+  */
+  tnfBanner: '测试网水龙头',
+  tnfTitle: '填写测试网钱包地址获得VNT测试代币',
+  tnfPlaceholder1: '测试网钱包地址',
+  tnfBtn: '立即提交',
+  successInfo: '已提交'
 }

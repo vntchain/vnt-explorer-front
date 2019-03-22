@@ -30,3 +30,21 @@ $bp-phone: 37.5em; // 600px
     }
   }
 }
+
+// placeholder style
+@mixin phStyle() {
+  :global {
+    ::placeholder {
+      font-size: .16rem;
+    }
+  }
+}
+
+// antd button style
+@mixin antdBtn {
+  :global {
+    .ant-btn-primary {
+      font-size: .16rem;
+    }
+  }
+}

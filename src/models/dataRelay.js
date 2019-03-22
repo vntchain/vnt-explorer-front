@@ -11,6 +11,18 @@ export default {
     fetchData: takeEvery(function*({ payload }) {
       const { path, ns, field } = payload
       const method = payload.method || 'get'
+      const axiosArgs =
+        method === 'post'
+          ? {
+              method,
+              url: path,
+              data: payload.data
+            }
+          : {
+              method,
+              url: path
+            }
+
       yield put({
         type: `${ns}/loadingStatus`,
         payload: {
@@ -19,10 +31,7 @@ export default {
         }
       })
       try {
-        const { data: resp } = yield call(axios, {
-          method,
-          url: path
-        })
+        const { data: resp } = yield call(axios, axiosArgs)
 
         yield put({
           type: `${ns}/setState`,

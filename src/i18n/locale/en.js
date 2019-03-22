@@ -227,5 +227,14 @@ export default {
   dgNav4: 'DAPP开发指南',
   dgNav4Sub1: '如何开发合约',
   dgNav4Sub2: '如何编译合约',
-  dgNav4Sub3: '如何部署调用合约'
+  dgNav4Sub3: '如何部署调用合约',
+
+  /*
+  ** Test network faucet
+  */
+  tnfBanner: 'VNT Faucet',
+  tnfTitle: 'Enter your testnet account address',
+  tnfPlaceholder1: 'Testnet account address',
+  tnfBtn: 'Claim',
+  successInfo: 'Submitted Successfully!'
 }
