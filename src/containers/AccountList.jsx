@@ -123,7 +123,7 @@ function PagedTable(props) {
   ) {
     var index = (currPage - 1) * pageSize
     props.context.data.forEach((item, i) => {
-      index ++
+      index++
       data.push({
         index: index,
         key: item.Address + i,

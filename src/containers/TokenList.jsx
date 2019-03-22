@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Title from 'components/Title'
-import { Table, Icon } from 'antd'
+import { Table } from 'antd'
 import { Link } from 'react-router-dom'
 import { push } from 'react-router-redux'
 
@@ -78,7 +78,7 @@ function PagedTable(props) {
     })
   }
 
-  console.log("props: ", props)
+  // console.log('props: ', props)
 
   const columns = [
     {
@@ -120,10 +120,10 @@ function PagedTable(props) {
     props.context.data &&
     Array.isArray(props.context.data)
   ) {
-    console.log("")
+    // console.log('')
     var index = (currPage - 1) * pageSize
     props.context.data.forEach((item, i) => {
-      index ++
+      index++
       data.push({
         index: index,
         key: item.Address + i,

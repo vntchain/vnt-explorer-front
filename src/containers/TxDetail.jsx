@@ -90,7 +90,6 @@ function DetailTable(props) {
       BlockNumber,
       From,
       To,
-      ContractAddr,
       IsToken,
       TokenTo,
       TokenAmount,
@@ -102,7 +101,7 @@ function DetailTable(props) {
       Value
     } = props.context.data
 
-    console.log(props.context.data)
+    // console.log(props.context.data)
 
     data.push({
       key: 'status',
@@ -127,30 +126,27 @@ function DetailTable(props) {
     data.push({
       key: 'to',
       fieldName: <LocalText id="tdpField6" />,
-      value: To ? (
-        <Link to={`/account/${To.Address}`}>
-          {To.Address}
-        </Link>
-      ) : (
-        "-"
-      )
+      value: To ? <Link to={`/account/${To.Address}`}>{To.Address}</Link> : '-'
     })
     data.push({
       key: 'transfer',
       fieldName: <LocalText id="tdpField7" />,
-      value: (
-        To && IsToken?(
-            <Fragment>
-              <LocalText id="tdpField5" />
-              <Link to={`/account/${From}`}>{From.slice(0, 12) + '...'}</Link>{' '}
-              <LocalText id="tdpField6" />{' '}
-                <Link to={`/account/${TokenTo}`}>
-                  <Icon type="project" /> {TokenTo.slice(0, 12) + '...'}
-                </Link>
-              <LocalText id="tdpField14" /> {TokenAmount}
-            </Fragment>
-        ) : ("-")
-      )
+      value:
+        To && IsToken ? (
+          <Fragment>
+            <LocalText id="tdpField5" />
+            <Link to={`/account/${From}`}>
+              {From.slice(0, 12) + '...'}
+            </Link>{' '}
+            <LocalText id="tdpField6" />{' '}
+            <Link to={`/account/${TokenTo}`}>
+              <Icon type="project" /> {TokenTo.slice(0, 12) + '...'}
+            </Link>
+            <LocalText id="tdpField14" /> {TokenAmount}
+          </Fragment>
+        ) : (
+          '-'
+        )
     })
     data.push({
       key: 'value',

@@ -1,6 +1,25 @@
 @import '../assets/base';
 
 .app {
+  .strTitle {
+    background-color: $color-primary;
+    display: flex;
+    justify-content: center;
+    @include respondTo($bp-desktop) {
+      width: 12rem;
+    }
+    h2 {
+      color: #fff;
+      padding: .3rem 0;
+      font-size: .18rem;
+      margin-bottom: 0;
+      width: 12rem;
+
+      @include respondTo($bp-desktop) {
+        padding-left: .3rem;
+      }
+    }
+  }
 }
 .margin {
   min-width: 12rem;

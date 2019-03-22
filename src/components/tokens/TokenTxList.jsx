@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Table, Icon } from 'antd'
+import { Table } from 'antd'
 import { connect } from 'react-redux'
 
 import LocalText from 'i18n/LocalText'
@@ -57,12 +57,12 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       dataIndex: 'tokenFrom',
       // eslint-disable-next-line react/display-name
       render: from => {
-        if (from){
+        if (from) {
           return (
             <Link to={`/account/${from}`}>{from.slice(0, 12) + '...'}</Link>
           )
         } else {
-          return ""
+          return ''
         }
       }
     },
@@ -77,12 +77,14 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       dataIndex: 'tokenTo',
       // eslint-disable-next-line react/display-name
       render: tokenTo => {
-        if(tokenTo) {
+        if (tokenTo) {
           return (
-            <Link to={`/account/${tokenTo}`}>{tokenTo.slice(0, 12) + '...'}</Link>
+            <Link to={`/account/${tokenTo}`}>
+              {tokenTo.slice(0, 12) + '...'}
+            </Link>
           )
         } else {
-          return ""
+          return ''
         }
       }
     },
@@ -96,10 +98,8 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       key: 'to',
       dataIndex: 'to',
       // eslint-disable-next-line react/display-name
-      render: to => (
-        <Link to={`/token/${to.address}`}>{to.contractName}</Link>
-      )
-    },
+      render: to => <Link to={`/token/${to.address}`}>{to.contractName}</Link>
+    }
   ]
 
   const data = []
@@ -116,30 +116,30 @@ export default connect(mapStateToProps)(function PagedTable(props) {
         age: item.TimeStamp,
         tokenFrom: item.TokenFrom,
         tokenTo: item.TokenTo,
-        tokenAmount: item.TokenAmount,
+        tokenAmount: item.TokenAmount
       }
 
-      if(item.To) {
-          d.to = {
-              address: item.To.Address,
-              contractName: item.To.ContractName
-          }
+      if (item.To) {
+        d.to = {
+          address: item.To.Address,
+          contractName: item.To.ContractName
+        }
       } else {
-          d.to = {
-              address: null,
-              contractName: null
-          }
+        d.to = {
+          address: null,
+          contractName: null
+        }
       }
 
       if (props.address == d.from) {
-        d.direction = "OUT"
-      } else if(props.address == d.tokenTo) {
-        d.direction = "TO"
+        d.direction = 'OUT'
+      } else if (props.address == d.tokenTo) {
+        d.direction = 'TO'
       } else {
-        d.direction = ""
+        d.direction = ''
       }
 
-      console.log("##### tx data: ", d)
+      // console.log('##### tx data: ', d)
       data.push(d)
     })
   }

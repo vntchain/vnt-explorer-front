@@ -73,30 +73,36 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       render: ({ isContract, isToken, address, contractName }) => {
         var isContractCreation = false
         if (!address) {
-            isContractCreation = true
+          isContractCreation = true
         }
 
-        console.log("##### TXlist: ", isContractCreation, isToken, contractName, address)
+        /* console.log(
+          '##### TXlist: ',
+          isContractCreation,
+          isToken,
+          contractName,
+          address
+        ) */
         if (isContractCreation) {
           return ''
         }
 
         if (isToken) {
-            return (
-              <Link to={`/contract/${address}`}>
-                <Icon type="project" />
-                {contractName || ' ' + address.slice(0, 12) + '...'}
-              </Link>
-            )
+          return (
+            <Link to={`/contract/${address}`}>
+              <Icon type="project" />
+              {contractName || ' ' + address.slice(0, 12) + '...'}
+            </Link>
+          )
         }
 
         if (isContract) {
-            return (
-              <Link to={`/contract/${address}`}>
-                <Icon type="project" />
-                {contractName || ' ' + address.slice(0, 12) + '...'}
-              </Link>
-            )
+          return (
+            <Link to={`/contract/${address}`}>
+              <Icon type="project" />
+              {contractName || ' ' + address.slice(0, 12) + '...'}
+            </Link>
+          )
         }
 
         return (
@@ -127,31 +133,31 @@ export default connect(mapStateToProps)(function PagedTable(props) {
         value: item.Value
       }
 
-      if(item.To) {
-          d.to = {
-              isContract: item.To.IsContract,
-              isToken: item.To.IsToken,
-              address: item.To.Address,
-              contractName: item.To.ContractName
-          }
+      if (item.To) {
+        d.to = {
+          isContract: item.To.IsContract,
+          isToken: item.To.IsToken,
+          address: item.To.Address,
+          contractName: item.To.ContractName
+        }
       } else {
-          d.to = {
-              isContract: null,
-              isToken: null,
-              address: null,
-              contractName: null
-          }
+        d.to = {
+          isContract: null,
+          isToken: null,
+          address: null,
+          contractName: null
+        }
       }
 
       if (props.address == d.from) {
-        d.direction = "OUT"
-      } else if(props.address == d.to.address) {
-        d.direction = "TO"
+        d.direction = 'OUT'
+      } else if (props.address == d.to.address) {
+        d.direction = 'TO'
       } else {
-        d.direction = ""
+        d.direction = ''
       }
 
-      console.log("##### tx data: ", d)
+      // console.log('##### tx data: ', d)
       data.push(d)
     })
   }

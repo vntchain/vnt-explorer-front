@@ -167,7 +167,9 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           {/* 获取当前账户所有交易，为计算交易数 */}
           <DataProvider
             options={{
-              path: `${apis.accountDetail}/${props.match.params.acct}/tokens/count`,
+              path: `${apis.accountDetail}/${
+                props.match.params.acct
+              }/tokens/count`,
               ns: 'accounts',
               field: 'tokenCount'
             }}
@@ -190,13 +192,15 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
               <TokenList
                 context={data}
                 dispatch={props.dispatch}
-                basePath={`${apis.accountDetail}/${props.match.params.acct}/tokens`}
+                basePath={`${apis.accountDetail}/${
+                  props.match.params.acct
+                }/tokens`}
               />
             )}
           />
         </Fragment>
       )
-    },
+    }
     // {
     //   btnName: <LocalText id="cdpField1" />,
     //   comp: <p>tab 4</p>

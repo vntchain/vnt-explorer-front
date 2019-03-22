@@ -41,11 +41,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       dataIndex: 'address',
       key: 'address',
       // eslint-disable-next-line react/display-name
-      render: address => (
-        <Link to={`/account/${address}`}>
-          {address}
-        </Link>
-      )
+      render: address => <Link to={`/account/${address}`}>{address}</Link>
     },
     {
       title: <LocalText id="tkdpField3" />,
@@ -67,13 +63,16 @@ export default connect(mapStateToProps)(function PagedTable(props) {
   ) {
     var index = (currPage - 1) * pageSize
     props.context.data.forEach((item, i) => {
-      index ++
+      index++
       data.push({
         key: i,
         index: index,
         address: item.Account.Address,
         balance: item.Balance,
-        percent: (parseFloat(item.Balance) / parseFloat(item.Token.TokenAmount) * 100).toFixed(2)
+        percent: (
+          (parseFloat(item.Balance) / parseFloat(item.Token.TokenAmount)) *
+          100
+        ).toFixed(2)
       })
     })
   }

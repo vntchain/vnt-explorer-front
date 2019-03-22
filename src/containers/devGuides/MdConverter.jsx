@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import marked from 'marked'
 
+import Prism from './prism'
+import './prism.css'
+
 import styles from './MdConverter.scss'
 
 export default function MarkdownConverter(props) {
@@ -16,6 +19,12 @@ export default function MarkdownConverter(props) {
         setMdContent(marked(text))
       })
   }, [])
+  useEffect(
+    () => {
+      Prism.highlightAll()
+    },
+    [mdContent]
+  )
 
   return (
     <div className={styles.container}>

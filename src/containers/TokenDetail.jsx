@@ -8,12 +8,9 @@ import { Link } from 'react-router-dom'
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import Tabs from 'components/Tabs'
-import TxList from 'components/txs/TxList'
 import TokenTxList from 'components/tokens/TokenTxList'
 import HolderList from 'components/tokens/HolderList'
 import TxCount from 'components/txs/TxCount'
-import TokenList from 'components/tokens/TokenList'
-import TokenCount from 'components/tokens/TokenCount'
 
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
@@ -67,13 +64,13 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
       title:
         props.accountDetail &&
         props.accountDetail.data &&
-        props.accountDetail.data.hasOwnProperty('Address')
-          ? (
-            <Link to={`/contract/${props.accountDetail.data.Address}`}>
-              {props.accountDetail.data.Address}
-            </Link>
-          )
-          : '-/-',
+        props.accountDetail.data.hasOwnProperty('Address') ? (
+          <Link to={`/contract/${props.accountDetail.data.Address}`}>
+            {props.accountDetail.data.Address}
+          </Link>
+        ) : (
+          '-/-'
+        ),
       dataIndex: 'col4',
       key: 'col4'
     }
@@ -93,13 +90,13 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
       col4:
         props.accountDetail &&
         props.accountDetail.data &&
-        props.accountDetail.data.Home
-          ? (
-            <Link to={`/token/${props.accountDetail.data.Home}`}>
-              {props.accountDetail.data.Home}
-            </Link>
-          )
-          : '--'
+        props.accountDetail.data.Home ? (
+          <Link to={`/token/${props.accountDetail.data.Home}`}>
+            {props.accountDetail.data.Home}
+          </Link>
+        ) : (
+          '--'
+        )
     }
   ]
 
@@ -111,7 +108,8 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           {/* 获取当前账户所有交易，为计算交易数 */}
           <DataProvider
             options={{
-              path: `${apis.txCount}?account=` + location.pathname.split('/')[2],
+              path:
+                `${apis.txCount}?account=` + location.pathname.split('/')[2],
               ns: 'transactions',
               field: 'count'
             }}
@@ -154,8 +152,9 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           {/* 获取当前账户所有代币交易，为计算交易数 */}
           <DataProvider
             options={{
-              path:
-                `${apis.token}/${location.pathname.split('/')[2]}/holders/count`,
+              path: `${apis.token}/${
+                location.pathname.split('/')[2]
+              }/holders/count`,
               ns: 'transactions',
               field: 'count'
             }}
@@ -170,7 +169,9 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           {/* 获取当前账户第一分页的代币交易 */}
           <DataProvider
             options={{
-              path:`${apis.token}/${location.pathname.split('/')[2]}/holders?limit=${pageSize}`,
+              path: `${apis.token}/${
+                location.pathname.split('/')[2]
+              }/holders?limit=${pageSize}`,
               ns: 'transactions',
               field: 'filteredTxs'
             }}
@@ -187,7 +188,7 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
           />
         </Fragment>
       )
-    },
+    }
   ]
 
   return (

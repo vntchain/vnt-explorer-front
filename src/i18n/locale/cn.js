@@ -193,7 +193,7 @@ export default {
   /*
   ** Token list page
   */
-  tklpColumn0: "#",
+  tklpColumn0: '#',
   tklpTitle: '代币',
   tklpSubTitle: num => `当前共 ${num} 代币`,
   tklpColumn1: '代币总量',

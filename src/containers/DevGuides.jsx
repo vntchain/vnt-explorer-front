@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom'
 
 import Introduction from './devGuides/Introduction'
 import MarkdownConverter from './devGuides/MdConverter'
-import LocalText from 'i18n/LocalText'
 
 import { menuItemFactory } from 'components/header/HeaderMenu'
 import { devGuideMenu } from 'utils/menu.js'
@@ -25,10 +24,6 @@ export default function DevGuideIndex() {
   )
   return (
     <div className={styles.devGuides}>
-      <p>
-        <LocalText id="dgTitle" />
-      </p>
-
       <div className={styles.main}>
         <nav className={styles.nav}>
           <Menu selectedKeys={[activeNav]} mode="inline">

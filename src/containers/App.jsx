@@ -21,6 +21,7 @@ import TokenDetail from './TokenDetail'
 import DevGuides from './DevGuides'
 import Header from 'components/header/Header'
 
+import LocalText from 'i18n/LocalText'
 import styles from './App.scss'
 
 const mapStateToProps = ({ global: { isMobile } }) => {
@@ -62,6 +63,15 @@ export default withRouter(
         <div className={styles.margin}>
           <Header />
         </div>
+
+        {location.pathname.startsWith('/developer') && (
+          <div className={styles.strTitle}>
+            <h2>
+              <LocalText id="dgTitle" />
+            </h2>
+          </div>
+        )}
+
         <div className={styles.margin}>
           <Route exact path="/" component={Home} />
           <Route exact path="/view-wallet" component={OpenWallet} />

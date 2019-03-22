@@ -197,7 +197,7 @@ export default {
   /*
   ** Token list page
   */
-  tklpColumn0: "#",
+  tklpColumn0: '#',
   tklpTitle: 'Token',
   tklpSubTitle: num => `${num} tokens in total`,
   tklpColumn1: 'Total Supply',

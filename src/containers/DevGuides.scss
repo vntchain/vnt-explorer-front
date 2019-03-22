@@ -1,19 +1,28 @@
+@import '../assets/base';
+
 .devGuides {
+  & > * {
+    border-radius: .04rem;
+  }
+
   .main {
     display: flex;
-    background-color: #fff;
+
 
     .nav {
       flex: 0 0 20%;
 
       :global {
         .ant-menu-item {
+          font-size: .14rem;
+
           // hard code
           &:nth-last-child(1),
           &:nth-last-child(2),
           &:nth-last-child(3) {
             a {
               margin-left: 0.3rem;
+              font-size: .13rem;
             }
           }
         }
