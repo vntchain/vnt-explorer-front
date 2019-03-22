@@ -230,4 +230,13 @@ export default {
   */
   snTitle: "超级节点",
   snSubTitle: count => `超级节点：${count.super}  候选节点：${count.candi} 总计：${count.total}`,
+
+  /*
+  ** Test network faucet
+  */
+  tnfBanner: '测试网水龙头',
+  tnfTitle: '填写测试网钱包地址获得VNT测试代币',
+  tnfPlaceholder1: '测试网钱包地址',
+  tnfBtn: '立即提交',
+  successInfo: '已提交'
 }

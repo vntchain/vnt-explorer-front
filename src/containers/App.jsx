@@ -21,6 +21,7 @@ import TokenList from './TokenList'
 import TokenDetail from './TokenDetail'
 import DevGuides from './DevGuides'
 import Header from 'components/header/Header'
+import Faucet from './Faucet'
 
 import LocalText from 'i18n/LocalText'
 import styles from './App.scss'
@@ -91,6 +92,7 @@ export default withRouter(
           <Route path="/tokens" component={TokenList} />
           <Route path="/token" component={TokenDetail} />
           <Route path="/developer" component={DevGuides} />
+          <Route path="/faucet" component={Faucet} />
         </div>
       </div>
     )

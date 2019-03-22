@@ -1,0 +1,32 @@
+@import "../assets/base";
+
+.faucet {
+  margin-top: 0.1rem;
+
+  .main {
+    background-color: #fff;
+    padding: 0.6rem 0;
+
+    & > * {
+      width: 40%;
+      margin: 0 auto;
+      display: block;
+
+      &:not(:last-child) {
+        margin-bottom: 0.2rem;
+      }
+    }
+
+    .title {
+      font-size: 0.16rem;
+    }
+
+    input,
+    button {
+      height: 0.54rem;
+    }
+  }
+
+  @include phStyle;
+  @include antdBtn;
+}

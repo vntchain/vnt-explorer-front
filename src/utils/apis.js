@@ -14,4 +14,5 @@ export default {
   search: '/search',
   nodes: '/nodes',
   nodesCount: '/nodes/count',
+  faucet: '/hydrant'
 }

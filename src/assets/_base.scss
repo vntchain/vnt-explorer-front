@@ -9,13 +9,10 @@ $color-light-4: #e6e6e6;
 $color-light-5: #e5e5e5;
 $color-light-6: #666;
 
-
-
 /* breakpoints */
 $bp-desktop: 76.875em; // 1230px
 $bp-tab-port: 48em; // 768px
 $bp-phone: 37.5em; // 600px
-
 
 /* mixins */
 @mixin respondTo($breakpoint, $max-width: true) {
@@ -27,6 +24,24 @@ $bp-phone: 37.5em; // 600px
   @if $max-width == false {
     @media only screen and (min-width: $breakpoint) {
       @content;
+    }
+  }
+}
+
+// placeholder style
+@mixin phStyle() {
+  :global {
+    ::placeholder {
+      font-size: 0.16rem;
+    }
+  }
+}
+
+// antd button style
+@mixin antdBtn {
+  :global {
+    .ant-btn-primary {
+      font-size: 0.16rem;
     }
   }
 }
