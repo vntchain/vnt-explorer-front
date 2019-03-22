@@ -11,5 +11,7 @@ export default {
   accountCount: '/accounts/count',
   accountDetail: '/account',
   token: '/token',
-  search: '/search'
+  search: '/search',
+  nodes: '/nodes',
+  nodesCount: '/nodes/count',
 }

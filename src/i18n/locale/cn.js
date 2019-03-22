@@ -223,5 +223,11 @@ export default {
   dgNav4: 'DAPP开发指南',
   dgNav4Sub1: '如何开发合约',
   dgNav4Sub2: '如何编译合约',
-  dgNav4Sub3: '如何部署调用合约'
+  dgNav4Sub3: '如何部署调用合约',
+
+  /*
+  ** Super Node page
+  */
+  snTitle: "超级节点",
+  snSubTitle: count => `超级节点：${count.super}  候选节点：${count.candi} 总计：${count.total}`,
 }
