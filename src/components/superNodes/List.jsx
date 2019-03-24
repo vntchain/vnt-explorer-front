@@ -1,17 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import Title from 'components/Title'
 import { Table } from 'antd'
 import { Link } from 'react-router-dom'
-import { push } from 'react-router-redux'
 
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
 import TxCount from 'components/txs/TxCount'
+import { push } from 'react-router-redux'
 
-const mapStateToProps = ({ accounts: { count } }) => {
+const mapStateToProps = ({ nodes: { count } }) => {
   return {
     count
   }
@@ -24,20 +23,6 @@ export default connect(mapStateToProps)(function Nodes(props) {
     currentIndex = parseInt(urlPath[urlPath.length - 1], 10)
   }
 
-  const handlePageChange = e => {
-    setCurrent(e)
-    props.dispatch({
-      type: 'dataRelay/fetchData',
-      payload: {
-        path: props.basePath + `&offset=${(parseInt(e, 10) - 1) * pageSize}`,
-        ns: 'transactions',
-        field: 'filteredTxs'
-      }
-    })
-  }
-
-  const [current, setCurrent] = useState(props.currentIndex)
-
   return (
     <div>
       <DataProvider
@@ -47,89 +32,73 @@ export default connect(mapStateToProps)(function Nodes(props) {
           field: 'count'
         }}
         render={data => (
-          <TxCount
-            id="snSubTitle"
+          <TxCount id="snSubTitle" context={data} dispatch={props.dispatch} />
+        )}
+      />
+
+      <DataProvider
+        options={{
+          path: `${apis.nodes}?offset=${(currentIndex - 1) *
+            pageSize}&limit=${pageSize}`,
+          ns: 'nodes',
+          field: 'nodes'
+        }}
+        render={data => (
+          <PagedTable
+            size={props.count && props.count.data ? props.count.data.Total : 0}
             context={data}
+            currentIndex={currentIndex}
             dispatch={props.dispatch}
+            basePath={`${apis.nodes}?limit=${pageSize}`}
           />
         )}
       />
-      {props.count &&
-        props.count.data &&
-        props.count.data > 0 && (
-          <DataProvider
-            options={{
-              path: `${apis.nodes}?offset=${(currentIndex - 1) *
-                pageSize}&limit=${pageSize}`,
-              ns: 'nodes',
-              field: 'nodes'
-            }}
-            render={data => (
-              <PagedTable
-                size={props.count.data}
-                context={data}
-                dispatch={props.dispatch}
-                currentIndex={currentIndex}
-                changePath={path => props.dispatch(push(path))}
-              />
-            )}
-          />
-        )}
     </div>
   )
 })
 
 function PagedTable(props) {
-  var currPage = 1
+  const [current, setCurrent] = useState(props.currentIndex)
+
   const handlePageChange = e => {
-    currPage = e
-    if (e !== props.currentIndex) {
-      props.changePath(`/super-node/${e}`)
-    }
+    setCurrent(e)
+    props.dispatch(push(`/super-node/${e}`))
     props.dispatch({
       type: 'dataRelay/fetchData',
       payload: {
-        path: `${apis.nodes}?offset=${(e - 1) *
-          pageSize}&limit=${pageSize}`,
+        path: props.basePath + `&offset=${(parseInt(e, 10) - 1) * pageSize}`,
         ns: 'nodes',
         field: 'nodes'
       }
     })
   }
-
-  // console.log('props: ', props)
-
   const columns = [
     {
-      title: <LocalText id="tklpColumn0" />,
-      dataIndex: 'index',
-      key: 'index'
+      title: <LocalText id="snColumn1" />,
+      dataIndex: 'ranking',
+      key: 'ranking'
     },
     {
-      title: <LocalText id="tklpTitle" />,
-      dataIndex: 'title',
-      key: 'title',
+      title: <LocalText id="snColumn2" />,
+      dataIndex: 'name',
+      key: 'name',
       // eslint-disable-next-line react/display-name
-      render: title => (
-        <Link to={`/token/${title.address}`}>
-          {title.contractName}({title.tokenSymbol})
-        </Link>
-      )
+      render: item => <Link to="">{item}</Link>
     },
     {
-      title: <LocalText id="tklpColumn1" />,
-      dataIndex: 'tokenAmount',
-      key: 'tokenAmount'
+      title: <LocalText id="snColumn3" />,
+      dataIndex: 'votes',
+      key: 'votes'
     },
     {
-      title: <LocalText id="tklpColumn2" />,
-      dataIndex: 'acctCount',
-      key: 'acctCount'
+      title: <LocalText id="snColumn4" />,
+      dataIndex: 'percentage',
+      key: 'percentage'
     },
     {
-      title: <LocalText id="tklpColumn3" />,
-      key: 'address',
-      dataIndex: 'address'
+      title: <LocalText id="snColumn5" />,
+      key: 'status',
+      dataIndex: 'status'
     }
   ]
 
@@ -139,21 +108,18 @@ function PagedTable(props) {
     props.context.data &&
     Array.isArray(props.context.data)
   ) {
-    // console.log('')
-    var index = (currPage - 1) * pageSize
+    const { Votes: totalVotes } = props.context.data.reduce((a, b) => ({
+      Votes: parseInt(a.Votes, 10) + parseInt(b.Votes, 10)
+    }))
+
     props.context.data.forEach((item, i) => {
-      index++
       data.push({
-        index: index,
         key: item.Address + i,
-        address: item.Address,
-        tokenAmount: item.TokenAmount,
-        acctCount: item.TokenAcctCount,
-        title: {
-          address: item.Address,
-          contractName: item.ContractName,
-          tokenSymbol: item.TokenSymbol
-        }
+        ranking: i + 1,
+        name: item.Vname,
+        votes: item.Votes,
+        percentage: Math.round((item.Votes / totalVotes) * 10000) / 100 + '%',
+        status: item.Status
       })
     })
   }
@@ -168,7 +134,7 @@ function PagedTable(props) {
         total: props.size,
         showQuickJumper: true,
         onChange: handlePageChange,
-        current: props.currentIndex
+        current
       }}
     />
   )

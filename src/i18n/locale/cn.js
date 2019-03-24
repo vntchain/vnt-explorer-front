@@ -228,8 +228,16 @@ export default {
   /*
   ** Super Node page
   */
-  snTitle: "超级节点",
-  snSubTitle: count => `超级节点：${count.Super}  候选节点：${count.Candi} 总计：${count.Total}`,
+  snTitle: '超级节点',
+  snSubTitle: count =>
+    `超级节点：${count.Super}  候选节点：${count.Candi} 总计：${count.Total}`,
+  snNav1: '列表',
+  snNav2: '地图',
+  snColumn1: '排名',
+  snColumn2: '名称',
+  snColumn3: '票数',
+  snColumn4: '得票率',
+  snColumn5: '状态',
 
   /*
   ** Test network faucet

@@ -230,6 +230,22 @@ export default {
   dgNav4Sub3: '如何部署调用合约',
 
   /*
+  ** Super Node page
+  */
+  snTitle: 'Super Nodes',
+  snSubTitle: count =>
+    `Super nodes: ${count.Super}  Candidate nodes: ${count.Candi} Total: ${
+      count.Total
+    }`,
+  snNav1: 'List',
+  snNav2: 'Map',
+  snColumn1: 'Ranking',
+  snColumn2: 'Name',
+  snColumn3: 'Votes',
+  snColumn4: 'Percentage',
+  snColumn5: 'Status',
+
+  /*
   ** Test network faucet
   */
   tnfBanner: 'VNT Faucet',

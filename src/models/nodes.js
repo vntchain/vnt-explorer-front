@@ -1,7 +1,7 @@
 export default {
   state: {
     count: null,
-    nodes: null,
+    nodes: null
   },
   reducers: {
     setState: (state, { payload }) => {

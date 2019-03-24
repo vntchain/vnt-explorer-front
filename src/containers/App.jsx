@@ -9,7 +9,6 @@ import Accounts from './AccountList'
 import AccountDetail from './AccountDetail'
 import Receive from './Receive'
 import Send from './Send'
-import SuperNode from './SuperNode'
 import NodeList from './NodeList'
 import Blocks from './Blocks'
 import BlockDetail from './BlockDetail'
@@ -82,7 +81,7 @@ export default withRouter(
           <Route path="/account/:acct" component={AccountDetail} />
           <Route exact path="/receive" component={Receive} />
           <Route exact path="/send" component={Send} />
-          <Route exact path="/super-node" component={NodeList} />
+          <Route path="/super-node" component={NodeList} />
           <Route path="/blocks" component={Blocks} />
           <Route path="/block" component={BlockDetail} />
           <Route exact path="/txs" component={Transactions} />
