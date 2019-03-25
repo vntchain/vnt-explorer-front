@@ -69,10 +69,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
         index: index,
         address: item.Account.Address,
         balance: item.Balance,
-        percent: (
-          (parseFloat(item.Balance) / parseFloat(item.Token.TokenAmount)) *
-          100
-        ).toFixed(2)
+        percent: item.Percent
       })
     })
   }
