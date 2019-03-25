@@ -17,6 +17,7 @@ export default {
   nav2: 'Developer',
   nav2Sub1: 'VNT Developer Guides',
   nav2Sub2: 'Chaincode Tools',
+  nav2Sub3: 'Test NetWork Faucet',
   nav3: 'Wallet',
   nav3Sub1: 'Create Wallet',
   nav3Sub2: 'View Wallet',

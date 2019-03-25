@@ -17,6 +17,7 @@ export default {
   nav2: '开发者',
   nav2Sub1: 'VNT开发者指南',
   nav2Sub2: '合约工具',
+  nav2Sub3: '测试网水龙头',
   nav3: '钱包',
   nav3Sub1: '创建钱包',
   nav3Sub2: '打开钱包',

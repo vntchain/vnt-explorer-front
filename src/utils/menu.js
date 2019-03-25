@@ -49,14 +49,19 @@ export default [
         key: 'devGuides',
         path: '/developer'
       },
-      {
+      /* {
         title: 'nav2Sub2',
         key: 'chaincodeTools',
         path: '/chaincode'
+      }, */
+      {
+        title: 'nav2Sub3',
+        key: 'faucet',
+        path: '/faucet'
       }
     ]
-  },
-  {
+  }
+  /*   ,{
     title: 'nav3',
     condition: false, // before auth
     key: 'walletB',
@@ -99,7 +104,7 @@ export default [
         key: 'logout'
       }
     ]
-  }
+  } */
 ]
 
 // menu for developer guide page
