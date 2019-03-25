@@ -131,7 +131,7 @@ function PagedTable(props) {
         key: item.Address + i,
         address: { value: item.Address, isContract: item.IsContract },
         balance: item.Balance,
-        percentage: 'missing',
+        percentage: item.Percent + '%',
         txCount: item.TxCount
       })
     })
