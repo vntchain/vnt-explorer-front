@@ -125,7 +125,7 @@ function PagedTable(props) {
     props.context.data.forEach((item, i) => {
       data.push({
         key: item.Address + i,
-        ranking: i + 1,
+        ranking: i + 1 + (current - 1) * pageSize,
         name: item.Vname,
         votes: item.Votes,
         percentage: item.VotesPercent + '%',
