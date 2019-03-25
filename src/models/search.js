@@ -47,6 +47,7 @@ export default {
               path = `/transaction/${data[searchType].Hash}`
               break
             case 'Account':
+              path = `/account/${data[searchType].Address}`
               break
             default:
               break
