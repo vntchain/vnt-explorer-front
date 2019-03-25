@@ -234,10 +234,9 @@ export default {
   ** Super Node page
   */
   snTitle: 'Super Nodes',
-  snSubTitle: count =>
-    `Super nodes: ${count.Super}  Candidate nodes: ${count.Candi} Total: ${
-      count.Total
-    }`,
+  snSubTitleComp1: 'Super nodes: ',
+  snSubTitleComp2: 'Candidate nodes: ',
+  snSubTitleComp3: 'Total: ',
   snNav1: 'List',
   snNav2: 'Map',
   snColumn1: 'Ranking',

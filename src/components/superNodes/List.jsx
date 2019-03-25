@@ -7,7 +7,7 @@ import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
-import TxCount from 'components/txs/TxCount'
+import TxCount from 'components/superNodes/NodeCount'
 import { push } from 'react-router-redux'
 
 import styles from 'containers/Common.scss'
@@ -34,7 +34,11 @@ export default connect(mapStateToProps)(function Nodes(props) {
           field: 'count'
         }}
         render={data => (
-          <TxCount id="snSubTitle" context={data} dispatch={props.dispatch} />
+          <TxCount
+            idPrefix="snSubTitle"
+            context={data}
+            dispatch={props.dispatch}
+          />
         )}
       />
 
@@ -78,7 +82,9 @@ function PagedTable(props) {
     {
       title: <LocalText id="snColumn1" />,
       dataIndex: 'ranking',
-      key: 'ranking'
+      key: 'ranking',
+      // eslint-disable-next-line react/display-name
+      render: ranking => <span style={{ color: '#4cc159' }}>{ranking}</span>
     },
     {
       title: <LocalText id="snColumn2" />,
@@ -100,7 +106,9 @@ function PagedTable(props) {
     {
       title: <LocalText id="snColumn5" />,
       key: 'status',
-      dataIndex: 'status'
+      dataIndex: 'status',
+      // eslint-disable-next-line react/display-name
+      render: status => <span style={{ color: '#4cc159' }}>{status}</span>
     }
   ]
 
@@ -110,9 +118,9 @@ function PagedTable(props) {
     props.context.data &&
     Array.isArray(props.context.data)
   ) {
-    const { Votes: totalVotes } = props.context.data.reduce((a, b) => ({
+    /* const { Votes: totalVotes } = props.context.data.reduce((a, b) => ({
       Votes: parseInt(a.Votes, 10) + parseInt(b.Votes, 10)
-    }))
+    })) */
 
     props.context.data.forEach((item, i) => {
       data.push({
@@ -120,8 +128,8 @@ function PagedTable(props) {
         ranking: i + 1,
         name: item.Vname,
         votes: item.Votes,
-        percentage: Math.round((item.Votes / totalVotes) * 10000) / 100 + '%',
-        status: item.Status
+        percentage: item.VotesPercent + '%',
+        status: 'Active'
       })
     })
   }

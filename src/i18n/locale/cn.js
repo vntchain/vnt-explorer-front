@@ -230,8 +230,9 @@ export default {
   ** Super Node page
   */
   snTitle: '超级节点',
-  snSubTitle: count =>
-    `超级节点：${count.Super}  候选节点：${count.Candi} 总计：${count.Total}`,
+  snSubTitleComp1: '超级节点：',
+  snSubTitleComp2: '候选节点：',
+  snSubTitleComp3: '总计：',
   snNav1: '列表',
   snNav2: '地图',
   snColumn1: '排名',
