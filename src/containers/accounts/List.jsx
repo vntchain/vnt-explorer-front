@@ -9,6 +9,8 @@ import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 
+import styles from 'containers/Common.scss'
+
 import { pageSize } from 'constants/config'
 
 const mapStateToProps = ({ accounts: { count } }) => {
@@ -17,7 +19,7 @@ const mapStateToProps = ({ accounts: { count } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function Accounts(props) {
+export default connect(mapStateToProps)(function AccountList(props) {
   const urlPath = location.pathname.split('/').filter(item => item)
   let currentIndex = 1
   if (urlPath.length > 0 && !isNaN(parseInt(urlPath[urlPath.length - 1], 10))) {
@@ -137,6 +139,7 @@ function PagedTable(props) {
 
   return (
     <Table
+      className={styles.table}
       columns={columns}
       dataSource={data}
       pagination={{

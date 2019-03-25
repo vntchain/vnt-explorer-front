@@ -10,6 +10,8 @@ import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 
+import styles from 'containers/Common.scss'
+
 const mapStateToProps = ({ transactions: { count, filteredTxs } }) => {
   return {
     count,
@@ -62,7 +64,7 @@ const txFilter = location => {
   }
 }
 
-export default connect(mapStateToProps)(function Txs(props) {
+export default connect(mapStateToProps)(function TxList(props) {
   const { currentIndex, apiParam, filter, filterValue, fieldID } = txFilter(
     location
   )
@@ -269,6 +271,7 @@ function PagedTable(props) {
 
   return (
     <Table
+      className={styles.table}
       columns={columns}
       dataSource={data}
       pagination={{

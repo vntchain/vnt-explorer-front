@@ -10,6 +10,8 @@ import { pageSize } from 'constants/config'
 import TxCount from 'components/txs/TxCount'
 import { push } from 'react-router-redux'
 
+import styles from 'containers/Common.scss'
+
 const mapStateToProps = ({ nodes: { count } }) => {
   return {
     count
@@ -126,6 +128,7 @@ function PagedTable(props) {
 
   return (
     <Table
+      className={styles.table}
       columns={columns}
       dataSource={data}
       pagination={{

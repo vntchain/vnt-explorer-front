@@ -7,7 +7,7 @@ import styles from './Title.scss'
 export default withLang(function Title(props) {
   const suffix = props.suffix || ''
   return (
-    <div>
+    <div className={styles.container}>
       <p className={styles.title}>
         {props.locale[props.language][props.titleID] + suffix}
       </p>

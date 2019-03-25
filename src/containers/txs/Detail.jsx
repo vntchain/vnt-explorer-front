@@ -9,6 +9,8 @@ import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 import ErrorMessenger from 'components/ErrorMessenger'
 
+import styles from 'containers/Common.scss'
+
 const mapStateToProps = ({ transactions: { txDetail } }) => {
   return {
     txDetail
@@ -187,7 +189,12 @@ function DetailTable(props) {
 
       {props.context &&
         !props.context.error && (
-          <Table columns={columns} dataSource={data} pagination={false} />
+          <Table
+            className={styles.revTable}
+            columns={columns}
+            dataSource={data}
+            pagination={false}
+          />
         )}
     </div>
   )

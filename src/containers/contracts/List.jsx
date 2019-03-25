@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Title from 'components/Title'
-import { Table } from 'antd'
+import { Table, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import { push } from 'react-router-redux'
 
@@ -10,13 +10,15 @@ import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
 
+import styles from 'containers/Common.scss'
+
 const mapStateToProps = ({ accounts: { count } }) => {
   return {
     count
   }
 }
 
-export default connect(mapStateToProps)(function Tokens(props) {
+export default connect(mapStateToProps)(function ContractList(props) {
   const urlPath = location.pathname.split('/').filter(item => item)
   let currentIndex = 1
   if (urlPath.length > 0 && !isNaN(parseInt(urlPath[urlPath.length - 1], 10))) {
@@ -27,12 +29,12 @@ export default connect(mapStateToProps)(function Tokens(props) {
     <div>
       <DataProvider
         options={{
-          path: apis.accountCount + '?isToken=1',
+          path: apis.accountCount + '?isContract=1',
           ns: 'accounts',
           field: 'count'
         }}
         render={data => (
-          <Title titleID="tklpTitle" subTitleID="tklpSubTitle" context={data} />
+          <Title titleID="clpTitle" subTitleID="clpSubTitle" context={data} />
         )}
       />
       {props.count &&
@@ -40,7 +42,7 @@ export default connect(mapStateToProps)(function Tokens(props) {
         props.count.data > 0 && (
           <DataProvider
             options={{
-              path: `${apis.accounts}?isToken=1&offset=${(currentIndex - 1) *
+              path: `${apis.accounts}?isContract=1&offset=${(currentIndex - 1) *
                 pageSize}&limit=${pageSize}`,
               ns: 'accounts',
               field: 'accounts'
@@ -61,16 +63,14 @@ export default connect(mapStateToProps)(function Tokens(props) {
 })
 
 function PagedTable(props) {
-  var currPage = 1
   const handlePageChange = e => {
-    currPage = e
     if (e !== props.currentIndex) {
       props.changePath(`/contracts/${e}`)
     }
     props.dispatch({
       type: 'dataRelay/fetchData',
       payload: {
-        path: `${apis.accounts}?isToken=1&offset=${(e - 1) *
+        path: `${apis.accounts}?isContract=1&offset=${(e - 1) *
           pageSize}&limit=${pageSize}`,
         ns: 'accounts',
         field: 'accounts'
@@ -78,39 +78,32 @@ function PagedTable(props) {
     })
   }
 
-  // console.log('props: ', props)
-
   const columns = [
     {
-      title: <LocalText id="tklpColumn0" />,
-      dataIndex: 'index',
-      key: 'index'
-    },
-    {
-      title: <LocalText id="tklpTitle" />,
-      dataIndex: 'title',
-      key: 'title',
+      title: <LocalText id="clpColumn1" />,
+      dataIndex: 'address',
+      key: 'address',
       // eslint-disable-next-line react/display-name
-      render: title => (
-        <Link to={`/token/${title.address}`}>
-          {title.contractName}({title.tokenSymbol})
+      render: addr => (
+        <Link to={`/contract/${addr}`}>
+          <Icon type="project" /> {addr}
         </Link>
       )
     },
     {
-      title: <LocalText id="tklpColumn1" />,
-      dataIndex: 'tokenAmount',
-      key: 'tokenAmount'
+      title: <LocalText id="clpColumn2" />,
+      dataIndex: 'cname',
+      key: 'cname'
     },
     {
-      title: <LocalText id="tklpColumn2" />,
-      dataIndex: 'acctCount',
-      key: 'acctCount'
+      title: <LocalText id="clpColumn3" />,
+      dataIndex: 'balance',
+      key: 'balance'
     },
     {
-      title: <LocalText id="tklpColumn3" />,
-      key: 'address',
-      dataIndex: 'address'
+      title: <LocalText id="clpColumn4" />,
+      key: 'txCount',
+      dataIndex: 'txCount'
     }
   ]
 
@@ -120,27 +113,20 @@ function PagedTable(props) {
     props.context.data &&
     Array.isArray(props.context.data)
   ) {
-    // console.log('')
-    var index = (currPage - 1) * pageSize
     props.context.data.forEach((item, i) => {
-      index++
       data.push({
-        index: index,
         key: item.Address + i,
         address: item.Address,
-        tokenAmount: item.TokenAmount,
-        acctCount: item.TokenAcctCount,
-        title: {
-          address: item.Address,
-          contractName: item.ContractName,
-          tokenSymbol: item.TokenSymbol
-        }
+        cname: item.ContractName,
+        balance: item.Balance,
+        txCount: item.TxCount
       })
     })
   }
 
   return (
     <Table
+      className={styles.table}
       columns={columns}
       dataSource={data}
       pagination={{

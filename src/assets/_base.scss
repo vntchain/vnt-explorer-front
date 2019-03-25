@@ -45,3 +45,50 @@ $bp-phone: 37.5em; // 600px
     }
   }
 }
+
+// antd table style
+@mixin antdTable {
+  background-color: #fff;
+  :global {
+    .ant-spin-container {
+      padding: 0 .2rem;
+    }
+    .ant-table-thead > tr > th {
+      background-color: $color-light-4;
+    }
+  }
+}
+
+// antd reverse table style
+@mixin antdRevTable {
+  :global {
+    td {
+      background-color: #fff;
+    }
+    .ant-table-thead > tr > th {
+      background-color: #fff;
+    }
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td  {
+      &:first-child {
+        background-color: $color-light-4;
+      }
+    }
+  }
+}
+
+// antd reverse table style (2 adjacent)
+@mixin antdRevTable2C {
+  :global {
+    td {
+      background-color: #fff;
+    }
+    .ant-table-thead > tr > th {
+      background-color: #fff;
+    }
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td  {
+      &:nth-child(odd) {
+        background-color: $color-light-4;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import '../assets/base';
+
+.table {
+  @include antdTable;
+}
+
+.revTable {
+  @include antdRevTable;
+}
+
+.revTable2C {
+  @include antdRevTable2C;
+}

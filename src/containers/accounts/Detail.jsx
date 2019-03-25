@@ -12,6 +12,8 @@ import TxCount from 'components/txs/TxCount'
 import TokenList from 'components/tokens/TokenList'
 import TokenCount from 'components/tokens/TokenCount'
 
+import styles from 'containers/Common.scss'
+
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
 
@@ -216,7 +218,12 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         }
       />
 
-      <Table columns={columns} dataSource={data} pagination={false} />
+      <Table
+        className={styles.revTable}
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+      />
 
       <Tabs key={Date.now()} tabs={tabs} dispatch={props.dispatch} />
     </div>

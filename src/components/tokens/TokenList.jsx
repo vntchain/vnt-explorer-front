@@ -7,6 +7,8 @@ import LocalText from 'i18n/LocalText'
 
 import { pageSize } from 'constants/config'
 
+import styles from 'containers/Common.scss'
+
 const mapStateToProps = ({ accounts: { count } }) => {
   return {
     count
@@ -99,6 +101,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
 
   return (
     <Table
+      className={styles.table}
       columns={columns}
       dataSource={data}
       pagination={{

@@ -15,6 +15,8 @@ import TxCount from 'components/txs/TxCount'
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
 
+import styles from 'containers/Common.scss'
+
 const mapStateToProps = ({ accounts: { accountDetail } }) => {
   return {
     accountDetail
@@ -204,7 +206,12 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
         }
       />
 
-      <Table columns={columns} dataSource={data} pagination={false} />
+      <Table
+        className={styles.revTable2C}
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+      />
 
       <Tabs key={Date.now()} tabs={tabs} dispatch={props.dispatch} />
     </div>
