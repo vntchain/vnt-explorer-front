@@ -10,6 +10,9 @@ import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 
+import withLang from 'i18n/withLang'
+import { calcAge } from 'utils/time'
+
 import styles from 'containers/Common.scss'
 
 const mapStateToProps = ({ transactions: { count, filteredTxs } }) => {
@@ -64,89 +67,96 @@ const txFilter = location => {
   }
 }
 
-export default connect(mapStateToProps)(function TxList(props) {
-  const { currentIndex, apiParam, filter, filterValue, fieldID } = txFilter(
-    location
-  )
+export default withLang(
+  connect(mapStateToProps)(function TxList(props) {
+    const { currentIndex, apiParam, filter, filterValue, fieldID } = txFilter(
+      location
+    )
 
-  useEffect(
-    () => {
-      props.dispatch({
-        type: 'dataRelay/fetchData',
-        payload: {
-          path: `${apis.txs}?${apiParam}`,
-          ns: 'transactions',
-          field: 'filteredTxs'
-        }
-      })
-    },
-    [location.href]
-  )
-
-  return (
-    <div>
-      {!filter ? (
-        <DataProvider
-          options={{
-            path: apis.txCount,
-            ns: 'transactions',
-            field: 'count'
-          }}
-          render={data => (
-            <Title titleID="tlpTitle" subTitleID="tlpSubTitle" context={data} />
-          )}
-        />
-      ) : (
-        <DataProvider
-          options={{
+    useEffect(
+      () => {
+        props.dispatch({
+          type: 'dataRelay/fetchData',
+          payload: {
             path: `${apis.txs}?${apiParam}`,
             ns: 'transactions',
             field: 'filteredTxs'
-          }}
-          render={data => (
-            <Title
-              titleID={fieldID}
-              subTitleID={`${fieldID}Sub`}
-              suffix={' ' + filterValue}
-              context={{ data: data && data.data ? data.data.length : 0 }}
-            />
-          )}
-        />
-      )}
+          }
+        })
+      },
+      [location.href]
+    )
 
-      {(filter ||
-        (props.count && props.count.data && props.count.data > 0)) && (
-        <DataProvider
-          options={{
-            path: `${apis.txs}?${apiParam}&offset=${(currentIndex - 1) *
-              pageSize}&limit=${pageSize}`, // api params with paging
-            ns: 'transactions',
-            field: 'txs'
-          }}
-          key={location.href}
-          render={data => (
-            <PagedTable
-              size={
-                !filter
-                  ? props.count.data
-                  : props.filteredTxs && props.filteredTxs.data
-                    ? props.filteredTxs.data.length
-                    : 0
-              } // can change size to simulate page action
-              context={data}
-              apiParam={apiParam}
-              dispatch={props.dispatch}
-              currentIndex={currentIndex}
-              changePath={path => props.dispatch(push(path))}
-              key={location.href}
-              filtered={filter}
-            />
-          )}
-        />
-      )}
-    </div>
-  )
-})
+    return (
+      <div>
+        {!filter ? (
+          <DataProvider
+            options={{
+              path: apis.txCount,
+              ns: 'transactions',
+              field: 'count'
+            }}
+            render={data => (
+              <Title
+                titleID="tlpTitle"
+                subTitleID="tlpSubTitle"
+                context={data}
+              />
+            )}
+          />
+        ) : (
+          <DataProvider
+            options={{
+              path: `${apis.txs}?${apiParam}`,
+              ns: 'transactions',
+              field: 'filteredTxs'
+            }}
+            render={data => (
+              <Title
+                titleID={fieldID}
+                subTitleID={`${fieldID}Sub`}
+                suffix={' ' + filterValue}
+                context={{ data: data && data.data ? data.data.length : 0 }}
+              />
+            )}
+          />
+        )}
+
+        {(filter ||
+          (props.count && props.count.data && props.count.data > 0)) && (
+          <DataProvider
+            options={{
+              path: `${apis.txs}?${apiParam}&offset=${(currentIndex - 1) *
+                pageSize}&limit=${pageSize}`, // api params with paging
+              ns: 'transactions',
+              field: 'txs'
+            }}
+            key={location.href}
+            render={data => (
+              <PagedTable
+                size={
+                  !filter
+                    ? props.count.data
+                    : props.filteredTxs && props.filteredTxs.data
+                      ? props.filteredTxs.data.length
+                      : 0
+                } // can change size to simulate page action
+                context={data}
+                apiParam={apiParam}
+                dispatch={props.dispatch}
+                currentIndex={currentIndex}
+                changePath={path => props.dispatch(push(path))}
+                key={location.href}
+                filtered={filter}
+                lang={props.language}
+              />
+            )}
+          />
+        )}
+      </div>
+    )
+  })
+)
 
 function PagedTable(props) {
   const handlePageChange = e => {
@@ -257,7 +267,7 @@ function PagedTable(props) {
         key: item.Hash + i,
         tx: item.Hash,
         height: item.BlockNumber,
-        age: item.TimeStamp,
+        age: calcAge(item.TimeStamp, props.lang),
         from: item.From,
         to: {
           isToken: item.To ? item.To.IsToken : false,

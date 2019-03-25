@@ -3,12 +3,12 @@ import { Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
-
-import calcAge from 'utils/age'
+import withLang from 'i18n/withLang'
+import { calcAge } from 'utils/time'
 
 import styles from './BlockTx.scss'
 
-export default function TxBrief(props) {
+export default withLang(function TxBrief(props) {
   const formattedData = data => {
     return data.map(item => ({
       from: item.From,
@@ -92,7 +92,7 @@ export default function TxBrief(props) {
                       <LocalText id="rField4" />
                       {item.amount}
                     </span>
-                    <span>{calcAge(item.timeStamp, props.lang)}</span>
+                    <span>{calcAge(item.timeStamp, props.language)}</span>
                   </div>
                 </div>
               </div>
@@ -101,4 +101,4 @@ export default function TxBrief(props) {
         )}
     </div>
   )
-}
+})

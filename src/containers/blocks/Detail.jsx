@@ -9,6 +9,9 @@ import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 import ErrorMessenger from 'components/ErrorMessenger'
 
+import withLang from 'i18n/withLang'
+import { calcAge, formatTime } from 'utils/time'
+
 import styles from 'containers/Common.scss'
 
 const mapStateToProps = ({ blocks: { blockDetail } }) => {
@@ -17,57 +20,60 @@ const mapStateToProps = ({ blocks: { blockDetail } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function BlockDetail(props) {
-  const urlPath = location.pathname.split('/').filter(item => item)
-  const currentBlock = urlPath.length > 0 ? urlPath[urlPath.length - 1] : 0
+export default withLang(
+  connect(mapStateToProps)(function BlockDetail(props) {
+    const urlPath = location.pathname.split('/').filter(item => item)
+    const currentBlock = urlPath.length > 0 ? urlPath[urlPath.length - 1] : 0
 
-  useEffect(
-    () => {
-      props.dispatch({
-        type: 'dataRelay/fetchData',
-        payload: {
-          // `path` here not robust
-          path: `${apis.block}/${
-            props.location.pathname.split('/').filter(item => item)[1]
-          }`,
-          ns: 'blocks',
-          field: 'blockDetail'
-        }
-      })
-    },
-    [props.location.pathname]
-  )
+    useEffect(
+      () => {
+        props.dispatch({
+          type: 'dataRelay/fetchData',
+          payload: {
+            // `path` here not robust
+            path: `${apis.block}/${
+              props.location.pathname.split('/').filter(item => item)[1]
+            }`,
+            ns: 'blocks',
+            field: 'blockDetail'
+          }
+        })
+      },
+      [props.location.pathname]
+    )
 
-  return (
-    <div>
-      <Title
-        titleID="blpTitle"
-        suffix={
-          props.blockDetail &&
-          props.blockDetail.data &&
-          props.blockDetail.data.hasOwnProperty('Number')
-            ? ` # ${props.blockDetail.data.Number}`
-            : ''
-        }
-      />
+    return (
+      <div>
+        <Title
+          titleID="blpTitle"
+          suffix={
+            props.blockDetail &&
+            props.blockDetail.data &&
+            props.blockDetail.data.hasOwnProperty('Number')
+              ? ` # ${props.blockDetail.data.Number}`
+              : ''
+          }
+        />
 
-      <DataProvider
-        options={{
-          path: `${apis.block}/${currentBlock}`,
-          ns: 'blocks',
-          field: 'blockDetail'
-        }}
-        render={data => (
-          <DetailTable
-            context={data}
-            dispatch={props.dispatch}
-            errComp={<ErrorMessenger context={data} />}
-          />
-        )}
-      />
-    </div>
-  )
-})
+        <DataProvider
+          options={{
+            path: `${apis.block}/${currentBlock}`,
+            ns: 'blocks',
+            field: 'blockDetail'
+          }}
+          render={data => (
+            <DetailTable
+              context={data}
+              dispatch={props.dispatch}
+              errComp={<ErrorMessenger context={data} />}
+              lang={props.language}
+            />
+          )}
+        />
+      </div>
+    )
+  })
+)
 
 function DetailTable(props) {
   const columns = [
@@ -102,7 +108,7 @@ function DetailTable(props) {
     data.push({
       key: 'timeStamp',
       fieldName: <LocalText id="bdpField1" />,
-      value: TimeStamp
+      value: `${calcAge(TimeStamp, props.lang)} (${formatTime(TimeStamp)})`
     })
     data.push({
       key: 'txCount',

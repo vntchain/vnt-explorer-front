@@ -9,6 +9,9 @@ import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 
+import withLang from 'i18n/withLang'
+import { calcAge } from 'utils/time'
+
 import styles from 'containers/Common.scss'
 
 const mapStateToProps = ({ blocks: { count } }) => {
@@ -17,48 +20,55 @@ const mapStateToProps = ({ blocks: { count } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function BlockList(props) {
-  const urlPath = location.pathname.split('/').filter(item => item)
-  let currentIndex = 1
-  if (urlPath.length > 0 && !isNaN(parseInt(urlPath[urlPath.length - 1], 10))) {
-    currentIndex = parseInt(urlPath[urlPath.length - 1], 10)
-  }
+export default withLang(
+  connect(mapStateToProps)(function BlockList(props) {
+    const urlPath = location.pathname.split('/').filter(item => item)
+    let currentIndex = 1
+    if (
+      urlPath.length > 0 &&
+      !isNaN(parseInt(urlPath[urlPath.length - 1], 10))
+    ) {
+      currentIndex = parseInt(urlPath[urlPath.length - 1], 10)
+    }
 
-  return (
-    <div>
-      <DataProvider
-        options={{
-          path: apis.blockCount,
-          ns: 'blocks',
-          field: 'count'
-        }}
-        render={data => (
-          <Title titleID="blpTitle" subTitleID="blpSubTitle" context={data} />
-        )}
-      />
-      {props.count &&
-        props.count.data &&
-        props.count.data > 0 && (
-          <DataProvider
-            options={{
-              path: `${apis.blocks}?offset=${(currentIndex - 1) * 20}&limit=20`,
-              ns: 'blocks',
-              field: 'blocks'
-            }}
-            render={data => (
-              <PagedTable
-                size={props.count.data}
-                context={data}
-                dispatch={props.dispatch}
-                currentIndex={currentIndex}
-                changePath={path => props.dispatch(push(path))}
-              />
-            )}
-          />
-        )}
-    </div>
-  )
-})
+    return (
+      <div>
+        <DataProvider
+          options={{
+            path: apis.blockCount,
+            ns: 'blocks',
+            field: 'count'
+          }}
+          render={data => (
+            <Title titleID="blpTitle" subTitleID="blpSubTitle" context={data} />
+          )}
+        />
+        {props.count &&
+          props.count.data &&
+          props.count.data > 0 && (
+            <DataProvider
+              options={{
+                path: `${apis.blocks}?offset=${(currentIndex - 1) *
+                  20}&limit=20`,
+                ns: 'blocks',
+                field: 'blocks'
+              }}
+              render={data => (
+                <PagedTable
+                  size={props.count.data}
+                  context={data}
+                  dispatch={props.dispatch}
+                  currentIndex={currentIndex}
+                  changePath={path => props.dispatch(push(path))}
+                  lang={props.language}
+                />
+              )}
+            />
+          )}
+      </div>
+    )
+  })
+)
 
 function PagedTable(props) {
   const handlePageChange = e => {
@@ -124,7 +134,7 @@ function PagedTable(props) {
       data.push({
         key: item.Hash + i,
         blockHeight: item.Number,
-        age: item.TimeStamp,
+        age: calcAge(item.TimeStamp, props.lang),
         txs: item.TxCount,
         producer: item.Producer,
         blockReward: item.BlockReward,

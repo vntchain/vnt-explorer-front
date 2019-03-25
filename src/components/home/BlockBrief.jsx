@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
 import apis from 'utils/apis'
-import calcAge from 'utils/age'
+import { calcAge } from 'utils/time'
+import withLang from 'i18n/withLang'
 
 import styles from './BlockTx.scss'
 
-export default function BlockBrief(props) {
+export default withLang(function BlockBrief(props) {
   const formattedData = data => {
     return data.map(item => ({
       blockHeight: item.Number,
@@ -78,7 +79,7 @@ export default function BlockBrief(props) {
                       styles['item__row--3']
                     }`}
                   >
-                    <span>{calcAge(item.timeStamp, props.lang)}</span>
+                    <span>{calcAge(item.timeStamp, props.language)}</span>
                     <span>
                       <LocalText id="lField4" />
                       <Link to={`/account/${item.producer}`}>{`${
@@ -93,4 +94,4 @@ export default function BlockBrief(props) {
         )}
     </div>
   )
-}
+})

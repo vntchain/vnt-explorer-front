@@ -9,6 +9,9 @@ import DataProvider from 'containers/RPDataProvider'
 import apis from 'utils/apis'
 import ErrorMessenger from 'components/ErrorMessenger'
 
+import withLang from 'i18n/withLang'
+import { calcAge, formatTime } from 'utils/time'
+
 import styles from 'containers/Common.scss'
 
 const mapStateToProps = ({ transactions: { txDetail } }) => {
@@ -17,57 +20,60 @@ const mapStateToProps = ({ transactions: { txDetail } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function TxDetail(props) {
-  const urlPath = location.pathname.split('/').filter(item => item)
-  const currentTx = urlPath.length > 0 ? urlPath[urlPath.length - 1] : 0
+export default withLang(
+  connect(mapStateToProps)(function TxDetail(props) {
+    const urlPath = location.pathname.split('/').filter(item => item)
+    const currentTx = urlPath.length > 0 ? urlPath[urlPath.length - 1] : 0
 
-  useEffect(
-    () => {
-      props.dispatch({
-        type: 'dataRelay/fetchData',
-        payload: {
-          // `path` here not robust
-          path: `${apis.tx}/${
-            props.location.pathname.split('/').filter(item => item)[1]
-          }`,
-          ns: 'transactions',
-          field: 'txDetail'
-        }
-      })
-    },
-    [props.location.pathname]
-  )
+    useEffect(
+      () => {
+        props.dispatch({
+          type: 'dataRelay/fetchData',
+          payload: {
+            // `path` here not robust
+            path: `${apis.tx}/${
+              props.location.pathname.split('/').filter(item => item)[1]
+            }`,
+            ns: 'transactions',
+            field: 'txDetail'
+          }
+        })
+      },
+      [props.location.pathname]
+    )
 
-  return (
-    <div>
-      <Title
-        titleID="tdpTitle"
-        suffix={
-          props.txDetail &&
-          props.txDetail.data &&
-          props.txDetail.data.hasOwnProperty('Hash')
-            ? ` # ${props.txDetail.data.Hash}`
-            : ''
-        }
-      />
+    return (
+      <div>
+        <Title
+          titleID="tdpTitle"
+          suffix={
+            props.txDetail &&
+            props.txDetail.data &&
+            props.txDetail.data.hasOwnProperty('Hash')
+              ? ` # ${props.txDetail.data.Hash}`
+              : ''
+          }
+        />
 
-      <DataProvider
-        options={{
-          path: `${apis.tx}/${currentTx}`,
-          ns: 'transactions',
-          field: 'txDetail'
-        }}
-        render={data => (
-          <DetailTable
-            context={data}
-            dispatch={props.dispatch}
-            errComp={<ErrorMessenger context={data} />}
-          />
-        )}
-      />
-    </div>
-  )
-})
+        <DataProvider
+          options={{
+            path: `${apis.tx}/${currentTx}`,
+            ns: 'transactions',
+            field: 'txDetail'
+          }}
+          render={data => (
+            <DetailTable
+              context={data}
+              dispatch={props.dispatch}
+              errComp={<ErrorMessenger context={data} />}
+              lang={props.language}
+            />
+          )}
+        />
+      </div>
+    )
+  })
+)
 
 function DetailTable(props) {
   const columns = [
@@ -118,7 +124,7 @@ function DetailTable(props) {
     data.push({
       key: 'timestamp',
       fieldName: <LocalText id="tdpField4" />,
-      value: TimeStamp
+      value: `${calcAge(TimeStamp, props.lang)} (${formatTime(TimeStamp)})`
     })
     data.push({
       key: 'from',
