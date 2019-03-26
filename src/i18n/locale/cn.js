@@ -245,7 +245,7 @@ export default {
   ** Test network faucet
   */
   tnfBanner: '测试网水龙头',
-  tnfTitle: '填写测试网钱包地址获得VNT测试代币',
+  tnfTitle: '填写测试网账户地址获得VNT测试币',
   tnfPlaceholder1: '测试网钱包地址',
   tnfBtn: '立即提交',
   successInfo: '已提交'

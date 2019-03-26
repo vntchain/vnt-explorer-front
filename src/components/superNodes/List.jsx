@@ -95,7 +95,9 @@ function PagedTable(props) {
       dataIndex: 'name',
       key: 'name',
       // eslint-disable-next-line react/display-name
-      render: item => <Link to="">{item}</Link>
+      render: ({ name, address }) => (
+        <Link to={`/account/${address}`}>{name}</Link>
+      )
     },
     {
       title: <LocalText id="snColumn3" />,
@@ -137,7 +139,7 @@ function PagedTable(props) {
           ranking: i + 1 + (current - 1) * pageSize,
           isSuper: item.IsSuper
         },
-        name: item.Vname,
+        name: { name: item.Vname, address: item.Address },
         votes: item.Votes,
         percentage: item.VotesPercent + '%',
         status: item.IsAlive

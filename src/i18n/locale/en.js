@@ -97,7 +97,7 @@ export default {
   ** Block list page
   */
   blpTitle: 'Blocks',
-  blpSubTitle: num => `A Total of ${num} Blocks`,
+  blpSubTitle: num => `A Total of ${num} Block${num > 1 ? 's' : ''}`,
   blpColumn1: 'Block Height',
   blpColumn2: 'Block Age',
   blpColumn3: 'Transactions',
@@ -124,7 +124,7 @@ export default {
   ** Tx list page
   */
   tlpTitle: 'Transactions',
-  tlpSubTitle: num => `A Total of ${num} Transactions`,
+  tlpSubTitle: num => `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
   tlpColumn1: 'TxHash',
   tlpColumn2: 'Block',
   tlpColumn3: 'Age',
@@ -132,7 +132,8 @@ export default {
   tlpColumn5: 'To ',
   tlpColumn6: 'Value',
   txFilterByBlock: 'Block',
-  txFilterByBlockSub: num => `A Total of ${num} Transactions`,
+  txFilterByBlockSub: num =>
+    `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
 
   /*
   ** Tx detail page
@@ -157,7 +158,7 @@ export default {
   ** Account list page
   */
   alpTitle: 'Accounts',
-  alpSubTitle: num => `A Total of ${num} Accounts`,
+  alpSubTitle: num => `A Total of ${num} Account${num > 1 ? 's' : ''}`,
   alpColumn1: '#',
   alpColumn2: 'Address',
   alpColumn3: 'Balance',
@@ -176,15 +177,15 @@ export default {
   adpField7: 'Token',
   adpField8: 'Price',
   adpField9: 'Value in VNT',
-  adpCount1: num => `A Total of ${num} Txs`,
-  adpCount2: num => `A Total of ${num} Token Txs`,
-  adpCount3: num => `A Total of ${num} Tokens`,
+  adpCount1: num => `A Total of ${num} Tx${num > 1 ? 's' : ''}`,
+  adpCount2: num => `A Total of ${num} Token Tx${num > 1 ? 's' : ''}`,
+  adpCount3: num => `A Total of ${num} Token${num > 1 ? 's' : ''}`,
 
   /*
   ** Contract list page
   */
   clpTitle: 'Contracts',
-  clpSubTitle: num => `A Total of ${num} Contracts`,
+  clpSubTitle: num => `A Total of ${num} Contract${num > 1 ? 's' : ''}`,
   clpColumn1: 'Address',
   clpColumn2: 'Contract Name',
   clpColumn3: 'Balance',
@@ -200,7 +201,7 @@ export default {
   */
   tklpColumn0: '#',
   tklpTitle: 'Token',
-  tklpSubTitle: num => `${num} tokens in total`,
+  tklpSubTitle: num => `${num} token${num > 1 ? 's' : ''} in total`,
   tklpColumn1: 'Total Supply',
   tklpColumn2: 'Holders',
   tklpColumn3: 'Address',
@@ -213,7 +214,7 @@ export default {
   ** Contract detail page
   */
   tkdpField1: 'Contract Code',
-  tkdpSubTitle: num => `${num} Holders in total`,
+  tkdpSubTitle: num => `${num} holder${num > 1 ? 's' : ''} in total`,
   tkdpField2: 'Holders',
   tkdpField3: 'Amount',
   tkdpField4: 'Percentage',

@@ -11,6 +11,7 @@ import ErrorMessenger from 'components/ErrorMessenger'
 
 import withLang from 'i18n/withLang'
 import { calcAge, formatTime } from 'utils/time'
+import textSplit from 'utils/longTextSplitter'
 
 import styles from 'containers/Common.scss'
 
@@ -158,7 +159,15 @@ function DetailTable(props) {
     data.push({
       key: 'extraData',
       fieldName: <LocalText id="bdpField10" />,
-      value: ExtraData
+      value: (
+        <div>
+          {textSplit(ExtraData, 24).map(item => (
+            <p style={{ marginBottom: '0', lineHeight: '1' }} key={item}>
+              {item}
+            </p>
+          ))}
+        </div>
+      )
     })
   }
 

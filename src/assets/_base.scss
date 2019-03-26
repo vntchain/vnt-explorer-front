@@ -73,6 +73,11 @@ $bp-phone: 37.5em; // 600px
         background-color: $color-light-4;
       }
     }
+    tr > th, tr > td {
+      &:first-child {
+        width: 10%;
+      }
+    }
   }
 }
 
@@ -88,6 +93,14 @@ $bp-phone: 37.5em; // 600px
     .ant-table-thead > tr > th, .ant-table-tbody > tr > td  {
       &:nth-child(odd) {
         background-color: $color-light-4;
+      }
+    }
+    tr > th, tr > td {
+      &:nth-child(odd) {
+        width: 15%;
+      }
+      &:nth-child(even) {
+        width: 35%;
       }
     }
   }
