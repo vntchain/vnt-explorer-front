@@ -1,0 +1,39 @@
+@import '../assets/base';
+
+.container {
+  position: relative;
+
+  .title {
+    color: $color-dark-1;
+    font-size: .24rem;
+    line-height: 1;
+
+    margin-bottom: .2rem;
+
+    display: flex;
+    align-items: center;
+
+    .input {
+      color: $color-dark-1;
+      font-size: .24rem;
+      line-height: 1;
+      border: none;
+      background-color: transparent;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: .2rem;
+
+      &:focus {
+        outline: none;
+      }
+      &::selection {
+        background-color: transparent;
+        color: $color-dark-1;
+      }
+    }
+
+    .copy {
+      cursor: pointer;
+    }
+  }
+}

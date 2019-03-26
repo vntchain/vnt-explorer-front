@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
-import Title from 'components/Title'
+import Title from 'components/AugmTitle'
 import { Table } from 'antd'
 
 import LocalText from 'i18n/LocalText'
@@ -207,15 +207,17 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
 
   return (
     <div>
+      {/* address length: 42 */}
       <Title
         titleID="adpField1"
         suffix={
           props.accountDetail &&
           props.accountDetail.data &&
           props.accountDetail.data.hasOwnProperty('Address')
-            ? ` # ${props.accountDetail.data.Address}`
+            ? `${props.accountDetail.data.Address}`
             : ''
         }
+        fieldWidth={0.64}
       />
 
       <Table

@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
-import Title from 'components/Title'
+import Title from 'components/AugmTitle'
 import { Table, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -45,15 +45,17 @@ export default withLang(
 
     return (
       <div>
+        {/* tx hash length: 66 */}
         <Title
           titleID="tdpTitle"
           suffix={
             props.txDetail &&
             props.txDetail.data &&
             props.txDetail.data.hasOwnProperty('Hash')
-              ? ` # ${props.txDetail.data.Hash}`
+              ? `${props.txDetail.data.Hash}`
               : ''
           }
+          fieldWidth={1}
         />
 
         <DataProvider
