@@ -1,6 +1,6 @@
-# 如何搭建一个VNT测试网络
+# 如何在本地搭建一个Hubble开发测试网
 
-这篇文章教你如何搭建一个VNT测试网络，并且以搭建单机器4个VNT见证人节点的测试网络为例。
+这篇文章教你如何在本地搭建一个Hubble开发测试网，并且以搭建单机器4个Hubble见证人节点的开发测试网为例。
 
 
 
@@ -22,7 +22,7 @@ VNT区块链网络需要发送交易选举见证人节点，如果没有初始�
 
 4个见证人节点的VNT网络拓扑。
 
-![4-witnesses-topology](./images/4-witnesses-topology.png)
+![4-witnesses-topology](https://raw.githubusercontent.com/vntchain/vnt-documentation/master/introduction/set-up-vnt-network/images/4-witnesses-topology.png)
 
 红色节点0为节点0，作为bootnode节点，bootnode节点下文会介绍，1、2、3为其他见证人节点。
 
@@ -392,4 +392,4 @@ personal.unlockAccount(core.coinbase)
 bp.start()
 ```
 
-以上，测试网络就搭建起来了。
+以上，开发测试网络就搭建起来了。
