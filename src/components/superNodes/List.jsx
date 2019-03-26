@@ -84,7 +84,11 @@ function PagedTable(props) {
       dataIndex: 'ranking',
       key: 'ranking',
       // eslint-disable-next-line react/display-name
-      render: ranking => <span style={{ color: '#4cc159' }}>{ranking}</span>
+      render: ({ ranking, isSuper }) => (
+        <span style={{ color: isSuper ? '#4cc159' : '#ff9603' }}>
+          {ranking}
+        </span>
+      )
     },
     {
       title: <LocalText id="snColumn2" />,
@@ -108,7 +112,11 @@ function PagedTable(props) {
       key: 'status',
       dataIndex: 'status',
       // eslint-disable-next-line react/display-name
-      render: status => <span style={{ color: '#4cc159' }}>{status}</span>
+      render: status => (
+        <span style={{ color: status ? '#4cc159' : 'red' }}>
+          {status ? 'Active' : 'Down'}
+        </span>
+      )
     }
   ]
 
@@ -125,11 +133,14 @@ function PagedTable(props) {
     props.context.data.forEach((item, i) => {
       data.push({
         key: item.Address + i,
-        ranking: i + 1 + (current - 1) * pageSize,
+        ranking: {
+          ranking: i + 1 + (current - 1) * pageSize,
+          isSuper: item.IsSuper
+        },
         name: item.Vname,
         votes: item.Votes,
         percentage: item.VotesPercent + '%',
-        status: 'Active'
+        status: item.IsAlive
       })
     })
   }

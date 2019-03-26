@@ -15,13 +15,14 @@ import ContractDetail from 'containers/contracts/Detail'
 import TokenList from 'containers/tokens/List'
 import TokenDetail from 'containers/tokens/Detail'
 import NodeList from 'containers/NodeList'
+import DevGuides from 'containers/DevGuides'
+import Faucet from 'containers/Faucet'
 
-import NewWallet from './NewWallet'
+/* import NewWallet from './NewWallet'
 import OpenWallet from './OpenWallet'
 import Receive from './Receive'
-import Send from './Send'
-import DevGuides from './DevGuides'
-import Faucet from './Faucet'
+import Send from './Send' */
+
 import LocalText from 'i18n/LocalText'
 
 import styles from './App.scss'
@@ -87,14 +88,14 @@ export default withRouter(
           <Route path="/contract" component={ContractDetail} />
           <Route path="/tokens" component={TokenList} />
           <Route path="/token" component={TokenDetail} />
-
-          <Route exact path="/view-wallet" component={OpenWallet} />
-          <Route exact path="/new-wallet" component={NewWallet} />
-          <Route exact path="/receive" component={Receive} />
-          <Route exact path="/send" component={Send} />
           <Route path="/super-node" component={NodeList} />
           <Route path="/developer" component={DevGuides} />
           <Route path="/faucet" component={Faucet} />
+
+          {/* <Route exact path="/view-wallet" component={OpenWallet} />
+          <Route exact path="/new-wallet" component={NewWallet} />
+          <Route exact path="/receive" component={Receive} />
+          <Route exact path="/send" component={Send} /> */}
         </div>
       </div>
     )
