@@ -46,6 +46,12 @@ export default connect(mapStateToProps)(
           message.info(props.locale[props.language].successInfo)
           setInputV('')
         }
+        return () => {
+          props.dispatch({
+            type: 'faucet/setRes',
+            payload: null
+          })
+        }
       },
       [props.res]
     )
