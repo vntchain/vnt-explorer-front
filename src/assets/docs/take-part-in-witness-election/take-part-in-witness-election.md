@@ -137,7 +137,7 @@ var voteContract = vnt.core.contract(abi).at("0x00000000000000000000000000000000
 下面是合约调用的基本方法：
 
 ```js
-tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
+var tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
 ```
 
 合约调用包含5部分，其中：
@@ -157,9 +157,9 @@ tx=voteContract.stake.sendTransaction(5, {from:core.coinbase})
 - nodeurl：函数参数，见证人函数的参数
 
 ```js
-name="greatvnt"
-website="www.greatvnt.com"
-nodeurl="/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bxUnMr1dbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB"
+var name="greatvnt"
+var website="www.greatvnt.com"
+var nodeurl="/ip4/127.0.0.1/tcp/5211/ipfs/1kHJFKr2bxUnMr1dbeyYbYJa3RXT18cEu7cNDrHWjg8XYKB"
 tx=voteContract.registerWitness.sendTransaction(nodeurl,website,name, {from: core.coinbase})
 ```
 
@@ -250,5 +250,3 @@ tx=voteContract.cancelProxy.sendTransaction({from:core.coinbase})
 - `core_getVoter`：获取某个投票人的所有信息。
 - `core_getAllCandidates`：获取所有见证人候选人的信息。
 - `core_getRestVNTBounty`：获取当前VNT激励剩余值。
-
-
