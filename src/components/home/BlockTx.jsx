@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DataProvider from 'containers/RPDataProvider'
+import DataProvider from 'containers/RPDataProviderNew'
 import BlockBrief from './BlockBrief'
 import TxBrief from './TxBrief'
 import ErrorMessenger from 'components/ErrorMessenger'

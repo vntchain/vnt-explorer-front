@@ -9,7 +9,7 @@ export default function BaseTable(props) {
   return (
     <Table
       style={props.data.length === 0 ? { paddingTop: '0.6rem' } : {}}
-      className={styles.table}
+      className={props.tableUnderTab ? styles.tabTable : styles.table}
       columns={props.columns}
       dataSource={props.data}
       pagination={{

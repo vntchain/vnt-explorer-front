@@ -5,19 +5,14 @@ import { Route, withRouter } from 'react-router-dom'
 import Header from 'components/header/Header'
 import Home from './Home'
 
-import BlockList from 'containers/blocks/List'
 import BlockListNew from 'containers/blocks/ListNew'
 import BlockDetail from 'containers/blocks/Detail'
-import TxList from 'containers/txs/List'
 import TxListNew from 'containers/txs/ListNew'
 import TxDetail from 'containers/txs/Detail'
-import AccountList from 'containers/accounts/List'
 import AccountListNew from 'containers/accounts/ListNew'
 import AccountDetail from 'containers/accounts/Detail'
-import ContractList from 'containers/contracts/List'
 import ContractListNew from 'containers/contracts/ListNew'
 import ContractDetail from 'containers/contracts/Detail'
-import TokenList from 'containers/tokens/List'
 import TokenListNew from 'containers/tokens/ListNew'
 import TokenDetail from 'containers/tokens/Detail'
 import NodeList from 'containers/NodeList'
@@ -32,6 +27,7 @@ import Send from './Send' */
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProviderNew'
 import apis from 'utils/apis'
+import r from 'constants/routes'
 import { pageSize } from 'constants/config'
 
 import styles from './App.scss'
@@ -84,7 +80,7 @@ export default withRouter(
           <Header />
         </div>
 
-        {location.pathname.startsWith('/developer') && (
+        {location.pathname.startsWith(r.devGuides) && (
           <div className={styles.strTitle}>
             <h2>
               <LocalText id="dgTitle" />
@@ -94,10 +90,9 @@ export default withRouter(
 
         <div className={styles.margin}>
           <div>
-            <Route exact path="/" component={Home} />
-            <Route path="/blocks" component={BlockList} />
+            <Route exact path={r.home} component={Home} />
             <Route
-              path="/blocks-new"
+              path={r.blockList}
               render={() => (
                 <DataProvider
                   options={{
@@ -112,10 +107,9 @@ export default withRouter(
                 />
               )}
             />
-            <Route path="/block" component={BlockDetail} />
-            <Route exact path="/txs" component={TxList} />
+            <Route path={r.blockDetail} component={BlockDetail} />
             <Route
-              path="/txs-new"
+              path={r.txList}
               render={() => (
                 <DataProvider
                   options={{
@@ -130,10 +124,9 @@ export default withRouter(
                 />
               )}
             />
-            <Route path="/transaction" component={TxDetail} />
-            <Route path="/accounts" component={AccountList} />
+            <Route path={r.txDetail} component={TxDetail} />
             <Route
-              path="/accounts-new"
+              path={r.accountList}
               render={() => (
                 <DataProvider
                   options={{
@@ -152,10 +145,12 @@ export default withRouter(
                 />
               )}
             />
-            <Route path="/account/:acct" component={AccountDetail} />
-            <Route path="/contracts" component={ContractList} />
             <Route
-              path="/contracts-new"
+              path={`${r.accountDetail}/:acct`}
+              component={AccountDetail}
+            />
+            <Route
+              path={r.contractList}
               render={() => (
                 <DataProvider
                   options={{
@@ -174,10 +169,9 @@ export default withRouter(
                 />
               )}
             />
-            <Route path="/contract" component={ContractDetail} />
-            <Route path="/tokens" component={TokenList} />
+            <Route path={r.contractDetail} component={ContractDetail} />
             <Route
-              path="/tokens-new"
+              path={r.tokenList}
               render={() => (
                 <DataProvider
                   options={{
@@ -196,10 +190,10 @@ export default withRouter(
                 />
               )}
             />
-            <Route path="/token" component={TokenDetail} />
-            <Route path="/super-node" component={NodeList} />
-            <Route path="/developer" component={DevGuides} />
-            <Route path="/faucet" component={Faucet} />
+            <Route path={r.tokenDetail} component={TokenDetail} />
+            <Route path={r.nodeList} component={NodeList} />
+            <Route path={r.devGuides} component={DevGuides} />
+            <Route path={r.faucet} component={Faucet} />
 
             {/* <Route exact path="/view-wallet" component={OpenWallet} />
           <Route exact path="/new-wallet" component={NewWallet} />

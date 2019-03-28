@@ -1,3 +1,5 @@
+import r from 'constants/routes'
+
 export default [
   {
     title: 'nav1',
@@ -6,37 +8,37 @@ export default [
       {
         title: 'nav1Sub1',
         key: 'brief',
-        path: '/'
+        path: r.home
       },
       {
         title: 'nav1Sub2',
         key: 'blocks',
-        path: '/blocks'
+        path: r.blockList
       },
       {
         title: 'nav1Sub3',
         key: 'transactions',
-        path: '/txs'
+        path: r.txList
       },
       {
         title: 'nav1Sub4',
         key: 'accounts',
-        path: '/accounts'
+        path: r.accountList
       },
       {
         title: 'nav1Sub5',
         key: 'contracts',
-        path: '/contracts'
+        path: r.contractList
       },
       {
         title: 'nav1Sub6',
         key: 'tokens',
-        path: '/tokens'
+        path: r.tokenList
       },
       {
         title: 'nav1Sub7',
         key: 'superNode',
-        path: '/super-node'
+        path: r.nodeList
       }
     ]
   },
@@ -47,7 +49,7 @@ export default [
       {
         title: 'nav2Sub1',
         key: 'devGuides',
-        path: '/developer'
+        path: r.devGuides
       },
       /* {
         title: 'nav2Sub2',
@@ -57,7 +59,7 @@ export default [
       {
         title: 'nav2Sub3',
         key: 'faucet',
-        path: '/faucet'
+        path: r.faucet
       }
     ]
   }

@@ -59,6 +59,7 @@ export default withLang(
                   count={context.count}
                   currentIndex={current}
                   flipPage={handleFlipPage}
+                  tableUnderTab={true}
                 />
               </Fragment>
             )}
