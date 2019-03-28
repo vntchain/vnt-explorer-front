@@ -169,7 +169,12 @@ export default withRouter(
                 />
               )}
             />
-            <Route path={r.contractDetail} component={ContractDetail} />
+
+            <Route
+              path={`${r.contractDetail}/:cont`}
+              component={ContractDetail}
+            />
+
             <Route
               path={r.tokenList}
               render={() => (
@@ -190,7 +195,7 @@ export default withRouter(
                 />
               )}
             />
-            <Route path={r.tokenDetail} component={TokenDetail} />
+            <Route path={`${r.tokenDetail}/:toke`} component={TokenDetail} />
             <Route path={r.nodeList} component={NodeList} />
             <Route path={r.devGuides} component={DevGuides} />
             <Route path={r.faucet} component={Faucet} />
