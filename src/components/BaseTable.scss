@@ -4,6 +4,15 @@
   @include antdTable;
 }
 
+.tabTable {
+  @include antdTable;
+  :global {
+    .ant-spin-container {
+      padding: 0 .2rem;
+    }
+  }
+}
+
 .revTable {
   @include antdRevTable;
 }

@@ -3,7 +3,7 @@ import { Table } from 'antd'
 
 import { pageSize } from 'constants/config'
 
-import styles from 'containers/Common.scss'
+import styles from 'components/BaseTable.scss'
 
 export default function BaseTable(props) {
   return (

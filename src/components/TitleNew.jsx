@@ -13,7 +13,9 @@ export default withLang(function Title(props) {
   ) : (
     // invoke with `count` variable
     <div className={styles.container}>
-      <p className={styles.sub}>
+      <p
+        className={props.titleUnderTab ? styles['sub__under-tab'] : styles.sub}
+      >
         {props.locale[props.language][props.subTitle](props.count)}
       </p>
     </div>

@@ -51,6 +51,7 @@ export default withLang(
                 <Title
                   subTitle="tlpSubTitle"
                   count={context.data.length === 0 ? 0 : context.count}
+                  titleUnderTab={true}
                 />
 
                 <TxListTable
