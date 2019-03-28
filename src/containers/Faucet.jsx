@@ -3,6 +3,7 @@ import { Button, Input, message } from 'antd'
 import { connect } from 'react-redux'
 
 import Banner from 'components/Banner'
+import Margin from 'components/Margin'
 import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
 
@@ -59,6 +60,8 @@ export default connect(mapStateToProps)(
     return (
       <div className={styles.faucet}>
         <Banner id="tnfBanner" />
+
+        <Margin size="medium" />
 
         <div className={styles.main}>
           <h3 className={styles.title}>

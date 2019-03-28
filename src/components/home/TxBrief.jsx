@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
-import { Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
 import { calcAge } from 'utils/time'
 
+import txIcon from 'assets/images/icon-trading.png'
 import styles from './BlockTx.scss'
 
 export default withLang(function TxBrief(props) {
@@ -57,7 +57,7 @@ export default withLang(function TxBrief(props) {
                       styles['item__row--1']
                     }`}
                   >
-                    <Icon type="swap" />
+                    <img src={txIcon} alt="" />
                     <span>{item.txHash.slice(0, 24) + '...'}</span>
                   </div>
 
