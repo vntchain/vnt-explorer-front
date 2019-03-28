@@ -12,6 +12,7 @@ import { calcAge } from 'utils/time'
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
 import contractIcon from 'assets/images/合约.png'
+import r from 'constants/routes'
 
 import styles from 'containers/Common.scss'
 
@@ -25,7 +26,7 @@ export default withLang(
     const finishFetching = context && context.hasOwnProperty('data')
 
     const handleFlipPage = p => {
-      dispatch(push(`/txs-new/${p}`))
+      dispatch(push(`${r.txList}/${p}`))
 
       dispatch({
         type: 'dataRelayNew/fetchData',

@@ -11,6 +11,7 @@ import withLang from 'i18n/withLang'
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
 import contractIcon from 'assets/images/合约.png'
+import r from 'constants/routes'
 
 import styles from 'containers/Common.scss'
 
@@ -24,7 +25,7 @@ export default withLang(
     const finishFetching = context && context.hasOwnProperty('data')
 
     const handleFlipPage = p => {
-      dispatch(push(`/accounts-new/${p}`))
+      dispatch(push(`${r.contractList}/${p}`))
 
       dispatch({
         type: 'dataRelayNew/fetchData',
