@@ -45,7 +45,7 @@ export default withLang(
           <div className={styles.tableWithCount}>
             {finishFetching && (
               <Fragment>
-                {/* 请求不存在的区块时，data 为 []，count 仍返回总区块数，区块数组件和表单分页栏需要作判断 */}
+                {/* 请求越界的分页时，data 为 []，count 仍返回总区块数，区块数组件和表单分页栏需要作判断 */}
                 <Title
                   subTitle="blpSubTitle"
                   count={context.data.length === 0 ? 0 : context.count}

@@ -4,18 +4,21 @@ import { Route, withRouter } from 'react-router-dom'
 
 import Header from 'components/header/Header'
 import Home from './Home'
+
 import BlockList from 'containers/blocks/List'
-
 import BlockListNew from 'containers/blocks/ListNew'
-
 import BlockDetail from 'containers/blocks/Detail'
 import TxList from 'containers/txs/List'
+import TxListNew from 'containers/txs/ListNew'
 import TxDetail from 'containers/txs/Detail'
 import AccountList from 'containers/accounts/List'
+import AccountListNew from 'containers/accounts/ListNew'
 import AccountDetail from 'containers/accounts/Detail'
 import ContractList from 'containers/contracts/List'
+import ContractListNew from 'containers/contracts/ListNew'
 import ContractDetail from 'containers/contracts/Detail'
 import TokenList from 'containers/tokens/List'
+import TokenListNew from 'containers/tokens/ListNew'
 import TokenDetail from 'containers/tokens/Detail'
 import NodeList from 'containers/NodeList'
 import DevGuides from 'containers/DevGuides'
@@ -93,7 +96,6 @@ export default withRouter(
           <div>
             <Route exact path="/" component={Home} />
             <Route path="/blocks" component={BlockList} />
-
             <Route
               path="/blocks-new"
               render={() => (
@@ -110,15 +112,90 @@ export default withRouter(
                 />
               )}
             />
-
             <Route path="/block" component={BlockDetail} />
             <Route exact path="/txs" component={TxList} />
+            <Route
+              path="/txs-new"
+              render={() => (
+                <DataProvider
+                  options={{
+                    path: `${apis.txs}?offset=${(currentIndex - 1) *
+                      pageSize}&limit=${pageSize}`,
+                    ns: 'transactions',
+                    field: 'txs'
+                  }}
+                  render={data => (
+                    <TxListNew context={data} currentIndex={currentIndex} />
+                  )}
+                />
+              )}
+            />
             <Route path="/transaction" component={TxDetail} />
             <Route path="/accounts" component={AccountList} />
+            <Route
+              path="/accounts-new"
+              render={() => (
+                <DataProvider
+                  options={{
+                    path: `${apis.accounts}?offset=${(currentIndex - 1) *
+                      pageSize}&limit=${pageSize}`,
+                    ns: 'accounts',
+                    field: 'accounts'
+                  }}
+                  render={data => (
+                    <AccountListNew
+                      context={data}
+                      currentIndex={currentIndex}
+                      typeParam=""
+                    />
+                  )}
+                />
+              )}
+            />
             <Route path="/account/:acct" component={AccountDetail} />
             <Route path="/contracts" component={ContractList} />
+            <Route
+              path="/contracts-new"
+              render={() => (
+                <DataProvider
+                  options={{
+                    path: `${apis.accounts}?offset=${(currentIndex - 1) *
+                      pageSize}&limit=${pageSize}&isContract=1`,
+                    ns: 'accounts',
+                    field: 'accounts'
+                  }}
+                  render={data => (
+                    <ContractListNew
+                      context={data}
+                      currentIndex={currentIndex}
+                      typeParam="&isContract=1"
+                    />
+                  )}
+                />
+              )}
+            />
             <Route path="/contract" component={ContractDetail} />
             <Route path="/tokens" component={TokenList} />
+            <Route
+              path="/tokens-new"
+              render={() => (
+                <DataProvider
+                  options={{
+                    path: `${apis.accounts}?offset=${(currentIndex - 1) *
+                      pageSize}&limit=${pageSize}&isToken=1`,
+                    ns: 'accounts',
+                    field: 'accounts'
+                  }}
+                  render={data => (
+                    <TokenListNew
+                      context={data}
+                      currentIndex={currentIndex}
+                      typeParam="&isToken=1"
+                    />
+                  )}
+                />
+              )}
+            />
             <Route path="/token" component={TokenDetail} />
             <Route path="/super-node" component={NodeList} />
             <Route path="/developer" component={DevGuides} />
