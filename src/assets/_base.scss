@@ -48,10 +48,9 @@ $bp-phone: 37.5em; // 600px
 
 // antd table style
 @mixin antdTable {
-  background-color: #fff;
   :global {
-    .ant-spin-container {
-      padding: 0 .2rem;
+    .ant-table {
+      background-color: #fff;
     }
     .ant-table-thead > tr > th {
       background-color: $color-light-4;

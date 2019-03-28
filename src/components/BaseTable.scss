@@ -4,22 +4,19 @@
   @include antdTable;
 }
 
+.tabTable {
+  @include antdTable;
+  :global {
+    .ant-spin-container {
+      padding: 0 .2rem;
+    }
+  }
+}
+
 .revTable {
   @include antdRevTable;
 }
 
 .revTable2C {
   @include antdRevTable2C;
-}
-
-.tableWithCount {
-  min-height: 2rem;
-}
-
-.container {
-  min-height: 4rem;
-}
-
-.tabTableContainer {
-  min-height: 6rem;
 }

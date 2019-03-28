@@ -5,6 +5,8 @@ import DataProvider from 'containers/RPDataProvider'
 import BriefInfo from 'components/home/BriefInfo'
 import BlockTx from 'components/home/BlockTx'
 import TxChart from 'components/home/TxChart'
+import Margin from 'components/Margin'
+
 import apis from 'utils/apis'
 import { pollingInterval } from 'constants/config'
 
@@ -28,8 +30,9 @@ export default connect(mapStateToProps)(function Home() {
         }}
         render={data => <BriefInfo context={data} />}
       />
-
+      <Margin size="medium" />
       <BlockTx />
+      <Margin size="medium" />
       <DataProvider
         options={{
           path: apis.txHistory,

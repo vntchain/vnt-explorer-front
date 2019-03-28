@@ -12,6 +12,7 @@ import ErrorMessenger from 'components/ErrorMessenger'
 import withLang from 'i18n/withLang'
 import { calcAge, formatTime } from 'utils/time'
 import textSplit from 'utils/longTextSplitter'
+import { trunInterval } from 'constants/config'
 
 import styles from 'containers/Common.scss'
 
@@ -189,7 +190,7 @@ function DetailTable(props) {
       fieldName: <LocalText id="tdpField13" />,
       value: (
         <div>
-          {textSplit(Input, 24).map(item => (
+          {textSplit(Input, trunInterval).map(item => (
             <p style={{ marginBottom: '0', lineHeight: '1' }} key={item}>
               {item}
             </p>
