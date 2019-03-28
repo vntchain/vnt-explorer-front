@@ -1,0 +1,11 @@
+@import '../assets/base';
+
+.tabs {
+  :global {
+    .ant-radio-button-wrapper {
+      border-radius: 0;
+      background-color: $color-light-4;
+      border: none;
+    }
+  }
+}
