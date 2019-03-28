@@ -195,6 +195,8 @@ export default {
   ** Contract detail page
   */
   cdpField1: 'Contract Code',
+  cdpColumn3: 'Owner',
+  cdpColumn4: 'Creator Tx',
 
   /*
   ** Token list page
@@ -211,13 +213,21 @@ export default {
   tklpColumn7: 'Home Page:',
 
   /*
-  ** Contract detail page
+  ** Token detail page
   */
   tkdpField1: 'Contract Code',
   tkdpSubTitle: num => `${num} holder${num > 1 ? 's' : ''} in total`,
   tkdpField2: 'Holders',
   tkdpField3: 'Amount',
   tkdpField4: 'Percentage',
+
+  /*
+  ** Token detail page - holders
+  */
+  tkdphField1: 'Ranking',
+  tkdphField2: 'Address',
+  tkdphField3: 'Amount',
+  tkdphField4: 'Percentage',
 
   /*
   ** Developer guide page

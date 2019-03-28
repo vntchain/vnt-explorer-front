@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Title from 'components/AugmTitle'
 import { Table, Spin } from 'antd'
+import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
 import DataProviderNew from 'containers/RPDataProviderNew'
@@ -55,6 +56,25 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
           : '-/-',
       dataIndex: 'value',
       key: 'value'
+    },
+    {
+      title: <LocalText id="cdpColumn3" />,
+      dataIndex: 'fieldName2',
+      key: 'fieldName2'
+    },
+    {
+      title:
+        props.accountDetail &&
+        props.accountDetail.data &&
+        props.accountDetail.data.hasOwnProperty('ContractOwner') ? (
+          <Link to={`/account/${props.accountDetail.data.ContractOwner}`}>{`${
+            props.accountDetail.data.ContractOwner
+          }`}</Link>
+        ) : (
+          ''
+        ),
+      dataIndex: 'value2',
+      key: 'value2'
     }
   ]
 
@@ -67,7 +87,18 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('TxCount')
           ? `${props.accountDetail.data.TxCount}`
-          : '-/-'
+          : '-/-',
+      fieldName2: <LocalText id="cdpColumn4" />,
+      value2:
+        props.accountDetail &&
+        props.accountDetail.data &&
+        props.accountDetail.data.hasOwnProperty('InitTx') ? (
+          <Link to={`/transaction/${props.accountDetail.data.InitTx}`}>{`${
+            props.accountDetail.data.InitTx
+          }`}</Link>
+        ) : (
+          ''
+        )
     }
   ]
 
@@ -169,7 +200,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
       <Spin spinning={accountDetail && accountDetail.isLoading}>
         <div className={styles.tabTableContainer}>
           <Table
-            className={styles.revTable}
+            className={styles.revTable2C}
             columns={columns}
             dataSource={data}
             pagination={false}

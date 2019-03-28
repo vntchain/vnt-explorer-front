@@ -190,6 +190,8 @@ export default {
   ** Contract detail page
   */
   cdpField1: '合约代码',
+  cdpColumn3: '合约创建者：',
+  cdpColumn4: '创建于交易：',
 
   /*
   ** Token list page
@@ -206,13 +208,21 @@ export default {
   tklpColumn7: '官网:',
 
   /*
-  ** Contract detail page
+  ** Token detail page
   */
   tkdpField1: '合约代码',
   tkdpSubTitle: num => `当前共 ${num} 持有人`,
   tkdpField2: '持有人',
   tkdpField3: '数量',
   tkdpField4: '百分比',
+
+  /*
+  ** Token detail page - holders
+  */
+  tkdphField1: '排名',
+  tkdphField2: '地址',
+  tkdphField3: '数量',
+  tkdphField4: '百分比',
 
   /*
   ** Developer guide page
