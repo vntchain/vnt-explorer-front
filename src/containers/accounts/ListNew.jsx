@@ -69,7 +69,10 @@ export default withLang(
             {finishFetching && (
               <Fragment>
                 {/* 请求越界的分页时，data 为 []，count 仍返回总账户数，账户数组件和表单分页栏需要作判断 */}
-
+                <Title
+                  subTitle="alpSubTitle"
+                  count={context.data.length === 0 ? 0 : context.count}
+                />
                 <AccountListTable
                   columns={columns}
                   data={genTableData(context.data, currentIndex)}
