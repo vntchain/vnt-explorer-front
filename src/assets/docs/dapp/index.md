@@ -69,3 +69,13 @@ Hubble的虚拟机，是一种基于Web Assembly的智能合约解释器。所�
 详情见 [如何部署调用合约](/developer/dapp/invoke)
 
 如果你想使用rpc接口，请参考文档：[VNT Chain JSON RPC API](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md)
+
+### 4. Dapp前端开发
+
+根据应用的需求，选择使用任何你喜欢的技术，开发你的前端。
+
+前端应用可以使用vnt.js，也可以使用rpc接口来操作Hubble链。
+
+[vnt.js API 文档](https://github.com/vntchain/vnt.js/blob/master/doc/api-reference.md)
+
+[RPC 接口文档](https://github.com/vntchain/vnt-documentation/blob/master/api/vnt-json-rpc-api.md)
