@@ -131,7 +131,7 @@ export default withRouter(
                 <DataProvider
                   options={{
                     path: `${apis.accounts}?offset=${(currentIndex - 1) *
-                      pageSize}&limit=${pageSize}`,
+                      pageSize}&limit=${pageSize}&isContract=0`,
                     ns: 'accounts',
                     field: 'accounts'
                   }}

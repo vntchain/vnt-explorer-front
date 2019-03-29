@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import { effects } from 'redux-sirius'
 
 import apis from 'utils/apis'
+import r from 'constants/routes'
 
 const { put } = effects
 
@@ -47,7 +48,12 @@ export default {
               path = `/transaction/${data[searchType].Hash}`
               break
             case 'Account':
-              path = `/account/${data[searchType].Address}`
+              if (data[searchType].IsToken) {
+                path = r.tokenDetail
+              } else if (data[searchType].IsContract) {
+                path = r.contractDetail
+              }
+              path += `/${data[searchType].Address}`
               break
             default:
               break
