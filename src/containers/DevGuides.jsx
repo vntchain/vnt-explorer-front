@@ -32,7 +32,12 @@ export default function DevGuideIndex() {
         </nav>
 
         <main className={styles.content}>
-          <Route exact path="/developer" component={Introduction} />
+          {/* <Route exact path="/developer" component={Introduction} /> */}
+          <Route exact path="/developer"
+            render={() => (
+              <MarkdownConverter filePath="index.md" />
+            )}
+          />
           <Route
             exact
             path="/developer/network"
