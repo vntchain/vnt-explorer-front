@@ -52,6 +52,8 @@ export default {
                 path = r.tokenDetail
               } else if (data[searchType].IsContract) {
                 path = r.contractDetail
+              } else {
+                path = r.accountDetail
               }
               path += `/${data[searchType].Address}`
               break
