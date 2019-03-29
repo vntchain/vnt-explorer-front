@@ -31,7 +31,7 @@ export default withLang(function BlockBrief(props) {
 
         {props.context &&
           props.context.data &&
-          props.context.data.length && (
+          props.context.data.length > 0 && (
             <span>
               <Link to={apis.blocks}>
                 <LocalText id="lField1" />
@@ -45,7 +45,7 @@ export default withLang(function BlockBrief(props) {
 
       {props.context &&
         props.context.data &&
-        props.context.data.length && (
+        props.context.data.length > 0 && (
           <Fragment>
             {formattedData(props.context.data).map((item, i) => (
               <div className={styles.content} key={JSON.stringify(item) + i}>

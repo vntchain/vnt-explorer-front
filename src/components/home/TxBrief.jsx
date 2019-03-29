@@ -33,7 +33,7 @@ export default withLang(function TxBrief(props) {
 
         {props.context &&
           props.context.data &&
-          props.context.data.length && (
+          props.context.data.length > 0 && (
             <span>
               <Link to="/txs">
                 <LocalText id="rField1" />
@@ -47,7 +47,7 @@ export default withLang(function TxBrief(props) {
 
       {props.context &&
         props.context.data &&
-        props.context.data.length && (
+        props.context.data.length > 0 && (
           <Fragment>
             {formattedData(props.context.data).map((item, i) => (
               <div className={styles.content} key={JSON.stringify(item) + i}>
