@@ -145,9 +145,11 @@ export default {
   tdpField9: '燃料限制',
   tdpField10: '交易燃料费用',
   tdpField11: '燃料价格',
-  tdpField12: '随机数',
+  tdpField12: 'Nonce',
   tdpField13: '数据输入',
   tdpField14: ' 代币数量',
+  txSuccess: '成功',
+  txFailed: '失败',
 
   /*
   ** Account list page
@@ -190,6 +192,8 @@ export default {
   ** Contract detail page
   */
   cdpField1: '合约代码',
+  cdpColumn3: '合约创建者：',
+  cdpColumn4: '创建于交易：',
 
   /*
   ** Token list page
@@ -206,13 +210,21 @@ export default {
   tklpColumn7: '官网:',
 
   /*
-  ** Contract detail page
+  ** Token detail page
   */
   tkdpField1: '合约代码',
   tkdpSubTitle: num => `当前共 ${num} 持有人`,
   tkdpField2: '持有人',
   tkdpField3: '数量',
   tkdpField4: '百分比',
+
+  /*
+  ** Token detail page - holders
+  */
+  tkdphField1: '排名',
+  tkdphField2: '地址',
+  tkdphField3: '数量',
+  tkdphField4: '百分比',
 
   /*
   ** Developer guide page
@@ -246,7 +258,7 @@ export default {
   */
   tnfBanner: '测试网水龙头',
   tnfTitle: '填写测试网账户地址获得VNT测试币',
-  tnfPlaceholder1: '测试网钱包地址',
+  tnfPlaceholder1: '测试网账户地址',
   tnfBtn: '立即提交',
   successInfo: '已提交'
 }

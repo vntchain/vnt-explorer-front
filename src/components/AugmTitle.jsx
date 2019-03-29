@@ -7,7 +7,7 @@ import cpIcon from 'assets/images/copy.png'
 import styles from './AugmTitle.scss'
 
 export default withLang(function AugmTitle(props) {
-  const baseWidth = 80
+  const baseWidth = 81
   const copy = () => {
     document.querySelector('#copy').select()
     document.execCommand('copy')

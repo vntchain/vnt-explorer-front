@@ -3,7 +3,7 @@
 .tabs {
   :global {
     .ant-radio-button-wrapper {
-      border-radius: 0;
+      border-radius: 0 !important;
       background-color: $color-light-4;
       border: none;
     }

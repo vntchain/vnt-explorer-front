@@ -8,7 +8,7 @@ export default function Tabs(props) {
 
   const handleSelect = e => {
     // 重置 `transactions/txs` 字段
-    // tab 下的交易数依赖 txs.length，不充值切 tab 会有影响
+    // tab 下的交易数依赖 txs.length，不重置切 tab 会有影响
     props.dispatch({
       type: 'transactions/resetTxData'
     })

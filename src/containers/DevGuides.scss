@@ -16,6 +16,11 @@
         .ant-menu-item {
           font-size: .14rem;
 
+          &:first-child {
+            padding-top: 4px;
+            margin-top: 0;
+          }
+
           // hard code
           &:nth-last-child(1),
           &:nth-last-child(2),

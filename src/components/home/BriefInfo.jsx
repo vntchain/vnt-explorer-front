@@ -21,7 +21,7 @@ export default function BriefInfo(props) {
     return [
       data.Height,
       data.TxCount,
-      `${data.CurrTps}/${data.TopTps}`,
+      `${Math.round(data.CurrTps * 100) / 100}/${data.TopTps}`,
       data.AccountCount,
       `${data.SuperNode}/${data.CandiNode}`
     ]

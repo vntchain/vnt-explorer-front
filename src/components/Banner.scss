@@ -1,7 +1,8 @@
 @import '../assets/base';
 
 .banner {
-  background-image: radial-gradient($color-primary-light, $color-primary);
+  // background-image: radial-gradient($color-primary-light, $color-primary);
+  background-color: $color-primary;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,4 +12,17 @@
   color: #fff;
 
   border-radius: .04rem;
+
+  position: relative;
+  .left {
+    position: absolute;
+    left: -.2rem;
+    top: 0rem;
+  }
+
+  .right {
+    position: absolute;
+    right: .2rem;
+    bottom: 0rem;
+  }
 }

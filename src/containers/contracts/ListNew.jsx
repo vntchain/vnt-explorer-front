@@ -31,7 +31,7 @@ export default withLang(
         type: 'dataRelayNew/fetchData',
         payload: {
           path: `${apis.accounts}?offset=${(p - 1) *
-            pageSize}&limit=${pageSize}`,
+            pageSize}&limit=${pageSize}&isContract=1`,
           ns: 'accounts',
           field: 'accounts'
         }

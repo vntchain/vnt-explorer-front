@@ -1,21 +1,20 @@
 import React, { useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
-import Title from 'components/Title'
-import { Table } from 'antd'
-
+import Title from 'components/TitleNew'
+import { Table, Spin } from 'antd'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
-import DataProvider from 'containers/RPDataProvider'
+import DataProviderNew from 'containers/RPDataProviderNew'
 import Tabs from 'components/Tabs'
-import TokenTxList from 'components/tokens/TokenTxList'
-import HolderList from 'components/tokens/HolderList'
-import TxCount from 'components/txs/TxCount'
+import TokenTxList from 'components/tokens/TabTokenTxListTk'
+import HolderList from 'components/tokens/TabHolderList'
+import Margin from 'components/Margin'
+
+import styles from 'containers/Common.scss'
 
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
-
-import styles from 'containers/Common.scss'
 
 const mapStateToProps = ({ accounts: { accountDetail } }) => {
   return {
@@ -23,16 +22,16 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function ContractDetail(props) {
+export default connect(mapStateToProps)(function AccountDetail(props) {
+  const { accountDetail } = props
+
+  // 点击发送方、接收方链接时更新表单数据
   useEffect(
     () => {
       props.dispatch({
         type: 'dataRelay/fetchData',
         payload: {
-          // `path` here not robust
-          path: `${apis.accountDetail}/${
-            props.location.pathname.split('/').filter(item => item)[1]
-          }`,
+          path: `${apis.accountDetail}/${props.match.params.toke}`,
           ns: 'accounts',
           field: 'accountDetail'
         }
@@ -86,7 +85,7 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
         props.accountDetail &&
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('TokenAcctCount')
-          ? `${props.accountDetail.data.TokenAcctCount} 地址`
+          ? `${props.accountDetail.data.TokenAcctCount}`
           : '-/-',
       col3: <LocalText id="tklpColumn7" />,
       col4:
@@ -101,47 +100,31 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
         )
     }
   ]
-
   const tabs = [
     {
       btnName: <LocalText id="adpField4" />,
       comp: (
         <Fragment key="1">
-          {/* 获取当前账户所有交易，为计算交易数 */}
-          <DataProvider
-            options={{
-              path:
-                `${apis.txCount}?account=` + location.pathname.split('/')[2],
-              ns: 'transactions',
-              field: 'count'
-            }}
-            render={data => (
-              <TxCount
-                id="adpCount1"
-                context={data}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
           {/* 获取当前账户第一分页的交易 */}
-          <DataProvider
+          <DataProviderNew
             options={{
               path:
                 `${apis.txs}?limit=${pageSize}&offset=0&account=` +
-                location.pathname.split('/')[2],
+                props.match.params.toke,
               ns: 'transactions',
               field: 'filteredTxs'
             }}
             render={data => (
-              <TokenTxList
-                context={data}
-                dispatch={props.dispatch}
-                basePath={
-                  `${apis.txs}?limit=${pageSize}&account=` +
-                  location.pathname.split('/')[2]
-                }
-                address={location.pathname.split('/')[2]}
-              />
+              <Fragment>
+                <TokenTxList
+                  context={data}
+                  basePath={
+                    `${apis.txs}?limit=${pageSize}&account=` +
+                    props.match.params.toke
+                  }
+                  address={props.match.params.toke}
+                />
+              </Fragment>
             )}
           />
         </Fragment>
@@ -151,40 +134,21 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
       btnName: <LocalText id="tkdpField2" />,
       comp: (
         <Fragment key="2">
-          {/* 获取当前账户所有代币交易，为计算交易数 */}
-          <DataProvider
+          {/* 获取当前账户第一分页的代币 */}
+          <DataProviderNew
             options={{
               path: `${apis.token}/${
-                location.pathname.split('/')[2]
-              }/holders/count`,
-              ns: 'transactions',
-              field: 'count'
-            }}
-            render={data => (
-              <TxCount
-                id="tkdpSubTitle"
-                context={data}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
-          {/* 获取当前账户第一分页的代币交易 */}
-          <DataProvider
-            options={{
-              path: `${apis.token}/${
-                location.pathname.split('/')[2]
+                props.match.params.toke
               }/holders?limit=${pageSize}`,
-              ns: 'transactions',
-              field: 'filteredTxs'
+              ns: 'tokens',
+              field: 'holders'
             }}
             render={data => (
               <HolderList
                 context={data}
-                dispatch={props.dispatch}
-                basePath={
-                  `${apis.txs}?limit=${pageSize}&account=` +
-                  location.pathname.split('/')[2]
-                }
+                basePath={`${apis.accountDetail}/${
+                  props.match.params.toke
+                }/tokens`}
               />
             )}
           />
@@ -195,8 +159,9 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
 
   return (
     <div>
+      {/* address length: 42 */}
       <Title
-        titleID="tklpTitle"
+        mainTitle="tklpTitle"
         suffix={
           props.accountDetail &&
           props.accountDetail.data &&
@@ -204,16 +169,25 @@ export default connect(mapStateToProps)(function ContractDetail(props) {
             ? ` ${props.accountDetail.data.ContractName}`
             : ''
         }
+        fieldWidth={0.64}
       />
 
-      <Table
-        className={styles.revTable2C}
-        columns={columns}
-        dataSource={data}
-        pagination={false}
-      />
+      <Spin spinning={accountDetail && accountDetail.isLoading}>
+        <div className={styles.tabTableContainer}>
+          <Table
+            className={styles.revTable2C}
+            columns={columns}
+            dataSource={data}
+            pagination={false}
+          />
 
-      <Tabs key={Date.now()} tabs={tabs} dispatch={props.dispatch} />
+          <Margin size="medium" />
+          {accountDetail &&
+            !accountDetail.isLoading && (
+              <Tabs key={Date.now()} tabs={tabs} dispatch={props.dispatch} />
+            )}
+        </div>
+      </Spin>
     </div>
   )
 })

@@ -23,3 +23,16 @@
 .tabTableContainer {
   min-height: 6rem;
 }
+
+.multiTitle {
+  position: absolute;
+  top: .2rem;
+  left: .2rem;
+
+  & > span:not(:last-child) {
+    margin-right: .15rem;
+    span {
+      margin-right: .05rem;
+    }
+  }
+}

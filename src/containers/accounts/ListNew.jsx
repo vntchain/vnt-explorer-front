@@ -11,7 +11,6 @@ import withLang from 'i18n/withLang'
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
 import r from 'constants/routes'
-import contractIcon from 'assets/images/合约.png'
 
 import styles from 'containers/Common.scss'
 
@@ -31,7 +30,7 @@ export default withLang(
         type: 'dataRelayNew/fetchData',
         payload: {
           path: `${apis.accounts}?offset=${(p - 1) *
-            pageSize}&limit=${pageSize}`,
+            pageSize}&limit=${pageSize}&isContract=0`,
           ns: 'accounts',
           field: 'accounts'
         }
@@ -50,7 +49,7 @@ export default withLang(
         result.push({
           index: ++index,
           key: item.Address + i,
-          address: { value: item.Address, isContract: item.IsContract },
+          address: item.Address,
           balance: item.Balance,
           percentage: item.Percent + '%',
           txCount: item.TxCount
@@ -73,7 +72,6 @@ export default withLang(
                   subTitle="alpSubTitle"
                   count={context.data.length === 0 ? 0 : context.count}
                 />
-
                 <AccountListTable
                   columns={columns}
                   data={genTableData(context.data, currentIndex)}
@@ -102,19 +100,10 @@ const columns = [
     dataIndex: 'address',
     key: 'address',
     // eslint-disable-next-line react/display-name
-    render: ({ isContract, value }) => {
+    render: address => {
       return (
-        <Link to={`/account/${value}`}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            {isContract && (
-              <Fragment>
-                <img src={contractIcon} />
-                &nbsp;
-              </Fragment>
-            )}
-
-            {value + '...'}
-          </div>
+        <Link to={`/account/${address}`}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>{address}</div>
         </Link>
       )
     }

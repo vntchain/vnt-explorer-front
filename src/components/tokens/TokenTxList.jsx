@@ -140,7 +140,7 @@ export default withLang(
         if (props.address == d.from) {
           d.direction = 'OUT'
         } else if (props.address == d.tokenTo) {
-          d.direction = 'TO'
+          d.direction = 'IN'
         } else {
           d.direction = ''
         }

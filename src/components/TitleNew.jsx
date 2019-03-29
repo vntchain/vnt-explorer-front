@@ -8,6 +8,7 @@ export default withLang(function Title(props) {
     <div className={styles.container}>
       <p className={styles.main}>
         {props.locale[props.language][props.mainTitle]}
+        {props.suffix && <span>{props.suffix}</span>}
       </p>
     </div>
   ) : (

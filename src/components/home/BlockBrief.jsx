@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import { Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
@@ -7,6 +6,7 @@ import apis from 'utils/apis'
 import { calcAge } from 'utils/time'
 import withLang from 'i18n/withLang'
 
+import blockIcon from 'assets/images/icon-block.png'
 import styles from './BlockTx.scss'
 
 export default withLang(function BlockBrief(props) {
@@ -31,7 +31,7 @@ export default withLang(function BlockBrief(props) {
 
         {props.context &&
           props.context.data &&
-          props.context.data.length && (
+          props.context.data.length > 0 && (
             <span>
               <Link to={apis.blocks}>
                 <LocalText id="lField1" />
@@ -45,7 +45,7 @@ export default withLang(function BlockBrief(props) {
 
       {props.context &&
         props.context.data &&
-        props.context.data.length && (
+        props.context.data.length > 0 && (
           <Fragment>
             {formattedData(props.context.data).map((item, i) => (
               <div className={styles.content} key={JSON.stringify(item) + i}>
@@ -55,7 +55,7 @@ export default withLang(function BlockBrief(props) {
                       styles['item__row--1']
                     }`}
                   >
-                    <Icon type="block" />
+                    <img src={blockIcon} alt="" />
                     <span>{'#' + item.blockHeight}</span>
                   </div>
 
