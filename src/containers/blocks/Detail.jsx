@@ -112,15 +112,15 @@ function DetailTable(props) {
       fieldName: <LocalText id="bdpField1" />,
       value: `${calcAge(TimeStamp, props.lang)} (${formatTime(TimeStamp)})`
     })
+    // TxCount > 0 ? (
+    //   <Link to={`/txs?block=${Number}`}>{TxCount}</Link>
+    // ) : (
+    //   TxCount
+    // )
     data.push({
       key: 'txCount',
       fieldName: <LocalText id="bdpField2" />,
-      value:
-        TxCount > 0 ? (
-          <Link to={`/txs?block=${Number}`}>{TxCount}</Link>
-        ) : (
-          TxCount
-        )
+      value: TxCount
     })
     data.push({
       key: 'hash',
