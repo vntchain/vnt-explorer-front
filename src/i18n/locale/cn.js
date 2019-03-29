@@ -145,7 +145,7 @@ export default {
   tdpField9: '燃料限制',
   tdpField10: '交易燃料费用',
   tdpField11: '燃料价格',
-  tdpField12: '随机数',
+  tdpField12: 'Nonce',
   tdpField13: '数据输入',
   tdpField14: ' 代币数量',
 
@@ -256,7 +256,7 @@ export default {
   */
   tnfBanner: '测试网水龙头',
   tnfTitle: '填写测试网账户地址获得VNT测试币',
-  tnfPlaceholder1: '测试网钱包地址',
+  tnfPlaceholder1: '测试网账户地址',
   tnfBtn: '立即提交',
   successInfo: '已提交'
 }
