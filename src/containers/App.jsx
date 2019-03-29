@@ -107,7 +107,7 @@ export default withRouter(
                 />
               )}
             />
-            <Route path={r.blockDetail} component={BlockDetail} />
+            <Route path={`${r.blockDetail}/:block`} component={BlockDetail} />
             <Route
               path={r.txList}
               render={() => (
@@ -124,7 +124,7 @@ export default withRouter(
                 />
               )}
             />
-            <Route path={r.txDetail} component={TxDetail} />
+            <Route path={`${r.txDetail}/:tx`} component={TxDetail} />
             <Route
               path={r.accountList}
               render={() => (

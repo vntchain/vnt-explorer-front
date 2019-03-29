@@ -24,9 +24,6 @@ const mapStateToProps = ({ blocks: { blockDetail } }) => {
 
 export default withLang(
   connect(mapStateToProps)(function BlockDetail(props) {
-    const urlPath = location.pathname.split('/').filter(item => item)
-    const currentBlock = urlPath.length > 0 ? urlPath[urlPath.length - 1] : 0
-
     useEffect(
       () => {
         props.dispatch({
@@ -46,20 +43,11 @@ export default withLang(
 
     return (
       <div>
-        <Title
-          titleID="blpTitle"
-          suffix={
-            props.blockDetail &&
-            props.blockDetail.data &&
-            props.blockDetail.data.hasOwnProperty('Number')
-              ? ` # ${props.blockDetail.data.Number}`
-              : ''
-          }
-        />
+        <Title titleID="blpTitle" suffix={` #${props.match.params.block}`} />
 
         <DataProvider
           options={{
-            path: `${apis.block}/${currentBlock}`,
+            path: `${apis.block}/${props.match.params.block}`,
             ns: 'blocks',
             field: 'blockDetail'
           }}
@@ -178,6 +166,7 @@ function DetailTable(props) {
         props.context.error && <Fragment>{props.errComp}</Fragment>}
 
       {props.context &&
+        !props.context.isLoading &&
         !props.context.error && (
           <Table
             className={styles.revTable}

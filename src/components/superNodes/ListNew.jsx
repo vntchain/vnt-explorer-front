@@ -34,29 +34,50 @@ export default withLang(
       })
     }
 
-    // eslint-disable-next-line
     const genSubTitle = context => {
       let superNode = 0
-      context.data.forEach(
-        ({ IsSuper }) => (IsSuper === 1 ? superNode++ : superNode)
-      )
+      if (context && context.data) {
+        context.data.forEach(
+          ({ IsSuper }) => (IsSuper === 1 ? superNode++ : superNode)
+        )
+        return (
+          <div className={styles.multiTitle}>
+            <span className={styles.multiTitle__1}>
+              <span style={{ color: '#4cc159' }}>•</span>
+              <LocalText id="snSubTitleComp1" />
+              {superNode}
+            </span>
+
+            <span className={styles.multiTitle__2}>
+              <span style={{ color: '#ff9603' }}>•</span>
+              <LocalText id="snSubTitleComp2" />
+              {context.count - superNode}
+            </span>
+
+            <span className={styles.multiTitle__3}>
+              <LocalText id="snSubTitleComp3" />
+              {context.count}
+            </span>
+          </div>
+        )
+      }
       return (
         <div className={styles.multiTitle}>
           <span className={styles.multiTitle__1}>
             <span style={{ color: '#4cc159' }}>•</span>
             <LocalText id="snSubTitleComp1" />
-            {superNode}
+            --
           </span>
 
           <span className={styles.multiTitle__2}>
             <span style={{ color: '#ff9603' }}>•</span>
             <LocalText id="snSubTitleComp2" />
-            {context.count - superNode}
+            --
           </span>
 
           <span className={styles.multiTitle__3}>
             <LocalText id="snSubTitleComp3" />
-            {context.count}
+            --
           </span>
         </div>
       )
