@@ -153,6 +153,8 @@ export default {
   tdpField12: 'Nonce',
   tdpField13: 'Input Data',
   tdpField14: ' Token Amount',
+  txSuccess: 'success',
+  txFailed: 'failed',
 
   /*
   ** Account list page

@@ -118,7 +118,16 @@ function DetailTable(props) {
     data.push({
       key: 'status',
       fieldName: <LocalText id="tdpField2" />,
-      value: Status
+      value:
+        Status === 1 ? (
+          <span style={{ color: 'green' }}>
+            <LocalText id="txSuccess" />
+          </span>
+        ) : (
+          <span style={{ color: 'red' }}>
+            <LocalText id="txFailed" />
+          </span>
+        )
     })
     data.push({
       key: 'height',
