@@ -8,7 +8,7 @@
 
 > DAPP的本质，是一段运行在区块链上的程序，即“智能合约”。智能合约是一段存储在区块链上的字节码程序，当需要运行它的时候，区块链就会启动虚拟机程序，加载这段代码，并运行它，最终将运行的结果返回给应用的前端，其架构如下：
 
-![4-witnesses-topology](images/arch.png)
+![dapp架构](https://raw.githubusercontent.com/vntchain/statics/master/dapp/arch.png)
 
 * 基础层
 > 即Hubble基础设施层，包含了存储，p2p网络，共识，账户管理等模块，并对外提供RPC服务接口。

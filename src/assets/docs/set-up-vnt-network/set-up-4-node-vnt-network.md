@@ -22,7 +22,7 @@ VNT区块链网络需要发送交易选举见证人节点，如果没有初始�
 
 4个见证人节点的VNT网络拓扑。
 
-![4-witnesses-topology](images/4-witnesses-topology.png)
+![4-witnesses-topology](https://raw.githubusercontent.com/vntchain/statics/master/network/4-witnesses-topology.png)
 
 红色节点0为节点0，作为bootnode节点，bootnode节点下文会介绍，1、2、3为其他见证人节点。
 
