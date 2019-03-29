@@ -24,18 +24,13 @@ const mapStateToProps = ({ transactions: { txDetail } }) => {
 
 export default withLang(
   connect(mapStateToProps)(function TxDetail(props) {
-    const urlPath = location.pathname.split('/').filter(item => item)
-    const currentTx = urlPath.length > 0 ? urlPath[urlPath.length - 1] : 0
-
     useEffect(
       () => {
         props.dispatch({
           type: 'dataRelay/fetchData',
           payload: {
             // `path` here not robust
-            path: `${apis.tx}/${
-              props.location.pathname.split('/').filter(item => item)[1]
-            }`,
+            path: `${apis.tx}/${props.match.params.tx}`,
             ns: 'transactions',
             field: 'txDetail'
           }
@@ -49,19 +44,13 @@ export default withLang(
         {/* tx hash length: 66 */}
         <Title
           titleID="tdpTitle"
-          suffix={
-            props.txDetail &&
-            props.txDetail.data &&
-            props.txDetail.data.hasOwnProperty('Hash')
-              ? `${props.txDetail.data.Hash}`
-              : ''
-          }
+          suffix={props.match.params.tx}
           fieldWidth={1}
         />
 
         <DataProvider
           options={{
-            path: `${apis.tx}/${currentTx}`,
+            path: `${apis.tx}/${props.match.params.tx}`,
             ns: 'transactions',
             field: 'txDetail'
           }}
@@ -215,6 +204,7 @@ function DetailTable(props) {
         props.context.error && <Fragment>{props.errComp}</Fragment>}
 
       {props.context &&
+        !props.context.isLoading &&
         !props.context.error && (
           <Table
             className={styles.revTable}

@@ -49,7 +49,13 @@ export default withLang(
                 {/* 请求越界的分页时，data 为 []，count 仍返回总区块数，区块数组件和表单分页栏需要作判断 */}
                 <Title
                   subTitle="blpSubTitle"
-                  count={context.data.length === 0 ? 0 : context.count}
+                  count={
+                    context && context.data
+                      ? context.data.length === 0
+                        ? 0
+                        : context.count
+                      : '-/-'
+                  }
                 />
 
                 <BlockListTable
