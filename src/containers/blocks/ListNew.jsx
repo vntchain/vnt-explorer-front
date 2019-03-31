@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Spin } from 'antd'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -27,15 +27,30 @@ export default withLang(
     const handleFlipPage = p => {
       dispatch(push(`${r.blockList}/${p}`))
 
-      dispatch({
+      /* dispatch({
         type: 'dataRelayNew/fetchData',
         payload: {
           path: `${apis.blocks}?offset=${(p - 1) * pageSize}&limit=${pageSize}`,
           ns: 'blocks',
           field: 'blocks'
         }
-      })
+      }) */
     }
+
+    useEffect(
+      () => {
+        dispatch({
+          type: 'dataRelayNew/fetchData',
+          payload: {
+            path: `${apis.blocks}?offset=${(currentIndex - 1) *
+              pageSize}&limit=${pageSize}`,
+            ns: 'blocks',
+            field: 'blocks'
+          }
+        })
+      },
+      [location.pathname]
+    )
 
     return (
       <div className={styles.container}>
@@ -86,7 +101,12 @@ const genTableData = (data, lang) => {
       key: item.Hash + i,
       blockHeight: item.Number,
       age: calcAge(item.TimeStamp, lang),
-      txs: item.TxCount,
+      txs:
+        item.TxCount > 0 ? (
+          <Link to={`${r.txList}/block=${item.Number}`}>{item.TxCount}</Link>
+        ) : (
+          item.TxCount
+        ),
       producer: item.Producer,
       blockReward: item.BlockReward,
       capacity: item.Size + ' bytes'
@@ -115,6 +135,14 @@ const columns = [
     title: <LocalText id="blpColumn3" />,
     dataIndex: 'txs',
     key: 'txs'
+    // eslint-disable-next-line react/display-name
+    /* render: count => {
+      return count > 0 ? (
+        <Link to={`${r.txList}/block=${count}`}>{count}</Link>
+      ) : (
+        count
+      )
+    } */
   },
   {
     title: <LocalText id="blpColumn4" />,

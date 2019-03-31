@@ -66,12 +66,20 @@ export default withRouter(
       }
     })
 
-    const currentIndex = (() => {
-      const a = location.pathname.split('/')
+    const { index: currentIndex, filterParam } = (() => {
+      const a = location.pathname.split('/').filter(item => item)
       const index = isNaN(parseInt(a[a.length - 1], 10))
         ? 1
         : parseInt(a[a.length - 1], 10)
-      return index
+
+      let filterParam = ''
+      if (
+        (a.length === 2 && isNaN(parseInt(a[a.length - 1], 10))) ||
+        a.length === 3
+      ) {
+        filterParam = `&${a[1]}`
+      }
+      return { index, filterParam }
     })()
 
     return (
@@ -114,12 +122,16 @@ export default withRouter(
                 <DataProvider
                   options={{
                     path: `${apis.txs}?offset=${(currentIndex - 1) *
-                      pageSize}&limit=${pageSize}`,
+                      pageSize}&limit=${pageSize}${filterParam || ''}`,
                     ns: 'transactions',
                     field: 'txs'
                   }}
                   render={data => (
-                    <TxListNew context={data} currentIndex={currentIndex} />
+                    <TxListNew
+                      context={data}
+                      currentIndex={currentIndex}
+                      filterParam={filterParam}
+                    />
                   )}
                 />
               )}

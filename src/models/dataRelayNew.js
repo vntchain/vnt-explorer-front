@@ -36,10 +36,6 @@ export default {
         if (!resp.ok) {
           // {code: string, message: string }
           const error = resp.error || resp.err
-          /* eslint-disable */
-          console.log('%c%s\n%cerror: %', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', )
-          console.log(error)
-          /* eslint-enable */
           yield put({
             type: `${ns}/setError`,
             payload: error.code

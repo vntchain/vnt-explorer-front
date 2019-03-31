@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Spin } from 'antd'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -22,21 +22,37 @@ import styles from 'containers/Common.scss'
 */
 export default withLang(
   connect()(function ListNew(props) {
-    const { context, currentIndex, language, dispatch } = props
+    const { context, currentIndex, filterParam, language, dispatch } = props
     const finishFetching = context && context.hasOwnProperty('data')
 
     const handleFlipPage = p => {
       dispatch(push(`${r.txList}/${p}`))
 
-      dispatch({
+      /* dispatch({
         type: 'dataRelayNew/fetchData',
         payload: {
-          path: `${apis.txs}?offset=${(p - 1) * pageSize}&limit=${pageSize}`,
+          path: `${apis.txs}?offset=${(p - 1) *
+            pageSize}&limit=${pageSize}&${filterParam}`,
           ns: 'transactions',
           field: 'txs'
         }
-      })
+      }) */
     }
+
+    useEffect(
+      () => {
+        dispatch({
+          type: 'dataRelayNew/fetchData',
+          payload: {
+            path: `${apis.txs}?offset=${(currentIndex - 1) *
+              pageSize}&limit=${pageSize}&${filterParam}`,
+            ns: 'transactions',
+            field: 'txs'
+          }
+        })
+      },
+      [location.pathname]
+    )
 
     return (
       <div className={styles.container}>
@@ -50,6 +66,7 @@ export default withLang(
                 {/* 请求越界的分页时，data 为 []，count 仍返回总交易数，交易数组件和表单分页栏需要作判断 */}
                 <Title
                   subTitle="tlpSubTitle"
+                  prefix={filterParam || null}
                   count={
                     context && context.data
                       ? context.data.length === 0
@@ -111,13 +128,12 @@ const columns = [
       <Link to={`/transaction/${tx}`}>{tx.slice(0, 12) + '...'}</Link>
     )
   },
-  // <Link to={`${apis.txs}?block=${height}`}>{height}</Link>
   {
     title: <LocalText id="tlpColumn2" />,
     dataIndex: 'height',
     key: 'height',
     // eslint-disable-next-line react/display-name
-    render: height => <Link to={`${apis.block}/${height}`}>{height}</Link>
+    render: height => <Link to={`${r.txList}/block=${height}`}>{height}</Link>
   },
   {
     title: <LocalText id="tlpColumn3" />,

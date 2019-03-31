@@ -127,6 +127,7 @@ export default {
   tlpColumn6: '价值',
   txFilterByBlock: '区块',
   txFilterByBlockSub: num => `共 ${num} 交易`,
+  tlpSubTitleBlock: num => `区块${num}：`,
   txFilterByAccount: '地址',
   txFilterByAccountSub: num => `共 ${num} 交易`,
 

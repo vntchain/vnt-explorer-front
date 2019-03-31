@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Spin } from 'antd'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -27,7 +27,7 @@ export default withLang(
     const handleFlipPage = p => {
       dispatch(push(`${r.contractList}/${p}`))
 
-      dispatch({
+      /* dispatch({
         type: 'dataRelayNew/fetchData',
         payload: {
           path: `${apis.accounts}?offset=${(p - 1) *
@@ -35,8 +35,23 @@ export default withLang(
           ns: 'accounts',
           field: 'accounts'
         }
-      })
+      }) */
     }
+
+    useEffect(
+      () => {
+        dispatch({
+          type: 'dataRelayNew/fetchData',
+          payload: {
+            path: `${apis.accounts}?offset=${(currentIndex - 1) *
+              pageSize}&limit=${pageSize}&isContract=0`,
+            ns: 'accounts',
+            field: 'accounts'
+          }
+        })
+      },
+      [location.pathname]
+    )
 
     const genTableData = data => {
       if (!Array.isArray(data) || data.length === 0) {

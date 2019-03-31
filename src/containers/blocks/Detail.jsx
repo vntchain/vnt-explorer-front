@@ -13,6 +13,7 @@ import withLang from 'i18n/withLang'
 import { calcAge, formatTime } from 'utils/time'
 import textSplit from 'utils/longTextSplitter'
 import { trunInterval } from 'constants/config'
+import r from 'constants/routes'
 
 import styles from 'containers/Common.scss'
 
@@ -100,15 +101,15 @@ function DetailTable(props) {
       fieldName: <LocalText id="bdpField1" />,
       value: `${calcAge(TimeStamp, props.lang)} (${formatTime(TimeStamp)})`
     })
-    // TxCount > 0 ? (
-    //   <Link to={`/txs?block=${Number}`}>{TxCount}</Link>
-    // ) : (
-    //   TxCount
-    // )
     data.push({
       key: 'txCount',
       fieldName: <LocalText id="bdpField2" />,
-      value: TxCount
+      value:
+        TxCount > 0 ? (
+          <Link to={`${r.txList}/block=${Number}`}>{TxCount}</Link>
+        ) : (
+          TxCount
+        )
     })
     data.push({
       key: 'hash',

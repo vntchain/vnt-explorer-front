@@ -10,10 +10,10 @@ export default {
   nav1Sub1: 'Overview',
   nav1Sub2: 'Blocks',
   nav1Sub3: 'Transactions',
-  nav1Sub4: 'Account',
+  nav1Sub4: 'Accounts',
   nav1Sub5: 'Chaincodes',
-  nav1Sub6: 'Token',
-  nav1Sub7: 'Super Node',
+  nav1Sub6: 'Tokens',
+  nav1Sub7: 'Super Nodes',
   nav2: 'Developer',
   nav2Sub1: 'VNT Developer Guides',
   nav2Sub2: 'Chaincode Tools',
@@ -132,6 +132,7 @@ export default {
   tlpColumn5: 'To ',
   tlpColumn6: 'Value',
   txFilterByBlock: 'Block',
+  tlpSubTitleBlock: num => `Block ${num}: `,
   txFilterByBlockSub: num =>
     `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
 
