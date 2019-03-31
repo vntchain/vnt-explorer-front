@@ -147,11 +147,6 @@ const columns = [
     }
   },
   {
-    title: <LocalText id="blank" />,
-    key: 'direction',
-    dataIndex: 'direction'
-  },
-  {
     title: <LocalText id="tlpColumn5" />,
     key: 'tokenTo',
     dataIndex: 'tokenTo',
