@@ -33,16 +33,29 @@ export default {
       try {
         const { data: resp } = yield call(axios, axiosArgs)
 
-        yield put({
-          type: `${ns}/setState`,
-          payload: {
-            error: !resp.ok ? resp.err : null,
-            data: resp.ok ? resp.data : null,
-            isLoading: false,
-            count: resp.extra.count,
-            field
-          }
-        })
+        if (!resp.ok) {
+          // {code: string, message: string }
+          const error = resp.error || resp.err
+          /* eslint-disable */
+          console.log('%c%s\n%cerror: %', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', )
+          console.log(error)
+          /* eslint-enable */
+          yield put({
+            type: `${ns}/setError`,
+            payload: error.code
+          })
+        } else {
+          yield put({
+            type: `${ns}/setState`,
+            payload: {
+              error: null,
+              data: resp.data,
+              isLoading: false,
+              count: resp.extra ? resp.extra.count : '--',
+              field
+            }
+          })
+        }
       } catch (e) {
         /* eslint-disable */
         console.log('%c%s\n%crequest "%s" error', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', path)

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Menu } from 'antd'
 import { Route } from 'react-router-dom'
 
-import Introduction from './devGuides/Introduction'
 import MarkdownConverter from './devGuides/MdConverter'
 
 import { menuItemFactory } from 'components/header/HeaderMenu'
@@ -33,10 +32,10 @@ export default function DevGuideIndex() {
 
         <main className={styles.content}>
           {/* <Route exact path="/developer" component={Introduction} /> */}
-          <Route exact path="/developer"
-            render={() => (
-              <MarkdownConverter filePath="index.md" />
-            )}
+          <Route
+            exact
+            path="/developer"
+            render={() => <MarkdownConverter filePath="index.md" />}
           />
           <Route
             exact

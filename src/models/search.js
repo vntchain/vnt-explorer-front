@@ -13,7 +13,8 @@ message.config({
 
 export default {
   state: {
-    searchResult: null
+    searchResult: null,
+    error: null
   },
   reducers: {
     loadingStatus: (state, { payload }) => {

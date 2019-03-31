@@ -265,5 +265,19 @@ export default {
   tnfTitle: 'Enter your testnet account address',
   tnfPlaceholder1: 'Testnet account address',
   tnfBtn: 'Claim',
-  successInfo: 'Submitted Successfully!'
+  successInfo: 'Submitted Successfully!',
+
+  /*
+  ** error message
+  */
+  system_err: 'System error!',
+  wrong_address: 'Wrong address format!',
+  duplicated_send: 'Ongoing sending, please check again later!',
+  send_over_frequent: 'Too frequent, only once an hour is allowed!',
+  system_nonce_err: 'Obtaining tx nonce failed, please contact the admin!',
+  system_sign_err: 'Signing tx failed, please contact the admin!',
+  system_tx_send_err: 'Sending tx failed, please contact the admin!',
+  wrong_keyword: 'Wrong format of keyword, please check again!',
+  search_err: 'Search error!',
+  not_found: 'Not found!'
 }

@@ -260,5 +260,19 @@ export default {
   tnfTitle: '填写测试网账户地址获得VNT测试币',
   tnfPlaceholder1: '测试网账户地址',
   tnfBtn: '立即提交',
-  successInfo: '已提交'
+  successInfo: '已提交',
+
+  /*
+  ** error message
+  */
+  system_err: '系统错误',
+  wrong_address: '地址格式错误',
+  duplicated_send: '正在发送中，请稍后查看',
+  send_over_frequent: '发送太频繁，一个小时只能发送一次',
+  system_nonce_err: '获取交易 nonce 失败，请联系管理员',
+  system_sign_err: '交易签名失败，请联系管理员',
+  system_tx_send_err: '交易发送失败，请联系管理员',
+  wrong_keyword: '关键字格式错误，请输入合法的关键字',
+  search_err: '搜索错误',
+  not_found: '不存在'
 }

@@ -11,9 +11,10 @@ import apis from 'utils/apis'
 
 import styles from './Faucet.scss'
 
-const mapStateToProps = ({ faucet: { res } }) => {
+const mapStateToProps = ({ faucet: { res, error } }) => {
   return {
-    res
+    res,
+    error
   }
 }
 
@@ -25,7 +26,11 @@ export default connect(mapStateToProps)(
     }
     const handleSubmit = () => {
       props.dispatch({
-        type: 'dataRelay/fetchData',
+        type: 'faucet/setError',
+        payload: null
+      })
+      props.dispatch({
+        type: 'dataRelayNew/fetchData',
         payload: {
           method: 'post',
           path: apis.faucet,
@@ -40,12 +45,19 @@ export default connect(mapStateToProps)(
 
     useEffect(
       () => {
-        if (props.res && props.res.error) {
+        /* if (props.res && props.res.error) {
           message.error(props.res.error)
         }
         if (props.res && !props.res.error) {
           message.info(props.locale[props.language].successInfo)
           setInputV('')
+        } */
+        if (props.error) {
+          message.error(props.locale[props.language][props.error])
+        }
+        if (props.res) {
+          message.info(props.locale[props.language].successInfo)
+          // setInputV('')
         }
         return () => {
           props.dispatch({
@@ -54,7 +66,7 @@ export default connect(mapStateToProps)(
           })
         }
       },
-      [props.res]
+      [props.res, props.error]
     )
 
     return (
