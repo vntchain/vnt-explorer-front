@@ -47,7 +47,7 @@ export default {
   rField1: '查看全部  >',
   rField2: '发送方：',
   rField3: '接收方：',
-  rField4: '数额：',
+  rField4: '价值：',
   /*
   ** Home chart
   */

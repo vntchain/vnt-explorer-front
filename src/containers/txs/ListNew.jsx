@@ -25,8 +25,13 @@ export default withLang(
     const { context, currentIndex, filterParam, language, dispatch } = props
     const finishFetching = context && context.hasOwnProperty('data')
 
+    let filter = ''
+    if (filterParam) {
+      const arr = filterParam.split('&')
+      filter = arr[arr.length - 1] + '/'
+    }
     const handleFlipPage = p => {
-      dispatch(push(`${r.txList}/${p}`))
+      dispatch(push(`${r.txList}/${filter}${p}`))
 
       /* dispatch({
         type: 'dataRelayNew/fetchData',
