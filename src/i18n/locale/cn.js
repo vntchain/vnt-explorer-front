@@ -238,6 +238,7 @@ export default {
   dgNav4Sub1: '如何开发合约',
   dgNav4Sub2: '如何编译合约',
   dgNav4Sub3: '如何部署调用合约',
+  dgNav5: '加入VNT Hubble测试网',
 
   /*
   ** Super Node page

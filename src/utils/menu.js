@@ -127,6 +127,11 @@ export const devGuideMenu = [
     path: '/developer/consensus'
   },
   {
+    title: 'dgNav5',
+    key: 'join',
+    path: '/developer/join'
+  },
+  {
     title: 'dgNav4',
     key: 'dapp',
     path: '/developer/dapp'

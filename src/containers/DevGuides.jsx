@@ -53,6 +53,13 @@ export default function DevGuideIndex() {
           />
           <Route
             exact
+            path="/developer/join"
+            render={() => (
+              <MarkdownConverter filePath="如何加入VNT Hubble测试网.md" />
+            )}
+          />
+          <Route
+            exact
             path="/developer/dapp"
             render={() => <MarkdownConverter filePath="dapp/index.md" />}
           />
