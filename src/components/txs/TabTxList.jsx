@@ -110,12 +110,14 @@ const genTableData = (data, address, language) => {
       }
     }
 
-    if (address == d.from) {
-      d.direction = <span style={{ color: '#ff9603' }}>OUT</span>
-    } else if (address == d.to.address) {
-      d.direction = <span style={{ color: '#4cc159' }}>IN</span>
-    } else {
-      d.direction = ''
+    if (item.To) {
+      if (address == d.from) {
+        d.direction = <span style={{ color: '#ff9603' }}>OUT</span>
+      } else if (address == d.to.address) {
+        d.direction = <span style={{ color: '#4cc159' }}>IN</span>
+      } else {
+        d.direction = ''
+      }
     }
     result.push(d)
   })

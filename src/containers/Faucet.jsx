@@ -26,8 +26,7 @@ export default connect(mapStateToProps)(
     }
     const handleSubmit = () => {
       props.dispatch({
-        type: 'faucet/setError',
-        payload: null
+        type: 'faucet/reset'
       })
       props.dispatch({
         type: 'dataRelayNew/fetchData',
@@ -43,30 +42,24 @@ export default connect(mapStateToProps)(
       })
     }
 
+    useEffect(() => {
+      return () => {
+        props.dispatch({
+          type: 'faucet/reset'
+        })
+      }
+    }, [])
+
     useEffect(
       () => {
-        /* if (props.res && props.res.error) {
-          message.error(props.res.error)
-        }
-        if (props.res && !props.res.error) {
-          message.info(props.locale[props.language].successInfo)
-          setInputV('')
-        } */
         if (props.error) {
           message.error(props.locale[props.language][props.error])
-        }
-        if (props.res) {
+        } else if (props.res && props.res.data) {
           message.info(props.locale[props.language].successInfo)
           // setInputV('')
         }
-        return () => {
-          props.dispatch({
-            type: 'faucet/setRes',
-            payload: null
-          })
-        }
       },
-      [props.res, props.error]
+      [props.error, props.res]
     )
 
     return (

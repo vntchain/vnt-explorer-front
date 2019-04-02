@@ -10,6 +10,12 @@ export default {
         ...state,
         [field]: data
       }
+    },
+    reset: () => {
+      return {
+        res: null,
+        error: null
+      }
     }
   }
 }

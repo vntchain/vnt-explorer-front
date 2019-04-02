@@ -92,7 +92,7 @@ export default {
   */
   blpTitle: '区块',
   blpSubTitle: num => `当前共${num}区块`,
-  blpColumn1: '区块高度',
+  blpColumn1: '区块编号',
   blpColumn2: '块龄',
   blpColumn3: '交易',
   blpColumn4: '出块者',
@@ -102,7 +102,7 @@ export default {
   /*
   ** Block detail page
   */
-  bdpTitle: '高度',
+  bdpTitle: '区块编号',
   bdpField1: '时间戳',
   bdpField2: '交易',
   bdpField3: '哈希值',
@@ -120,7 +120,7 @@ export default {
   tlpTitle: '交易',
   tlpSubTitle: num => `当前共${num}交易`,
   tlpColumn1: '交易哈希值',
-  tlpColumn2: '区块',
+  tlpColumn2: '区块编号',
   tlpColumn3: '块龄',
   tlpColumn4: '发送方 ',
   tlpColumn5: '接收方 ',
@@ -137,7 +137,7 @@ export default {
   tdpTitle: '交易',
   tdpField1: '交易哈希值',
   tdpField2: '状态',
-  tdpField3: '区块高度',
+  tdpField3: '区块编号',
   tdpField4: '时间戳',
   tdpField5: '发送方 ',
   tdpField6: '接收方 ',
@@ -270,7 +270,7 @@ export default {
   system_err: '系统错误',
   wrong_address: '地址格式错误',
   duplicated_send: '正在发送中，请稍后查看',
-  send_over_frequent: '发送太频繁，一个小时只能发送一次',
+  send_over_frequent: '发送太频繁，一天只能发送一次',
   system_nonce_err: '获取交易 nonce 失败，请联系管理员',
   system_sign_err: '交易签名失败，请联系管理员',
   system_tx_send_err: '交易发送失败，请联系管理员',

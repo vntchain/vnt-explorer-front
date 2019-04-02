@@ -43,11 +43,11 @@ export default {
   lField3: 'Block Reward ',
   lField4: 'Produced by: ',
 
-  rTitle: 'Transfers',
+  rTitle: 'Transactions',
   rField1: 'View All >',
   rField2: 'From: ',
   rField3: 'To: ',
-  rField4: 'Amount: ',
+  rField4: 'Value: ',
   /*
   ** Home chart
   */
@@ -98,7 +98,7 @@ export default {
   */
   blpTitle: 'Blocks',
   blpSubTitle: num => `A Total of ${num} Block${num > 1 ? 's' : ''}`,
-  blpColumn1: 'Block Height',
+  blpColumn1: 'Block Number',
   blpColumn2: 'Block Age',
   blpColumn3: 'Transactions',
   blpColumn4: 'Producer',
@@ -108,7 +108,7 @@ export default {
   /*
   ** Block detail page
   */
-  bdpTitle: 'Height',
+  bdpTitle: 'Block Number',
   bdpField1: 'Timestamp',
   bdpField2: 'Transactions',
   bdpField3: 'Hash',
@@ -126,7 +126,7 @@ export default {
   tlpTitle: 'Transactions',
   tlpSubTitle: num => `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
   tlpColumn1: 'TxHash',
-  tlpColumn2: 'Block',
+  tlpColumn2: 'Block Number',
   tlpColumn3: 'Age',
   tlpColumn4: 'From ',
   tlpColumn5: 'To ',
@@ -142,7 +142,7 @@ export default {
   tdpTitle: 'Transactions',
   tdpField1: 'Transaction Hash',
   tdpField2: 'Status',
-  tdpField3: 'Block Height',
+  tdpField3: 'Block Number',
   tdpField4: 'Timestamp',
   tdpField5: 'From ',
   tdpField6: 'To ',
@@ -275,7 +275,7 @@ export default {
   system_err: 'System error!',
   wrong_address: 'Wrong address format!',
   duplicated_send: 'Ongoing sending, please check again later!',
-  send_over_frequent: 'Too frequent, only once an hour is allowed!',
+  send_over_frequent: 'Too frequent, only once per day is allowed!',
   system_nonce_err: 'Obtaining tx nonce failed, please contact the admin!',
   system_sign_err: 'Signing tx failed, please contact the admin!',
   system_tx_send_err: 'Sending tx failed, please contact the admin!',
