@@ -86,7 +86,7 @@ const genTableData = (data, address, language) => {
     var d = {
       key: item.Hash + i,
       tx: item.Hash,
-      height: item.BlockNumber,
+      blockNumber: item.BlockNumber,
       age: calcAge(item.TimeStamp, language),
       tokenFrom: item.TokenFrom,
       tokenTo: item.TokenTo,
@@ -130,6 +130,13 @@ const columns = [
     )
   },
 
+  {
+    title: <LocalText id="tlpColumn2" />,
+    dataIndex: 'blockNumber',
+    key: 'blockNumber',
+    // eslint-disable-next-line react/display-name
+    render: bn => <Link to={`/block/${bn}`}>{bn}</Link>
+  },
   {
     title: <LocalText id="tlpColumn3" />,
     dataIndex: 'age',
