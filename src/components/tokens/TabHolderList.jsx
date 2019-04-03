@@ -88,7 +88,7 @@ const genTableData = (data, p) => {
       key: i,
       token: ++index,
       balance: item.Account.Address,
-      price: item.Balance,
+      price: item.Balance + " " + item.Token.TokenSymbol,
       valueInVNT: item.Percent + '%'
     })
   })
