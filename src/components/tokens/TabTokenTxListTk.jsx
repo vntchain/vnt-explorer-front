@@ -90,7 +90,7 @@ const genTableData = (data, address, language) => {
       age: calcAge(item.TimeStamp, language),
       tokenFrom: item.TokenFrom,
       tokenTo: item.TokenTo,
-      tokenAmount: item.TokenAmount + " " + item.To.TokenSymbol
+      tokenAmount: item.TokenAmount
     }
 
     if (item.To) {
