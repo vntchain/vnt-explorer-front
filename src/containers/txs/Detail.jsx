@@ -176,7 +176,7 @@ function DetailTable(props) {
     data.push({
       key: 'gasPrice',
       fieldName: <LocalText id="tdpField11" />,
-      value: GasPrice
+      value: GasPrice + ' VNT'
     })
     data.push({
       key: 'nonce',
