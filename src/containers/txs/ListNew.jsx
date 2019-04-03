@@ -191,6 +191,7 @@ const columns = [
   {
     title: <LocalText id="tlpColumn6" />,
     dataIndex: 'value',
-    key: 'value'
+    key: 'value',
+    render: value => value + ' VNT'
   }
 ]

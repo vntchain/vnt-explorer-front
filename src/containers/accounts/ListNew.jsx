@@ -65,7 +65,7 @@ export default withLang(
           index: ++index,
           key: item.Address + i,
           address: item.Address,
-          balance: item.Balance,
+          balance: item.Balance + ' VNT',
           percentage: item.Percent + '%',
           txCount: item.TxCount
         })

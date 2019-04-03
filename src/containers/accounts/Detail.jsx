@@ -51,7 +51,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail &&
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('Balance')
-          ? `${props.accountDetail.data.Balance}`
+          ? `${props.accountDetail.data.Balance} VNT`
           : '-/-',
       dataIndex: 'value',
       key: 'value'

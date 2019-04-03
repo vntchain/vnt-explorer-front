@@ -97,12 +97,14 @@ const genTableData = (data, address, language) => {
     if (item.To) {
       d.to = {
         address: item.To.Address,
-        contractName: item.To.ContractName
+        contractName: item.To.ContractName,
+        tokenName: item.To.TokenSymbol
       }
     } else {
       d.to = {
         address: null,
-        contractName: null
+        contractName: null,
+        tokenName: null
       }
     }
 
@@ -185,6 +187,6 @@ const columns = [
     key: 'to',
     dataIndex: 'to',
     // eslint-disable-next-line react/display-name
-    render: to => <Link to={`/token/${to.address}`}>{to.contractName}</Link>
+    render: to => <Link to={`/token/${to.address}`}>{to.tokenName}</Link>
   }
 ]

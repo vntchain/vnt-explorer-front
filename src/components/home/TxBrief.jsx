@@ -116,7 +116,7 @@ export default withLang(function TxBrief(props) {
                     </span>
                     <span>
                       <LocalText id="rField4" />
-                      {item.amount}
+                      {item.amount + ' VNT'}
                     </span>
                     <span>{calcAge(item.timeStamp, props.language)}</span>
                   </div>

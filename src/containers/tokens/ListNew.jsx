@@ -145,6 +145,8 @@ const columns = [
   {
     title: <LocalText id="tklpColumn3" />,
     key: 'address',
-    dataIndex: 'address'
+    dataIndex: 'address',
+    // eslint-disable-next-line react/display-name
+    render: addr => <Link to={`/contract/${addr}`}>{addr}</Link>
   }
 ]

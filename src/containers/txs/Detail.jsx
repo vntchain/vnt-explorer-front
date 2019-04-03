@@ -161,7 +161,7 @@ function DetailTable(props) {
     data.push({
       key: 'value',
       fieldName: <LocalText id="tdpField8" />,
-      value: Value
+      value: Value + ' VNT'
     })
     data.push({
       key: 'gasLimit',

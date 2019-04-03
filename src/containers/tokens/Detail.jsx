@@ -51,7 +51,9 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail &&
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('TokenAmount')
-          ? `${props.accountDetail.data.TokenAmount}`
+          ? `${props.accountDetail.data.TokenAmount} ${
+              props.accountDetail.data.TokenSymbol
+            } `
           : '-/-',
       dataIndex: 'col2',
       key: 'col2'
@@ -165,8 +167,8 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         suffix={
           props.accountDetail &&
           props.accountDetail.data &&
-          props.accountDetail.data.hasOwnProperty('Address')
-            ? ` ${props.accountDetail.data.ContractName}`
+          props.accountDetail.data.hasOwnProperty('TokenSymbol')
+            ? ` ${props.accountDetail.data.TokenSymbol}`
             : ''
         }
         fieldWidth={0.64}
