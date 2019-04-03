@@ -111,7 +111,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
           <DataProviderNew
             options={{
               path:
-                `${apis.txs}?limit=${pageSize}&offset=0&account=` +
+                `${apis.txs}?isToken=1&from=token&limit=${pageSize}&offset=0&account=` +
                 props.match.params.toke,
               ns: 'transactions',
               field: 'filteredTxs'
@@ -121,7 +121,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
                 <TokenTxList
                   context={data}
                   basePath={
-                    `${apis.txs}?limit=${pageSize}&account=` +
+                    `${apis.txs}?isToken=1&from=token&limit=${pageSize}&account=` +
                     props.match.params.toke
                   }
                   address={props.match.params.toke}
