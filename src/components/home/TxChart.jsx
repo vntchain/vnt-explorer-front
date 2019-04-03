@@ -102,7 +102,7 @@ export default connect(mapStateToProps)(function TxChart({
     },
     time: {
       range: [0, 1],
-      tickCount: isMobile ? 4 : 7
+      tickCount: isMobile ? 4 : 14
     },
     type: 'linear'
   }
