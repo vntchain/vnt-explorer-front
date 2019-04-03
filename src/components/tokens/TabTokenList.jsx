@@ -102,7 +102,7 @@ const columns = [
     // eslint-disable-next-line react/display-name
     render: token => (
       <Link to={`/token/${token.Address}`}>
-        {token.ContractName || token.Address.slice(0, 12) + '...'}
+        {token.TokenSymbol || token.Address.slice(0, 12) + '...'}
       </Link>
     )
   },
