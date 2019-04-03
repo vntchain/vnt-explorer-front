@@ -1,20 +1,19 @@
-@import '../assets/base';
+@import "../assets/base";
 
 .devGuides {
   & > * {
-    border-radius: .04rem;
+    border-radius: 0.04rem;
   }
 
   .main {
     display: flex;
-
 
     .nav {
       flex: 0 0 20%;
 
       :global {
         .ant-menu-item {
-          font-size: .14rem;
+          font-size: 0.14rem;
 
           &:first-child {
             padding-top: 4px;
@@ -27,7 +26,7 @@
           &:nth-last-child(3) {
             a {
               margin-left: 0.3rem;
-              font-size: .13rem;
+              font-size: 0.13rem;
             }
           }
         }
@@ -39,7 +38,7 @@
 
     .content {
       flex: 1;
-      max-height: 11rem;
+      // max-height: 11rem;
       overflow: scroll;
     }
   }
