@@ -135,6 +135,7 @@ export default {
   tlpSubTitleBlock: num => `Block ${num}: `,
   txFilterByBlockSub: num =>
     `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
+  tlpColumn01: 'Amount',
 
   /*
   ** Tx detail page

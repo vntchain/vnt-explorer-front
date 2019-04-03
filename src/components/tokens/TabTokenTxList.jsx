@@ -109,9 +109,9 @@ const genTableData = (data, address, language) => {
     }
 
     if (item.To) {
-      if (address == d.from) {
+      if (address == d.tokenFrom) {
         d.direction = <span style={{ color: '#ff9603' }}>OUT</span>
-      } else if (address == d.to.address) {
+      } else if (address == d.tokenTo) {
         d.direction = <span style={{ color: '#4cc159' }}>IN</span>
       } else {
         d.direction = ''
@@ -178,7 +178,7 @@ const columns = [
     }
   },
   {
-    title: <LocalText id="tlpColumn6" />,
+    title: <LocalText id="tlpColumn01" />,
     dataIndex: 'tokenAmount',
     key: 'tokenAmount'
   },

@@ -66,7 +66,7 @@ export default withLang(
           key: item.Address + i,
           address: item.Address,
           cname: item.ContractName,
-          balance: item.Balance,
+          balance: item.Balance + ' VNT',
           txCount: item.TxCount
         })
       })

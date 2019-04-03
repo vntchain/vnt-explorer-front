@@ -130,6 +130,7 @@ export default {
   tlpSubTitleBlock: num => `区块${num}：`,
   txFilterByAccount: '地址',
   txFilterByAccountSub: num => `共 ${num} 交易`,
+  tlpColumn01: '数量',
 
   /*
   ** Tx detail page
