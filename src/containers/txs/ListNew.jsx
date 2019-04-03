@@ -167,7 +167,7 @@ const columns = [
       }
 
       if (isToken || isContract) {
-        var url = isToken?"/token/":"/contract/"
+        var url = isToken ? '/token/' : '/contract/'
         url = url + value
         return (
           <Link to={url}>

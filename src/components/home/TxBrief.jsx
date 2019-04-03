@@ -83,7 +83,7 @@ export default withLang(function TxBrief(props) {
                         }
 
                         if (item.to.isToken || item.to.isContract) {
-                          var url = item.to.isToken?"/token/":"/contract/"
+                          var url = item.to.isToken ? '/token/' : '/contract/'
                           url = url + item.to.value
                           return (
                             <Link to={url}>

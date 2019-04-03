@@ -81,9 +81,9 @@ export default connect(mapStateToProps)(function TxChart({
     const { 数量: min } = chartData
       .concat()
       .reduce((a, b) => ({ 数量: Math.min(a['数量'], b['数量']) }))
-    let prettyMax = Math.ceil(Math.ceil(max) / 5) * 5
     const prettyMin = Math.floor(Math.floor(min) / 5) * 5
-    while ((prettyMax - prettyMin) % (TICK_COUNT_Y - 1)) {
+    let prettyMax = Math.ceil(Math.ceil(max) / 5) * 5
+    while ((prettyMax - prettyMin) % ((TICK_COUNT_Y - 1) * 5)) {
       prettyMax += 1
     }
     const gap = (prettyMax - prettyMin) / (TICK_COUNT_Y - 1)
