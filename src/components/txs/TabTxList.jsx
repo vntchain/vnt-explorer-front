@@ -166,17 +166,13 @@ const columns = [
     dataIndex: 'to',
     // eslint-disable-next-line react/display-name
     render: ({ isContract, isToken, address, contractName }) => {
-      var isContractCreation = false
       if (!address) {
-        isContractCreation = true
-      }
-      if (isContractCreation) {
         return '-'
       }
 
       if (isToken) {
         return (
-          <Link to={`/contract/${address}`}>
+          <Link to={`/token/${address}`}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img src={contractIcon} />
               &nbsp;

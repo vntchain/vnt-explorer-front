@@ -16,6 +16,7 @@ export default withLang(function TxBrief(props) {
       to: {
         isNull: !item.To ? true : false,
         isContract: item.To ? item.To.isContract : false,
+        isToken: item.To ? item.To.isToken : false,
         name: item.To ? item.To.ContractName : '',
         value: item.To ? item.To.Address : ''
       },
@@ -80,18 +81,12 @@ export default withLang(function TxBrief(props) {
                         if (item.to.isNull) {
                           return '-'
                         }
-                        var isContractCreation = false
-                        if (item.to.isToken && !item.to.value) {
-                          isContractCreation = true
-                        }
 
-                        if (isContractCreation) {
-                          return '-'
-                        }
-
-                        if (item.to.isToken) {
+                        if (item.to.isToken || item.to.isContract) {
+                          var url = item.to.isToken?"/token/":"/contract/"
+                          url = url + item.to.value
                           return (
-                            <Link to={`/contract/${item.to.value}`}>
+                            <Link to={url}>
                               <div
                                 style={{
                                   display: 'flex',
@@ -100,7 +95,7 @@ export default withLang(function TxBrief(props) {
                               >
                                 <img src={contractIcon} alt="contract icon" />
                                 &nbsp;
-                                {name ||
+                                {item.to.name ||
                                   ' ' + item.to.value.slice(0, 12) + '...'}
                               </div>
                             </Link>

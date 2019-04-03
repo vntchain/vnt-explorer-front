@@ -114,6 +114,7 @@ const genTableData = (data, lang) => {
       to: {
         isNull: !item.To ? true : false,
         isToken: item.To ? item.To.IsToken : false,
+        isContract: item.To ? item.To.IsContract : false,
         name: item.To ? item.To.ContractName : '',
         value: item.To ? item.To.Address : ''
       },
@@ -160,22 +161,16 @@ const columns = [
     key: 'to',
     dataIndex: 'to',
     // eslint-disable-next-line react/display-name
-    render: ({ isNull, isToken, name, value }) => {
+    render: ({ isNull, isToken, isContract, name, value }) => {
       if (isNull) {
         return '-'
       }
-      var isContractCreation = false
-      if (isToken && !value) {
-        isContractCreation = true
-      }
 
-      if (isContractCreation) {
-        return '-'
-      }
-
-      if (isToken) {
+      if (isToken || isContract) {
+        var url = isToken?"/token/":"/contract/"
+        url = url + value
         return (
-          <Link to={`/contract/${value}`}>
+          <Link to={url}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img src={contractIcon} alt="contract icon" />
               &nbsp;
