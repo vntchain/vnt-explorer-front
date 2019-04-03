@@ -101,7 +101,7 @@ const columns = [
     key: 'token',
     // eslint-disable-next-line react/display-name
     render: token => (
-      <Link to={`/account/${token.Address}`}>
+      <Link to={`/token/${token.Address}`}>
         {token.ContractName || token.Address.slice(0, 12) + '...'}
       </Link>
     )
