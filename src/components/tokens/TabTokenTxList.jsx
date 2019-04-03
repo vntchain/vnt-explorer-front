@@ -151,7 +151,7 @@ const columns = [
       if (from) {
         return <Link to={`/account/${from}`}>{from.slice(0, 12) + '...'}</Link>
       } else {
-        return ''
+        return '-'
       }
     }
   },
@@ -171,7 +171,7 @@ const columns = [
           <Link to={`/account/${tokenTo}`}>{tokenTo.slice(0, 12) + '...'}</Link>
         )
       } else {
-        return ''
+        return '-'
       }
     }
   },

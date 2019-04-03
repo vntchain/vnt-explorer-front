@@ -99,8 +99,7 @@ function DetailTable(props) {
       GasPrice,
       Nonce,
       Input,
-      Value,
-      ContractAddr
+      Value
     } = props.context.data
 
     // console.log(props.context.data)
@@ -143,7 +142,7 @@ function DetailTable(props) {
       key: 'transfer',
       fieldName: <LocalText id="tdpField7" />,
       value:
-        !ContractAddr && IsToken ? (
+        TokenTo !== '' && IsToken === true ? (
           <Fragment>
             <LocalText id="tdpField5" />
             <Link to={`/account/${From}`}>

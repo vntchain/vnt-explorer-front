@@ -86,7 +86,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
           address
         ) */
         if (isContractCreation) {
-          return ''
+          return '-'
         }
 
         if (isToken) {

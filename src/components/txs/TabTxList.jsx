@@ -171,7 +171,7 @@ const columns = [
         isContractCreation = true
       }
       if (isContractCreation) {
-        return ''
+        return '-'
       }
 
       if (isToken) {

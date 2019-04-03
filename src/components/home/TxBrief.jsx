@@ -5,6 +5,7 @@ import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
 import { calcAge } from 'utils/time'
 
+import contractIcon from 'assets/images/合约.png'
 import txIcon from 'assets/images/icon-trading.png'
 import styles from './BlockTx.scss'
 
@@ -13,6 +14,7 @@ export default withLang(function TxBrief(props) {
     return data.map(item => ({
       from: item.From,
       to: {
+        isNull: !item.To ? true : false,
         isContract: item.To ? item.To.isContract : false,
         name: item.To ? item.To.ContractName : '',
         value: item.To ? item.To.Address : ''
@@ -75,17 +77,41 @@ export default withLang(function TxBrief(props) {
                     <span>
                       <LocalText id="rField3" />
                       {(function() {
-                        // console.log('TxBrief: item.to: ', item.to)
-                        if (item.to.value != '') {
+                        if (item.to.isNull) {
+                          return '-'
+                        }
+                        var isContractCreation = false
+                        if (item.to.isToken && !item.to.value) {
+                          isContractCreation = true
+                        }
+
+                        if (isContractCreation) {
+                          return '-'
+                        }
+
+                        if (item.to.isToken) {
                           return (
-                            <Link to={`/account/${item.to.value}`}>
-                              {item.to.name ||
-                                item.to.value.slice(0, 15) + '...'}
+                            <Link to={`/contract/${item.to.value}`}>
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center'
+                                }}
+                              >
+                                <img src={contractIcon} alt="contract icon" />
+                                &nbsp;
+                                {name ||
+                                  ' ' + item.to.value.slice(0, 12) + '...'}
+                              </div>
                             </Link>
                           )
-                        } else {
-                          return ''
                         }
+
+                        return (
+                          <Link to={`/account/${item.to.value}`}>
+                            {item.to.value.slice(0, 12) + '...'}
+                          </Link>
+                        )
                       })()}
                     </span>
                     <span>

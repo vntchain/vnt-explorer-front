@@ -90,7 +90,7 @@ const genTableData = (data, address, language) => {
       age: calcAge(item.TimeStamp, language),
       tokenFrom: item.TokenFrom,
       tokenTo: item.TokenTo,
-      tokenAmount: item.TokenAmount
+      tokenAmount: item.TokenAmount || '-'
     }
 
     if (item.To) {
@@ -144,7 +144,7 @@ const columns = [
       if (from) {
         return <Link to={`/account/${from}`}>{from.slice(0, 12) + '...'}</Link>
       } else {
-        return ''
+        return '-'
       }
     }
   },
@@ -159,7 +159,7 @@ const columns = [
           <Link to={`/account/${tokenTo}`}>{tokenTo.slice(0, 12) + '...'}</Link>
         )
       } else {
-        return ''
+        return '-'
       }
     }
   },

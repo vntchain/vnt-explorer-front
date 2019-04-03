@@ -112,6 +112,7 @@ const genTableData = (data, lang) => {
       age: calcAge(item.TimeStamp, lang),
       from: item.From,
       to: {
+        isNull: !item.To ? true : false,
         isToken: item.To ? item.To.IsToken : false,
         name: item.To ? item.To.ContractName : '',
         value: item.To ? item.To.Address : ''
@@ -159,14 +160,17 @@ const columns = [
     key: 'to',
     dataIndex: 'to',
     // eslint-disable-next-line react/display-name
-    render: ({ isToken, name, value }) => {
+    render: ({ isNull, isToken, name, value }) => {
+      if (isNull) {
+        return '-'
+      }
       var isContractCreation = false
       if (isToken && !value) {
         isContractCreation = true
       }
 
       if (isContractCreation) {
-        return ''
+        return '-'
       }
 
       if (isToken) {
