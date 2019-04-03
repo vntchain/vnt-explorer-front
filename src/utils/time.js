@@ -11,6 +11,8 @@ export const calcAge = (time, lang) => {
     { unit: 'd', threshold: 365, suffix: lang === 'cn' ? '天' : ' day' },
     { unit: 'Y', threshold: 1, suffix: lang === 'cn' ? '年' : ' yr' }
   ]
+
+  // e.g., [90132, 1502, 25, 1, 0]
   const arr = []
   units.forEach(item => {
     arr.push(
@@ -30,7 +32,13 @@ export const calcAge = (time, lang) => {
     return currentValue
   })
 
-  crucialIndex = crucialIndex === -1 ? 4 : crucialIndex
+  // crucialIndex = crucialIndex === -1 ? 4 : crucialIndex
+
+  if (crucialIndex === -1) {
+    return lang === 'en' ? '1s ago' : '1秒前'
+  }
+
+  // 最多同时显示两个单位
   let blockAge = `${arr[crucialIndex]}${units[crucialIndex].suffix}${
     arr[crucialIndex] > 1 && lang === 'en' ? 's ' : lang === 'en' ? ' ' : ''
   }`
