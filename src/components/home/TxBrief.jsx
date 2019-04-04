@@ -79,7 +79,6 @@ export default withLang(function TxBrief(props) {
                     <span>
                       <LocalText id="rField3" />
                       {(function() {
-                        console.log("item is: ", item)
                         if (item.to.isNull) {
                           return '-'
                         }
