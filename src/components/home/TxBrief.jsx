@@ -15,9 +15,10 @@ export default withLang(function TxBrief(props) {
       from: item.From,
       to: {
         isNull: !item.To ? true : false,
-        isContract: item.To ? item.To.isContract : false,
-        isToken: item.To ? item.To.isToken : false,
+        isContract: item.To ? item.To.IsContract : false,
+        isToken: item.To ? item.To.IsToken : false,
         name: item.To ? item.To.ContractName : '',
+        symbol: item.To ? item.To.TokenSymbol : '',
         value: item.To ? item.To.Address : ''
       },
       txHash: item.Hash,
@@ -78,6 +79,7 @@ export default withLang(function TxBrief(props) {
                     <span>
                       <LocalText id="rField3" />
                       {(function() {
+                        console.log("item is: ", item)
                         if (item.to.isNull) {
                           return '-'
                         }
@@ -95,7 +97,7 @@ export default withLang(function TxBrief(props) {
                               >
                                 <img src={contractIcon} alt="contract icon" />
                                 &nbsp;
-                                {item.to.name ||
+                                {item.to.symbol || item.to.name ||
                                   ' ' + item.to.value.slice(0, 12) + '...'}
                               </div>
                             </Link>
