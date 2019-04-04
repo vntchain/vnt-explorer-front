@@ -140,7 +140,7 @@ const columns = [
     dataIndex: 'height',
     key: 'height',
     // eslint-disable-next-line react/display-name
-    render: height => <Link to={`${r.txList}/block=${height}`}>{height}</Link>
+    render: height => <Link to={`${r.blockDetail}/${height}`}>{height}</Link>
   },
   {
     title: <LocalText id="tlpColumn3" />,
