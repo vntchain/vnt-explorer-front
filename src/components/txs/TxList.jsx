@@ -72,7 +72,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
       key: 'to',
       dataIndex: 'to',
       // eslint-disable-next-line react/display-name
-      render: ({ isContract, isToken, address, contractName }) => {
+      render: ({ isContract, isToken, address, name }) => {
         var isContractCreation = false
         if (!address) {
           isContractCreation = true
@@ -82,7 +82,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
           '##### TXlist: ',
           isContractCreation,
           isToken,
-          contractName,
+          name,
           address
         ) */
         if (isContractCreation) {
@@ -93,7 +93,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
           return (
             <Link to={`/contract/${address}`}>
               <Icon type="project" />
-              {contractName || ' ' + address.slice(0, 12) + '...'}
+              {name || ' ' + address.slice(0, 12) + '...'}
             </Link>
           )
         }
@@ -102,7 +102,7 @@ export default connect(mapStateToProps)(function PagedTable(props) {
           return (
             <Link to={`/contract/${address}`}>
               <Icon type="project" />
-              {contractName || ' ' + address.slice(0, 12) + '...'}
+              {name || ' ' + address.slice(0, 12) + '...'}
             </Link>
           )
         }
@@ -140,14 +140,14 @@ export default connect(mapStateToProps)(function PagedTable(props) {
           isContract: item.To.IsContract,
           isToken: item.To.IsToken,
           address: item.To.Address,
-          contractName: item.To.ContractName
+          name: item.To.TokenSymbol || item.To.ContractName
         }
       } else {
         d.to = {
           isContract: null,
           isToken: null,
           address: null,
-          contractName: null
+          name: null
         }
       }
 

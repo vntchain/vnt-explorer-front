@@ -99,14 +99,14 @@ const genTableData = (data, address, language) => {
         isContract: item.To.IsContract,
         isToken: item.To.IsToken,
         address: item.To.Address,
-        contractName: item.To.ContractName
+        name: item.To.TokenSymbol || item.To.ContractName
       }
     } else {
       d.to = {
         isContract: null,
         isToken: null,
         address: null,
-        contractName: null
+        name: null
       }
     }
 
@@ -165,7 +165,7 @@ const columns = [
     key: 'to',
     dataIndex: 'to',
     // eslint-disable-next-line react/display-name
-    render: ({ isContract, isToken, address, contractName }) => {
+    render: ({ isContract, isToken, address, name }) => {
       if (!address) {
         return '-'
       }
@@ -176,7 +176,7 @@ const columns = [
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img src={contractIcon} />
               &nbsp;
-              {contractName || ' ' + address.slice(0, 12) + '...'}
+              {name || ' ' + address.slice(0, 12) + '...'}
             </div>
           </Link>
         )
@@ -188,7 +188,7 @@ const columns = [
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img src={contractIcon} />
               &nbsp;
-              {contractName || ' ' + address.slice(0, 12) + '...'}
+              {name || ' ' + address.slice(0, 12) + '...'}
             </div>
           </Link>
         )

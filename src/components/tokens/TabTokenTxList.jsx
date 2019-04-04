@@ -97,13 +97,11 @@ const genTableData = (data, address, language) => {
     if (item.To) {
       d.to = {
         address: item.To.Address,
-        contractName: item.To.ContractName,
         tokenName: item.To.TokenSymbol
       }
     } else {
       d.to = {
         address: null,
-        contractName: null,
         tokenName: null
       }
     }
