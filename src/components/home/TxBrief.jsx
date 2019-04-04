@@ -76,7 +76,12 @@ export default withLang(function TxBrief(props) {
                         {item.from.slice(0, 15) + '...'}
                       </Link>
                     </span>
-                    <span>
+                    <span
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                    >
                       <LocalText id="rField3" />
                       {(function() {
                         if (item.to.isNull) {
@@ -90,13 +95,14 @@ export default withLang(function TxBrief(props) {
                             <Link to={url}>
                               <div
                                 style={{
-                                  display: 'flex',
-                                  alignItems: 'center'
+                                  display: 'inline-flex',
+                                  alignItems: 'baseline'
                                 }}
                               >
                                 <img src={contractIcon} alt="contract icon" />
                                 &nbsp;
-                                {item.to.symbol || item.to.name ||
+                                {item.to.symbol ||
+                                  item.to.name ||
                                   ' ' + item.to.value.slice(0, 12) + '...'}
                               </div>
                             </Link>

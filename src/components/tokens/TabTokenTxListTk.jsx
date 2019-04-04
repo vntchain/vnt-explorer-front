@@ -95,11 +95,11 @@ const genTableData = (data, address, language) => {
 
     if (item.To) {
       d.to = {
-        address: item.To.Address,
+        address: item.To.Address
       }
     } else {
       d.to = {
-        address: null,
+        address: null
       }
     }
 
