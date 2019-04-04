@@ -172,7 +172,11 @@ const columns = [
         return (
           <Link to={url}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src={contractIcon} alt="contract icon" />
+              <img
+                className="contractIcon"
+                src={contractIcon}
+                alt="contract icon"
+              />
               &nbsp;
               {name || ' ' + value.slice(0, 12) + '...'}
             </div>

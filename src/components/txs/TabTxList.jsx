@@ -174,7 +174,7 @@ const columns = [
         return (
           <Link to={`/token/${address}`}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src={contractIcon} />
+              <img className="contractIcon" src={contractIcon} />
               &nbsp;
               {name || ' ' + address.slice(0, 12) + '...'}
             </div>
@@ -186,7 +186,7 @@ const columns = [
         return (
           <Link to={`/contract/${address}`}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src={contractIcon} />
+              <img className="contractIcon" src={contractIcon} />
               &nbsp;
               {name || ' ' + address.slice(0, 12) + '...'}
             </div>

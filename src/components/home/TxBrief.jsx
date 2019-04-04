@@ -98,7 +98,11 @@ export default withLang(function TxBrief(props) {
                                   alignItems: 'baseline'
                                 }}
                               >
-                                <img src={contractIcon} alt="contract icon" />
+                                <img
+                                  className="contractIcon"
+                                  src={contractIcon}
+                                  alt="contract icon"
+                                />
                                 &nbsp;
                                 {item.to.name ||
                                   ' ' + item.to.value.slice(0, 12) + '...'}

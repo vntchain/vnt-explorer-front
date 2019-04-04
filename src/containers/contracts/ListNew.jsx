@@ -120,7 +120,7 @@ const columns = [
     render: addr => (
       <Link to={`/contract/${addr}`}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={contractIcon} /> &nbsp;
+          <img className="contractIcon" src={contractIcon} /> &nbsp;
           {addr}
         </div>
       </Link>
