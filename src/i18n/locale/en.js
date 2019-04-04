@@ -159,6 +159,7 @@ export default {
   tdpField16: 'Token Contract ',
   txSuccess: 'success',
   txFailed: 'failed',
+  tdpField17: 'Index',
 
   /*
   ** Account list page

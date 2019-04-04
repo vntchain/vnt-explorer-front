@@ -154,6 +154,7 @@ export default {
   tdpField16: '代币合约 ',
   txSuccess: '成功',
   txFailed: '失败',
+  tdpField17: '交易序号',
 
   /*
   ** Account list page

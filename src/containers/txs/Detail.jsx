@@ -99,7 +99,8 @@ function DetailTable(props) {
       GasPrice,
       Nonce,
       Input,
-      Value
+      Value,
+      Index
     } = props.context.data
 
     // console.log(props.context.data)
@@ -212,20 +213,25 @@ function DetailTable(props) {
       key: 'nonce',
       fieldName: <LocalText id="tdpField12" />,
       value: Nonce
-    })
-    data.push({
-      key: 'input',
-      fieldName: <LocalText id="tdpField13" />,
-      value: (
-        <div>
-          {textSplit(Input, trunInterval).map(item => (
-            <p style={{ marginBottom: '0', lineHeight: '1' }} key={item}>
-              {item}
-            </p>
-          ))}
-        </div>
-      )
-    })
+    }),
+      data.push({
+        key: 'index',
+        fieldName: <LocalText id="tdpField17" />,
+        value: Index
+      }),
+      data.push({
+        key: 'input',
+        fieldName: <LocalText id="tdpField13" />,
+        value: (
+          <div>
+            {textSplit(Input, trunInterval).map(item => (
+              <p style={{ marginBottom: '0', lineHeight: '1' }} key={item}>
+                {item}
+              </p>
+            ))}
+          </div>
+        )
+      })
   }
 
   return (
