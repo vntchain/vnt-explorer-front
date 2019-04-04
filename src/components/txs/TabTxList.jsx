@@ -99,7 +99,7 @@ const genTableData = (data, address, language) => {
         isContract: item.To.IsContract,
         isToken: item.To.IsToken,
         address: item.To.Address,
-        name: item.To.TokenSymbol || item.To.ContractName
+        name: item.To.ContractName
       }
     } else {
       d.to = {
