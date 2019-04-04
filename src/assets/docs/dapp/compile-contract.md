@@ -1,102 +1,79 @@
 # Bottle
 
-`Bottle`是开发``VNT``智能合约的命令行工具。
-`Bottle`支持将c语言智能合约编译成`wasm`，提取`abi`文件，并将`wasm`和`abi压缩及编码成`VNT`网络合约部署所需要的智能合约文件。
+``Bottle``是开发``VNT``智能合约的命令行工具。
+``Bottle``支持将c语言智能合约编译成``wasm``，提取``abi``文件，并将``wasm``和``abi``压缩及编码成``VNT``网络合约部署所需要的智能合约文件。
 
-## 编译与安装
+## 编译得到``bottle``命令
 
-### 一、安装依赖clang 5.0 llvm 5.0
+### Mac OS编译
 
-#### 1. `ubuntu`
-
-```bash
-wget https://raw.githubusercontent.com/go-clang/gen/master/scripts/switch-clang-version.sh
-
-/bin/bash ./switch-clang-version.sh 5.0
-
-//使用绝对路径进行软链接
-sudo ln -s /usr/lib/llvm-5.0/lib/libclang*so /usr/lib/
-
-```
-
-#### 2. `mac`
+将``bottle``代码clone到选择的目录
 
 ```bash
-brew install llvm@5
-
-sudo ln -s /usr/local/opt/llvm@5/lib/libclang*dylib /usr/local/lib
-
+git clone https://github.com/vntchain/bottle
 ```
 
-#### 3. `centos`
-
-##### 添加yum源
-
-```ini
-[alonid-llvm-5.0.0]
-name=Copr repo for llvm-5.0.0 owned by alonid
-baseurl=https://copr-be.cloud.fedoraproject.org/results/alonid/llvm-5.0.0/epel-7-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/alonid/llvm-5.0.0/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-```
-
-##### 更新源
+编译``bottle``需要[go](https://golang.org/)编译器
 
 ```bash
-yum makecache
+brew install go
 ```
 
-##### 安装llvm
+然后使用以下命令编译得到``bottle``
 
 ```bash
-yum install llvm
-```
-
-##### 建立软链接
-
-```bash
-sudo ln -s /opt/llvm-5.0.0/lib64/libclang*so /usr/local/lib
-```
-
-------
-
-### 二、安装依赖wasmception
-
-#### `mac`
-
-[mac版wasmception下载](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-darwin-bin.tar.gz)
-
-#### `linux`
-
-[linux版wasmception下载](https://github.com/ooozws/clang-heroku-slug/blob/master/precomp/wasmception-linux-bin.tar.gz)
-
-下载wasmception并解压wasmception,设置wasmception的环境变量
-
-```bash
-echo export VNT_WASMCEPTION="/[PATH]/wasmception-[XXX]-bin" >> ~/.bash_profile
-source ~/.bash_profile
-```
-
-------
-
-### 三、编译得到bottle命令
-
-```bash
-git clone git@github.com:vntchain/bottle.git
 cd bottle
-make all
+make bottle
 ```
 
-------
+最后使用以下命令运行bottle
 
-## bottle使用
+```bash
+./build/bin/bottle
+```
 
-```shell
+### Ubuntu 14.04及16.06编译
+
+将``bottle``代码clone到选择的目录
+
+```bash
+git clone https://github.com/vntchain/bottle
+```
+
+编译``bottle``需要[go](https://golang.org/)编译器，``go``的安装请参考``go``的官方文档
+
+
+然后使用以下命令编译得到``bottle``
+
+```bash
+cd bottle
+make bottle
+```
+
+最后使用以下命令运行bottle
+
+```bash
+./build/bin/bottle
+```
+
+
+## 使用
+
+### 编译智能合约代码
+
+```bash
+bottle compile -code <your contract path> -output <the path of your choosing to save the compiled contract file>
+```
+通过以上命令可以获得后缀名为``compress``的编译文件和后缀名为``abi``的abi文件，使用compress文件可以部署智能合约到``VNT``网络，通过abi文件可以访问``VNT``网络中的智能合约
+
+### 智能合约代码纠错及提示
+
+```bash
+bottle hint -code <your contract path>
+```
+
+### Bottle命令
+```bash
 NAME:
    bottle - the bottle command line interface
 
@@ -104,42 +81,57 @@ NAME:
 
 USAGE:
    bottle [global options] command [command options] [arguments...]
-
+   
 VERSION:
    0.6.0-beta
-
+   
 COMMANDS:
    compile     Compile contract code to wasm and compress
    compress    Compress wasm and abi
    decompress  Deompress file into wasm and abi
    hint        Contract hint
    help, h     Shows a list of commands or help for one command
-
+   
 COMPILE OPTIONS:
-  --code value  Specific a contract code path, - for STDIN
+  --code value  Specific a contract code path
   --include     Specific the head file directory need by contract
   --output      Specific a output directory path
-
+  
 COMPRESS OPTIONS:
   --wasm value  Specific a wasm path
   --abi value   Specific a abi path need by contract
   --output      Specific a output directory path
-
+  
 DECOMPRESS OPTIONS:
   --file value  Specific a compress file path to decompress
   --output      Specific a output directory path
-
+  
 HINT OPTIONS:
-  --code value  Specific a contract code path, - for STDIN
-
+  --code value  Specific a contract code path
+  
 GLOBAL OPTIONS:
   --help, -h  show help
-
+  
 
 COPYRIGHT:
    Copyright 2018-2019 The bottle Authors
 ```
 
-## 许可证
 
-所有`bottle`仓库生成的二进制程序都采用GNU General Public License v3.0许可证, 具体请查看[COPYING](https://github.com/vntchain/bottle/blob/master/LICENSE)。
+# VNT 智能合约插件 for vscode 
+
+VNT 智能合约插件通过使用[Bottle](http://github.com/vntchain/bottle)来对智能合约进行语法纠错及提示
+
+## 使用插件
+
+插件依赖[Bottle](http://github.com/vntchain/bottle)命令，``bottle``的安装请参考该[文档](https://github.com/vntchain/bottle/blob/master/README.md)
+
+安装完成bottle后，将bottle所在文件夹目录添加到环境变量的``PATH``中，配置完成后运行以下命令来确认配置成功
+
+```bash
+bottle help
+```
+
+## 下载及安装
+
+在``vscode``插件市场搜索``vnt-contract-vscode``进行下载和安装
