@@ -115,7 +115,7 @@ const genTableData = (data, lang) => {
         isNull: !item.To ? true : false,
         isToken: item.To ? item.To.IsToken : false,
         isContract: item.To ? item.To.IsContract : false,
-        name: item.To ? item.To.TokenSymbol || item.To.ContractName : '',
+        name: item.To ? item.To.ContractName : '',
         value: item.To ? item.To.Address : ''
       },
       value: item.Value

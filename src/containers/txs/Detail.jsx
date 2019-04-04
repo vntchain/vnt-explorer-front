@@ -136,7 +136,36 @@ function DetailTable(props) {
     data.push({
       key: 'to',
       fieldName: <LocalText id="tdpField6" />,
-      value: To ? <Link to={`/account/${To.Address}`}>{To.Address}</Link> : '-'
+      value: (function() {
+        if (!To) {
+          return '-'
+        }
+
+        if (To.IsToken) {
+          return (
+            <Fragment>
+              <LocalText id="tdpField16" />
+              <Link to={`/token/${To.Address}`}>
+                <Icon type="project" /> {To.Address}
+              </Link>{' '}
+              ({To.ContractName})
+            </Fragment>
+          )
+        }
+
+        if (To.IsContract) {
+          return (
+            <Fragment>
+              <LocalText id="tdpField15" />
+              <Link to={`/contract/${To.Address}`}>
+                <Icon type="project" /> {To.Address}
+              </Link>
+            </Fragment>
+          )
+        }
+
+        return <Link to={`/account/${To.Address}`}>{To.Address}</Link>
+      })()
     })
     data.push({
       key: 'transfer',
@@ -150,9 +179,10 @@ function DetailTable(props) {
             </Link>{' '}
             <LocalText id="tdpField6" />{' '}
             <Link to={`/account/${TokenTo}`}>
-              <Icon type="project" /> {TokenTo.slice(0, 12) + '...'}
+              {TokenTo.slice(0, 12) + '...'}
             </Link>
-            <LocalText id="tdpField14" /> {TokenAmount}
+            <LocalText id="tdpField14" /> {TokenAmount}{' '}
+            <Link to={`/token/${To.Address}`}>{To.TokenSymbol}</Link>
           </Fragment>
         ) : (
           '-'

@@ -18,7 +18,6 @@ export default withLang(function TxBrief(props) {
         isContract: item.To ? item.To.IsContract : false,
         isToken: item.To ? item.To.IsToken : false,
         name: item.To ? item.To.ContractName : '',
-        symbol: item.To ? item.To.TokenSymbol : '',
         value: item.To ? item.To.Address : ''
       },
       txHash: item.Hash,
@@ -101,8 +100,7 @@ export default withLang(function TxBrief(props) {
                               >
                                 <img src={contractIcon} alt="contract icon" />
                                 &nbsp;
-                                {item.to.symbol ||
-                                  item.to.name ||
+                                {item.to.name ||
                                   ' ' + item.to.value.slice(0, 12) + '...'}
                               </div>
                             </Link>
