@@ -150,6 +150,8 @@ export default {
   tdpField12: 'Nonce',
   tdpField13: '数据输入',
   tdpField14: ' 代币数量',
+  tdpField15: '合约 ',
+  tdpField16: '代币合约 ',
   txSuccess: '成功',
   txFailed: '失败',
 

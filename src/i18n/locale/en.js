@@ -155,6 +155,8 @@ export default {
   tdpField12: 'Nonce',
   tdpField13: 'Input Data',
   tdpField14: ' Token Amount',
+  tdpField15: 'Contract ',
+  tdpField16: 'Token Contract ',
   txSuccess: 'success',
   txFailed: 'failed',
 
