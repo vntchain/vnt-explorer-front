@@ -1,0 +1,46 @@
+@import '../assets/base';
+
+.title {
+  color: $color-dark-1;
+  font-size: .24rem;
+  line-height: 1;
+  margin-bottom: .2rem;
+
+  display: flex;
+  align-items: center;
+
+  .data {
+    display: inline-block;
+    margin-left: .1rem;
+    font-size: .2rem;
+    color: $color-light-6;
+  }
+
+  .input {
+    position: absolute;
+    right: -1000rem;
+    color: transparent;
+    /* color: $color-dark-1;
+    font-size: .24rem;
+    line-height: 1;
+    border: none;
+    background-color: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: .2rem;
+
+    &:focus {
+      outline: none;
+    }
+    &::selection {
+      background-color: transparent;
+      color: $color-dark-1;
+    } */
+  }
+
+  .copy {
+    cursor: pointer;
+    margin-left: .1rem;
+  }
+}
+

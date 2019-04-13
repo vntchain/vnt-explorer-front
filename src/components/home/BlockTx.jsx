@@ -1,9 +1,10 @@
 import React from 'react'
 
 import DataProvider from 'containers/RPDataProviderNew'
-import BlockBrief from './BlockBrief'
-import TxBrief from './TxBrief'
-import ErrorMessenger from 'components/ErrorMessenger'
+import BriefBox from 'components/home/BriefBox'
+import BriefBlockBox from 'components/home/BriefBlockBox'
+import BriefTxBox from 'components/home/BriefTxBox'
+
 import apis from 'utils/apis'
 import { pollingInterval } from 'constants/config'
 
@@ -19,12 +20,7 @@ export default function BlockTx() {
           field: 'blocks',
           polling: pollingInterval
         }}
-        render={data => (
-          <BlockBrief
-            context={data}
-            errComp={<ErrorMessenger context={data} />}
-          />
-        )}
+        render={data => <BriefBox context={data} comp={BriefBlockBox} />}
       />
 
       <DataProvider
@@ -34,9 +30,7 @@ export default function BlockTx() {
           field: 'txs',
           polling: pollingInterval
         }}
-        render={data => (
-          <TxBrief context={data} errComp={<ErrorMessenger context={data} />} />
-        )}
+        render={data => <BriefBox context={data} comp={BriefTxBox} />}
       />
     </div>
   )

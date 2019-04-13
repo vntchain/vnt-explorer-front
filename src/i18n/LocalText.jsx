@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { LangContext } from './LangContext'
 import cn from './locale/cn'
@@ -15,6 +16,10 @@ export default function LocalText(props) {
       {({ lang }) => locale[lang][props.id]}
     </LangContext.Consumer>
   )
+}
+
+LocalText.propTypes = {
+  id: PropTypes.string.isRequired
 }
 
 /* export default class FormattedText extends Component {

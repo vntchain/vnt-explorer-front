@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Title from 'components/Title'
+import PrimaryTitle from 'components/PrimaryTitle'
 import LocalText from 'i18n/LocalText'
-import NodeList from 'components/superNodes/ListNew'
+import NodeList from 'components/superNodes/NodeList'
 import DataProvider from 'containers/RPDataProviderNew'
 import { pageSize } from 'constants/config'
 import Tabs from 'components/Tabs'
@@ -49,7 +49,7 @@ export default connect(mapStateToProps)(function Nodes(props) {
 
   return (
     <div>
-      <Title titleID="snTitle" />
+      <PrimaryTitle id="snTitle" />
 
       <Tabs key={Date.now()} tabs={tabs} dispatch={props.dispatch} />
     </div>

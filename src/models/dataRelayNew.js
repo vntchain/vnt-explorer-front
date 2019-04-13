@@ -30,28 +30,46 @@ export default {
           isLoading: true
         }
       })
+
       try {
         const { data: resp } = yield call(axios, axiosArgs)
 
+        /*
+        ** resp: {
+        **   ok,
+        **   data,
+        **   err,
+        **   extra, // null or {count: number}
+        ** }
+        */
+        /* eslint-disable */
+        // console.log('%c%s\n%cresp: %o', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', resp)
+        /* eslint-enable */
+
+        let error
+        let data = resp.data
         if (!resp.ok) {
-          // {code: string, message: string }
-          const error = resp.error || resp.err
-          yield put({
-            type: `${ns}/setError`,
-            payload: error.code
-          })
-        } else {
-          yield put({
-            type: `${ns}/setState`,
-            payload: {
-              error: null,
-              data: resp.data,
-              isLoading: false,
-              count: resp.extra ? resp.extra.count : '--',
-              field
-            }
-          })
+          data = null
+          error = resp.err || resp.error
+          if (typeof error === 'object' && error !== null) {
+            error = error.code
+          } else if (typeof error === 'string') {
+            // do nothing
+          } else {
+            error = JSON.stringify(error)
+          }
         }
+
+        yield put({
+          type: `${ns}/setState`,
+          payload: {
+            data,
+            error, // string
+            isLoading: false,
+            count: resp.extra ? resp.extra.count : '--',
+            field
+          }
+        })
       } catch (e) {
         /* eslint-disable */
         console.log('%c%s\n%crequest "%s" error', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', path)

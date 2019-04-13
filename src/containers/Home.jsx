@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import DataProvider from 'containers/RPDataProvider'
+import DataProvider from 'containers/RPDataProviderNew'
 import BriefInfo from 'components/home/BriefInfo'
 import BlockTx from 'components/home/BlockTx'
 import TxChart from 'components/home/TxChart'

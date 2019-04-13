@@ -52,14 +52,21 @@ export default connect(mapStateToProps)(
 
     useEffect(
       () => {
-        if (props.error) {
-          message.error(props.locale[props.language][props.error])
-        } else if (props.res && props.res.data) {
-          message.info(props.locale[props.language].successInfo)
-          // setInputV('')
+        if (props.res) {
+          // eslint-disable-next-line
+          const {data, error, isLoading } = props.res
+          if (error) {
+            /* eslint-disable */
+            // console.log('%c%s\n%cerror: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', error)
+            /* eslint-enable */
+            message.error(props.locale[props.language][error])
+          } else if (data) {
+            message.info(props.locale[props.language].successInfo)
+            // setInputV('')
+          }
         }
       },
-      [props.error, props.res]
+      [props.res]
     )
 
     return (
