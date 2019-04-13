@@ -31,7 +31,7 @@ export default withLang(function TxBrief(props) {
         <div className={styles.content} key={JSON.stringify(item) + i}>
           <div className={styles.item}>
             <div className={`${styles['item__row']} ${styles['item__row--1']}`}>
-              <img src={txIcon} alt="" />
+              <img className={styles.icon} src={txIcon} alt="" />
               <span>{item.txHash.slice(0, 24) + '...'}</span>
             </div>
 

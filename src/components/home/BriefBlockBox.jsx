@@ -25,7 +25,7 @@ export default withLang(function BlockBrief(props) {
         <div className={styles.content} key={JSON.stringify(item) + i}>
           <div className={styles.item}>
             <div className={`${styles['item__row']} ${styles['item__row--1']}`}>
-              <img src={blockIcon} alt="" />
+              <img className={styles.icon} src={blockIcon} alt="" />
               <span>{'#' + item.blockHeight}</span>
             </div>
 

@@ -11,7 +11,7 @@ export default {
   nav1Sub2: 'Blocks',
   nav1Sub3: 'Transactions',
   nav1Sub4: 'Accounts',
-  nav1Sub5: 'Chaincodes',
+  nav1Sub5: 'Contracts',
   nav1Sub6: 'Tokens',
   nav1Sub7: 'Super Nodes',
   nav2: 'Developer',

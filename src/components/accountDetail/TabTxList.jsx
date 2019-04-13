@@ -19,7 +19,7 @@ import styles from 'containers/Common.scss'
 export default withLang(function TabTxList(props) {
   const { context, address, language, flipPage, currentIndex } = props
   const finishFetching = context && context.hasOwnProperty('data')
-
+  const comparedAddr = location.pathname.split('/').filter(item => item)[1]
   return (
     <div className={styles.container}>
       <Spin spinning={context && context.isLoading}>
@@ -34,7 +34,12 @@ export default withLang(function TabTxList(props) {
 
               <TxListTable
                 columns={columns}
-                data={genTableData(context.data, address, language)}
+                data={genTableData(
+                  context.data,
+                  address,
+                  language,
+                  comparedAddr
+                )}
                 count={context.count}
                 currentIndex={currentIndex}
                 flipPage={flipPage}
@@ -49,7 +54,7 @@ export default withLang(function TabTxList(props) {
   )
 })
 
-const genTableData = (data, address, language) => {
+const genTableData = (data, address, language, comparedAddr) => {
   if (!Array.isArray(data) || data.length === 0) {
     return []
   }
@@ -61,7 +66,10 @@ const genTableData = (data, address, language) => {
       tx: item.Hash,
       height: item.BlockNumber,
       age: calcAge(item.TimeStamp, language),
-      from: item.From,
+      from: {
+        addr: item.From,
+        redirect: item.From !== comparedAddr
+      },
       value: item.Value
     }
 
@@ -70,14 +78,16 @@ const genTableData = (data, address, language) => {
         isContract: item.To.IsContract,
         isToken: item.To.IsToken,
         address: item.To.Address,
-        name: item.To.ContractName
+        name: item.To.ContractName,
+        redirect: item.To.Address !== comparedAddr
       }
     } else {
       d.to = {
         isContract: null,
         isToken: null,
         address: null,
-        name: null
+        name: null,
+        redirect: false
       }
     }
 
@@ -90,6 +100,7 @@ const genTableData = (data, address, language) => {
         d.direction = ''
       }
     }
+
     result.push(d)
   })
   return result
@@ -122,9 +133,12 @@ const columns = [
     key: 'from',
     dataIndex: 'from',
     // eslint-disable-next-line react/display-name
-    render: from => (
-      <Link to={`/account/${from}`}>{from.slice(0, 12) + '...'}</Link>
-    )
+    render: ({ addr, redirect }) =>
+      redirect ? (
+        <Link to={`/account/${addr}`}>{addr.slice(0, 12) + '...'}</Link>
+      ) : (
+        addr.slice(0, 12) + '...'
+      )
   },
   {
     title: <LocalText id="blank" />,
@@ -136,7 +150,7 @@ const columns = [
     key: 'to',
     dataIndex: 'to',
     // eslint-disable-next-line react/display-name
-    render: ({ isContract, isToken, address, name }) => {
+    render: ({ isContract, isToken, address, name, redirect }) => {
       if (!address) {
         return '-'
       }
@@ -165,8 +179,10 @@ const columns = [
         )
       }
 
-      return (
+      return redirect ? (
         <Link to={`/account/${address}`}>{address.slice(0, 12) + '...'}</Link>
+      ) : (
+        address.slice(0, 12) + '...'
       )
     }
   },

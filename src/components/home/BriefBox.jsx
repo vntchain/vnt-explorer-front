@@ -19,7 +19,7 @@ function BriefBox(props) {
       <div className={styles.header}>
         <div className={styles.header__title}>
           <span>
-            <LocalText id="lTitle" />
+            <LocalText id={props.title} />
           </span>
         </div>
 

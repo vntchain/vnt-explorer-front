@@ -20,7 +20,9 @@ export default function BlockTx() {
           field: 'blocks',
           polling: pollingInterval
         }}
-        render={data => <BriefBox context={data} comp={BriefBlockBox} />}
+        render={data => (
+          <BriefBox context={data} comp={BriefBlockBox} title="lTitle" />
+        )}
       />
 
       <DataProvider
@@ -30,7 +32,9 @@ export default function BlockTx() {
           field: 'txs',
           polling: pollingInterval
         }}
-        render={data => <BriefBox context={data} comp={BriefTxBox} />}
+        render={data => (
+          <BriefBox context={data} comp={BriefTxBox} title="rTitle" />
+        )}
       />
     </div>
   )
