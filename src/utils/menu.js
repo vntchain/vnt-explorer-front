@@ -62,8 +62,8 @@ export default [
         path: r.faucet
       }
     ]
-  }
-  /*   ,{
+  },
+  {
     title: 'nav3',
     condition: false, // before auth
     key: 'walletB',
@@ -106,7 +106,7 @@ export default [
         key: 'logout'
       }
     ]
-  } */
+  }
 ]
 
 // menu for developer guide page

@@ -21,10 +21,10 @@ import NodeList from 'containers/NodeList'
 import DevGuides from 'containers/DevGuides'
 import Faucet from 'containers/Faucet'
 
-/* import NewWallet from './NewWallet'
+import NewWallet from './NewWallet'
 import OpenWallet from './OpenWallet'
 import Receive from './Receive'
-import Send from './Send' */
+import Send from './Send'
 
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProviderNew'
@@ -264,10 +264,10 @@ export default withRouter(
             <Route path={r.devGuides} component={DevGuides} />
             <Route path={r.faucet} component={Faucet} />
 
-            {/* <Route exact path="/view-wallet" component={OpenWallet} />
-          <Route exact path="/new-wallet" component={NewWallet} />
-          <Route exact path="/receive" component={Receive} />
-          <Route exact path="/send" component={Send} /> */}
+            <Route exact path="/view-wallet" component={OpenWallet} />
+            <Route exact path="/new-wallet" component={NewWallet} />
+            <Route exact path="/receive" component={Receive} />
+            <Route exact path="/send" component={Send} />
           </div>
         </div>
       </div>
