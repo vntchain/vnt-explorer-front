@@ -4,7 +4,7 @@ import PrimaryTitle from 'components/PrimaryTitle'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
-import DataProvider from 'containers/RPDataProvider'
+import DataProvider from 'containers/RPDataProviderNew'
 import BlockDetailTable from 'components/BaseTable'
 import apis from 'utils/apis'
 

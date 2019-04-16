@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import PrimaryTitle from 'components/PrimaryTitle'
 import LocalText from 'i18n/LocalText'
-import DataProvider from 'containers/RPDataProvider'
+import DataProvider from 'containers/RPDataProviderNew'
 import apis from 'utils/apis'
 import TxDetailTable from 'components/BaseTable'
 
