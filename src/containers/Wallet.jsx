@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'antd'
 
-import Title from 'components/Title'
+// import Title from 'components/Title'
 import index from 'utils/locale'
 
-import styles from './Account.scss'
+import styles from 'containers/Wallet.scss'
 
 const docs = {
   title: ['钱包账户', 'Account'],
@@ -23,7 +23,7 @@ const mapStateToProps = ({ global: { language } }) => {
 export default connect(mapStateToProps)(function Account(props) {
   return (
     <div className={styles.main}>
-      <Title title={props.language === 'cn' ? '钱包账户' : 'Account'} />
+      {/* <Title title={props.language === 'cn' ? '钱包账户' : 'Account'} /> */}
 
       <table className={styles.overview}>
         <tbody>

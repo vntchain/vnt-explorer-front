@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Steps } from 'antd'
 
 import Banner from 'components/Banner'
+import Margin from 'components/Margin'
 import InputPassword from 'components/newWallet/InputPassword'
 import SaveKeystore from 'components/newWallet/SaveKeystore'
 import SavePrivateKey from 'components/newWallet/SavePK'
@@ -20,6 +21,8 @@ export default function NewWallet() {
   return (
     <div className={styles.newWallet}>
       <Banner id="CWBanner" />
+      <Margin />
+
       <div className={styles.main}>
         <div className={styles.steps}>
           <Steps current={currentStep}>

@@ -71,12 +71,12 @@ export default [
       {
         title: 'nav3Sub1',
         key: 'createWallet',
-        path: '/new-wallet'
+        path: r['create-wallet']
       },
       {
         title: 'nav3Sub2',
-        key: 'viewWallet',
-        path: '/view-wallet'
+        key: 'openWallet',
+        path: r['open-wallet']
       }
     ]
   },
@@ -87,18 +87,18 @@ export default [
     children: [
       {
         title: 'nav3AuthSub1',
-        key: 'account',
-        path: '/account'
+        key: 'wallet-account',
+        path: r['wallet-account']
       },
       {
         title: 'nav3AuthSub2',
         key: 'send',
-        path: '/send'
+        path: r['send']
       },
       {
         title: 'nav3AuthSub3',
         key: 'receive',
-        path: '/receive'
+        path: r['receive']
       },
       {
         title: 'nav3AuthSub4',

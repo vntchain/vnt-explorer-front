@@ -280,5 +280,20 @@ export default {
   system_tx_send_err: '交易发送失败，请联系管理员',
   wrong_keyword: '关键字格式错误，请输入合法的关键字',
   search_err: '搜索错误',
-  not_found: '不存在'
+  not_found: '不存在',
+
+  /*
+  ** Open wallet
+  */
+  owBanner: '打开你的钱包',
+  owTitle: '请选择打开钱包的方式：',
+  owMethod1: 'Keystore 文件',
+  owMethod1Field1: '请选择Keystore文件：',
+  owMethod1Field2: '选择文件',
+  owMethod1Field3: '请输入密码：',
+  owMethod1Ph: '请输入密码',
+  owMethod2: '私钥',
+  owMethod2Field1: '请输入私钥：',
+  owMethod2Ph: '请输入你的钱包私钥',
+  owBtn: '打开钱包'
 }

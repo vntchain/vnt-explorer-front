@@ -285,5 +285,20 @@ export default {
   system_tx_send_err: 'Sending tx failed, please contact the admin!',
   wrong_keyword: 'Wrong format of keyword, please check again!',
   search_err: 'Search error!',
-  not_found: 'Not found!'
+  not_found: 'Not found!',
+
+  /*
+  ** Open wallet
+  */
+  owBanner: '打开你的钱包',
+  owTitle: '请选择打开钱包的方式：',
+  owMethod1: 'Keystore File',
+  owMethod1Field1: '请选择Keystore文件：',
+  owMethod1Field2: 'Select File',
+  owMethod1Field3: '请输入密码：',
+  owMethod1Ph: 'Please input password',
+  owMethod2: 'Private Key',
+  owMethod2Field1: '请输入私钥：',
+  owMethod2Ph: '请输入你的钱包私钥',
+  owBtn: '打开钱包'
 }

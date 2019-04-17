@@ -12,5 +12,10 @@ export default {
   tokenDetail: '/token',
   nodeList: '/super-node',
   devGuides: '/developer',
-  faucet: '/faucet'
+  faucet: '/faucet',
+  'create-wallet': '/create-wallet',
+  'open-wallet': '/open-wallet',
+  'wallet-account': '/wallet',
+  send: '/send',
+  receive: '/receive'
 }

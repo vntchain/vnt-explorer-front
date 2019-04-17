@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router-dom'
 
 import Header from 'components/header/Header'
-import Home from './Home'
+import Home from 'containers/Home'
 
 import PageProvider from 'containers/PageProvider'
 import BlockList from 'containers/blocks/BlockList'
@@ -21,10 +21,12 @@ import NodeList from 'containers/NodeList'
 import DevGuides from 'containers/DevGuides'
 import Faucet from 'containers/Faucet'
 
-import NewWallet from './NewWallet'
-import OpenWallet from './OpenWallet'
-import Receive from './Receive'
-import Send from './Send'
+import requireAuth from 'containers/requireAuth'
+import NewWallet from 'containers/NewWallet'
+import OpenWallet from 'containers/OpenWallet'
+import Receive from 'containers/Receive'
+import Send from 'containers/Send'
+import Wallet from 'containers/Wallet'
 
 import LocalText from 'i18n/LocalText'
 import DataProvider from 'containers/RPDataProviderNew'
@@ -32,7 +34,7 @@ import apis from 'utils/apis'
 import r from 'constants/routes'
 import { pageSize } from 'constants/config'
 
-import styles from './App.scss'
+import styles from 'containers/App.scss'
 
 const mapStateToProps = ({ global: { isMobile } }) => {
   return {
@@ -264,10 +266,11 @@ export default withRouter(
             <Route path={r.devGuides} component={DevGuides} />
             <Route path={r.faucet} component={Faucet} />
 
-            <Route exact path="/view-wallet" component={OpenWallet} />
-            <Route exact path="/new-wallet" component={NewWallet} />
-            <Route exact path="/receive" component={Receive} />
-            <Route exact path="/send" component={Send} />
+            <Route exact path={r['open-wallet']} component={OpenWallet} />
+            <Route exact path={r['create-wallet']} component={NewWallet} />
+            <Route exact path={r.receive} component={requireAuth(Receive)} />
+            <Route exact path={r.send} component={requireAuth(Send)} />
+            <Route exact path={r.wallet} component={Wallet} />
           </div>
         </div>
       </div>
