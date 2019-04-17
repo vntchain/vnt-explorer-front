@@ -5,9 +5,17 @@ const { put } = effects
 
 export default {
   state: {
-    auth: false
+    auth: false,
+    account: null
   },
-  reducers: {},
+  reducers: {
+    setState: (state, { payload }) => {
+      return {
+        ...state,
+        ...payload
+      }
+    }
+  },
   effects: ({ takeLatest }) => ({
     logout: takeLatest(function*() {
       yield put({

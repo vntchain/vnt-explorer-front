@@ -24,10 +24,11 @@
     border-bottom: 1px solid $color-light-4;
   }
 
-  button {
-    width: .82rem;
-    &:first-child {
-      margin-right: .1rem;
-    }
+}
+
+.btn {
+  width: .82rem;
+  &:first-child {
+    margin-right: .1rem;
   }
 }

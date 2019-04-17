@@ -22,7 +22,7 @@ import DevGuides from 'containers/DevGuides'
 import Faucet from 'containers/Faucet'
 
 import requireAuth from 'containers/requireAuth'
-import NewWallet from 'containers/NewWallet'
+import CreateWallet from 'containers/CreateWallet'
 import OpenWallet from 'containers/OpenWallet'
 import Receive from 'containers/Receive'
 import Send from 'containers/Send'
@@ -267,10 +267,10 @@ export default withRouter(
             <Route path={r.faucet} component={Faucet} />
 
             <Route exact path={r['open-wallet']} component={OpenWallet} />
-            <Route exact path={r['create-wallet']} component={NewWallet} />
+            <Route exact path={r['create-wallet']} component={CreateWallet} />
             <Route exact path={r.receive} component={requireAuth(Receive)} />
             <Route exact path={r.send} component={requireAuth(Send)} />
-            <Route exact path={r.wallet} component={Wallet} />
+            <Route exact path={r.wallet} component={requireAuth(Wallet)} />
           </div>
         </div>
       </div>

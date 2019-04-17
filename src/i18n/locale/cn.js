@@ -295,5 +295,15 @@ export default {
   owMethod2: '私钥',
   owMethod2Field1: '请输入私钥：',
   owMethod2Ph: '请输入你的钱包私钥',
-  owBtn: '打开钱包'
+  owBtn: '打开钱包',
+
+  /*
+  ** Wallet account
+  */
+  waTitle: '钱包账户',
+  waField1: '可用余额',
+  waField2: '地址',
+  waField3: '发送/接收',
+  waBtn1: '发送',
+  waBtn2: '接收'
 }

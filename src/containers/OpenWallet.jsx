@@ -65,11 +65,17 @@ export default connect()(
             /* eslint-disable */
         console.log('%c%s\n%caddress and private key: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', address, pk)
         /* eslint-enable */
+
             props.dispatch({
-              type: 'auth/setAuth',
-              payload: true
+              type: 'auth/setState',
+              payload: {
+                auth: true,
+                account: {
+                  address
+                }
+              }
             })
-            props.history.push(`${r['wallet-account']}/${address}`)
+            props.history.push(r.wallet)
           } catch (e) {
             message.error(e)
           }
@@ -77,19 +83,29 @@ export default connect()(
           message.error('Wrong file content!')
         }
       } else {
-        const { address, privateKey: pk } = vntKit.account.privateKeyToAccount(
-          privateKey
-        )
+        try {
+          const {
+            address,
+            privateKey: pk
+          } = vntKit.account.privateKeyToAccount(privateKey)
 
-        /* eslint-disable */
-        console.log('%c%s\n%caddress and private key: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', address, pk)
-        /* eslint-enable */
+          /* eslint-disable */
+          console.log('%c%s\n%caddress and private key: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', address, pk)
+          /* eslint-enable */
 
-        props.dispatch({
-          type: 'auth/setAuth',
-          payload: true
-        })
-        props.history.push(`${r['wallet-account']}/0x${address}`)
+          props.dispatch({
+            type: 'auth/setState',
+            payload: {
+              auth: true,
+              account: {
+                address
+              }
+            }
+          })
+          props.history.push(r.wallet)
+        } catch (e) {
+          message.error('No wallet is corresponding to this private key...')
+        }
       }
     }
     const [method, setMethod] = useState('ks')

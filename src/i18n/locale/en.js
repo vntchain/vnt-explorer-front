@@ -20,7 +20,7 @@ export default {
   nav2Sub3: 'Test NetWork Faucet',
   nav3: 'Wallet',
   nav3Sub1: 'Create Wallet',
-  nav3Sub2: 'View Wallet',
+  nav3Sub2: 'Open Wallet',
   nav3AuthSub1: 'Account',
   nav3AuthSub2: 'Send',
   nav3AuthSub3: 'Receive',
@@ -300,5 +300,15 @@ export default {
   owMethod2: 'Private Key',
   owMethod2Field1: '请输入私钥：',
   owMethod2Ph: '请输入你的钱包私钥',
-  owBtn: '打开钱包'
+  owBtn: '打开钱包',
+
+  /*
+  ** Wallet account
+  */
+  waTitle: 'Wallet Account',
+  waField1: 'Balance',
+  waField2: 'Address',
+  waField3: 'Send/Receive',
+  waBtn1: 'Send',
+  waBtn2: 'Receive'
 }

@@ -9,11 +9,11 @@ import SavePrivateKey from 'components/newWallet/SavePK'
 
 import LocalText from 'i18n/LocalText'
 
-import styles from './NewWallet.scss'
+import styles from 'containers/CreateWallet.scss'
 
 const Step = Steps.Step
 
-export default function NewWallet() {
+export default function CreateWallet() {
   const [currentStep, setCurrentStep] = useState(0)
   const [keyStore, setKeyStore] = useState(null)
   const [account, setAccount] = useState(null)

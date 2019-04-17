@@ -17,5 +17,6 @@ export default {
   'open-wallet': '/open-wallet',
   'wallet-account': '/wallet',
   send: '/send',
-  receive: '/receive'
+  receive: '/receive',
+  wallet: '/wallet'
 }
