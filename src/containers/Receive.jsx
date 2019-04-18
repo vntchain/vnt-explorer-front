@@ -1,38 +1,46 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import LocalText from 'i18n/LocalText'
+import Margin from 'components/Margin'
 import Banner from 'components/Banner'
-import docs from 'constants/docs/wallet'
-import index from 'utils/locale'
+import genQRCode from 'utils/genQRCode'
 
-import styles from './SendReceive.scss'
+import styles from 'containers/SendReceive.scss'
 
-const NS = 'receive'
-
-const mapStateToProps = ({ global: { language } }) => {
+const mapStateToProps = ({ auth: { account } }) => {
   return {
-    language
+    account
   }
 }
 
 export default connect(mapStateToProps)(function Receive(props) {
+  const [imgSrc, setImgSrc] = useState('')
+  useEffect(() => {
+    getImgSrc(props.account.address)
+  }, [])
+  const getImgSrc = async address => {
+    const src = await genQRCode(address)
+    setImgSrc(src)
+  }
   return (
     <div className={styles.main}>
-      <Banner title={docs[NS].main[index(props.language)]} />
+      <Banner id="rpBanner" />
+      <Margin />
+
       <div className={styles.content}>
         <div className={styles.field}>
           <p className={styles.title}>
-            {docs[NS].title1[index(props.language)]}
+            <LocalText id="rpTitle1" />
           </p>
-          <span className={styles.addr}>
-            0x19b685a1b66b4bd65660dbfd274721c2dda8a66a20c8fda8d4150c9a6474569d
-          </span>
+          <span className={styles.addr}>{props.account.address}</span>
         </div>
+
         <div className={styles.field}>
           <p className={styles.title}>
-            {docs[NS].title2[index(props.language)]}
+            <LocalText id="rpTitle2" />
           </p>
-          <img src="" alt="" />
+          <img className={styles.qrcode} src={imgSrc} alt="" />
         </div>
       </div>
     </div>

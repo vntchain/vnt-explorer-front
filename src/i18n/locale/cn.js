@@ -305,5 +305,28 @@ export default {
   waField2: '地址',
   waField3: '发送/接收',
   waBtn1: '发送',
-  waBtn2: '接收'
+  waBtn2: '接收',
+
+  /*
+  ** Receive page
+  */
+  rpBanner: '接收',
+  rpTitle1: '钱包账户地址',
+  rpTitle2: '地址二维码',
+
+  /*
+  ** Send page
+  */
+  spBanner: '发送',
+  spTitle1: '钱包账户地址',
+  spTitle2: '接收账户',
+  spPh1: '请输入接收账户地址',
+  spTitle3: '币种',
+  spTitle4: '数量',
+  spPh2: '请输入数量',
+  spTitle5: '附加信息',
+  spPh3: '选填',
+  spField1: '可用余额：',
+  spBtn1: '全部',
+  spBtn2: '确认发送'
 }

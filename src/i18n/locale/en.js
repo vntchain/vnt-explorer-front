@@ -310,5 +310,28 @@ export default {
   waField2: 'Address',
   waField3: 'Send/Receive',
   waBtn1: 'Send',
-  waBtn2: 'Receive'
+  waBtn2: 'Receive',
+
+  /*
+  ** Receive page
+  */
+  rpBanner: 'Receive',
+  rpTitle1: 'Wallet Address',
+  rpTitle2: 'Address QRCode',
+
+  /*
+  ** Send page
+  */
+  spBanner: 'Send',
+  spTitle1: 'Wallet Address',
+  spTitle2: 'Receiver Address',
+  spPh1: 'Receiver Address',
+  spTitle3: 'Currency',
+  spTitle4: 'Amount',
+  spPh2: 'Amount',
+  spTitle5: 'Additional',
+  spPh3: 'Optional',
+  spField1: 'Balance: ',
+  spBtn1: 'All',
+  spBtn2: 'Confirmed'
 }

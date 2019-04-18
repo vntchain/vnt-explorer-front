@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Input, message } from 'antd'
-import QRCode from 'qrcode'
 
 import LocalText from 'i18n/LocalText'
+import genQRCode from 'utils/genQRCode'
 import cpIcon from 'assets/images/copy.png'
 import logo2 from 'assets/images/logo2.png'
 
-import styles from './NWallet.scss'
+import styles from 'components/newWallet/NWallet.scss'
 
 export default function SavePrivateKey(props) {
   const copy = () => {
@@ -19,16 +19,8 @@ export default function SavePrivateKey(props) {
     try {
       const w = window.open()
 
-      const qrAddr = await QRCode.toDataURL(account.address, {
-        version: 6,
-        errorCorrectionLevel: 'L',
-        width: 256
-      })
-      const qrPK = await QRCode.toDataURL(account.privateKey, {
-        version: 6,
-        errorCorrectionLevel: 'L',
-        width: 256
-      })
+      const qrAddr = await genQRCode(account.address)
+      const qrPK = await genQRCode(account.privateKey)
 
       genPaperWallet(w, [
         {

@@ -104,7 +104,7 @@ export default connect()(
           })
           props.history.push(r.wallet)
         } catch (e) {
-          message.error('No wallet is corresponding to this private key...')
+          message.error('No wallet is associated with this private key...')
         }
       }
     }
