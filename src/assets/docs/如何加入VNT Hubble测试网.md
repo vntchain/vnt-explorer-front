@@ -64,11 +64,17 @@ cd vntnode
     "difficulty": "0x1",
     "coinbase": "0x0000000000000000000000000000000000000000",
     "alloc": {
-        "0xa0959738e3555c54577cca3c721b674c5c18072e": {
+        "0x02f8d9c9bb81b3a81bf13d4ec8818be5918d3658": {
             "balance": "0x9b18ab5df7180b6b8000000"
         },
-        "0x02f8d9c9bb81b3a81bf13d4ec8818be5918d3658": {
-            "balance": "0x1363156bbee3016d70000000"
+        "0xa0959738e3555c54577cca3c721b674c5c18072e": {
+            "balance": "0x6765c793fa10079d0000000"
+        },
+        "0xf3e3b67550a6f37f596a1ba2e7357e946c82c905": {
+            "balance": "0x6765c793fa10079d0000000"
+        },
+        "0x838c5c23372ccd88fc5fc4943e2eda5f3a0ec35e": {
+            "balance": "0x6765c793fa10079d0000000"
         }
     },
     "witnesses": [
