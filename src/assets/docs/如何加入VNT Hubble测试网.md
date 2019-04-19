@@ -4,7 +4,7 @@
 
 VNT Hubble测试网共部署了19个见证人节点，负责执行交易和打包区块，部署了4个公共全节点，并开启了RPC服务，查询和发送交易时可以使用这些公共全节点。
 
-4个公共全节点的RPC信息是：
+3个公共全节点的RPC信息是：
 
 ```
 http://47.104.173.117:8880
@@ -36,7 +36,7 @@ cd vntnode
             "period": 2,
             "witnessesnum": 19,
             "witnessesUrl": [
-                "/ip4/101.37.164.86/tcp/3001/ipfs/1kHBXzP5y3Um8gBmNBHGjY9DUFYUo53tCeS3V2mC4gHGF32",
+                "/ip4/101.37.164.86/tcp/3001/ipfs/1kHVWqjwrMKm7fjY3WhrHNUvWYX2XXNyHomP4HDFE5u6S2B",
                 "/ip4/120.77.236.120/tcp/3001/ipfs/1kHN5NfhXZYcHMwxnz4Ca3RxYwiiFah3tJ9AZQifxK6AZBf",
                 "/ip4/47.91.206.25/tcp/3001/ipfs/1kHK2aDrW5L73Y9ACRaVDAMqz8EtM6cidKHyprScchCzwvp",
                 "/ip4/47.88.217.237/tcp/3001/ipfs/1kHG3X9YFWvyqUUDX7mxFf41nQs9oNvrfkTGHJL47hjibTd",
@@ -107,7 +107,7 @@ gvnt init init.json --datadir .
 第四步：创建gvnt账号，可以设置密码：
 
 ```bash
-gvnt account new .
+gvnt account new --datadir .
 ```
 
 如果你已经有账号，可以直接将账号keystore文件拷贝到`vntnode/keystore`目录。
@@ -115,8 +115,9 @@ gvnt account new .
 第五步：使用公共全节点的p2p地址作为bootnode，启动私有节点：
 
 ```bash
-gvnt --networkid 2 --datadir . --port 3001 --vntbootnode "/ip4/47.104.173.117/tcp/3001/ipfs/1kHHvQXh6VKJTNmKEBpny1kYohd78qCmBEicWs2a5WMkyV9" --syncmode full --rpc --rpcaddr 0.0.0.0 --rpcport 8888 --rpcapi="db,core,net,vnt,personal" console
+gvnt --networkid 2 --datadir . --port 3001 --vntbootnode "/ip4/101.37.164.86/tcp/3001/ipfs/1kHVWqjwrMKm7fjY3WhrHNUvWYX2XXNyHomP4HDFE5u6S2B" --syncmode full --rpc --rpcaddr 0.0.0.0 --rpcport 8888 --rpcapi="db,core,net,vnt,personal" console
 ```
+> 注：该命令中的`--vntbootnode`的值可以使用`init.json`中的`witnessesUrl`列表中任何一个见证人节点。
 
 
 
