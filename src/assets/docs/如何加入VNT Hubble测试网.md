@@ -107,7 +107,7 @@ gvnt init init.json --datadir .
 第四步：创建gvnt账号，可以设置密码：
 
 ```bash
-gvnt account new .
+gvnt account new --datadir .
 ```
 
 如果你已经有账号，可以直接将账号keystore文件拷贝到`vntnode/keystore`目录。
