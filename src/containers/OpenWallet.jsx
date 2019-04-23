@@ -48,30 +48,24 @@ export default connect()(
       return false
     }
 
-    // address: c30f46acc63a199125825aee9eec324381c18826
-    // pk: 80bd76dcac78d6d324877d95baa8439e2a73add108b391c0cc6bed2951f4d3ba
     const handleOpenWallet = () => {
       if (method === 'ks') {
         try {
           const ksObj = JSON.parse(ksContent)
           try {
-            // https://github.com/vntchain/vnt-kit.js/blob/master/account/account.js#L95
-            // 0xa0022CA2C9F40E165ed2425875C354ddb3395Aac
             const { address, privateKey: pk } = vntKit.account.decrypt(
               ksObj,
               password,
               true
             )
-            /* eslint-disable */
-        console.log('%c%s\n%caddress and private key: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', address, pk)
-        /* eslint-enable */
 
             props.dispatch({
               type: 'auth/setState',
               payload: {
                 auth: true,
                 account: {
-                  address
+                  address: address.toLowerCase(),
+                  pk
                 }
               }
             })
@@ -89,16 +83,13 @@ export default connect()(
             privateKey: pk
           } = vntKit.account.privateKeyToAccount(privateKey)
 
-          /* eslint-disable */
-          console.log('%c%s\n%caddress and private key: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', address, pk)
-          /* eslint-enable */
-
           props.dispatch({
             type: 'auth/setState',
             payload: {
               auth: true,
               account: {
-                address
+                address: address.toLowerCase(),
+                pk
               }
             }
           })

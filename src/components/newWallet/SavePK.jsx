@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Button, Input, message } from 'antd'
+import { push } from 'react-router-redux'
 
+import r from 'constants/routes'
 import LocalText from 'i18n/LocalText'
 import genQRCode from 'utils/genQRCode'
 import cpIcon from 'assets/images/copy.png'
@@ -8,7 +11,17 @@ import logo2 from 'assets/images/logo2.png'
 
 import styles from 'components/newWallet/NWallet.scss'
 
-export default function SavePrivateKey(props) {
+export default connect()(function SavePrivateKey(props) {
+  useEffect(() => {
+    props.dispatch({
+      type: 'auth/setState',
+      payload: {
+        account: props.account,
+        auth: true
+      }
+    })
+  }, [])
+
   const copy = () => {
     document.querySelector('#copy').select()
     document.execCommand('copy')
@@ -74,6 +87,7 @@ export default function SavePrivateKey(props) {
       </ul>
 
       <Button
+        onClick={() => props.dispatch(push(r.wallet))}
         style={{ backgroundColor: '#ff8103', borderColor: '#ff8103' }}
         size="large"
         type="primary"
@@ -83,12 +97,12 @@ export default function SavePrivateKey(props) {
       </Button>
     </div>
   )
-}
+})
 
 const genPaperWallet = (w, arr) => {
   const cont = document.createElement('div')
   Object.assign(cont.style, {
-    width: '960px',
+    width: '1024px',
     display: 'flex',
     'justify-content': 'space-between',
     'align-items': 'center',

@@ -9,6 +9,7 @@ import LocalText from 'i18n/LocalText'
 import styles from './NWallet.scss'
 
 const genPrivateKey = () =>
+  '0x' +
   new elliptic.ec('secp256k1')
     .genKeyPair()
     .getPrivate()
@@ -25,21 +26,12 @@ function InputPassword(props) {
   const handleCreate = () => {
     const pk = genPrivateKey()
 
-    /* eslint-disable */
-    console.log('%c%s\n%cprivate key: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', pk)
-    /* eslint-enable */
-
     const keyStore = vntKit.account.encrypt(pk, password)
     setKS(keyStore)
     setAcc({
       privateKey: pk,
-      address: keyStore.address
+      address: '0x' + keyStore.address
     })
-
-    /* eslint-disable */
-    console.log('%c%s\n%ckey store: %s', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', )
-    console.dir(keyStore)
-    /* eslint-enable */
 
     next(1)
   }
