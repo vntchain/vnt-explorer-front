@@ -37,7 +37,7 @@ export default connect(mapStateToProps)(function WalletAccount(props) {
   // 点击发送方、接收方链接时更新表单数据
   useEffect(() => {
     props.dispatch({
-      type: 'dataRelay/fetchData',
+      type: 'dataRelayNew/fetchData',
       payload: {
         // path: `${apis.accountDetail}/${props.match.params.acct}`,
         path: `${apis.accountDetail}/${props.account.address}`,

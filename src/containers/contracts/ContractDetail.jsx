@@ -34,7 +34,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
   useEffect(
     () => {
       props.dispatch({
-        type: 'dataRelay/fetchData',
+        type: 'dataRelayNew/fetchData',
         payload: {
           path: `${apis.accountDetail}/${props.match.params.cont}`,
           ns: 'accounts',

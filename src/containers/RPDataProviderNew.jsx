@@ -25,7 +25,7 @@ function RPDataProvider(props) {
     if (requirePolling) {
       polling = setInterval(() => {
         props.dispatch({
-          type: 'dataRelay/fetchData',
+          type: 'dataRelayNew/fetchData',
           payload: { path, ns, method: props.method || 'get' }
         })
       }, props.options.polling * 1000)

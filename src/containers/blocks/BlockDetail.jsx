@@ -26,7 +26,7 @@ export default withLang(
     useEffect(
       () => {
         props.dispatch({
-          type: 'dataRelay/fetchData',
+          type: 'dataRelayNew/fetchData',
           payload: {
             path: `${apis.block}/${props.match.params.block}`,
             ns: 'blocks',
