@@ -56,7 +56,7 @@ export default connect()(
             const { address, privateKey: pk } = vntKit.account.decrypt(
               ksObj,
               password,
-              true
+              false
             )
 
             props.dispatch({

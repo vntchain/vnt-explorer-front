@@ -25,7 +25,6 @@ function InputPassword(props) {
 
   const handleCreate = () => {
     const pk = genPrivateKey()
-
     const keyStore = vntKit.account.encrypt(pk, password)
     setKS(keyStore)
     setAcc({
