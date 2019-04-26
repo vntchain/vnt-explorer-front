@@ -8,6 +8,8 @@ export default {
   ** Prompt msg
   */
   copy: '复制成功!',
+  pkErr: '打开钱包失败',
+  invalidAddr: '地址格式错误',
 
   /*
   ** Header Fields

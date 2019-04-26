@@ -71,10 +71,10 @@ export default connect()(
             })
             props.history.push(r.wallet)
           } catch (e) {
-            message.error(e)
+            message.error(props.locale[props.language].pkErr)
           }
         } catch (e) {
-          message.error('Wrong file content!')
+          message.error(props.locale[props.language].pkErr)
         }
       } else {
         try {
@@ -95,7 +95,7 @@ export default connect()(
           })
           props.history.push(r.wallet)
         } catch (e) {
-          message.error('No wallet is associated with this private key...')
+          message.error(props.locale[props.language].pkErr)
         }
       }
     }

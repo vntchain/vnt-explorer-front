@@ -92,8 +92,9 @@ export default withLang(
     if (token) {
       balance = {}
       const t = JSON.parse(token)
-      if (t.name === 'VNT' && accountDetail && accountDetail.data) {
-        balance.amount = accountDetail.data.Balance
+      if (t.name === 'VNT') {
+        balance.amount =
+          accountDetail && accountDetail.data ? accountDetail.data.Balance : 0
       } else if (wallet.tokenInfo !== null) {
         balance.amount =
           wallet.tokenInfo.amount / Math.pow(10, wallet.tokenInfo.digit)
@@ -220,7 +221,7 @@ export default withLang(
                   <LocalText id="spTitle2" />
                 </p>
                 <Tooltip
-                  title={'Invalid address!'}
+                  title={props.locale[props.language].invalidAddr}
                   placement="topRight"
                   visible={addrErr}
                   mouseLeaveDelay={0}

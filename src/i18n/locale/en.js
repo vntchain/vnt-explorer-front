@@ -8,6 +8,8 @@ export default {
   ** Prompt msg
   */
   copy: 'Copied!',
+  pkErr: 'Failed to open wallet!',
+  invalidAddr: 'Invalid address!',
 
   /*
   ** Header Fields
