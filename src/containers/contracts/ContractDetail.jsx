@@ -213,7 +213,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
     <div>
       {/* address length: 42 */}
       <PrimaryTitle
-        id="clpTitle"
+        id="cdpTitle"
         options={{
           suffix: props.match.params.cont,
           requireCopy: true,

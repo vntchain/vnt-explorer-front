@@ -114,6 +114,7 @@ export default {
   /*
   ** Block detail page
   */
+  bdpHeader: 'Block',
   bdpTitle: 'Block Number',
   bdpField1: 'Timestamp',
   bdpField2: 'Transactions',
@@ -146,7 +147,7 @@ export default {
   /*
   ** Tx detail page
   */
-  tdpTitle: 'Transactions',
+  tdpTitle: 'Transaction',
   tdpField1: 'Transaction Hash',
   tdpField2: 'Status',
   tdpField3: 'Block Number',
@@ -181,7 +182,7 @@ export default {
   /*
   ** Account detail page
   */
-  adpField1: 'Addresses',
+  adpField1: 'Address',
   adpField2: 'Balance',
   adpField3: 'Transactions',
   adpField4: 'Transactions',
@@ -207,6 +208,7 @@ export default {
   /*
   ** Contract detail page
   */
+  cdpTitle: 'Contract',
   cdpField1: 'Contract Code',
   cdpColumn3: 'Owner',
   cdpColumn4: 'Creator Tx',

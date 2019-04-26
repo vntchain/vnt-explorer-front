@@ -96,6 +96,7 @@ export default {
   /*
   ** Block list page
   */
+  bdpHeader: '区块',
   blpTitle: '区块',
   blpSubTitle: num => `当前共${num}区块`,
   blpColumn1: '区块编号',
@@ -202,6 +203,7 @@ export default {
   /*
   ** Contract detail page
   */
+  cdpTitle: '合约',
   cdpField1: '合约代码',
   cdpColumn3: '合约创建者：',
   cdpColumn4: '创建于交易：',

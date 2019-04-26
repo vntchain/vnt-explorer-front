@@ -40,7 +40,7 @@ export default withLang(
     return (
       <div>
         <PrimaryTitle
-          id="blpTitle"
+          id="bdpHeader"
           options={{
             suffix: `#${props.match.params.block}`,
             requireCopy: false
