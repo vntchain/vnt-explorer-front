@@ -3,6 +3,12 @@ export default {
 
   blank: '',
   rank: '#',
+
+  /*
+  ** Prompt msg
+  */
+  copy: '复制成功!',
+
   /*
   ** Header Fields
   */

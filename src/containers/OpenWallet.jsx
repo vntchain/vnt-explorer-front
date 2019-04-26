@@ -169,7 +169,7 @@ export default connect()(
                 <p className={styles.title}>
                   <LocalText id="owMethod2Field1" />
                 </p>
-                <Input.Password
+                <Input
                   placeholder={props.locale[props.language].owMethod2Ph}
                   name="privateKey"
                   onChange={handleInputChange}

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { message } from 'antd'
 
+import Copier from 'components/Copier'
 import withLang from 'i18n/withLang'
-import cpIcon from 'assets/images/copy.png'
 
 import styles from 'components/PrimaryTitle.scss'
 
@@ -38,21 +38,11 @@ class PrimaryTitle extends Component {
           <div>
             <p className={styles.title}>
               {locale[language][id]}
-              <input
-                className={styles.input}
-                value={suffix}
-                readOnly
-                ref={this.copyRef}
+              <Copier
+                text={suffix}
+                copyRef={this.copyRef}
+                textStyle={styles.data}
               />
-              <span>
-                <span className={styles.data}>{suffix}</span>
-                <img
-                  onClick={this.handleCopy}
-                  className={styles.copy}
-                  src={cpIcon}
-                  alt="copy-icon"
-                />
-              </span>
             </p>
           </div>
         )
