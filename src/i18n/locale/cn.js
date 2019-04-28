@@ -10,6 +10,8 @@ export default {
   copy: '复制成功!',
   pkErr: '打开钱包失败',
   invalidAddr: '地址格式错误',
+  txSended: '交易已发送，请稍后查询交易结果...',
+  goBack: '返回',
 
   /*
   ** Header Fields

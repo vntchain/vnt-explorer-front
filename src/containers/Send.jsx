@@ -4,6 +4,7 @@ import { Button, Input, Select, Tooltip, message } from 'antd'
 import { push } from 'react-router-redux'
 import VNT from 'vnt'
 
+import PrimaryTitle from 'components/PrimaryTitle'
 import withLang from 'i18n/withLang'
 import LocalText from 'i18n/LocalText'
 import Margin from 'components/Margin'
@@ -158,7 +159,7 @@ export default withLang(
             }
             break
           case 'extraData':
-            setExtraData(vnt.fromUtf8(value))
+            setExtraData(value)
             break
         }
       }
@@ -170,7 +171,7 @@ export default withLang(
       }
     }
     const validateInput = e => {
-      if (!vnt.isAddress(e.target.value)) {
+      if (e.target.value && !vnt.isAddress(e.target.value)) {
         setAddrErr(true)
       }
     }
@@ -195,12 +196,22 @@ export default withLang(
       <div className={styles.main}>
         {txSended ? (
           <div>
-            <p>{wallet.sendResult.txHash}</p>
+            <PrimaryTitle
+              id="tdpTitle"
+              options={{
+                suffix: wallet.sendResult.txHash,
+                requireCopy: true,
+                requireQR: false
+              }}
+            />
+            <p>
+              <LocalText id="txSended" />
+            </p>
             <Button
               type="primary"
               onClick={() => props.dispatch(push(r.wallet))}
             >
-              Back
+              <LocalText id="goBack" />
             </Button>
           </div>
         ) : (

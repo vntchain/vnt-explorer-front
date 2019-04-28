@@ -42,7 +42,6 @@ export default {
     }),
 
     sendTx: takeLatest(function*({
-      // eslint-disable-next-line
       payload: { token, amount, receAddr, sender, extraData }
     }) {
       const rawTx = {
@@ -54,6 +53,7 @@ export default {
         const wei = vnt.toWei(parseFloat(amount, 10), 'vnt')
         rawTx.to = receAddr
         rawTx.value = wei
+        rawTx.data = vnt.fromUtf8(extraData)
       } else {
         // ERC20 代币
         const contract = vnt.core.contract(abi)

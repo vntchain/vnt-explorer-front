@@ -10,6 +10,9 @@ export default {
   copy: 'Copied!',
   pkErr: 'Failed to open wallet!',
   invalidAddr: 'Invalid address!',
+  txSended:
+    'Transaction has been sended, detailed information should be available soon...',
+  goBack: 'Back',
 
   /*
   ** Header Fields
