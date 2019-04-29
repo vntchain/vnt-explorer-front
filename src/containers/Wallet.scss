@@ -1,7 +1,7 @@
-@import '../assets/base';
+@import "../assets/base";
 
 .overview {
-  border-radius: .04rem;
+  border-radius: 0.04rem;
 
   background-color: #fff;
   color: $color-dark-1;
@@ -14,21 +14,25 @@
   td:first-child {
     background-color: $color-light-4;
     text-align: center;
-    padding: .17rem .2rem;
+    padding: 0.17rem 0.2rem;
   }
   td:last-child {
-    padding-left: .4rem;
+    padding-left: 0.4rem;
   }
 
   tr:not(:last-child) > td:last-child {
     border-bottom: 1px solid $color-light-4;
   }
-
 }
 
 .btn {
-  width: .82rem;
+  width: 0.82rem;
   &:first-child {
-    margin-right: .1rem;
+    margin-right: 0.1rem;
   }
+}
+
+.addr {
+  display: flex;
+  align-items: center;
 }
