@@ -8,96 +8,99 @@ import LocalText from 'i18n/LocalText'
 import genQRCode from 'utils/genQRCode'
 import cpIcon from 'assets/images/copy.png'
 import logo2 from 'assets/images/logo2.png'
+import withLang from 'i18n/withLang'
 
 import styles from 'components/newWallet/NWallet.scss'
 
-export default connect()(function SavePrivateKey(props) {
-  useEffect(() => {
-    props.dispatch({
-      type: 'auth/setState',
-      payload: {
-        account: props.account,
-        auth: true
-      }
-    })
-  }, [])
+export default withLang(
+  connect()(function SavePrivateKey(props) {
+    useEffect(() => {
+      props.dispatch({
+        type: 'auth/setState',
+        payload: {
+          account: props.account,
+          auth: true
+        }
+      })
+    }, [])
 
-  const copy = () => {
-    document.querySelector('#copy').select()
-    document.execCommand('copy')
-    message.info('Copied!')
-  }
+    const copy = () => {
+      document.querySelector('#copy').select()
+      document.execCommand('copy')
+      message.info(props.locale[props.language].copy)
+    }
 
-  const printQRCode = async account => {
-    try {
-      const w = window.open()
+    const printQRCode = async account => {
+      try {
+        const w = window.open()
 
-      const qrAddr = await genQRCode(account.address)
-      const qrPK = await genQRCode(account.privateKey)
+        const qrAddr = await genQRCode(account.address)
+        const qrPK = await genQRCode(account.privateKey)
 
-      genPaperWallet(w, [
-        {
-          value: props.account.address,
-          imgSrc: qrAddr
-        },
-        { value: props.account.privateKey, imgSrc: qrPK }
-      ])
-    } catch (e) {
-      /* eslint-disable */
+        genPaperWallet(w, [
+          {
+            value: props.account.address,
+            imgSrc: qrAddr
+          },
+          { value: props.account.privateKey, imgSrc: qrPK }
+        ])
+      } catch (e) {
+        /* eslint-disable */
       console.log('%c%s\n%cgenerator QRCode Error!: %o', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', e)
       /* eslint-enable */
+      }
     }
-  }
-  return (
-    <div className={`${styles.content} ${styles['content--wider']}`}>
-      <h3 className={styles.title}>
-        <LocalText id="st3Title" />
-      </h3>
+    return (
+      <div className={`${styles.content} ${styles['content--wider']}`}>
+        <h3 className={styles.title}>
+          <LocalText id="st3Title" />
+        </h3>
 
-      <Input
-        id="copy"
-        value={props.account.privateKey}
-        readOnly
-        size="large"
-        suffix={<img onClick={copy} src={cpIcon} />}
-      />
+        <Input
+          id="copy"
+          value={props.account.privateKey}
+          readOnly
+          size="large"
+          suffix={<img onClick={copy} src={cpIcon} />}
+        />
 
-      <Button
-        size="large"
-        type="primary"
-        onClick={() => printQRCode(props.account)}
-        block
-      >
-        <LocalText id="st3Btn1" />
-      </Button>
+        <Button
+          size="large"
+          type="primary"
+          onClick={() => printQRCode(props.account)}
+          block
+        >
+          <LocalText id="st3Btn1" />
+        </Button>
 
-      <ul className={styles.list}>
-        <li>
-          {'- '}
-          <LocalText id="st3Note1" />
-        </li>
-        <li>
-          {'- '}
-          <LocalText id="st3Note2" />
-        </li>
-        <li>
-          {'- '}
-          <LocalText id="st3Note3" />
-        </li>
-      </ul>
+        <ul className={styles.list}>
+          <li>
+            {'- '}
+            <LocalText id="st3Note1" />
+          </li>
+          <li>
+            {'- '}
+            <LocalText id="st3Note2" />
+          </li>
+          <li>
+            {'- '}
+            <LocalText id="st3Note3" />
+          </li>
+        </ul>
 
-      <Button
-        onClick={() => props.dispatch(push(r.wallet))}
-        style={{ backgroundColor: '#ff8103', borderColor: '#ff8103' }}
-        size="large"
-        type="primary"
-        block
-      >
-        <LocalText id="st3Btn2" />
-      </Button>
-    </div>
-  )
-})
+        <Button
+          onClick={() => props.dispatch(push(r.wallet))}
+          style={{ backgroundColor: '#ff8103', borderColor: '#ff8103' }}
+          size="large"
+          type="primary"
+          block
+        >
+          <LocalText id="st3Btn2" />
+        </Button>
+      </div>
+    )
+  })
+)
 
 const genPaperWallet = (w, arr) => {
   const cont = document.createElement('div')

@@ -217,7 +217,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         options={{
           suffix: props.match.params.cont,
           requireCopy: true,
-          requireQR: false
+          requireQR: true
         }}
       />
 

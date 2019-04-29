@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { message } from 'antd'
 
 import Copier from 'components/Copier'
+import QRModal from 'components/QRModal'
 import withLang from 'i18n/withLang'
 
 import styles from 'components/PrimaryTitle.scss'
@@ -11,12 +11,6 @@ class PrimaryTitle extends Component {
   constructor(props) {
     super(props)
     this.copyRef = React.createRef()
-  }
-
-  handleCopy = () => {
-    this.copyRef.current.select()
-    document.execCommand('copy')
-    message.info('Copied!')
   }
 
   render() {
@@ -47,7 +41,20 @@ class PrimaryTitle extends Component {
           </div>
         )
       } else {
-        // TODO: 复制加二维码弹窗
+        // 复制加二维码弹窗
+        Title = (
+          <div>
+            <p className={styles.title}>
+              {locale[language][id]}
+              <Copier
+                text={suffix}
+                copyRef={this.copyRef}
+                textStyle={styles.data}
+              />
+              <QRModal address={suffix} />
+            </p>
+          </div>
+        )
       }
     }
 

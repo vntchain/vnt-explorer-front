@@ -180,7 +180,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         options={{
           suffix: props.match.params.acct,
           requireCopy: true,
-          requireQR: false
+          requireQR: true
         }}
       />
 

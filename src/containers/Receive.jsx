@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import LocalText from 'i18n/LocalText'
 import Margin from 'components/Margin'
 import Banner from 'components/Banner'
 import genQRCode from 'utils/genQRCode'
+import Copier from 'components/Copier'
 
 import styles from 'containers/SendReceive.scss'
 
@@ -14,35 +15,49 @@ const mapStateToProps = ({ auth: { account } }) => {
   }
 }
 
-export default connect(mapStateToProps)(function Receive(props) {
-  const [imgSrc, setImgSrc] = useState('')
-  useEffect(() => {
-    getImgSrc(props.account.address)
-  }, [])
-  const getImgSrc = async address => {
-    const src = await genQRCode(address)
-    setImgSrc(src)
+export default connect(mapStateToProps)(
+  class Receive extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = { imgSrc: '' }
+      this.copyRef = React.createRef()
+    }
+    componentDidMount() {
+      this.getImgSrc(this.props.account.address)
+    }
+    getImgSrc = async address => {
+      const src = await genQRCode(address)
+      this.setState({
+        imgSrc: src
+      })
+    }
+    render() {
+      return (
+        <div className={styles.main}>
+          <Banner id="rpBanner" />
+          <Margin />
+
+          <div className={styles.content}>
+            <div className={styles.field}>
+              <p className={styles.title}>
+                <LocalText id="rpTitle1" />
+              </p>
+              <Copier
+                text={this.props.account.address}
+                copyRef={this.copyRef}
+                textStyle={''}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <p className={styles.title}>
+                <LocalText id="rpTitle2" />
+              </p>
+              <img className={styles.qrcode} src={this.state.imgSrc} alt="" />
+            </div>
+          </div>
+        </div>
+      )
+    }
   }
-  return (
-    <div className={styles.main}>
-      <Banner id="rpBanner" />
-      <Margin />
-
-      <div className={styles.content}>
-        <div className={styles.field}>
-          <p className={styles.title}>
-            <LocalText id="rpTitle1" />
-          </p>
-          <span className={styles.addr}>{props.account.address}</span>
-        </div>
-
-        <div className={styles.field}>
-          <p className={styles.title}>
-            <LocalText id="rpTitle2" />
-          </p>
-          <img className={styles.qrcode} src={imgSrc} alt="" />
-        </div>
-      </div>
-    </div>
-  )
-})
+)
