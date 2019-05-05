@@ -278,13 +278,14 @@ export default {
   tnfTitle: '填写测试网账户地址获得VNT测试币',
   tnfPlaceholder1: '测试网账户地址',
   tnfBtn: '立即提交',
-  successInfo: '已提交',
+  successInfo: '提交成功，请在账户页面查询',
 
   /*
   ** error message
   */
   system_err: '系统错误',
-  wrong_address: '地址格式错误',
+  wrong_address: '地址格式错误，请提供有效地址或',
+  new_address: '创建一个新地址',
   duplicated_send: '正在发送中，请稍后查看',
   send_over_frequent: '发送太频繁，一天只能发送一次',
   system_nonce_err: '获取交易 nonce 失败，请联系管理员',

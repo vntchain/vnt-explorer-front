@@ -284,13 +284,14 @@ export default {
   tnfTitle: 'Enter your testnet account address',
   tnfPlaceholder1: 'Testnet account address',
   tnfBtn: 'Claim',
-  successInfo: 'Submitted Successfully!',
+  successInfo: 'Submitted successfully, please check from account page!',
 
   /*
   ** error message
   */
   system_err: 'System error!',
-  wrong_address: 'Wrong address format!',
+  wrong_address: 'Wrong address format, please input valid address or ',
+  new_address: 'create a new one',
   duplicated_send: 'Ongoing sending, please check again later!',
   send_over_frequent: 'Too frequent, only once per day is allowed!',
   system_nonce_err: 'Obtaining tx nonce failed, please contact the admin!',
