@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
-import apis from 'utils/apis'
 import withLang from 'i18n/withLang'
 
 import styles from './BlockTx.scss'
@@ -25,7 +24,7 @@ function BriefBox(props) {
 
         {hasData && (
           <span>
-            <Link to={apis.blocks}>
+            <Link to={props.redirect}>
               <LocalText id="lField1" />
             </Link>
           </span>
@@ -41,7 +40,8 @@ function BriefBox(props) {
 }
 
 BriefBox.propTypes = {
-  comp: PropTypes.element.isRequired
+  comp: PropTypes.element.isRequired,
+  redirect: PropTypes.string.isRequired
 }
 
 export default withLang(BriefBox)

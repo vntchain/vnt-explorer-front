@@ -35,7 +35,7 @@ export const calcAge = (time, lang) => {
   // crucialIndex = crucialIndex === -1 ? 4 : crucialIndex
 
   if (crucialIndex === -1) {
-    return lang === 'en' ? '1s ago' : '1秒前'
+    return lang === 'en' ? 'Just now' : '刚刚'
   }
 
   // 最多同时显示两个单位
