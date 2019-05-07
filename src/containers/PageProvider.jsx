@@ -29,34 +29,17 @@ function PageProvider(props) {
       props.dispatch(push(`${redirectBase}/${filter}${p}`))
     } else {
       setCurrPage(p)
-      props.dispatch({
-        type: 'dataRelayNew/fetchData',
-        payload: {
-          ...restOptions,
-          path: `${basePath}${props.filterParam || ''}&offset=${(parseInt(
-            p,
-            10
-          ) -
-            1) *
-            pageSize}`
-        }
-      })
     }
+    props.dispatch({
+      type: 'dataRelayNew/fetchData',
+      payload: {
+        ...restOptions,
+        path: `${basePath}${props.filterParam || ''}&offset=${(parseInt(p, 10) -
+          1) *
+          pageSize}`
+      }
+    })
   }
-
-  useEffect(
-    () => {
-      props.dispatch({
-        type: 'dataRelayNew/fetchData',
-        payload: {
-          ...restOptions,
-          path: `${basePath}${props.filterParam ||
-            ''}&offset=${(props.currentIndex - 1) * pageSize}`
-        }
-      })
-    },
-    [location.pathname]
-  )
 
   useEffect(
     () => {
