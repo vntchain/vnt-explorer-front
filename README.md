@@ -33,3 +33,32 @@ npm install
 ```bash
 npm start
 ```
+
+## 部署
+
+步骤：
+
+* 项目地址更新最新代码
+
+```bash
+git pull
+```
+
+* 编译代码,并去除js map文件
+
+```bash
+npm run build
+rm build/static/js/*.map
+```
+
+* 复制build内容到部署地址
+
+```bash
+cp -r <origin path> <target path>
+```
+
+* 重启nginx
+
+```bash
+nginx -s reload
+```
