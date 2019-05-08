@@ -3,6 +3,16 @@ export default {
 
   blank: '',
   rank: '#',
+
+  /*
+  ** Prompt msg
+  */
+  copy: '复制成功!',
+  pkErr: '打开钱包失败',
+  invalidAddr: '地址格式错误',
+  txSended: '交易已发送，请稍后查询交易结果...',
+  goBack: '返回',
+
   /*
   ** Header Fields
   */
@@ -90,6 +100,7 @@ export default {
   /*
   ** Block list page
   */
+  bdpHeader: '区块',
   blpTitle: '区块',
   blpSubTitle: num => `当前共${num}区块`,
   blpColumn1: '区块编号',
@@ -196,6 +207,7 @@ export default {
   /*
   ** Contract detail page
   */
+  cdpTitle: '合约',
   cdpField1: '合约代码',
   cdpColumn3: '合约创建者：',
   cdpColumn4: '创建于交易：',
@@ -266,13 +278,14 @@ export default {
   tnfTitle: '填写测试网账户地址获得VNT测试币',
   tnfPlaceholder1: '测试网账户地址',
   tnfBtn: '立即提交',
-  successInfo: '已提交',
+  successInfo: '提交成功，请在账户页面查询',
 
   /*
   ** error message
   */
   system_err: '系统错误',
-  wrong_address: '地址格式错误',
+  wrong_address: '地址格式错误，请提供有效地址或',
+  new_address: '创建一个新地址',
   duplicated_send: '正在发送中，请稍后查看',
   send_over_frequent: '发送太频繁，一天只能发送一次',
   system_nonce_err: '获取交易 nonce 失败，请联系管理员',
@@ -280,5 +293,53 @@ export default {
   system_tx_send_err: '交易发送失败，请联系管理员',
   wrong_keyword: '关键字格式错误，请输入合法的关键字',
   search_err: '搜索错误',
-  not_found: '不存在'
+  not_found: '不存在',
+
+  /*
+  ** Open wallet
+  */
+  owBanner: '打开你的钱包',
+  owTitle: '请选择打开钱包的方式：',
+  owMethod1: 'Keystore 文件',
+  owMethod1Field1: '请选择Keystore文件：',
+  owMethod1Field2: '选择文件',
+  owMethod1Field3: '请输入密码：',
+  owMethod1Ph: '请输入密码',
+  owMethod2: '私钥',
+  owMethod2Field1: '请输入私钥：',
+  owMethod2Ph: '请输入你的钱包私钥',
+  owBtn: '打开钱包',
+
+  /*
+  ** Wallet account
+  */
+  waTitle: '钱包账户',
+  waField1: '可用余额',
+  waField2: '地址',
+  waField3: '发送/接收',
+  waBtn1: '发送',
+  waBtn2: '接收',
+
+  /*
+  ** Receive page
+  */
+  rpBanner: '接收',
+  rpTitle1: '钱包账户地址',
+  rpTitle2: '地址二维码',
+
+  /*
+  ** Send page
+  */
+  spBanner: '发送',
+  spTitle1: '钱包账户地址',
+  spTitle2: '接收账户',
+  spPh1: '请输入接收账户地址',
+  spTitle3: '币种',
+  spTitle4: '数量',
+  spPh2: '请输入数量',
+  spTitle5: '附加信息',
+  spPh3: '选填',
+  spField1: '可用余额：',
+  spBtn1: '全部',
+  spBtn2: '确认发送'
 }

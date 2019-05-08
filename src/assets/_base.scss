@@ -64,15 +64,26 @@ $bp-phone: 37.5em; // 600px
     td {
       background-color: #fff;
     }
+    tr > th,
+    tr > td {
+      &:first-child {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
     .ant-table-thead > tr > th {
+      &:last-child {
+        color: rgba(0, 0, 0, 0.65);
+      }
       background-color: #fff;
     }
-    .ant-table-thead > tr > th, .ant-table-tbody > tr > td  {
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
       &:first-child {
         background-color: $color-light-4;
       }
     }
-    tr > th, tr > td {
+    tr > th,
+    tr > td {
       &:first-child {
         width: 10%;
       }
@@ -86,15 +97,27 @@ $bp-phone: 37.5em; // 600px
     td {
       background-color: #fff;
     }
+    tr > th {
+      &:nth-child(even) {
+        color: rgba(0, 0, 0, 0.65);
+      }
+    }
+    tr > td {
+      &:nth-child(odd) {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
     .ant-table-thead > tr > th {
       background-color: #fff;
     }
-    .ant-table-thead > tr > th, .ant-table-tbody > tr > td  {
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
       &:nth-child(odd) {
         background-color: $color-light-4;
       }
     }
-    tr > th, tr > td {
+    tr > th,
+    tr > td {
       &:nth-child(odd) {
         width: 15%;
       }

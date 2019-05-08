@@ -16,6 +16,13 @@ export default {
         res: null,
         error: null
       }
+    },
+    loadingStatus: (state, { payload }) => {
+      const { field, ...data } = payload
+      return {
+        ...state,
+        [field]: { ...data }
+      }
     }
   }
 }

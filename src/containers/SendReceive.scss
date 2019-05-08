@@ -6,7 +6,7 @@
 .content {
   border-radius: .04rem;
   background-color: #fff;
-  padding: .6rem 0 .2rem;
+  padding: .6rem 0 1rem;
   & > * {
     width: 50%;
     margin: 0 auto;
@@ -33,6 +33,25 @@
 
     span {
       color: $color-light-1;
+    }
+  }
+  .qrcode {
+    margin-top: -.2rem;
+    margin-left: -.2rem;
+  }
+  :global {
+    .ant-input, .ant-select-selection, .ant-input-search-button, .ant-btn-primary, .ant-select-selection-selected-value, .ant-select-search--inline {
+      height: .54rem;
+    }
+    textarea.ant-input {
+      height: 1.2rem;
+    }
+    .ant-btn-primary {
+      width: 100%;
+    }
+    .ant-select-selection-selected-value, .ant-select-search--inline {
+      display: flex !important;
+      align-items: center;
     }
   }
 }

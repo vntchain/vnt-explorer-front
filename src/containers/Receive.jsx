@@ -1,40 +1,63 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import LocalText from 'i18n/LocalText'
+import Margin from 'components/Margin'
 import Banner from 'components/Banner'
-import docs from 'constants/docs/wallet'
-import index from 'utils/locale'
+import genQRCode from 'utils/genQRCode'
+import Copier from 'components/Copier'
 
-import styles from './SendReceive.scss'
+import styles from 'containers/SendReceive.scss'
 
-const NS = 'receive'
-
-const mapStateToProps = ({ global: { language } }) => {
+const mapStateToProps = ({ auth: { account } }) => {
   return {
-    language
+    account
   }
 }
 
-export default connect(mapStateToProps)(function Receive(props) {
-  return (
-    <div className={styles.main}>
-      <Banner title={docs[NS].main[index(props.language)]} />
-      <div className={styles.content}>
-        <div className={styles.field}>
-          <p className={styles.title}>
-            {docs[NS].title1[index(props.language)]}
-          </p>
-          <span className={styles.addr}>
-            0x19b685a1b66b4bd65660dbfd274721c2dda8a66a20c8fda8d4150c9a6474569d
-          </span>
+export default connect(mapStateToProps)(
+  class Receive extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = { imgSrc: '' }
+      this.copyRef = React.createRef()
+    }
+    componentDidMount() {
+      this.getImgSrc(this.props.account.address)
+    }
+    getImgSrc = async address => {
+      const src = await genQRCode(address)
+      this.setState({
+        imgSrc: src
+      })
+    }
+    render() {
+      return (
+        <div className={styles.main}>
+          <Banner id="rpBanner" />
+          <Margin />
+
+          <div className={styles.content}>
+            <div className={styles.field}>
+              <p className={styles.title}>
+                <LocalText id="rpTitle1" />
+              </p>
+              <Copier
+                text={this.props.account.address}
+                copyRef={this.copyRef}
+                textStyle={''}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <p className={styles.title}>
+                <LocalText id="rpTitle2" />
+              </p>
+              <img className={styles.qrcode} src={this.state.imgSrc} alt="" />
+            </div>
+          </div>
         </div>
-        <div className={styles.field}>
-          <p className={styles.title}>
-            {docs[NS].title2[index(props.language)]}
-          </p>
-          <img src="" alt="" />
-        </div>
-      </div>
-    </div>
-  )
-})
+      )
+    }
+  }
+)

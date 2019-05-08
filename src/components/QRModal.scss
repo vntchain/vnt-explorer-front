@@ -1,0 +1,19 @@
+.icon {
+  margin-left: 0.1rem;
+}
+.modal {
+  width: 256px !important;
+  :global {
+    .ant-modal-content {
+      background-color: transparent;
+      box-shadow: none;
+      width: 256px;
+    }
+    .ant-modal-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+  }
+}

@@ -11,13 +11,18 @@ export const calcAge = (time, lang) => {
     { unit: 'd', threshold: 365, suffix: lang === 'cn' ? '天' : ' day' },
     { unit: 'Y', threshold: 1, suffix: lang === 'cn' ? '年' : ' yr' }
   ]
+  const now = new Date()
+  if (t >= Date.parse(now)) {
+    return lang === 'en' ? 'Just now' : '刚刚'
+  }
 
   // e.g., [90132, 1502, 25, 1, 0]
   const arr = []
   units.forEach(item => {
+    // distanceInWordsStrict 只比较差值（绝对值），时间先后不敏感
     arr.push(
       parseInt(
-        distanceInWordsStrict(new Date(t), new Date(), {
+        distanceInWordsStrict(new Date(t), now, {
           locale: zh_cn,
           unit: item.unit
         }).split(' ')[0]
@@ -35,7 +40,7 @@ export const calcAge = (time, lang) => {
   // crucialIndex = crucialIndex === -1 ? 4 : crucialIndex
 
   if (crucialIndex === -1) {
-    return lang === 'en' ? '1s ago' : '1秒前'
+    return lang === 'en' ? 'Just now' : '刚刚'
   }
 
   // 最多同时显示两个单位

@@ -3,6 +3,17 @@ export default {
 
   blank: '',
   rank: '#',
+
+  /*
+  ** Prompt msg
+  */
+  copy: 'Copied!',
+  pkErr: 'Failed to open wallet!',
+  invalidAddr: 'Invalid address!',
+  txSended:
+    'Transaction has been sended, detailed information should be available soon...',
+  goBack: 'Back',
+
   /*
   ** Header Fields
   */
@@ -11,7 +22,7 @@ export default {
   nav1Sub2: 'Blocks',
   nav1Sub3: 'Transactions',
   nav1Sub4: 'Accounts',
-  nav1Sub5: 'Chaincodes',
+  nav1Sub5: 'Contracts',
   nav1Sub6: 'Tokens',
   nav1Sub7: 'Super Nodes',
   nav2: 'Developer',
@@ -20,7 +31,7 @@ export default {
   nav2Sub3: 'Test NetWork Faucet',
   nav3: 'Wallet',
   nav3Sub1: 'Create Wallet',
-  nav3Sub2: 'View Wallet',
+  nav3Sub2: 'Open Wallet',
   nav3AuthSub1: 'Account',
   nav3AuthSub2: 'Send',
   nav3AuthSub3: 'Receive',
@@ -108,6 +119,7 @@ export default {
   /*
   ** Block detail page
   */
+  bdpHeader: 'Block',
   bdpTitle: 'Block Number',
   bdpField1: 'Timestamp',
   bdpField2: 'Transactions',
@@ -140,7 +152,7 @@ export default {
   /*
   ** Tx detail page
   */
-  tdpTitle: 'Transactions',
+  tdpTitle: 'Transaction',
   tdpField1: 'Transaction Hash',
   tdpField2: 'Status',
   tdpField3: 'Block Number',
@@ -175,7 +187,7 @@ export default {
   /*
   ** Account detail page
   */
-  adpField1: 'Addresses',
+  adpField1: 'Address',
   adpField2: 'Balance',
   adpField3: 'Transactions',
   adpField4: 'Transactions',
@@ -201,6 +213,7 @@ export default {
   /*
   ** Contract detail page
   */
+  cdpTitle: 'Contract',
   cdpField1: 'Contract Code',
   cdpColumn3: 'Owner',
   cdpColumn4: 'Creator Tx',
@@ -271,13 +284,14 @@ export default {
   tnfTitle: 'Enter your testnet account address',
   tnfPlaceholder1: 'Testnet account address',
   tnfBtn: 'Claim',
-  successInfo: 'Submitted Successfully!',
+  successInfo: 'Submitted successfully, please check from account page!',
 
   /*
   ** error message
   */
   system_err: 'System error!',
-  wrong_address: 'Wrong address format!',
+  wrong_address: 'Wrong address format, please input valid address or ',
+  new_address: 'create a new one',
   duplicated_send: 'Ongoing sending, please check again later!',
   send_over_frequent: 'Too frequent, only once per day is allowed!',
   system_nonce_err: 'Obtaining tx nonce failed, please contact the admin!',
@@ -285,5 +299,53 @@ export default {
   system_tx_send_err: 'Sending tx failed, please contact the admin!',
   wrong_keyword: 'Wrong format of keyword, please check again!',
   search_err: 'Search error!',
-  not_found: 'Not found!'
+  not_found: 'Not found!',
+
+  /*
+  ** Open wallet
+  */
+  owBanner: '打开你的钱包',
+  owTitle: '请选择打开钱包的方式：',
+  owMethod1: 'Keystore File',
+  owMethod1Field1: '请选择Keystore文件：',
+  owMethod1Field2: 'Select File',
+  owMethod1Field3: '请输入密码：',
+  owMethod1Ph: 'Please input password',
+  owMethod2: 'Private Key',
+  owMethod2Field1: '请输入私钥：',
+  owMethod2Ph: '请输入你的钱包私钥',
+  owBtn: '打开钱包',
+
+  /*
+  ** Wallet account
+  */
+  waTitle: 'Wallet Account',
+  waField1: 'Balance',
+  waField2: 'Address',
+  waField3: 'Send/Receive',
+  waBtn1: 'Send',
+  waBtn2: 'Receive',
+
+  /*
+  ** Receive page
+  */
+  rpBanner: 'Receive',
+  rpTitle1: 'Wallet Address',
+  rpTitle2: 'Address QRCode',
+
+  /*
+  ** Send page
+  */
+  spBanner: 'Send',
+  spTitle1: 'Wallet Address',
+  spTitle2: 'Receiver Address',
+  spPh1: 'Receiver Address',
+  spTitle3: 'Currency',
+  spTitle4: 'Amount',
+  spPh2: 'Amount',
+  spTitle5: 'Additional',
+  spPh3: 'Optional',
+  spField1: 'Balance: ',
+  spBtn1: 'All',
+  spBtn2: 'Confirmed'
 }
