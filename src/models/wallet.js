@@ -45,6 +45,7 @@ export default {
       payload: { token, amount, receAddr, sender, extraData }
     }) {
       const rawTx = {
+        from: sender.address,
         chainId: chainId,
         nonce: vnt.toHex(vnt.core.getTransactionCount(sender.address))
       }
