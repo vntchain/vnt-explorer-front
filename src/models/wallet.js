@@ -67,7 +67,9 @@ export default {
         rawTx.value = '0x00'
         rawTx.data = data
       }
-      rawTx.gas = vnt.core.estimateGas(rawTx)
+      rawTx.gas = vnt.toHex(vnt.core.estimateGas(rawTx))
+      rawTx.gasPrice = vnt.toHex(vnt.core.gasPrice.toString())
+
       const tx = new TX(rawTx)
       tx.sign(new Buffer(sender.privateKey.substring(2), 'hex'))
       const serializedTx = tx.serialize()
