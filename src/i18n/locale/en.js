@@ -79,7 +79,9 @@ export default {
     'This password encrypts your private key. This does not act as a seed to generate your keys.',
   st1Note2:
     'You will need this password and your private key to unlock your wallet.',
-  st1InputPH: 'Please Enter at least 6 characters',
+  st1InputPH: 'Use 8 to 16 characters with letters and numbers',
+  st1NoteError1: 'Must contain at least one number',
+  st1NoteError2: 'Must contain at least one letter',
   st1Btn: 'Create New Wallet',
   /*
   ** Create wallet stage2

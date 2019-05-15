@@ -76,7 +76,9 @@ export default {
   st1Title: '请输入密码',
   st1Note1: '密码用于加密你的私钥，不作为生成私钥的种子',
   st1Note2: '你需要密码+私钥解锁你的钱包',
-  st1InputPH: '请输入至少 6 位字符',
+  st1InputPH: '请输入 8-16 位字符，包含字母和数字',
+  st1NoteError1: '至少包含一个数字',
+  st1NoteError2: '至少包含一个字母',
   st1Btn: '创建钱包',
   /*
   ** Create wallet stage2
