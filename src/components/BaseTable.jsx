@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
 
 import { pageSize } from 'constants/config'
 
@@ -23,6 +23,7 @@ function BaseTable(props) {
       tableClass = styles.revTable4C
       break
   }
+
   return (
     <Table
       style={data.length === 0 ? { paddingTop: '0.6rem' } : {}}
@@ -36,7 +37,7 @@ function BaseTable(props) {
               position: 'both',
               pageSize: pageSize,
               total: props.data.length === 0 ? 0 : props.count,
-              showQuickJumper: true,
+              showQuickJumper: { goButton: <Button>确定</Button> },
               onChange: p => flipPage(p),
               current: currentIndex
             }
