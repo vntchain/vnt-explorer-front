@@ -28,13 +28,13 @@ export default function HeaderDropdown(props) {
   const { menu } = props
   const dropdownMenu = dropdownMenuFactory(menu.children)
   return (
-    <Dropdown overlay={dropdownMenu}>
-      <div className={styles.dropdown}>
+    <div className={styles.dropdown}>
+      <Dropdown overlay={dropdownMenu} overlayClassName="dropdownTitle">
         <span>
           <LocalText id={menu.title} />
+          {!props.isMobile && <Icon type="down" />}
         </span>
-        {!props.isMobile && <Icon type="down" />}
-      </div>
-    </Dropdown>
+      </Dropdown>
+    </div>
   )
 }
