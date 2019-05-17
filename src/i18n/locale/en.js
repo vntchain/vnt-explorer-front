@@ -1,5 +1,5 @@
 export default {
-  language: '中文',
+  language: 'English',
 
   blank: '',
   rank: '#',
@@ -17,6 +17,7 @@ export default {
   /*
   ** Header Fields
   */
+  logoText: 'VNT Chain',
   nav1: 'Blockchain',
   nav1Sub1: 'Overview',
   nav1Sub2: 'Blocks',
@@ -36,7 +37,13 @@ export default {
   nav3AuthSub2: 'Send',
   nav3AuthSub3: 'Receive',
   nav3AuthSub4: 'Logout',
+  nav4: 'More',
+  nav4Sub1: 'VNT Official Website',
+  nav4Sub2: 'VNT Box',
   hdSearchPh: 'Search address, block, transaction', // placeholder for header search box
+  nav5: 'MainNet',
+  nav5Sub1: 'MainNet',
+  nav5Sub2: 'TestNet',
   /*
  ** Home banner
  */

@@ -42,238 +42,233 @@ const mapStateToProps = ({ global: { isMobile } }) => {
   }
 }
 
-export default withRouter(
-  connect(mapStateToProps)(function App(props) {
-    const handleResize = () => {
-      const clientWidth = Math.min(
-        window.innerWidth,
-        document.documentElement.clientWidth
-      )
-      if (!props.isMobile && clientWidth <= 600) {
-        props.dispatch({
-          type: 'global/setIsMobile',
-          payload: true
-        })
-      } else if (props.isMobile && clientWidth > 600) {
-        props.dispatch({
-          type: 'global/setIsMobile',
-          payload: false
-        })
-      }
+function App(props) {
+  const handleResize = () => {
+    const clientWidth = Math.min(
+      window.innerWidth,
+      document.documentElement.clientWidth
+    )
+    if (!props.isMobile && clientWidth <= 600) {
+      props.dispatch({
+        type: 'global/setIsMobile',
+        payload: true
+      })
+    } else if (props.isMobile && clientWidth > 600) {
+      props.dispatch({
+        type: 'global/setIsMobile',
+        payload: false
+      })
     }
+  }
 
-    useEffect(() => {
-      handleResize()
-      window.addEventListener('resize', handleResize)
-      return () => {
-        window.removeEventListener('resize', handleResize)
-      }
-    })
+  useEffect(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
 
-    const { index: currentIndex, filterParam } = (() => {
-      const a = location.pathname.split('/').filter(item => item)
-      const index = isNaN(parseInt(a[a.length - 1], 10))
-        ? 1
-        : parseInt(a[a.length - 1], 10)
+  const { index: currentIndex, filterParam } = (() => {
+    const a = location.pathname.split('/').filter(item => item)
+    const index = isNaN(parseInt(a[a.length - 1], 10))
+      ? 1
+      : parseInt(a[a.length - 1], 10)
 
-      let filterParam = ''
-      if (
-        (a.length === 2 && isNaN(parseInt(a[a.length - 1], 10))) ||
-        a.length === 3
-      ) {
-        filterParam = `&${a[1]}`
-      }
-      return { index, filterParam }
-    })()
-    // 刷新时的 url 参数
-    const baseParams = `offset=${(currentIndex - 1) *
-      pageSize}&limit=${pageSize}`
-    // 返回除 offset 以为的请求 path
-    const getBasePath = type => `${type}?limit=${pageSize}`
+    let filterParam = ''
+    if (
+      (a.length === 2 && isNaN(parseInt(a[a.length - 1], 10))) ||
+      a.length === 3
+    ) {
+      filterParam = `&${a[1]}`
+    }
+    return { index, filterParam }
+  })()
+  // 刷新时的 url 参数
+  const baseParams = `offset=${(currentIndex - 1) * pageSize}&limit=${pageSize}`
+  // 返回除 offset 以为的请求 path
+  const getBasePath = type => `${type}?limit=${pageSize}`
 
-    return (
-      <div className={styles.app}>
-        <div className={styles.margin}>
-          <Header />
+  return (
+    <div className={styles.app}>
+      <div className={styles.margin}>
+        <Header />
+      </div>
+
+      {/* 开发者指南页的标题 */}
+      {location.pathname.startsWith(r.devGuides) && (
+        <div className={styles.strTitle}>
+          <h2>
+            <LocalText id="dgTitle" />
+          </h2>
         </div>
+      )}
 
-        {/* 开发者指南页的标题 */}
-        {location.pathname.startsWith(r.devGuides) && (
-          <div className={styles.strTitle}>
-            <h2>
-              <LocalText id="dgTitle" />
-            </h2>
-          </div>
-        )}
+      <div className={styles.margin}>
+        <div>
+          <Route exact path={r.home} component={Home} />
 
-        <div className={styles.margin}>
-          <div>
-            <Route exact path={r.home} component={Home} />
+          <Route
+            path={r.blockList}
+            render={() => (
+              <DataProvider
+                options={{
+                  path: `${apis.blocks}?${baseParams}`,
+                  ns: 'blocks',
+                  field: 'blocks'
+                }}
+                render={data => (
+                  <PageProvider
+                    comp={BlockList}
+                    options={{
+                      basePath: `${getBasePath(apis.blocks)}`,
+                      ns: 'blocks',
+                      field: 'blocks'
+                    }}
+                    refreshProof={true}
+                    redirectBase={r.blockList}
+                    context={data}
+                    currentIndex={currentIndex}
+                  />
+                )}
+              />
+            )}
+          />
+          <Route path={`${r.blockDetail}/:block`} component={BlockDetail} />
 
-            <Route
-              path={r.blockList}
-              render={() => (
-                <DataProvider
-                  options={{
-                    path: `${apis.blocks}?${baseParams}`,
-                    ns: 'blocks',
-                    field: 'blocks'
-                  }}
-                  render={data => (
-                    <PageProvider
-                      comp={BlockList}
-                      options={{
-                        basePath: `${getBasePath(apis.blocks)}`,
-                        ns: 'blocks',
-                        field: 'blocks'
-                      }}
-                      refreshProof={true}
-                      redirectBase={r.blockList}
-                      context={data}
-                      currentIndex={currentIndex}
-                    />
-                  )}
-                />
-              )}
-            />
-            <Route path={`${r.blockDetail}/:block`} component={BlockDetail} />
+          <Route
+            path={r.txList}
+            render={() => (
+              <DataProvider
+                options={{
+                  path: `${apis.txs}?${baseParams}${filterParam || ''}`,
+                  ns: 'transactions',
+                  field: 'txs'
+                }}
+                render={data => (
+                  <PageProvider
+                    comp={TxList}
+                    options={{
+                      basePath: `${getBasePath(apis.txs)}${filterParam || ''}`,
+                      ns: 'transactions',
+                      field: 'txs'
+                    }}
+                    refreshProof={true}
+                    redirectBase={r.txList}
+                    context={data}
+                    currentIndex={currentIndex}
+                    filterParam={filterParam}
+                  />
+                )}
+              />
+            )}
+          />
 
-            <Route
-              path={r.txList}
-              render={() => (
-                <DataProvider
-                  options={{
-                    path: `${apis.txs}?${baseParams}${filterParam || ''}`,
-                    ns: 'transactions',
-                    field: 'txs'
-                  }}
-                  render={data => (
-                    <PageProvider
-                      comp={TxList}
-                      options={{
-                        basePath: `${getBasePath(apis.txs)}${filterParam ||
-                          ''}`,
-                        ns: 'transactions',
-                        field: 'txs'
-                      }}
-                      refreshProof={true}
-                      redirectBase={r.txList}
-                      context={data}
-                      currentIndex={currentIndex}
-                      filterParam={filterParam}
-                    />
-                  )}
-                />
-              )}
-            />
+          <Route path={`${r.txDetail}/:tx`} component={TxDetail} />
 
-            <Route path={`${r.txDetail}/:tx`} component={TxDetail} />
+          <Route
+            path={r.accountList}
+            render={() => (
+              <DataProvider
+                options={{
+                  path: `${apis.accounts}?${baseParams}&isContract=0`,
+                  ns: 'accounts',
+                  field: 'accounts'
+                }}
+                render={data => (
+                  <PageProvider
+                    comp={AccountList}
+                    options={{
+                      basePath: `${getBasePath(apis.accounts)}&isContract=0`,
+                      ns: 'accounts',
+                      field: 'accounts'
+                    }}
+                    refreshProof={true}
+                    redirectBase={r.accountList}
+                    context={data}
+                    currentIndex={currentIndex}
+                    typeParam=""
+                  />
+                )}
+              />
+            )}
+          />
+          <Route path={`${r.accountDetail}/:acct`} component={AccountDetail} />
 
-            <Route
-              path={r.accountList}
-              render={() => (
-                <DataProvider
-                  options={{
-                    path: `${apis.accounts}?${baseParams}&isContract=0`,
-                    ns: 'accounts',
-                    field: 'accounts'
-                  }}
-                  render={data => (
-                    <PageProvider
-                      comp={AccountList}
-                      options={{
-                        basePath: `${getBasePath(apis.accounts)}&isContract=0`,
-                        ns: 'accounts',
-                        field: 'accounts'
-                      }}
-                      refreshProof={true}
-                      redirectBase={r.accountList}
-                      context={data}
-                      currentIndex={currentIndex}
-                      typeParam=""
-                    />
-                  )}
-                />
-              )}
-            />
-            <Route
-              path={`${r.accountDetail}/:acct`}
-              component={AccountDetail}
-            />
+          <Route
+            path={r.contractList}
+            render={() => (
+              <DataProvider
+                options={{
+                  path: `${apis.accounts}?${baseParams}&isContract=1`,
+                  ns: 'accounts',
+                  field: 'accounts'
+                }}
+                render={data => (
+                  <PageProvider
+                    comp={ContractList}
+                    options={{
+                      basePath: `${getBasePath(apis.accounts)}&isContract=1`,
+                      ns: 'accounts',
+                      field: 'accounts'
+                    }}
+                    refreshProof={true}
+                    redirectBase={r.contractList}
+                    context={data}
+                    currentIndex={currentIndex}
+                    typeParam=""
+                  />
+                )}
+              />
+            )}
+          />
+          <Route
+            path={`${r.contractDetail}/:cont`}
+            component={ContractDetail}
+          />
 
-            <Route
-              path={r.contractList}
-              render={() => (
-                <DataProvider
-                  options={{
-                    path: `${apis.accounts}?${baseParams}&isContract=1`,
-                    ns: 'accounts',
-                    field: 'accounts'
-                  }}
-                  render={data => (
-                    <PageProvider
-                      comp={ContractList}
-                      options={{
-                        basePath: `${getBasePath(apis.accounts)}&isContract=1`,
-                        ns: 'accounts',
-                        field: 'accounts'
-                      }}
-                      refreshProof={true}
-                      redirectBase={r.contractList}
-                      context={data}
-                      currentIndex={currentIndex}
-                      typeParam=""
-                    />
-                  )}
-                />
-              )}
-            />
-            <Route
-              path={`${r.contractDetail}/:cont`}
-              component={ContractDetail}
-            />
+          <Route
+            path={r.tokenList}
+            render={() => (
+              <DataProvider
+                options={{
+                  path: `${apis.accounts}?${baseParams}&isToken=1`,
+                  ns: 'accounts',
+                  field: 'accounts'
+                }}
+                render={data => (
+                  <PageProvider
+                    comp={TokenList}
+                    options={{
+                      basePath: `${getBasePath(apis.accounts)}&isToken=1`,
+                      ns: 'accounts',
+                      field: 'accounts'
+                    }}
+                    refreshProof={true}
+                    redirectBase={r.tokenList}
+                    context={data}
+                    currentIndex={currentIndex}
+                    typeParam=""
+                  />
+                )}
+              />
+            )}
+          />
+          <Route path={`${r.tokenDetail}/:toke`} component={TokenDetail} />
 
-            <Route
-              path={r.tokenList}
-              render={() => (
-                <DataProvider
-                  options={{
-                    path: `${apis.accounts}?${baseParams}&isToken=1`,
-                    ns: 'accounts',
-                    field: 'accounts'
-                  }}
-                  render={data => (
-                    <PageProvider
-                      comp={TokenList}
-                      options={{
-                        basePath: `${getBasePath(apis.accounts)}&isToken=1`,
-                        ns: 'accounts',
-                        field: 'accounts'
-                      }}
-                      refreshProof={true}
-                      redirectBase={r.tokenList}
-                      context={data}
-                      currentIndex={currentIndex}
-                      typeParam=""
-                    />
-                  )}
-                />
-              )}
-            />
-            <Route path={`${r.tokenDetail}/:toke`} component={TokenDetail} />
+          <Route path={r.nodeList} component={NodeList} />
+          <Route path={r.devGuides} component={DevGuides} />
+          <Route path={r.faucet} component={Faucet} />
 
-            <Route path={r.nodeList} component={NodeList} />
-            <Route path={r.devGuides} component={DevGuides} />
-            <Route path={r.faucet} component={Faucet} />
-
-            <Route exact path={r['open-wallet']} component={OpenWallet} />
-            <Route exact path={r['create-wallet']} component={CreateWallet} />
-            <Route exact path={r.receive} component={requireAuth(Receive)} />
-            <Route exact path={r.send} component={requireAuth(Send)} />
-            <Route exact path={r.wallet} component={requireAuth(Wallet)} />
-          </div>
+          <Route exact path={r['open-wallet']} component={OpenWallet} />
+          <Route exact path={r['create-wallet']} component={CreateWallet} />
+          <Route exact path={r.receive} component={requireAuth(Receive)} />
+          <Route exact path={r.send} component={requireAuth(Send)} />
+          <Route exact path={r.wallet} component={requireAuth(Wallet)} />
         </div>
       </div>
-    )
-  })
-)
+    </div>
+  )
+}
+
+export default withRouter(connect(mapStateToProps)(App))

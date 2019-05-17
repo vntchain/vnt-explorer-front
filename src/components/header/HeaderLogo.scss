@@ -1,4 +1,4 @@
-@import '../../assets/base';
+@import "../../assets/base";
 
 .logo-box {
   display: flex;
@@ -6,15 +6,19 @@
   margin-right: auto;
 
   &__icon {
-    margin-right: .13rem;
-    height: .32rem;
+    margin-right: 0.13rem;
+    height: 0.32rem;
   }
 
   &__text {
     color: $color-light-1;
     border: 1px solid $color-light-2;
-    padding: .05rem;
-    border-radius: .03rem;
-    font-size: .08rem;
+    padding: 0.05rem;
+    border-radius: 0.03rem;
+    font-size: 0.08rem;
+  }
+
+  &__textNew {
+    color: $color-dark-1;
   }
 }

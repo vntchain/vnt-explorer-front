@@ -1,5 +1,5 @@
 export default {
-  language: 'EN',
+  language: '简体中文',
 
   blank: '',
   rank: '#',
@@ -16,6 +16,7 @@ export default {
   /*
   ** Header Fields
   */
+  logoText: '维特链浏览器',
   nav1: '区块链',
   nav1Sub1: '概览',
   nav1Sub2: '区块',
@@ -35,7 +36,15 @@ export default {
   nav3AuthSub2: '发送',
   nav3AuthSub3: '接收',
   nav3AuthSub4: '退出登录',
+  nav4: '更多',
+  nav4Sub1: 'VNT官网',
+  nav4Sub2: 'VNT Box',
   hdSearchPh: '搜索地址，区块，交易', // placeholder for header search box
+  nav5: '主网',
+  nav5Sub1: '主网',
+  nav5Sub2: '测试网',
+  nav6Sub1: '简体中文',
+
   /*
   ** Home banner
   */

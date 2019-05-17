@@ -13,10 +13,14 @@ export default {
   nodeList: '/super-node',
   devGuides: '/developer',
   faucet: '/faucet',
+  vntOfficialWebsite: 'http://www.vntchain.io/',
+  vntBox: 'https://vnt.link/',
   'create-wallet': '/create-wallet',
   'open-wallet': '/open-wallet',
   'wallet-account': '/wallet',
   send: '/send',
   receive: '/receive',
-  wallet: '/wallet'
+  wallet: '/wallet',
+  mainNet: 'https://www.vntchain.io/',
+  testNet: 'https://hubscan.vnt.link/'
 }

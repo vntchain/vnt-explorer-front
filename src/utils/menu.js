@@ -1,4 +1,6 @@
 import r from 'constants/routes'
+import cnIcon from 'assets/images/cn.png'
+import enIcon from 'assets/images/en.png'
 
 export default [
   {
@@ -152,3 +154,58 @@ export const devGuideMenu = [
     path: '/developer/dapp/invoke'
   }
 ]
+
+export const moreMenu = {
+  title: 'nav4',
+  key: 'more',
+  children: [
+    {
+      title: 'nav4Sub1',
+      key: 'vntOfficialWebsite',
+      path: r.vntOfficialWebsite,
+      friendLink: true
+    },
+    {
+      title: 'nav4Sub2',
+      key: 'vntBox',
+      path: r.vntBox,
+      friendLink: true
+    }
+  ]
+}
+
+export const vntNetMenu = {
+  title: 'nav5',
+  key: 'vntNet',
+  children: [
+    {
+      title: 'nav5Sub1',
+      key: 'mainNet',
+      path: r.mainNet
+    },
+    {
+      title: 'nav5Sub2',
+      key: 'testNet',
+      path: r.testNet,
+      friendLink: true
+    }
+  ]
+}
+
+export const headerLang = {
+  defaultValue: 'cn',
+  children: [
+    {
+      title: '简体中文',
+      value: 'cn',
+      key: 'cn',
+      imgSrc: cnIcon
+    },
+    {
+      title: 'English',
+      value: 'en',
+      key: 'en',
+      imgSrc: enIcon
+    }
+  ]
+}

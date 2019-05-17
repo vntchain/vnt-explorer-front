@@ -1,0 +1,44 @@
+@import "../../assets/base";
+
+.lang {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  line-height: 48px;
+  height: 48px;
+  span {
+    font-size: 0.14rem;
+    color: #333;
+    margin-left: 0.05rem;
+  }
+
+  :global {
+    .ant-select-selection {
+      border: none;
+      outline: none;
+
+      &.ant-select-open {
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      .ant-select-arrow {
+        margin-right: 0.01rem;
+        margin-left: 0.01rem;
+      }
+
+      .anticon {
+        font-size: 0.08rem;
+        line-height: 1;
+      }
+    }
+  }
+  @include respondTo($bp-phone) {
+    display: none;
+  }
+}
