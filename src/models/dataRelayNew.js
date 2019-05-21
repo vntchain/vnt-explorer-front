@@ -8,7 +8,7 @@ export default {
   state: {},
   reducers: {},
   effects: ({ takeEvery }) => ({
-    fetchData: takeEvery(function*({ payload }) {
+    fetchData: takeEvery(function*({ payload, callback }) {
       const { path, ns, field } = payload
       const method = payload.method || 'get'
       const axiosArgs =
@@ -59,17 +59,22 @@ export default {
             error = JSON.stringify(error)
           }
         }
+        const result = {
+          data,
+          error, // string
+          isLoading: false,
+          count: resp.extra ? resp.extra.count : '--',
+          field
+        }
 
         yield put({
           type: `${ns}/setState`,
-          payload: {
-            data,
-            error, // string
-            isLoading: false,
-            count: resp.extra ? resp.extra.count : '--',
-            field
-          }
+          payload: result
         })
+        //invoke callback
+        if (callback && typeof callback === 'function') {
+          yield call(callback, ns, result)
+        }
       } catch (e) {
         /* eslint-disable */
         console.log('%c%s\n%crequest "%s" error', 'color: white; background: #029e74; font-size: 16px;', '________________________', 'color: #ff9200; background: #363636;', path)

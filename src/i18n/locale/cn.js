@@ -39,11 +39,15 @@ export default {
   /*
   ** Home banner
   */
-  hbField1: '区块高度',
-  hbField2: '交易数',
-  hbField3: '当前/峰值 TPS',
-  hbField4: '总账户数',
-  hbField5: '超级节点/候选节点',
+  hbFieldHeight: '区块高度',
+  hbFieldTxCount: '交易数',
+  hbFieldAccountCount: '总账户数',
+  hbFieldCurrTps: '当前/峰值 TPS',
+  hbFieldPriceCny: 'VNT 市值',
+  hbFieldAvailableSupply: 'VNT 流通量',
+  hbFieldMarketCapCny: 'VNT 价格（24h涨跌）',
+  hbFieldSuperNode: '超级节点/候选节点',
+  hbFieldUnit: '万',
   /*
   ** Home brief info box (left and right)
   */

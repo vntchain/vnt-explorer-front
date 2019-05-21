@@ -1,52 +1,57 @@
-@import '../../assets/base';
+@import "../../assets/base";
 
 .brief {
   background-color: $color-primary;
-  border-radius: .04rem;
-  padding: .4rem .5rem;
+  border-radius: 0.04rem;
+  padding: 0.4rem 0 0 0.5rem;
 
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 
   @include respondTo($bp-phone) {
     flex-wrap: wrap;
     background-color: transparent;
     padding: 0 0rem;
-    margin: 0 -.075rem;
+    margin: 0 -0.075rem;
   }
 }
 
 .brief-item {
+  margin-bottom: 0.5rem;
+  width: 25%;
   color: #fff;
   &__title {
-    margin-bottom: .2rem;
-    font-size: .14rem;
+    margin-bottom: 0.15rem;
+    font-size: 0.16rem;
   }
   &__number {
     margin-bottom: 0;
-    font-size: .28rem;
+    font-size: 0.28rem;
+  }
+  &__tiny {
+    font-size: 0.16rem;
   }
 
   @include respondTo($bp-phone) {
-    border-radius: .04rem;
+    border-radius: 0.04rem;
 
-    flex: 0 1 calc(50% - .15rem);
+    flex: 0 1 calc(50% - 0.15rem);
     background-color: #fff;
     color: $color-primary;
 
-    padding: .2rem .15rem;
+    padding: 0.2rem 0.15rem;
 
-    margin: 0 .075rem;
+    margin: 0 0.075rem;
     margin-bottom: 5%;
 
     &__title {
       color: $color-dark-1;
-      font-size: .12rem;
+      font-size: 0.12rem;
     }
 
     &__number {
-      font-size: .2rem;
+      font-size: 0.2rem;
     }
-
   }
 }
