@@ -10,8 +10,6 @@ import apis from 'utils/apis'
 
 import withLang from 'i18n/withLang'
 import { calcAge, formatTime } from 'utils/time'
-import textSplit from 'utils/longTextSplitter'
-import { trunInterval } from 'constants/config'
 import r from 'constants/routes'
 
 const mapStateToProps = ({ blocks: { blockDetail } }) => {
@@ -83,6 +81,7 @@ function DetailTable(props) {
       ParentHash,
       TxCount,
       Producer,
+      ProducerDetail,
       Size,
       GasUsed,
       GasLimit,
@@ -90,6 +89,8 @@ function DetailTable(props) {
       ExtraData,
       Number
     } = props.context.data
+    // eslint-disable-next-line
+    //console.log(props.context.data)
     data.push({
       key: 'timeStamp',
       fieldName: <LocalText id="bdpField1" />,
@@ -118,7 +119,11 @@ function DetailTable(props) {
     data.push({
       key: 'producer',
       fieldName: <LocalText id="bdpField5" />,
-      value: <Link to={`/account/${Producer}`}>{Producer}</Link>
+      value: (
+        <Link to={`/account/${Producer}`}>
+          {ProducerDetail.Vname || ProducerDetail.Address}
+        </Link>
+      )
     })
     data.push({
       key: 'size',
@@ -145,11 +150,8 @@ function DetailTable(props) {
       fieldName: <LocalText id="bdpField10" />,
       value: (
         <div>
-          {textSplit(ExtraData, trunInterval).map(item => (
-            <p style={{ marginBottom: '0', lineHeight: '1' }} key={item}>
-              {item}
-            </p>
-          ))}
+          <LocalText id="bdpField11" />
+          {`${formatTime(parseInt(ExtraData))}`}
         </div>
       )
     })

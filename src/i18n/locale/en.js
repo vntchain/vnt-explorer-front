@@ -3,6 +3,7 @@ export default {
 
   blank: '',
   rank: '#',
+  confirmPage: 'OK',
 
   /*
   ** Prompt msg
@@ -140,6 +141,7 @@ export default {
   bdpField8: 'Gas Limit',
   bdpField9: 'Block Reward',
   bdpField10: 'Extra Data',
+  bdpField11: 'Witness Switching Time ：',
 
   /*
   ** Tx list page
@@ -157,6 +159,7 @@ export default {
   txFilterByBlockSub: num =>
     `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
   tlpColumn01: 'Amount',
+  contractToolTip: 'contract',
 
   /*
   ** Tx detail page
@@ -187,7 +190,7 @@ export default {
   */
   alpTitle: 'Accounts',
   alpSubTitle: num => `A Total of ${num} Account${num > 1 ? 's' : ''}`,
-  alpColumn1: '#',
+  alpColumn1: 'Rank',
   alpColumn2: 'Address',
   alpColumn3: 'Balance',
   alpColumn4: 'Percentage',
@@ -205,6 +208,7 @@ export default {
   adpField7: 'Token',
   adpField8: 'Price',
   adpField9: 'Value in VNT',
+  adpField10: '备注',
   adpCount1: num => `A Total of ${num} Tx${num > 1 ? 's' : ''}`,
   adpCount2: num => `A Total of ${num} Token Tx${num > 1 ? 's' : ''}`,
   adpCount3: num => `A Total of ${num} Token${num > 1 ? 's' : ''}`,
@@ -356,5 +360,26 @@ export default {
   spPh3: 'Optional',
   spField1: 'Balance: ',
   spBtn1: 'All',
-  spBtn2: 'Confirmed'
+  spBtn2: 'Confirmed',
+
+  /*
+  ** partners 
+  */
+  partners: '合作伙伴',
+
+  /*
+  ** footer 
+  */
+  footerLogoText: 'Distributed Smart Value Network',
+  subscribe_hint: '订阅我们获取更多VNT Chain信息',
+  footerPlaceholder: '邮件地址',
+  submitBtn: '提交',
+  submit_success: '提交成功',
+  nav_home: '首页',
+  nav_tech: '技术',
+  nav_developer: '开发者',
+  nav_news: '新闻',
+  nav_community: '社区',
+  nav_cooperation: '合作',
+  nav_about: '关于我们'
 }

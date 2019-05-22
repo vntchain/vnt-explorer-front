@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router-dom'
 
 import Header from 'components/header/Header'
+import Footer from 'components/footer/Footer'
 import Home from 'containers/Home'
 
 import PageProvider from 'containers/PageProvider'
@@ -272,6 +273,10 @@ export default withRouter(
             <Route exact path={r.send} component={requireAuth(Send)} />
             <Route exact path={r.wallet} component={requireAuth(Wallet)} />
           </div>
+        </div>
+
+        <div className={styles.margin}>
+          <Footer />
         </div>
       </div>
     )

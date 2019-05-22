@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Table, Button } from 'antd'
 
 import { pageSize } from 'constants/config'
-
+import LocalText from 'i18n/LocalText'
 import styles from 'components/BaseTable.scss'
 
 function BaseTable(props) {
@@ -37,7 +37,13 @@ function BaseTable(props) {
               position: 'both',
               pageSize: pageSize,
               total: props.data.length === 0 ? 0 : props.count,
-              showQuickJumper: { goButton: <Button>确定</Button> },
+              showQuickJumper: {
+                goButton: (
+                  <Button className={styles.confirmButton}>
+                    <LocalText id="confirmPage" />
+                  </Button>
+                )
+              },
               onChange: p => flipPage(p),
               current: currentIndex
             }

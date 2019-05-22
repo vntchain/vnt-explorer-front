@@ -1,4 +1,4 @@
-@import '../assets/base';
+@import "../assets/base";
 
 .table {
   @include antdTable;
@@ -8,7 +8,7 @@
   @include antdTable;
   :global {
     .ant-spin-container {
-      padding: 0 .2rem;
+      padding: 0 0.2rem;
     }
   }
 }
@@ -19,4 +19,16 @@
 
 .revTable4C {
   @include antdRevTable2C;
+}
+
+.confirmButton {
+  color: #333;
+  font-size: 0.14rem;
+  height: 0.32rem;
+  width: 0.64rem;
+  line-height: 0.32rem;
+
+  &:first-letter {
+    letter-spacing: 0;
+  }
 }
