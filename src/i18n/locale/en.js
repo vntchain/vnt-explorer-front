@@ -294,6 +294,7 @@ export default {
   ** Test network faucet
   */
   tnfBanner: 'VNT Faucet',
+  tnfBannerSubTitle: 'Get it now',
   tnfTitle: 'Enter your testnet account address',
   tnfPlaceholder1: 'Testnet account address',
   tnfBtn: 'Claim',
