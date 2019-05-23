@@ -4,7 +4,7 @@ import { push } from 'react-router-redux'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import Banner from 'components/Banner'
+import Banner from 'components/FaucetBanner'
 import Margin from 'components/Margin'
 import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
@@ -92,7 +92,7 @@ export default connect(mapStateToProps)(
 
     return (
       <div className={styles.faucet}>
-        <Banner id="tnfBanner" />
+        <Banner mainTitle="tnfBanner" subTitle="tnfBannerSubTitle" />
 
         <Margin size="medium" />
 

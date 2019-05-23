@@ -79,7 +79,7 @@ export default connect(mapStateToProps)(
             <div className={styles.addr}>
               <Copier
                 text={this.props.account.address}
-                style={''}
+                textStyle={''}
                 copyRef={this.copyRef}
               />
               <QRModal address={this.props.account.address} />

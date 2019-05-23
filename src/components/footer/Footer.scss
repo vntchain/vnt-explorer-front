@@ -1,0 +1,58 @@
+@import "../../assets/base";
+
+.footer {
+  min-height: 3.18rem;
+  background: url(../../assets/images/footer/map.png) center no-repeat;
+  background-size: 50%;
+
+  > p {
+    margin-top: 30px;
+    font-size: 0.14rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.flexWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:first-child {
+    padding-top: 0.6rem;
+  }
+
+  @include respondTo($bp-phone) {
+    display: block;
+    &:first-child {
+      padding-top: 0.5rem;
+    }
+  }
+}
+
+.copyRight {
+  margin-top: 0.6rem;
+  height: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  line-height: 0.5rem;
+  color: #949497;
+
+  @include respondTo($bp-phone) {
+    margin-top: 0;
+    border-top: none;
+  }
+}
+
+.input {
+  width: 3.16rem;
+  :global {
+    .ant-input-search,
+    .ant-btn {
+      height: 0.4rem;
+    }
+  }
+
+  @include respondTo($bp-phone) {
+    width: 100%;
+  }
+}

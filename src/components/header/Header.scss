@@ -1,10 +1,10 @@
-@import '../../assets/base';
+@import "../../assets/base";
 
 .header {
   // without font-size, the other length-related rules go wrong
-  font-size: .16rem;
+  font-size: 0.16rem;
 
-  height: .7rem;
+  height: 0.7rem;
 
   display: flex;
   align-items: center;
@@ -15,34 +15,19 @@
     flex-wrap: wrap;
 
     box-sizing: content-box;
-    padding-top: .14rem !important;
-    padding-bottom: .2rem !important;
+    padding-top: 0.14rem !important;
+    padding-bottom: 0.2rem !important;
   }
 }
 
 .input {
   width: 3rem;
-  margin-left: .5rem;
-  margin-right: .3rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
 
   @include respondTo($bp-phone) {
     order: 3;
     flex: 1 0 100%;
     margin: 0;
-  }
-}
-
-.lang {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  span {
-    font-size: .14rem;
-    color: $color-light-1;
-    margin-left: .05rem;
-  }
-
-  @include respondTo($bp-phone) {
-    display: none;
   }
 }

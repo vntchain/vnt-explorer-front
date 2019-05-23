@@ -1,0 +1,55 @@
+@import "../assets/base";
+
+.faucetBanner {
+  height: 2.4rem;
+  background: url(../assets/images/faucet/bannerPC.png) center/cover no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  .mainTitle {
+    position: absolute;
+    left: 1rem;
+    top: 0.7rem;
+    line-height: 1;
+    font-size: 0.54rem;
+    font-weight: 600;
+    text-shadow: 5px 0 0 #2194ff;
+    color: #fff;
+  }
+
+  .subTitle {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 1rem;
+    bottom: 0.5rem;
+    border-radius: 0.19rem;
+    padding: 0.11rem 0.29rem;
+    background-image: linear-gradient(0deg, #f75d36 0%, #fcce44 100%),
+      linear-gradient(#fce27d, #fce27d);
+    > * {
+      display: block;
+    }
+    > span {
+      color: #fff;
+      font-size: 0.16rem;
+      line-height: 1;
+      margin-right: 0.06rem;
+    }
+
+    > img {
+      width: 0.1rem;
+    }
+  }
+
+  @include respondTo($bp-phone) {
+    background-image: url(../assets/images/faucet/bannerMobile.png);
+    .mainTitle {
+      left: 0.3rem;
+      font-size: 0.4rem;
+    }
+    .subTitle {
+      left: 0.3rem;
+      bottom: 0.6rem;
+    }
+  }
+}

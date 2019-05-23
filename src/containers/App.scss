@@ -1,4 +1,4 @@
-@import '../assets/base';
+@import "../assets/base";
 
 .app {
   .strTitle {
@@ -10,13 +10,13 @@
     }
     h2 {
       color: #fff;
-      padding: .3rem 0;
-      font-size: .18rem;
+      padding: 0.3rem 0;
+      font-size: 0.18rem;
       margin-bottom: 0;
       width: 12rem;
 
       @include respondTo($bp-desktop) {
-        padding-left: .3rem;
+        padding-left: 0.3rem;
       }
     }
   }
@@ -36,33 +36,35 @@
     margin: 0 auto;
 
     @include respondTo($bp-desktop) {
-      padding: 0 .3rem;
+      padding: 0 0.3rem;
     }
 
     @include respondTo($bp-phone) {
-      padding: 0 .15rem;
+      padding: 0 0.15rem;
       width: auto;
     }
-
   }
 
-  &:last-child {
+  &:nth-last-child(2) {
     background-color: $color-light-3;
-
-    padding: .3rem 0 1rem;
+    padding: 0.3rem 0 1rem;
 
     @include respondTo($bp-phone) {
-      padding: .2rem 0 .2rem;
+      padding: 0.2rem 0 0.2rem;
       width: auto;
     }
 
     & > div > * {
       &:not(:last-child) {
-        margin-bottom: .3rem;
+        margin-bottom: 0.3rem;
         @include respondTo($bp-phone) {
           margin-bottom: 0;
         }
       }
     }
+  }
+
+  &:last-child {
+    background-color: $color-footer;
   }
 }

@@ -1,4 +1,6 @@
 import r from 'constants/routes'
+import cnIcon from 'assets/images/cn.png'
+import enIcon from 'assets/images/en.png'
 
 export default [
   {
@@ -150,5 +152,153 @@ export const devGuideMenu = [
     title: 'dgNav4Sub3',
     key: 'invoke',
     path: '/developer/dapp/invoke'
+  }
+]
+
+export const moreMenu = {
+  title: 'nav4',
+  key: 'more',
+  children: [
+    {
+      title: 'nav4Sub1',
+      key: 'vntOfficialWebsite',
+      path: r.vntOfficialWebsite,
+      friendLink: true
+    },
+    {
+      title: 'nav4Sub2',
+      key: 'vntBox',
+      path: r.vntBox,
+      friendLink: true
+    }
+  ]
+}
+
+export const vntNetMenu = {
+  title: 'nav5',
+  key: 'vntNet',
+  children: [
+    {
+      title: 'nav5Sub1',
+      key: 'mainNet',
+      path: r.mainNet
+    },
+    {
+      title: 'nav5Sub2',
+      key: 'testNet',
+      path: r.testNet,
+      friendLink: true
+    }
+  ]
+}
+
+export const headerLang = {
+  defaultValue: 'cn',
+  children: [
+    {
+      title: '简体中文',
+      value: 'cn',
+      key: 'cn',
+      imgSrc: cnIcon
+    },
+    {
+      title: 'English',
+      value: 'en',
+      key: 'en',
+      imgSrc: enIcon
+    }
+  ]
+}
+
+export const footerNav = [
+  {
+    title: 'nav_home',
+    key: 'brief',
+    path: r.home
+  },
+  {
+    title: 'nav_tech',
+    key: 'officalTech',
+    path: r.vntOfficialWebsiteTech,
+    friendLink: true
+  },
+  {
+    title: 'nav_developer',
+    key: 'officalDeveloper',
+    path: r.vntOfficialWebsiteDeveloper,
+    friendLink: true
+  },
+  {
+    title: 'nav_news',
+    key: 'officalNews',
+    path: r.vntOfficialWebsiteNews,
+    friendLink: true
+  },
+  {
+    title: 'nav_community',
+    key: 'officalCommunith',
+    path: r.vntOfficialWebsiteCommunity,
+    friendLink: true
+  },
+  {
+    title: 'nav_cooperation',
+    key: 'officalCooperation',
+    path: r.vntOfficialWebsiteCooperation,
+    friendLink: true
+  },
+  {
+    title: 'nav_about',
+    key: 'officalAbout',
+    path: r.vntOfficialWebsiteAbout,
+    friendLink: true
+  }
+]
+
+export const footerSocialData = [
+  {
+    title: 'GitHub',
+    link: 'https://github.com/vntchain',
+    img: require('../assets/images/footer/social1.png'),
+    iconType: 'github'
+  },
+  {
+    title: 'Medium',
+    link: 'https://medium.com/vnt-chain-labs',
+    img: require('../assets/images/footer/social2.png'),
+    iconType: 'medium'
+  },
+  {
+    title: 'Twitter',
+    link: 'https://twitter.com/VNTChainLabs',
+    img: require('../assets/images/footer/social3.png'),
+    iconType: 'twitter'
+  },
+  {
+    title: 'Weibo',
+    link: 'https://weibo.com/vntchain',
+    img: require('../assets/images/footer/social4.png'),
+    iconType: 'weibo'
+  },
+  {
+    title: 'Reddit',
+    link: 'https://www.reddit.com/r/VNTChain/',
+    img: require('../assets/images/footer/social5.png'),
+    iconType: 'reddit'
+  },
+  {
+    title: 'Telegram',
+    link: 'https://t.me/VNTChainLabs',
+    img: require('../assets/images/footer/social6.png'),
+    iconType: 'dribbble'
+  },
+  {
+    title: 'WeChat',
+    img: require('../assets/images/footer/social7.png'),
+    iconType: 'wechat'
+  },
+  {
+    title: 'Mail',
+    img: require('../assets/images/footer/social8.png'),
+    iconType: 'mail'
   }
 ]

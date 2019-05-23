@@ -1,8 +1,9 @@
 export default {
-  language: '中文',
+  language: 'English',
 
   blank: '',
   rank: '#',
+  confirmPage: 'OK',
 
   /*
   ** Prompt msg
@@ -17,6 +18,7 @@ export default {
   /*
   ** Header Fields
   */
+  logoText: 'VNT Chain',
   nav1: 'Blockchain',
   nav1Sub1: 'Overview',
   nav1Sub2: 'Blocks',
@@ -36,7 +38,13 @@ export default {
   nav3AuthSub2: 'Send',
   nav3AuthSub3: 'Receive',
   nav3AuthSub4: 'Logout',
+  nav4: 'More',
+  nav4Sub1: 'VNT Official Website',
+  nav4Sub2: 'VNT Box',
   hdSearchPh: 'Search address, block, transaction', // placeholder for header search box
+  nav5: 'MainNet',
+  nav5Sub1: 'MainNet',
+  nav5Sub2: 'TestNet',
   /*
  ** Home banner
  */
@@ -83,7 +91,9 @@ export default {
     'This password encrypts your private key. This does not act as a seed to generate your keys.',
   st1Note2:
     'You will need this password and your private key to unlock your wallet.',
-  st1InputPH: 'Please Enter at least 6 characters',
+  st1InputPH: 'Use 8 to 16 characters with letters and numbers',
+  st1NoteError1: 'Must contain at least one number',
+  st1NoteError2: 'Must contain at least one letter',
   st1Btn: 'Create New Wallet',
   /*
   ** Create wallet stage2
@@ -135,6 +145,7 @@ export default {
   bdpField8: 'Gas Limit',
   bdpField9: 'Block Reward',
   bdpField10: 'Extra Data',
+  bdpField11: 'Witness Switching Time ：',
 
   /*
   ** Tx list page
@@ -152,6 +163,7 @@ export default {
   txFilterByBlockSub: num =>
     `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
   tlpColumn01: 'Amount',
+  contractToolTip: 'contract',
 
   /*
   ** Tx detail page
@@ -182,7 +194,7 @@ export default {
   */
   alpTitle: 'Accounts',
   alpSubTitle: num => `A Total of ${num} Account${num > 1 ? 's' : ''}`,
-  alpColumn1: '#',
+  alpColumn1: 'Rank',
   alpColumn2: 'Address',
   alpColumn3: 'Balance',
   alpColumn4: 'Percentage',
@@ -200,6 +212,7 @@ export default {
   adpField7: 'Token',
   adpField8: 'Price',
   adpField9: 'Value in VNT',
+  adpField10: '备注',
   adpCount1: num => `A Total of ${num} Tx${num > 1 ? 's' : ''}`,
   adpCount2: num => `A Total of ${num} Token Tx${num > 1 ? 's' : ''}`,
   adpCount3: num => `A Total of ${num} Token${num > 1 ? 's' : ''}`,
@@ -285,6 +298,7 @@ export default {
   ** Test network faucet
   */
   tnfBanner: 'VNT Faucet',
+  tnfBannerSubTitle: 'Get it now',
   tnfTitle: 'Enter your testnet account address',
   tnfPlaceholder1: 'Testnet account address',
   tnfBtn: 'Claim',
@@ -351,5 +365,26 @@ export default {
   spPh3: 'Optional',
   spField1: 'Balance: ',
   spBtn1: 'All',
-  spBtn2: 'Confirmed'
+  spBtn2: 'Confirmed',
+
+  /*
+  ** partners 
+  */
+  partners: '合作伙伴',
+
+  /*
+  ** footer 
+  */
+  footerLogoText: 'Distributed Smart Value Network',
+  subscribe_hint: '订阅我们获取更多VNT Chain信息',
+  footerPlaceholder: '邮件地址',
+  submitBtn: '提交',
+  submit_success: '提交成功',
+  nav_home: '首页',
+  nav_tech: '技术',
+  nav_developer: '开发者',
+  nav_news: '新闻',
+  nav_community: '社区',
+  nav_cooperation: '合作',
+  nav_about: '关于我们'
 }

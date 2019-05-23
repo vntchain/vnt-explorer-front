@@ -27,7 +27,6 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
 
 export default connect(mapStateToProps)(function AccountDetail(props) {
   const { accountDetail } = props
-
   // 点击发送方、接收方链接时更新表单数据
   useEffect(
     () => {
@@ -70,6 +69,16 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('TxCount')
           ? `${props.accountDetail.data.TxCount}`
+          : '-/-'
+    },
+    {
+      key: 'remark',
+      fieldName: <LocalText id="adpField10" />,
+      value:
+        props.accountDetail &&
+        props.accountDetail.data &&
+        props.accountDetail.data.hasOwnProperty('Vname')
+          ? `${props.accountDetail.data.Vname}`
           : '-/-'
     }
   ]

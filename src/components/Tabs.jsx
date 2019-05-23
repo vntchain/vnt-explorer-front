@@ -5,7 +5,6 @@ import styles from './Tabs.scss'
 
 export default function Tabs(props) {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
-
   const handleSelect = e => {
     // 重置 `transactions/txs` 字段
     // tab 下的交易数依赖 txs.length，不重置切 tab 会有影响

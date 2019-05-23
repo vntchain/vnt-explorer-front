@@ -6,6 +6,7 @@ import RPDataProviderAll from 'containers/RPDataProviderAll'
 import BriefInfo from 'components/home/BriefInfo'
 import BlockTx from 'components/home/BlockTx'
 import TxChart from 'components/home/TxChart'
+import Partners from 'components/home/Partners'
 import Margin from 'components/Margin'
 
 import apis from 'utils/apis'
@@ -50,6 +51,8 @@ export default connect(mapStateToProps)(function Home() {
         }}
         render={data => <TxChart context={data} />}
       />
+      <Margin size="medium" />
+      <Partners />
     </div>
   )
 })

@@ -1,9 +1,9 @@
 export default {
-  language: 'EN',
+  language: '简体中文',
 
   blank: '',
   rank: '#',
-
+  confirmPage: '确定',
   /*
   ** Prompt msg
   */
@@ -16,6 +16,7 @@ export default {
   /*
   ** Header Fields
   */
+  logoText: '维特链浏览器',
   nav1: '区块链',
   nav1Sub1: '概览',
   nav1Sub2: '区块',
@@ -35,7 +36,15 @@ export default {
   nav3AuthSub2: '发送',
   nav3AuthSub3: '接收',
   nav3AuthSub4: '退出登录',
+  nav4: '更多',
+  nav4Sub1: 'VNT官网',
+  nav4Sub2: 'VNT Box',
   hdSearchPh: '搜索地址，区块，交易', // placeholder for header search box
+  nav5: '主网',
+  nav5Sub1: '主网',
+  nav5Sub2: '测试网',
+  nav6Sub1: '简体中文',
+
   /*
   ** Home banner
   */
@@ -80,7 +89,9 @@ export default {
   st1Title: '请输入密码',
   st1Note1: '密码用于加密你的私钥，不作为生成私钥的种子',
   st1Note2: '你需要密码+私钥解锁你的钱包',
-  st1InputPH: '请输入至少 6 位字符',
+  st1InputPH: '请输入 8-16 位字符，包含字母和数字',
+  st1NoteError1: '至少包含一个数字',
+  st1NoteError2: '至少包含一个字母',
   st1Btn: '创建钱包',
   /*
   ** Create wallet stage2
@@ -128,7 +139,7 @@ export default {
   bdpField8: '燃料限制',
   bdpField9: '区块奖励',
   bdpField10: '额外数据',
-
+  bdpField11: '见证人切换时间 ：',
   /*
   ** Tx list page
   */
@@ -146,7 +157,7 @@ export default {
   txFilterByAccount: '地址',
   txFilterByAccountSub: num => `共 ${num} 交易`,
   tlpColumn01: '数量',
-
+  contractToolTip: '合约',
   /*
   ** Tx detail page
   */
@@ -176,7 +187,7 @@ export default {
   */
   alpTitle: '账户',
   alpSubTitle: num => `当前共${num}账户`,
-  alpColumn1: '#',
+  alpColumn1: '排名',
   alpColumn2: '地址',
   alpColumn3: '余额',
   alpColumn4: '百分比',
@@ -194,6 +205,7 @@ export default {
   adpField7: '代币',
   adpField8: '价格',
   adpField9: 'Value in VNT',
+  adpField10: '备注',
   adpCount1: num => `当前共${num}交易`,
   adpCount2: num => `当前共${num}代币交易`,
   adpCount3: num => `当前共${num}代币`,
@@ -279,6 +291,7 @@ export default {
   ** Test network faucet
   */
   tnfBanner: '测试网水龙头',
+  tnfBannerSubTitle: '立即领取',
   tnfTitle: '填写测试网账户地址获得VNT测试币',
   tnfPlaceholder1: '测试网账户地址',
   tnfBtn: '立即提交',
@@ -345,5 +358,26 @@ export default {
   spPh3: '选填',
   spField1: '可用余额：',
   spBtn1: '全部',
-  spBtn2: '确认发送'
+  spBtn2: '确认发送',
+
+  /*
+  ** partners 
+  */
+  partners: '合作伙伴',
+
+  /*
+  ** footer 
+  */
+  footerLogoText: '分布式智能价值网络',
+  subscribe_hint: '订阅我们获取更多VNT Chain信息',
+  footerPlaceholder: '邮件地址',
+  submitBtn: '提交',
+  submit_success: '提交成功',
+  nav_home: '首页',
+  nav_tech: '技术',
+  nav_developer: '开发者',
+  nav_news: '新闻',
+  nav_community: '社区',
+  nav_cooperation: '合作',
+  nav_about: '关于我们'
 }

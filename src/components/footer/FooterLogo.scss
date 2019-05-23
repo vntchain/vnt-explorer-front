@@ -1,0 +1,17 @@
+@import "../../assets/base";
+.logoBox {
+  display: flex;
+  align-items: center;
+  &_icon {
+    margin-right: 0.14rem;
+    height: 0.45rem;
+  }
+
+  &_text {
+    font-size: 0.18rem;
+    color: #fff;
+    @include respondTo($bp-phone) {
+      font-size: 0.22rem;
+    }
+  }
+}

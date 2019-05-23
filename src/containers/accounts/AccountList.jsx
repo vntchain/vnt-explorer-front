@@ -31,7 +31,10 @@ export default withLang(function AccountList(props) {
       result.push({
         index: ++index,
         key: item.Address + i,
-        address: item.Address,
+        address: {
+          addr: item.Address,
+          name: item.Vname
+        },
         balance: item.Balance + ' VNT',
         percentage: item.Percent + '%',
         txCount: item.TxCount
@@ -88,10 +91,20 @@ const columns = [
     dataIndex: 'address',
     key: 'address',
     // eslint-disable-next-line react/display-name
-    render: address => {
+    render: info => {
       return (
-        <Link to={`/account/${address}`}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>{address}</div>
+        <Link to={`/account/${info.addr}`}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {info.addr}
+            {info.name ? (
+              '  ' +
+              `(${
+                info.name.length > 8 ? info.name.slice(0, 8) + '...' : info.name
+              })`
+            ) : (
+              <span />
+            )}
+          </div>
         </Link>
       )
     }

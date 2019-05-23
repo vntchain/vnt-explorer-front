@@ -1,22 +1,37 @@
 import React from 'react'
 
 import { LangContext } from 'i18n/LangContext'
-import LocalText from 'i18n/LocalText'
-import langIcon from 'assets/images/lang.png'
+import { Select } from 'antd'
+import styles from './HeaderLang.scss'
 
-import styles from './Header.scss'
+const Option = Select.Option
 
-export default function HeaderLogo() {
+export default function HeaderLangSelector(props) {
   return (
     <LangContext.Consumer>
-      {({ dsdtUpdateLang: alterLang }) => (
-        <div className={styles.lang} onClick={alterLang}>
-          <img src={langIcon} alt="" />
-          <span>
-            <LocalText id="language" />
-          </span>
-        </div>
-      )}
+      {({ dsdtUpdateLang: alterLang }) => {
+        const handleChange = v => {
+          console.log(v) //eslint-disable-line
+          alterLang()
+        }
+        const defaultValue = localStorage.lang || props.menu.defaultValue
+        return (
+          <Select
+            className={styles.lang}
+            defaultValue={defaultValue}
+            onChange={handleChange}
+          >
+            {props.menu.children.map(child => {
+              return (
+                <Option key={child.key} value={child.value}>
+                  <img src={child.imgSrc} className="langIcon" alt="" />
+                  <span>{child.title}</span>
+                </Option>
+              )
+            })}
+          </Select>
+        )
+      }}
     </LangContext.Consumer>
   )
 }

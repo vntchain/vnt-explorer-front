@@ -1,0 +1,33 @@
+@import "../../assets/base";
+.footerNav {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  > li {
+    list-style: none;
+    margin-right: 0.5rem;
+    &:last-child {
+      margin-right: 0;
+    }
+
+    > a {
+      color: #fff;
+      font-size: 0.16rem;
+    }
+  }
+
+  @include respondTo($bp-phone) {
+    display: block;
+    padding-top: 0.3rem;
+    > li {
+      margin-right: 0;
+      padding: 0.18rem;
+      font-size: 0.24rem;
+      border-bottom: 1px solid #454751;
+
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+}

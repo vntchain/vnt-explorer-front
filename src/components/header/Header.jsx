@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 
 import HeaderLogo from './HeaderLogo'
 import HeaderMenu from './HeaderMenu'
+import HeaderDropdown from './HeaderDropdown'
 import HeaderInput from './HeaderInput'
-import HeaderLang from './HeaderLang'
+import HeaderLangSelector from './HeaderLang'
 import MobileHeaderMenu from './MobileHeaderMenu'
+import menu, { headerLang, vntNetMenu, moreMenu } from 'utils/menu.js'
 
 import styles from './Header.scss'
 
@@ -20,10 +22,11 @@ export default connect(mapStateToProps)(function Header(props) {
   return (
     <div className={styles.header}>
       <HeaderLogo />
-      <HeaderMenu auth={props.auth} dispatch={props.dispatch} />
+      <HeaderMenu auth={props.auth} dispatch={props.dispatch} menu={menu} />
+      <HeaderDropdown menu={moreMenu} />
       <HeaderInput />
-      <HeaderLang />
-
+      <HeaderDropdown menu={vntNetMenu} />
+      <HeaderLangSelector menu={headerLang} />
       <MobileHeaderMenu
         auth={props.auth}
         dispatch={props.dispatch}

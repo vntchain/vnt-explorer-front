@@ -17,22 +17,36 @@ const genPrivateKey = () =>
 
 function InputPassword(props) {
   const [password, setPassword] = useState('')
+  const [errorMode, setErrorMode] = useState(0)
   const { locale, language, setKS, setAcc, next } = props
 
   const handleInput = e => {
     setPassword(e.target.value)
   }
 
-  const handleCreate = () => {
-    const pk = genPrivateKey()
-    const keyStore = vntKit.account.encrypt(pk, password)
-    setKS(keyStore)
-    setAcc({
-      privateKey: pk,
-      address: '0x' + keyStore.address
-    })
+  const checkStrong = pwd => {
+    let mode = 0
+    if (!pwd.match(/\d+/)) {
+      mode = 1
+    } else if (!pwd.match(/[a-zA-Z]+/)) {
+      mode = 2
+    }
+    return mode
+  }
 
-    next(1)
+  const handleCreate = () => {
+    const strongMode = checkStrong(password)
+    if (!strongMode) {
+      const pk = genPrivateKey()
+      const keyStore = vntKit.account.encrypt(pk, password)
+      setKS(keyStore)
+      setAcc({
+        privateKey: pk,
+        address: '0x' + keyStore.address
+      })
+      next(1)
+    }
+    setErrorMode(strongMode)
   }
   return (
     <div className={styles.content}>
@@ -56,9 +70,12 @@ function InputPassword(props) {
         placeholder={locale[language]['st1InputPH']}
         onChange={handleInput}
       />
+      <div className={styles.error}>
+        {errorMode ? <LocalText id={`st1NoteError${errorMode}`} /> : <span />}
+      </div>
 
       <Button
-        disabled={password.length < 6}
+        disabled={password.length < 8 || password.length > 16}
         size="large"
         type="primary"
         block
