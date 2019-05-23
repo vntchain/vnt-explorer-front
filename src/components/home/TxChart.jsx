@@ -44,7 +44,7 @@ export default connect(mapStateToProps)(function TxChart({
   if (context && context.data && Array.isArray(context.data)) {
     chartData = context.data.map(item => ({
       数量: item.Count,
-      time: `${item.Month}/${item.Day}`
+      time: `${item.Month}月${item.Day}日`
     }))
   }
 
