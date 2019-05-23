@@ -48,11 +48,15 @@ export default {
   /*
  ** Home banner
  */
-  hbField1: 'Block Height',
-  hbField2: 'Transactions',
-  hbField3: 'Current/Max TPS',
-  hbField4: 'Total Accounts',
-  hbField5: 'Super/Candidate Nodes',
+  hbFieldHeight: 'Block Height',
+  hbFieldTxCount: 'Transactions',
+  hbFieldAccountCount: 'Total Accounts',
+  hbFieldCurrTps: 'Current/Max TPS',
+  hbFieldPriceCny: 'VNT 市值',
+  hbFieldAvailableSupply: 'VNT 流通量',
+  hbFieldMarketCapCny: 'VNT 价格（24h涨跌）',
+  hbFieldSuperNode: 'Super/Candidate Nodes',
+  hbFieldUnit: '万',
   /*
  ** Home brief info box (left and right)
  */

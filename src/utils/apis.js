@@ -1,5 +1,6 @@
 export default {
   stats: '/stats',
+  market: '/market',
   blocks: '/blocks',
   block: '/block',
   blockCount: '/blocks/count',

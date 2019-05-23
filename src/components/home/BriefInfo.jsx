@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import LocalText from 'i18n/LocalText'
 
 import styles from './BriefInfo.scss'
 
 export default function BriefInfo(props) {
-  const initial = ['--', '--', '--/--', '--', '--/--']
   const formattedData = context => {
+    const initial = {}
     if (context === null && typeof context === 'object') {
       return initial
     }
@@ -16,26 +16,78 @@ export default function BriefInfo(props) {
     if (context !== null && context.hasOwnProperty('error') && context.error) {
       return initial
     }
-    const { data } = context
 
-    return [
-      data.Height,
-      data.TxCount,
-      `${Math.round(data.CurrTps * 100) / 100}/${data.TopTps}`,
-      data.AccountCount,
-      `${data.SuperNode}/${data.CandiNode}`
-    ]
+    return context.data
+  }
+  const { stats = {}, market = {} } = props.context
+
+  const {
+    Height,
+    CurrTps,
+    TopTps,
+    TxCount,
+    AccountCount,
+    SuperNode,
+    CandiNode
+  } = formattedData(stats)
+  const {
+    PriceCny,
+    AvailableSupply,
+    MarketCapCny,
+    PercentChange24h
+  } = formattedData(market)
+
+  const renderMarketCapCny = (MarketCapCny, PercentChange24h) => {
+    return (
+      <span>
+        {`¥ ${MarketCapCny} `}
+        <span
+          className={styles['brief-item__tiny']}
+        >{`${PercentChange24h}%`}</span>
+      </span>
+    )
+  }
+  const isExist = data => {
+    return typeof data !== 'undefined'
   }
 
+  const briefInfoFields = {
+    Height: isExist(Height) ? Height : '--',
+    TxCount: isExist(TxCount) ? TxCount : '--',
+    AccountCount: isExist(AccountCount) ? AccountCount : '--',
+    CurrTps:
+      isExist(CurrTps) && isExist(TopTps)
+        ? `${Math.round(CurrTps * 100) / 100}/${TopTps}`
+        : '--/--',
+    PriceCny: isExist(PriceCny) ? (
+      <Fragment>
+        {`¥ ${PriceCny}`}
+        <LocalText id={'hbFieldUnit'} />
+      </Fragment>
+    ) : (
+      '--'
+    ),
+    AvailableSupply: isExist(AvailableSupply) ? `${AvailableSupply} VNT` : '--',
+    MarketCapCny:
+      isExist(MarketCapCny) && isExist(PercentChange24h)
+        ? renderMarketCapCny(MarketCapCny, PercentChange24h)
+        : renderMarketCapCny('--', '--'),
+    SuperNode:
+      isExist(SuperNode) && isExist(CandiNode)
+        ? `${SuperNode}/${CandiNode}`
+        : '--/--'
+  }
   return (
     <div className={styles.brief}>
-      {formattedData(props.context).map((item, i) => {
+      {Object.keys(briefInfoFields).map((item, i) => {
         return (
           <div key={i} className={styles['brief-item']}>
             <p className={styles['brief-item__title']}>
-              <LocalText id={'hbField' + (i + 1)} />
+              <LocalText id={'hbField' + item} />
             </p>
-            <p className={styles['brief-item__number']}>{item}</p>
+            <p className={styles['brief-item__number']}>
+              {briefInfoFields[item]}
+            </p>
           </div>
         )
       })}

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import DataProvider from 'containers/RPDataProviderNew'
+import RPDataProviderAll from 'containers/RPDataProviderAll'
 import BriefInfo from 'components/home/BriefInfo'
 import BlockTx from 'components/home/BlockTx'
 import TxChart from 'components/home/TxChart'
@@ -9,7 +10,7 @@ import Partners from 'components/home/Partners'
 import Margin from 'components/Margin'
 
 import apis from 'utils/apis'
-import { pollingInterval } from 'constants/config'
+// import { pollingInterval } from 'constants/config'
 
 import styles from './Home.scss'
 
@@ -22,13 +23,21 @@ const mapStateToProps = ({ global: { language } }) => {
 export default connect(mapStateToProps)(function Home() {
   return (
     <div className={styles.home}>
-      <DataProvider
-        options={{
-          path: apis.stats,
-          ns: 'stats',
-          field: 'stats',
-          polling: pollingInterval
-        }}
+      <RPDataProviderAll
+        optionsArr={[
+          {
+            path: apis.stats,
+            ns: 'stats',
+            field: 'stats',
+            polling: 60 //todo: 1min刷新一次,需求1s一次
+          },
+          {
+            path: apis.market,
+            ns: 'market',
+            field: 'market',
+            polling: 300 //5min刷新一次
+          }
+        ]}
         render={data => <BriefInfo context={data} />}
       />
       <Margin size="medium" />
