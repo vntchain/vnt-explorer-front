@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
 
 import LocalText from 'i18n/LocalText'
+import withLang from 'i18n/withLang'
 
 import styles from './BriefInfo.scss'
 
-export default function BriefInfo(props) {
+export default withLang(function BriefInfo(props) {
   const formattedData = context => {
     const initial = {}
     if (context === null && typeof context === 'object') {
@@ -32,15 +33,18 @@ export default function BriefInfo(props) {
   } = formattedData(stats)
   const {
     PriceCny,
+    PriceUsd,
     AvailableSupply,
     MarketCapCny,
+    MarketCapUsd,
     PercentChange24h
   } = formattedData(market)
 
   const renderMarketCapCny = (MarketCapCny, PercentChange24h) => {
     return (
       <span>
-        {`¥ ${MarketCapCny} `}
+        <LocalText id={'hbFieldFlag'} />
+        {props.language === 'cn' ? ` ${MarketCapCny}` : ` ${MarketCapUsd}`}
         <span
           className={styles['brief-item__tiny']}
         >{`${PercentChange24h}%`}</span>
@@ -61,7 +65,8 @@ export default function BriefInfo(props) {
         : '--/--',
     PriceCny: isExist(PriceCny) ? (
       <Fragment>
-        {`¥ ${PriceCny}`}
+        <LocalText id={'hbFieldFlag'} />
+        {props.language === 'cn' ? ` ${PriceCny}` : ` ${PriceUsd}`}
         <LocalText id={'hbFieldUnit'} />
       </Fragment>
     ) : (
@@ -93,4 +98,4 @@ export default function BriefInfo(props) {
       })}
     </div>
   )
-}
+})
