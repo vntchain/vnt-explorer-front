@@ -7,7 +7,7 @@
 # testing
 /coverage
 #webstorm
-.idea/*
+#.idea/*
 
 # production
 /build
