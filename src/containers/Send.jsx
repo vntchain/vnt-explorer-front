@@ -35,7 +35,7 @@ const mapStateToProps = ({
 // /^[0-9]*[.]?[0-9]+$/.test("100000")
 
 export default withLang(
-  connect(mapStateToProps)(function Receive(props) {
+  connect(mapStateToProps)(function Send(props) {
     const { account, accounts, accountDetail, wallet } = props
     useEffect(() => {
       props.dispatch({
@@ -73,7 +73,7 @@ export default withLang(
 
     const [token, setToken] = useState('')
     const [receAddr, setReceAddr] = useState('')
-    const [amount, setAmount] = useState(null)
+    const [amount, setAmount] = useState('')
     const [extraData, setExtraData] = useState('')
     const [addrErr, setAddrErr] = useState(false)
     const [txSended, setTxSended] = useState(false)
@@ -99,12 +99,23 @@ export default withLang(
       } else if (wallet.tokenInfo !== null) {
         balance.amount =
           wallet.tokenInfo.amount / Math.pow(10, wallet.tokenInfo.digit)
+      } else {
+        balance.amount = 0
       }
       balance.symbol = ` ${t.name}`
     }
+
     const approveSendTx = () => {
       if (receAddr && !addrErr && amount && parseFloat(amount, 10) !== 0) {
-        return true
+        if (balance.symbol && balance.symbol.includes('VNT')) {
+          if (parseFloat(amount, 10) >= 0.00000001) {
+            return true
+          } else {
+            return false
+          }
+        } else {
+          return true
+        }
       }
       return false
     }
@@ -285,6 +296,13 @@ export default withLang(
                   value={amount}
                   onChange={handleUserInput}
                 />
+                {balance.symbol &&
+                  balance.symbol.includes('VNT') && (
+                    <p className={styles.sendMsg}>
+                      <LocalText id="sendTip" />
+                      <span>0.00000001 VNT</span>
+                    </p>
+                  )}
                 <p className={styles.balance}>
                   <LocalText id="spField1" />
                   {balance === '-' ? '-' : balance.amount + balance.symbol}

@@ -363,6 +363,7 @@ export default {
   spPh2: 'Amount',
   spTitle5: 'Additional',
   spPh3: 'Optional',
+  sendTip: 'Send At Least : ',
   spField1: 'Balance: ',
   spBtn1: 'All',
   spBtn2: 'Confirmed',

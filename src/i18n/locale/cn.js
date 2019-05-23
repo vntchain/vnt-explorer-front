@@ -356,6 +356,7 @@ export default {
   spPh2: '请输入数量',
   spTitle5: '附加信息',
   spPh3: '选填',
+  sendTip: '最少发送 : ',
   spField1: '可用余额：',
   spBtn1: '全部',
   spBtn2: '确认发送',
