@@ -35,7 +35,7 @@ export const calcAge = (time, lang) => {
       crucialIndex = index
     }
     return currentValue
-  })
+  }, 0)
 
   // crucialIndex = crucialIndex === -1 ? 4 : crucialIndex
 

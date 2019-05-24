@@ -79,7 +79,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('Vname')
           ? `${props.accountDetail.data.Vname}`
-          : '-/-'
+          : '-'
     }
   ]
 

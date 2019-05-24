@@ -60,11 +60,14 @@ export default {
   /*
  ** Home brief info box (left and right)
  */
-  lTitle: 'Blocks',
+  lTitle: 'Latest Blocks',
   lField1: 'View All >',
   lField2: 'Transactions: ',
   lField3: 'Block Reward ',
   lField4: 'Produced by: ',
+  lField5: 'Transactions in this Block',
+  lField6: 'Static Block Reward',
+  lField7: 'Txn Fees',
 
   rTitle: 'Transactions',
   rField1: 'View All >',

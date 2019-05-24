@@ -16,7 +16,7 @@ export default {
       const { field, ...data } = payload
       return {
         ...state,
-        [field]: { ...data }
+        [field]: { ...state[field], ...data }
       }
     }
   }

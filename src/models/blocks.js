@@ -14,9 +14,10 @@ export default {
     },
     loadingStatus: (state, { payload }) => {
       const { field, ...data } = payload
+      //console.log('获取数据')
       return {
         ...state,
-        [field]: { ...data }
+        [field]: { ...state[field], ...data }
       }
     }
   }

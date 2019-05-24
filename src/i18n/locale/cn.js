@@ -60,11 +60,14 @@ export default {
   /*
   ** Home brief info box (left and right)
   */
-  lTitle: '区块',
+  lTitle: '最新出块',
   lField1: '查看全部 >',
   lField2: '交易数：',
   lField3: '区块奖励 ',
   lField4: '出块者：',
+  lField5: '该区块内的交易',
+  lField6: '出块奖励',
+  lField7: '手续费',
 
   rTitle: '交易',
   rField1: '查看全部  >',

@@ -12,9 +12,8 @@ function RPDataProvider(props) {
   } = props
 
   // 取 model 中的字段值（后端获取的数据）
-  // console.log('DataProvider',props,ns,field) //eslint-disable-line
+  //console.log('text-----',ns,field) //eslint-disable-line
   const [context, setContext] = useState(props[props.options.ns][field])
-
   useEffect(() => {
     props.dispatch({
       type: 'dataRelayNew/fetchData',
@@ -27,7 +26,7 @@ function RPDataProvider(props) {
       polling = setInterval(() => {
         props.dispatch({
           type: 'dataRelayNew/fetchData',
-          payload: { path, ns, method: props.method || 'get' }
+          payload: { path, ns, method: props.method || 'get', field }
         })
       }, props.options.polling * 1000)
     }
