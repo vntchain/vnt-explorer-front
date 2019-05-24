@@ -61,11 +61,14 @@ export default {
   /*
   ** Home brief info box (left and right)
   */
-  lTitle: '区块',
+  lTitle: '最新出块',
   lField1: '查看全部 >',
   lField2: '交易数：',
   lField3: '区块奖励 ',
   lField4: '出块者：',
+  lField5: '该区块内的交易',
+  lField6: '出块奖励',
+  lField7: '手续费',
 
   rTitle: '交易',
   rField1: '查看全部  >',
@@ -357,6 +360,7 @@ export default {
   spPh2: '请输入数量',
   spTitle5: '附加信息',
   spPh3: '选填',
+  sendTip: '最少发送 : ',
   spField1: '可用余额：',
   spBtn1: '全部',
   spBtn2: '确认发送',

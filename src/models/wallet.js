@@ -37,7 +37,10 @@ export default {
 
       yield put({
         type: 'wallet/setTokenInfo',
-        payload: { amount: vnt.toDecimal(amount), digit: parseInt(digit, 10) }
+        payload: {
+          amount: vnt.toDecimal(amount === '0x' ? '0x0' : amount),
+          digit: parseInt(digit, 10)
+        }
       })
     }),
 

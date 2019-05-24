@@ -45,8 +45,9 @@ export default withLang(function TxBrief(props) {
               <span>
                 <LocalText id="rField2" />
                 <Link to={`/account/${item.from}`}>
-                  {item.from.slice(0, 15) + '...'}
+                  {item.from.slice(0, 12) + '...'}
                 </Link>
+                &nbsp;&nbsp;
               </span>
               <span
                 style={{

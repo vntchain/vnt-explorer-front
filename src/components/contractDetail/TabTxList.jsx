@@ -9,7 +9,7 @@ import withLang from 'i18n/withLang'
 import { calcAge } from 'utils/time'
 import apis from 'utils/apis'
 import contractIcon from 'assets/images/合约.png'
-
+import failedIcon from 'assets/images/failed.png'
 import styles from 'containers/Common.scss'
 
 /*
@@ -58,7 +58,10 @@ const genTableData = (data, address, language) => {
   data.forEach((item, i) => {
     var d = {
       key: item.Hash + i,
-      tx: item.Hash,
+      tx: {
+        hash: item.Hash,
+        successStatus: item.Status == 1
+      },
       height: item.BlockNumber,
       age: calcAge(item.TimeStamp, language),
       from: item.From,
@@ -102,7 +105,19 @@ const columns = [
     key: 'tx',
     // eslint-disable-next-line react/display-name
     render: tx => (
-      <Link to={`/transaction/${tx}`}>{tx.slice(0, 12) + '...'}</Link>
+      <Link to={`/transaction/${tx.hash}`}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {!tx.successStatus && (
+            <img
+              style={{ width: '.16rem' }}
+              src={failedIcon}
+              alt="failed icon"
+            />
+          )}
+          &nbsp;
+          {tx.hash.slice(0, 12) + '...'}
+        </div>
+      </Link>
     )
   },
   {
