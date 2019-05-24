@@ -44,7 +44,7 @@ function RPDataProvider(props) {
         pollingArr[ns] = setInterval(() => {
           props.dispatch({
             type: 'dataRelayNew/fetchData',
-            payload: { path, ns, method: props.method || 'get' },
+            payload: { path, ns, method: props.method || 'get', field },
             callback: handleResult
           })
         }, options.polling * 1000)
