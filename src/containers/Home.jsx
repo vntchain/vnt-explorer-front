@@ -45,7 +45,7 @@ export default connect(mapStateToProps)(function Home() {
       <Margin size="medium" />
       <DataProvider
         options={{
-          path: apis.txHistory,
+          path: apis.priceLine,
           ns: 'transactions',
           field: 'txHistory'
         }}

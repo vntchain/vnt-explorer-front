@@ -57,6 +57,7 @@ export default {
   hbFieldMarketCapCny: 'VNT 价格（24h涨跌）',
   hbFieldSuperNode: 'Super/Candidate Nodes',
   hbFieldUnit: '万',
+  hbFieldFlag: '$',
   /*
  ** Home brief info box (left and right)
  */
@@ -77,7 +78,7 @@ export default {
   /*
   ** Home chart
   */
-  chartTitle: 'VNT 14 days Transaction History',
+  chartTitle: 'VNT Price Charts（14 days）',
 
   /*
   ** Create wallet

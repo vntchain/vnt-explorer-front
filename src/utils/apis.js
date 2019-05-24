@@ -6,6 +6,7 @@ export default {
   blockCount: '/blocks/count',
   txs: '/txs',
   txHistory: '/txs/history',
+  priceLine: 'kline',
   txCount: '/txs/count',
   tx: '/tx',
   accounts: '/accounts',
