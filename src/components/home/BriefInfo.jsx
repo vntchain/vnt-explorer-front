@@ -3,6 +3,8 @@ import React, { Fragment } from 'react'
 import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
 
+import { blockBriefLogo } from 'utils/images'
+
 import styles from './BriefInfo.scss'
 
 export default withLang(function BriefInfo(props) {
@@ -42,13 +44,15 @@ export default withLang(function BriefInfo(props) {
 
   const renderMarketCapCny = (MarketCapCny, PercentChange24h) => {
     return (
-      <span>
-        <LocalText id={'hbFieldFlag'} />
-        {props.language === 'cn' ? ` ${MarketCapCny}` : ` ${MarketCapUsd}`}
+      <div style={{ display: 'flex', alignItems: 'bottom' }}>
+        <span>
+          <LocalText id={'hbFieldFlag'} />
+          {props.language === 'cn' ? `${MarketCapCny}` : `${MarketCapUsd}`}
+        </span>
         <span
           className={styles['brief-item__tiny']}
         >{`${PercentChange24h}%`}</span>
-      </span>
+      </div>
     )
   }
   const isExist = data => {
@@ -66,7 +70,7 @@ export default withLang(function BriefInfo(props) {
     PriceCny: isExist(PriceCny) ? (
       <Fragment>
         <LocalText id={'hbFieldFlag'} />
-        {props.language === 'cn' ? ` ${PriceCny}` : ` ${PriceUsd}`}
+        {props.language === 'cn' ? `${PriceCny}` : `${PriceUsd}`}
         <LocalText id={'hbFieldUnit'} />
       </Fragment>
     ) : (
@@ -87,12 +91,15 @@ export default withLang(function BriefInfo(props) {
       {Object.keys(briefInfoFields).map((item, i) => {
         return (
           <div key={i} className={styles['brief-item']}>
-            <p className={styles['brief-item__title']}>
-              <LocalText id={'hbField' + item} />
-            </p>
-            <p className={styles['brief-item__number']}>
+            <div className={styles['brief-item__number']}>
               {briefInfoFields[item]}
-            </p>
+            </div>
+            <div className={styles['brief-item__title']}>
+              <LocalText id={'hbField' + item} />
+            </div>
+            <div className={styles['brief-item__img']}>
+              <img alt="" src={blockBriefLogo[i].src} />
+            </div>
           </div>
         )
       })}
