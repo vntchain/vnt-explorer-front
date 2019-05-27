@@ -12,6 +12,9 @@ import r from 'constants/routes'
 
 import styles from 'containers/Common.scss'
 
+const isMainnet = process.env.REACT_APP_NET === 'mainnet'
+const superNodecolor = isMainnet ? '#3389ff' : '#4cc159'
+
 /*
 ** props.context: null --> {} --> multiple { isLoading } -->
 ** { error, data, isLoading: boolean, count: int }
@@ -43,7 +46,7 @@ export default withLang(
         return (
           <div className={styles.multiTitle}>
             <span className={styles.multiTitle__1}>
-              <span style={{ color: '#4cc159' }}>•</span>
+              <span style={{ color: superNodecolor }}>•</span>
               <LocalText id="snSubTitleComp1" />
               {superNode}
             </span>
@@ -64,7 +67,7 @@ export default withLang(
       return (
         <div className={styles.multiTitle}>
           <span className={styles.multiTitle__1}>
-            <span style={{ color: '#4cc159' }}>•</span>
+            <span style={{ color: superNodecolor }}>•</span>
             <LocalText id="snSubTitleComp1" />
             --
           </span>
@@ -143,7 +146,9 @@ const columns = [
     key: 'ranking',
     // eslint-disable-next-line react/display-name
     render: ({ ranking, isSuper }) => (
-      <span style={{ color: isSuper ? '#4cc159' : '#ff9603' }}>{ranking}</span>
+      <span style={{ color: isSuper ? superNodecolor : '#ff9603' }}>
+        {ranking}
+      </span>
     )
   },
   {

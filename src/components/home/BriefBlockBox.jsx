@@ -5,13 +5,12 @@ import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
 import apis from 'utils/apis'
 import CountDown from './CountDown'
-
-import blockIcon from 'assets/images/icon-block.png'
+import { blockIcon } from 'utils/images.js'
 import styles from './BlockTx.scss'
 
 export default withLang(function BlockBrief(props) {
   const formattedData = data => {
-    return data.map(item => ({
+    return data.slice(0, 5).map(item => ({
       blockHeight: item.Number,
       timeStamp: item.TimeStamp,
       txCount: item.TxCount,

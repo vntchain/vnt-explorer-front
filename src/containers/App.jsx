@@ -108,7 +108,13 @@ export default withRouter(
         )}
 
         <div className={styles.margin}>
-          <div>
+          <div
+            style={{
+              minHeight: location.pathname.startsWith(r.devGuides)
+                ? 'calc(100vh - 6rem)'
+                : 'calc(100vh - 5.18rem)'
+            }}
+          >
             <Route exact path={r.home} component={Home} />
 
             <Route

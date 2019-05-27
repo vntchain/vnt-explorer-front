@@ -6,12 +6,12 @@ import withLang from 'i18n/withLang'
 import { calcAge } from 'utils/time'
 
 import contractIcon from 'assets/images/合约.png'
-import txIcon from 'assets/images/icon-trading.png'
+import { txIcon } from 'utils/images.js'
 import styles from './BlockTx.scss'
 
 export default withLang(function TxBrief(props) {
   const formattedData = data => {
-    return data.map(item => ({
+    return data.slice(0, 5).map(item => ({
       from: item.From,
       to: {
         isNull: !item.To ? true : false,

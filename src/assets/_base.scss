@@ -1,6 +1,8 @@
+$net: mainnet;
 /* colors */
-$color-primary: #3389ff;
-$color-primary-light: #65b6ff;
+$color-primary: if($net == "mainnet", #3389ff, #4cc159);
+$color-primary-light: if($net == "mainnet", #65b6ff, #4cc159);
+$color-primary-dark: if($net == "mainnet", #2194ff, #13e92c);
 $color-dark-1: #333;
 $color-light-1: #999;
 $color-light-2: #dbdbdb;

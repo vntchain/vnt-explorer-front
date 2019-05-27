@@ -1,6 +1,7 @@
 import r from 'constants/routes'
 import cnIcon from 'assets/images/cn.png'
 import enIcon from 'assets/images/en.png'
+const isMainNet = process.env.REACT_APP_NET === 'mainnet'
 
 export default [
   {
@@ -175,18 +176,18 @@ export const moreMenu = {
 }
 
 export const vntNetMenu = {
-  title: 'nav5',
+  title: isMainNet ? 'nav5Sub1' : 'nav5Sub2',
   key: 'vntNet',
   children: [
     {
-      title: 'nav5Sub1',
-      key: 'mainNet',
-      path: r.mainNet
+      title: isMainNet ? 'nav5Sub1' : 'nav5Sub2',
+      key: 'first',
+      path: isMainNet ? r.mainNet : r.testNet
     },
     {
-      title: 'nav5Sub2',
-      key: 'testNet',
-      path: r.testNet,
+      title: isMainNet ? 'nav5Sub2' : 'nav5Sub1',
+      key: 'second',
+      path: isMainNet ? r.testNet : r.mainNet,
       friendLink: true
     }
   ]

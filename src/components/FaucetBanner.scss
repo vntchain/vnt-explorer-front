@@ -2,7 +2,16 @@
 
 .faucetBanner {
   height: 2.4rem;
-  background: url(../assets/images/faucet/bannerPC.png) center/cover no-repeat;
+  @if $net == "mainnet" {
+    background: url(../assets/images/faucet/mainnet/bannerPC.png)
+      center/cover
+      no-repeat;
+  } @else {
+    background: url(../assets/images/faucet/testnet/bannerPC.png)
+      center/cover
+      no-repeat;
+  }
+
   background-size: 100% 100%;
   position: relative;
   .mainTitle {
@@ -12,7 +21,7 @@
     line-height: 1;
     font-size: 0.54rem;
     font-weight: 600;
-    text-shadow: 5px 0 0 #2194ff;
+    text-shadow: 5px 0 0 $color-primary-dark;
     color: #fff;
   }
 
@@ -42,7 +51,15 @@
   }
 
   @include respondTo($bp-phone) {
-    background-image: url(../assets/images/faucet/bannerMobile.png);
+    @if $net == "mainnet" {
+      background: url(../assets/images/faucet/mainnet/bannerMobile.png)
+        center/cover
+        no-repeat;
+    } @else {
+      background: url(../assets/images/faucet/testnet/bannerMobile.png)
+        center/cover
+        no-repeat;
+    }
     .mainTitle {
       left: 0.3rem;
       font-size: 0.4rem;

@@ -12,6 +12,11 @@ import styles from './TxChart.scss'
 
 const TICK_COUNT_Y = 4
 
+const isMainnet = process.env.REACT_APP_NET === 'mainnet'
+const mainColor = isMainnet
+  ? { lineColor: '#3baeff', areaColor: '#d1e9ff' }
+  : { lineColor: '#cdeed1', areaColor: '#dbf3de' }
+
 const mapStateToProps = ({ global: { isMobile, language } }) => {
   return {
     isMobile,
@@ -171,7 +176,7 @@ export default connect(mapStateToProps)(function TxChart({
               type="area"
               position="time*value"
               tooltip={false}
-              color={['type', ['#d1e9ff', 'white']]}
+              color={['type', [mainColor.areaColor, 'white']]}
               shape="smooth"
             />
             <Geom
@@ -179,7 +184,7 @@ export default connect(mapStateToProps)(function TxChart({
               position="time*value"
               shape="smooth"
               size={2}
-              color={['type', ['#3baeff', 'white']]}
+              color={['type', [mainColor.lineColor, 'white']]}
             />
             <Geom
               type="area"
