@@ -1,4 +1,4 @@
-$net: mainnet;
+$net: testnet;
 /* colors */
 $color-primary: if($net == "mainnet", #3389ff, #4cc159);
 $color-primary-light: if($net == "mainnet", #65b6ff, #4cc159);

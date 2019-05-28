@@ -385,6 +385,7 @@ export default {
   footerPlaceholder: '邮件地址',
   submitBtn: '提交',
   submit_success: '提交成功',
+  submit_failed: '提交失败',
   nav_home: '首页',
   nav_tech: '技术',
   nav_developer: '开发者',

@@ -16,5 +16,6 @@ export default {
   search: '/search',
   nodes: '/nodes',
   nodesCount: '/nodes/count',
-  faucet: '/hydrant'
+  faucet: '/hydrant',
+  subscribe: '/subscribe'
 }
