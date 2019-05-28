@@ -10,24 +10,41 @@ import styles from './BlockTx.scss'
 
 export default withLang(function BlockBrief(props) {
   const formattedData = data => {
-    return data.slice(0, 5).map(item => ({
-      blockHeight: item.Number,
-      timeStamp: item.TimeStamp,
-      txCount: item.TxCount,
-      blockReward: item.BlockReward,
-      producer: {
-        addr: item.Producer,
-        name:
-          (item.ProducerDetail && item.ProducerDetail.Vname) || item.Producer
+    return data.slice(0, 5).map(item => {
+      let blockReward, reward, fee
+      if (item.Reward > 0) {
+        reward = item.Reward.toPrecision(7)
+        fee = item.Fee.toPrecision(7)
+        blockReward = (item.Reward + item.Fee).toPrecision(7) + ' VNT '
+      } else {
+        let start = item.BlockReward.indexOf('(')
+        let end = item.BlockReward.indexOf(')')
+        blockReward = item.BlockReward.slice(0, start)
+        let splitArr = item.BlockReward.slice(start + 1, end).split('+')
+        reward = splitArr[0].trim()
+        fee = splitArr[1].trim()
       }
-    }))
+      return {
+        blockHeight: item.Number,
+        timeStamp: item.TimeStamp,
+        txCount: item.TxCount,
+        blockReward: blockReward,
+        reward: reward,
+        fee: fee,
+        producer: {
+          addr: item.Producer,
+          name:
+            (item.ProducerDetail && item.ProducerDetail.Vname) || item.Producer
+        }
+      }
+    })
   }
 
   const txCountTooltip = <LocalText id="lField5" />
 
-  //const blockRewardTooltip = <LocalText id="lField6" />
+  const blockRewardTooltip = <LocalText id="lField6" />
 
-  //const txnFeesTooltip = <LocalText id="lField7" />
+  const txnFeesTooltip = <LocalText id="lField7" />
 
   return (
     <Fragment>
@@ -58,7 +75,15 @@ export default withLang(function BlockBrief(props) {
               </span>
               <span>
                 <LocalText id="lField3" />
-                {item.blockReward}
+                {item.blockReward + '('}
+                <Tooltip title={blockRewardTooltip} placement="bottom">
+                  {item.reward}
+                </Tooltip>
+                {' + '}
+                <Tooltip title={txnFeesTooltip} placement="bottom">
+                  {item.fee}
+                </Tooltip>
+                {')'}
               </span>
             </div>
 
