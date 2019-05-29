@@ -377,6 +377,7 @@ export default {
   subscribe_hint: '订阅我们获取更多VNT Chain信息',
   footerPlaceholder: '邮件地址',
   submitBtn: '提交',
+  inputSyntaxError: '邮箱格式不合法',
   submit_success: '提交成功',
   submit_failed: '提交失败',
   nav_home: '首页',

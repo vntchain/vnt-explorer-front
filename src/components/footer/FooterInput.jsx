@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import React, { useEffect, useState } from 'react'
-import { Input, Modal, Icon, Button } from 'antd'
+import { Input, Modal, Icon, Button, message } from 'antd'
 import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
 import { checkEmail } from 'utils/common'
@@ -24,21 +24,17 @@ export default withLang(
       })
     }
     const handleSearch = email => {
-      // eslint-disable-next-line
-      console.log(email) 
       if (checkEmail(email)) {
         props.dispatch({
           type: 'dataRelayNew/fetchData',
           payload: {
-            method: 'post',
-            path: apis.subscribe,
+            path: `${apis.subscribe}?email=${email}`,
             ns: 'subscribe',
-            field: 'res',
-            data: {
-              email
-            }
+            field: 'res'
           }
         })
+      } else {
+        message.error(props.locale[props.language].inputSyntaxError)
       }
     }
 
@@ -75,7 +71,9 @@ export default withLang(
                 <LocalText id="submit_failed" />
               )}
             </h1>
-            <Button onClick={closeSubmitModal}>OK</Button>
+            <Button onClick={closeSubmitModal} className={styles.antModalBtn}>
+              OK
+            </Button>
           </div>
         </Modal>
       </div>

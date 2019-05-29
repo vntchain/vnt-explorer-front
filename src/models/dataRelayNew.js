@@ -33,7 +33,6 @@ export default {
 
       try {
         const { data: resp } = yield call(axios, axiosArgs)
-
         /*
         ** resp: {
         **   ok,
