@@ -18,7 +18,6 @@ import styles from 'containers/Common.scss'
 */
 export default withLang(function TabTxList(props) {
   const { context, address, language, flipPage, currentIndex } = props
-  console.log(props) // eslint-disable-line
   const finishFetching = context && context.hasOwnProperty('data')
   const comparedAddr = location.pathname.split('/').filter(item => item)[1]
   return (

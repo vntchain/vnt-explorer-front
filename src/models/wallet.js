@@ -48,6 +48,7 @@ export default {
       payload: { token, amount, receAddr, sender, extraData }
     }) {
       const rawTx = {
+        from: sender.address,
         chainId: chainId,
         nonce: vnt.toHex(vnt.core.getTransactionCount(sender.address))
       }
@@ -70,7 +71,9 @@ export default {
         rawTx.value = '0x00'
         rawTx.data = data
       }
-      rawTx.gas = vnt.core.estimateGas(rawTx)
+      rawTx.gas = vnt.toHex(vnt.core.estimateGas(rawTx))
+      rawTx.gasPrice = vnt.toHex(vnt.core.gasPrice.toString())
+
       const tx = new TX(rawTx)
       tx.sign(new Buffer(sender.privateKey.substring(2), 'hex'))
       const serializedTx = tx.serialize()

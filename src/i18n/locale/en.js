@@ -52,11 +52,11 @@ export default {
   hbFieldTxCount: 'Transactions',
   hbFieldAccountCount: 'Total Accounts',
   hbFieldCurrTps: 'Current/Max TPS',
-  hbFieldPriceCny: 'VNT 市值',
-  hbFieldAvailableSupply: 'VNT 流通量',
-  hbFieldMarketCapCny: 'VNT 价格（24h涨跌）',
+  hbFieldPriceCny: 'Market Cap',
+  hbFieldAvailableSupply: 'Circulating Supply',
+  hbFieldMarketCapCny: 'Price（24h Change）',
   hbFieldSuperNode: 'Super/Candidate Nodes',
-  hbFieldUnit: '万',
+  hbFieldUnit: '10k',
   hbFieldFlag: '$',
   /*
  ** Home brief info box (left and right)
@@ -216,7 +216,7 @@ export default {
   adpField7: 'Token',
   adpField8: 'Price',
   adpField9: 'Value in VNT',
-  adpField10: '备注',
+  adpField10: 'Memo',
   adpCount1: num => `A Total of ${num} Tx${num > 1 ? 's' : ''}`,
   adpCount2: num => `A Total of ${num} Token Tx${num > 1 ? 's' : ''}`,
   adpCount3: num => `A Total of ${num} Token${num > 1 ? 's' : ''}`,
@@ -273,15 +273,15 @@ export default {
   /*
   ** Developer guide page
   */
-  dgTitle: 'VNT开发者指南',
-  dgNav1: 'VNT介绍',
-  dgNav2: '网络搭建',
-  dgNav3: '共识投票',
-  dgNav4: 'DAPP开发指南',
-  dgNav4Sub1: '如何开发合约',
-  dgNav4Sub2: '如何编译合约',
-  dgNav4Sub3: '如何部署调用合约',
-  dgNav5: '加入VNT Hubble测试网',
+  dgTitle: 'VNT Developer Guidlines',
+  dgNav1: 'VNT Introduction',
+  dgNav2: 'Network Setup',
+  dgNav3: 'Vote and Consensus',
+  dgNav4: 'DAPP Development',
+  dgNav4Sub1: 'How to Create a Smart Contract',
+  dgNav4Sub2: 'How to Build a Smart Contract',
+  dgNav4Sub3: 'How to Deploy a Smart Contract',
+  dgNav5: ' Join the Hubble VNT Testnet',
 
   /*
   ** Super Node page
@@ -326,17 +326,17 @@ export default {
   /*
   ** Open wallet
   */
-  owBanner: '打开你的钱包',
-  owTitle: '请选择打开钱包的方式：',
+  owBanner: 'Open your wallet',
+  owTitle: 'Select type: ',
   owMethod1: 'Keystore File',
-  owMethod1Field1: '请选择Keystore文件：',
+  owMethod1Field1: 'Choose Keystore file：',
   owMethod1Field2: 'Select File',
-  owMethod1Field3: '请输入密码：',
+  owMethod1Field3: 'Please input password：',
   owMethod1Ph: 'Please input password',
   owMethod2: 'Private Key',
-  owMethod2Field1: '请输入私钥：',
-  owMethod2Ph: '请输入你的钱包私钥',
-  owBtn: '打开钱包',
+  owMethod2Field1: 'Please input private key: ',
+  owMethod2Ph: 'Please input your wallet password',
+  owBtn: 'Open wallet',
 
   /*
   ** Wallet account
@@ -375,23 +375,23 @@ export default {
   /*
   ** partners 
   */
-  partners: '合作伙伴',
+  partners: 'Business Partner',
 
   /*
   ** footer 
   */
   footerLogoText: 'Distributed Smart Value Network',
-  subscribe_hint: '订阅我们获取更多VNT Chain信息',
-  footerPlaceholder: '邮件地址',
-  submitBtn: '提交',
-  inputSyntaxError: '邮箱格式不合法',
-  submit_success: '提交成功',
-  submit_failed: '提交失败',
-  nav_home: '首页',
-  nav_tech: '技术',
-  nav_developer: '开发者',
-  nav_news: '新闻',
-  nav_community: '社区',
-  nav_cooperation: '合作',
-  nav_about: '关于我们'
+  subscribe_hint: 'Subscribe for more VNT Chain Infomation',
+  footerPlaceholder: 'Enter your email',
+  submitBtn: 'Submit',
+  inputSyntaxError: 'Invalid Email Address',
+  submit_success: 'Thank you for subscribing',
+  submit_failed: 'Submit failed',
+  nav_home: 'Home',
+  nav_tech: 'Technology',
+  nav_developer: 'Developer',
+  nav_news: 'News',
+  nav_community: 'Community',
+  nav_cooperation: 'Cooperation',
+  nav_about: 'About Us'
 }
