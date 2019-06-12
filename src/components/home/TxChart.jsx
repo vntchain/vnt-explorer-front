@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Chart, Geom, Axis, Tooltip } from 'bizcharts'
+import { Chart, Geom, Axis, Tooltip, Legend } from 'bizcharts'
 import DataSet from '@antv/data-set'
 import { Spin } from 'antd'
 
@@ -163,6 +163,7 @@ export default connect(mapStateToProps)(function TxChart({
             scale={scale}
             forceFit
           >
+            <Legend />
             <Tooltip crosshairs {...tooltipConfig} />
             <Axis
               name="time"

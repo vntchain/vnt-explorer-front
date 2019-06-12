@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PrimaryTitle from 'components/PrimaryTitle'
 import LocalText from 'i18n/LocalText'
 import NodeList from 'components/superNodes/NodeList'
+import Map from 'components/superNodes/Map'
 import DataProvider from 'containers/RPDataProviderNew'
 import { pageSize } from 'constants/config'
 import Tabs from 'components/Tabs'
@@ -37,6 +38,26 @@ export default connect(mapStateToProps)(function Nodes(props) {
           }}
           render={data => (
             <NodeList
+              context={data}
+              currentIndex={currentIndex}
+              basePath={`${apis.nodes}?limit=${pageSize}`}
+            />
+          )}
+        />
+      )
+    },
+    {
+      btnName: <LocalText id="snNav2" />,
+      comp: (
+        <DataProvider
+          options={{
+            path: `${apis.nodes}?offset=${(currentIndex - 1) *
+              pageSize}&limit=${pageSize}`,
+            ns: 'nodes',
+            field: 'nodes'
+          }}
+          render={data => (
+            <Map
               context={data}
               currentIndex={currentIndex}
               basePath={`${apis.nodes}?limit=${pageSize}`}
