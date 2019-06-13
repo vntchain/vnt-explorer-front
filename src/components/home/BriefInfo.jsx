@@ -42,16 +42,19 @@ export default withLang(function BriefInfo(props) {
     PercentChange24h
   } = formattedData(market)
 
-  const renderMarketCapCny = (MarketCapCny, PercentChange24h) => {
+  const renderPriceCny = () => {
+    const innerPriceCny = isExist(PriceCny) ? PriceCny : '--'
+    const innerPriceUsd = isExist(PriceUsd) ? PriceUsd : '--'
+    const innerPercentChange24h = isExist(PercentChange24h) ? PercentChange24h : '--'
     return (
       <div style={{ display: 'flex', alignItems: 'bottom' }}>
         <span>
           <LocalText id={'hbFieldFlag'} />
-          {props.language === 'cn' ? `${MarketCapCny}` : `${MarketCapUsd}`}
+          {props.language === 'cn' ? `${innerPriceCny}` : `${innerPriceUsd}`}
         </span>
         <span
           className={styles['brief-item__tiny']}
-        >{`${PercentChange24h}%`}</span>
+        >{`${innerPercentChange24h}%`}</span>
       </div>
     )
   }
@@ -67,20 +70,17 @@ export default withLang(function BriefInfo(props) {
       isExist(CurrTps) && isExist(TopTps)
         ? `${Math.round(CurrTps * 100) / 100}/${TopTps}`
         : '--/--',
-    PriceCny: isExist(PriceCny) ? (
+    MarketCapCny: isExist(MarketCapCny) ? (
       <Fragment>
         <LocalText id={'hbFieldFlag'} />
-        {props.language === 'cn' ? `${PriceCny}` : `${PriceUsd}`}
+        {props.language === 'cn' ? `${MarketCapCny}` : `${MarketCapUsd}`}
         <LocalText id={'hbFieldUnit'} />
       </Fragment>
     ) : (
       '--'
     ),
     AvailableSupply: isExist(AvailableSupply) ? `${AvailableSupply} VNT` : '--',
-    MarketCapCny:
-      isExist(MarketCapCny) && isExist(PercentChange24h)
-        ? renderMarketCapCny(MarketCapCny, PercentChange24h)
-        : renderMarketCapCny('--', '--'),
+    PriceCny: renderPriceCny(),
     SuperNode:
       isExist(SuperNode) && isExist(CandiNode)
         ? `${SuperNode}/${CandiNode}`
