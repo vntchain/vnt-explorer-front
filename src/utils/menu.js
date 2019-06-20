@@ -3,6 +3,15 @@ import cnIcon from 'assets/images/cn.png'
 import enIcon from 'assets/images/en.png'
 const isMainNet = process.env.REACT_APP_NET === 'mainnet'
 
+import hotIcon from 'assets/images/hot.png'
+
+export const voteDetail = {
+  title: 'vote',
+  path: '//votes.vnt.link',
+  imgSrc: hotIcon,
+  key: 'vote'
+}
+
 export default [
   {
     title: 'nav1',

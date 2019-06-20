@@ -90,6 +90,7 @@ function genSendAndReceiveData(dataSrc) {
         <Link to={`/contract/${dataSrc.Address}`}>
           <Icon type="project" /> {dataSrc.Vname || dataSrc.Address}
         </Link>
+        {dataSrc.ContractName? ` (${dataSrc.ContractName})` : ''}
       </Fragment>
     )
   }
@@ -172,27 +173,28 @@ function DetailTable(props) {
       fieldName: <LocalText id="tdpField6" />,
       value: genSendAndReceiveData(To)
     })
-    data.push({
-      key: 'transfer',
-      fieldName: <LocalText id="tdpField7" />,
-      value:
-        TokenTo !== '' && IsToken === true ? (
-          <Fragment>
-            <LocalText id="tdpField5" />
-            <Link to={`/account/${From}`}>
-              {From.slice(0, 12) + '...'}
-            </Link>{' '}
-            <LocalText id="tdpField6" />{' '}
-            <Link to={`/account/${TokenTo}`}>
-              {TokenTo.slice(0, 12) + '...'}
-            </Link>
-            <LocalText id="tdpField14" /> {TokenAmount}{' '}
-            <Link to={`/token/${To.Address}`}>{To.TokenSymbol}</Link>
-          </Fragment>
-        ) : (
-          '-'
-        )
-    })
+
+    // 此时才为代币转移，才显示代币转移
+    if (IsToken && TokenTo !== '') {
+      data.push({
+        key: 'transfer',
+        fieldName: <LocalText id="tdpField7" />,
+        value: (
+            <Fragment>
+              <LocalText id="tdpField5" />
+              <Link to={`/account/${From}`}>
+                {From.slice(0, 12) + '...'}
+              </Link>{' '}
+              <LocalText id="tdpField6" />{' '}
+              <Link to={`/account/${TokenTo}`}>
+                {TokenTo.slice(0, 12) + '...'}
+              </Link>
+              <LocalText id="tdpField14" /> {TokenAmount}{' '}
+              <Link to={`/token/${To.Address}`}>{To.TokenSymbol}</Link>
+            </Fragment>
+          ) 
+      })
+    }
     data.push({
       key: 'value',
       fieldName: <LocalText id="tdpField8" />,

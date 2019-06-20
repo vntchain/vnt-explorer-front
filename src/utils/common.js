@@ -7,3 +7,9 @@ export function checkEmail(email) {
   }
   return false
 }
+
+export const formatAddr = addr => {
+  const str1= addr.slice(0,12)
+  const str2= addr.slice(addr.length-8,addr.length)
+  return `${str1}...${str2}`
+}

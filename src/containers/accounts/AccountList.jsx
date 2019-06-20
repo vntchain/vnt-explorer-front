@@ -11,6 +11,8 @@ import { pageSize } from 'constants/config'
 
 import styles from 'containers/Common.scss'
 
+import { formatAddr } from 'utils/common'
+
 /*
 ** props.context: null --> {} --> multiple { isLoading } -->
 ** { error, data, isLoading: boolean, count: int }
@@ -95,15 +97,13 @@ const columns = [
       return (
         <Link to={`/account/${info.addr}`}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            {info.addr}
-            {info.name ? (
+            {formatAddr(info.addr)}
+            {info.name !=='' && info.name !== info.addr ? (
               '  ' +
               `(${
-                info.name.length > 8 ? info.name.slice(0, 8) + '...' : info.name
+                info.name.length > 12 ? info.name.slice(0, 12) + '...' : info.name
               })`
-            ) : (
-              <span />
-            )}
+            ) : ''}
           </div>
         </Link>
       )

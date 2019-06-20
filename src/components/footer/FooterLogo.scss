@@ -10,8 +10,9 @@
   &_text {
     font-size: 0.18rem;
     color: #fff;
+    flex-shrink: 0;
     @include respondTo($bp-phone) {
-      font-size: 0.22rem;
+      font-size: 0.2rem;
     }
   }
 }

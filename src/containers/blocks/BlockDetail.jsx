@@ -143,12 +143,12 @@ function DetailTable(props) {
     data.push({
       key: 'blockReward',
       fieldName: <LocalText id="bdpField9" />,
-      value: BlockReward
+      value: Number === 0 ? ' 0 VNT ' : BlockReward
     })
     data.push({
       key: 'extraData',
       fieldName: <LocalText id="bdpField10" />,
-      value: (
+      value: Number === 0 ? '-' : (
         <div>
           <LocalText id="bdpField11" />
           {`${formatTime(parseInt(ExtraData))}`}

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import HeaderLogo from './HeaderLogo'
+import HeaderVote from './HeaderVote'
 import HeaderMenu from './HeaderMenu'
 import HeaderDropdown from './HeaderDropdown'
 import HeaderInput from './HeaderInput'
@@ -22,6 +23,7 @@ export default connect(mapStateToProps)(function Header(props) {
   return (
     <div className={styles.header}>
       <HeaderLogo />
+      <HeaderVote />
       <HeaderMenu auth={props.auth} dispatch={props.dispatch} menu={menu} />
       <HeaderDropdown menu={moreMenu} />
       <HeaderInput />
