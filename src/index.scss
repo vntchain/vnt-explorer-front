@@ -120,4 +120,12 @@ body {
       color: #333;
     }
   }
+
+  .ant-pagination.ant-table-pagination {
+    .ant-pagination-options-quick-jumper {
+      > input {
+        width: 100px;
+      }
+    }
+  }
 }
