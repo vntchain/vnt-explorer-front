@@ -31,3 +31,22 @@
     margin: 0;
   }
 }
+
+.vote {
+  padding: 0 0.06rem;
+  a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    &:focus {
+      text-decoration: none;
+    }
+    > span {
+      margin-right: 0.02rem;
+    }
+  }
+  @include respondTo($bp-phone) {
+    display: none;
+  }
+}

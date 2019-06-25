@@ -18,7 +18,8 @@ export default {
   /*
   ** Header Fields
   */
-  logoText: 'VNT Chain',
+  logoText: '',
+  vote: 'Vote',
   nav1: 'Blockchain',
   nav1Sub1: 'Overview',
   nav1Sub2: 'Blocks',

@@ -17,20 +17,28 @@ const mapStateToProps = ({ subscribe: { showSubmitModal, success } }) => {
 
 export default withLang(
   connect(mapStateToProps)(function FooterInput(props) {
+
+    const [email, setEmail] = useState('')
     const closeSubmitModal = () => {
       props.dispatch({
         type: 'subscribe/setShowSubmitModal',
         payload: false
       })
     }
-    const handleSearch = email => {
+
+    const handleInput = e => {
+      setEmail(e.target.value.trim())
+    }
+    const handleSearch = () => {
+      //console.log(email) //eslint-disable-line
       if (checkEmail(email)) {
         props.dispatch({
           type: 'dataRelayNew/fetchData',
           payload: {
             path: `${apis.subscribe}?email=${email}`,
             ns: 'subscribe',
-            field: 'res'
+            field: 'res',
+            callback: () => setEmail('')
           }
         })
       } else {
@@ -44,6 +52,8 @@ export default withLang(
           placeholder={props.locale[props.language].footerPlaceholder}
           enterButton={props.locale[props.language].submitBtn}
           onSearch={handleSearch}
+          onChange={handleInput}
+          value={email}
         />
         <Modal
           visible={props.showSubmitModal}

@@ -12,6 +12,8 @@ import contractIcon from 'assets/images/合约.png'
 import failedIcon from 'assets/images/failed.png'
 import styles from 'containers/Common.scss'
 
+import { formatVname, formatAddr } from 'utils/common'
+
 /*
 ** props.context: null --> {} --> multiple { isLoading } -->
 ** { error, data, isLoading: boolean, count: int }
@@ -75,14 +77,18 @@ const genTableData = (data, address, language, comparedAddr) => {
         isContract: item.FromDetail ? item.FromDetail.IsContract : false,
         contractName: item.FromDetail ? item.FromDetail.ContractName : '',
         isToken: item.FromDetail ? item.FromDetail.IsToken : false,
-        name: item.FromDetail ? item.FromDetail.Vname || item.To.Address : ''
+        name: item.FromDetail ? (
+          item.FromDetail.Vname ? formatVname(item.FromDetail.Vname,10) :  (item.FromDetail.Address ? formatAddr(item.FromDetail.Address,6,6) : '') 
+        ) : ''
       },
       to: {
         isContract: item.To ? item.To.IsContract : false,
         contractName: item.To ? item.To.ContractName : '',
         isToken: item.To ? item.To.IsToken : false,
         address: item.To ? item.To.Address : '',
-        name: item.To ? item.To.Vname || item.To.Address : '',
+        name: item.To ? (
+          item.To.Vname ? formatVname(item.To.Vname,10) :  (item.To.Address ? formatAddr(item.To.Address,6,6) : '') 
+        ) : '',
         redirect: item.To ? item.To.Address !== comparedAddr : false
       },
       value: item.Value
@@ -130,7 +136,7 @@ const renderSendAndReceive = ({
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img className="contractIcon" src={contractIcon} />
             &nbsp;
-            {contractName || ' ' + name.slice(0, 12) + '...'}
+            {contractName || ' ' + name}
           </div>
         </Link>
       </Tooltip>
@@ -138,10 +144,8 @@ const renderSendAndReceive = ({
   }
 
   return redirect ? (
-    <Link to={`/account/${address}`}>{name.slice(0, 12) + '...'}</Link>
-  ) : (
-    name.slice(0, 12) + '...'
-  )
+    <Link to={`/account/${address}`}>{name}</Link>
+  ) : name
 }
 
 const columns = [

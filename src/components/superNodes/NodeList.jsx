@@ -177,7 +177,7 @@ const columns = [
     // eslint-disable-next-line react/display-name
     render: status => (
       <span style={{ color: status ? '#4cc159' : 'red' }}>
-        {status ? 'Active' : 'Down'}
+        {status ? 'Active' : 'Inactive'}
       </span>
     )
   }

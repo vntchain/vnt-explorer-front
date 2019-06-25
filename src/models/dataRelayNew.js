@@ -65,6 +65,9 @@ export default {
           count: resp.extra ? resp.extra.count : '--',
           field
         }
+        if(payload.callback){
+          result.callback = payload.callback
+        }
 
         yield put({
           type: `${ns}/setState`,

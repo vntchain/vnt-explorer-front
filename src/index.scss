@@ -51,6 +51,10 @@ body {
     width: 16px;
   }
 
+  .hotIcon {
+    width: 12px;
+  }
+
   .ant-select-dropdown {
     .ant-select-dropdown-menu {
       .ant-select-dropdown-menu-item {
@@ -114,6 +118,14 @@ body {
     .ant-tooltip-inner {
       background: #fff;
       color: #333;
+    }
+  }
+
+  .ant-pagination.ant-table-pagination {
+    .ant-pagination-options-quick-jumper {
+      > input {
+        width: 100px;
+      }
     }
   }
 }

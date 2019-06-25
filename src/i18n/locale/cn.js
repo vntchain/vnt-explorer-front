@@ -17,6 +17,7 @@ export default {
   ** Header Fields
   */
   logoText: '维特链浏览器',
+  vote: '节点投票',
   nav1: '区块链',
   nav1Sub1: '概览',
   nav1Sub2: '区块',
@@ -175,7 +176,7 @@ export default {
   tdpField7: '代币转移',
   tdpField8: '价值',
   tdpField9: '燃料限制',
-  tdpField10: '交易燃料费用',
+  tdpField10: '实际消耗燃料',
   tdpField11: '燃料价格',
   tdpField12: 'Nonce',
   tdpField13: '数据输入',
