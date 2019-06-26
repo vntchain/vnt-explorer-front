@@ -29,13 +29,13 @@ export default connect(mapStateToProps)(function Home() {
             path: apis.stats,
             ns: 'stats',
             field: 'stats',
-            polling: 60 //todo: 1min刷新一次,需求1s一次
+            polling: 2 //2s一次
           },
           {
             path: apis.market,
             ns: 'market',
             field: 'market',
-            polling: 300 //5min刷新一次
+            polling: 60 //1min刷新一次(s)
           }
         ]}
         render={data => <BriefInfo context={data} />}

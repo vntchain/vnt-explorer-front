@@ -18,7 +18,7 @@ export default function BlockTx() {
           path: apis.blocks + '?offset=0&limit=5',
           ns: 'blocks',
           field: 'blocks',
-          polling: 5
+          polling: 2
         }}
         render={data => (
           <BriefBox
@@ -35,7 +35,7 @@ export default function BlockTx() {
           path: apis.txs + '?offset=0&limit=5',
           ns: 'transactions',
           field: 'txs',
-          polling: 30
+          polling: 2
         }}
         render={data => (
           <BriefBox
