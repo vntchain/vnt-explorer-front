@@ -30,7 +30,9 @@ export default connect(mapStateToProps)(function TxChart({
   context
 }) {
   let chartData = []
+  let timeLength = 0
   if (context && context.data && Array.isArray(context.data)) {
+    timeLength = context.data.length
     chartData = context.data.map(item => ({
       数量: item.Volume,
       number: item.Volume,
@@ -39,8 +41,12 @@ export default connect(mapStateToProps)(function TxChart({
           ? `${item.Month}月${item.Day}日`
           : `${enMonth[item.Month]} '${item.Day}`,
       date: `${item.Year}-${item.Month}-${item.Day}`,
-      价格: `￥${item.PriceCny}`,
-      price: `$${item.PriceUsd}`
+      // 价格: `￥${item.PriceCny}`
+      价格: item.PriceCny,
+      priceCny: item.PriceCny,
+      // price: `$${item.PriceUsd}`
+      price: item.PriceUsd,
+      priceUsd: item.PriceUsd
     }))
   }
   const isLangCn = language === 'cn'
@@ -97,7 +103,7 @@ export default connect(mapStateToProps)(function TxChart({
     type: 'fold',
     fields: isLangCn ? ['数量'] : ['number'],
     key: 'type',
-    value: 'value'
+    value: 'number'
   })
   dv.transform({
     type: 'fold',
@@ -109,12 +115,12 @@ export default connect(mapStateToProps)(function TxChart({
   const calTicks = (data, target) => {
     const tempTicks = []
     if (data.length > 1) {
-      const { target: max } = data
+      const { [target]: max } = data
         .concat()
-        .reduce((a, b) => ({ target: Math.max(a[target], b[target]) }))
-      const { target: min } = data
+        .reduce((a, b) => ({ [target]: Math.max(a[target], b[target]) }))
+      const { [target]: min } = data
         .concat()
-        .reduce((a, b) => ({ target: Math.min(a[target], b[target]) }))
+        .reduce((a, b) => ({ [target]: Math.min(a[target], b[target]) }))
       const prettyMin = Math.floor(Math.floor(min) / 5) * 5
       let prettyMax = Math.ceil(Math.ceil(max) / 5) * 5
       while ((prettyMax - prettyMin) % ((TICK_COUNT_Y - 1) * 5)) {
@@ -127,25 +133,56 @@ export default connect(mapStateToProps)(function TxChart({
     }
     return tempTicks
   }
+  const countZero = str => str.replace('.', '').split('').length
+  const calPriceTicks = (data, target) => {
+    const tempTicks = []
+    if (data.length > 1) {
+      const floatPatten = new RegExp(/^0.0+/)
+      const { [target]: max } = data
+        .concat()
+        .reduce((a, b) => ({ [target]: Math.max(a[target], b[target]) }))
+      const maxArr = max.toString().match(floatPatten) || [0] //0.001 => [0.00, 1]
+      const { [target]: min } = data
+        .concat()
+        .reduce((a, b) => ({ [target]: Math.min(a[target], b[target]) }))
+      const minArr = min.toString().match(floatPatten) || [0] //0.0001 => [0.000, 1]
+      const multi = Math.max(countZero(maxArr[0]), countZero(minArr[0])) + 1 //Math.max(countZero(0.00), countZero(0.000)) => 4 + 1
+      const ceilMax = max * Math.pow(10, multi) //0.001 => 100
+      const ceilMin = min * Math.pow(10, multi) //0.0001 => 10
+      const prettyMin = Math.floor(Math.floor(ceilMin) / 5) * 5
+      let prettyMax = Math.ceil(Math.ceil(ceilMax) / 5) * 5
+      while ((prettyMax - prettyMin) % ((TICK_COUNT_Y - 1) * 5)) {
+        prettyMax += 1
+      }
+      const gap = (prettyMax - prettyMin) / (TICK_COUNT_Y - 1)
+      Array(TICK_COUNT_Y)
+        .fill('_')
+        .forEach((_, i) => tempTicks.push((prettyMin + i * gap)/Math.pow(10, multi)))
+    }
+    return tempTicks
+  }
 
-  const ticks = calTicks(chartData, '数量')
+  const ticks = calTicks(chartData, 'number')
+  const cnyTicks = calPriceTicks(chartData, 'priceCny')
+  const usdTicks = calPriceTicks(chartData, 'priceUsd')
 
   const scale = {
-    value: {
+    number: {
       tickCount: 4,
-      // max: Math.ceil(maximum / 10) * 10,
-      // min: Math.floor(minimum / 10 / 1.05) * 10
       ticks,
       nice: true,
       alias: isLangCn ? '每日交易数量' : 'Transactions per Day'
+      // min: 0
     },
     time: {
       range: [0, 1],
-      tickCount: isMobile ? 4 : 14
+      tickCount: isMobile ? (timeLength > 4 ? 4 : timeLength) : timeLength
     },
-    type: 'linear',
     price: {
-      range: [0, 1]
+      tickCount: 4,
+      ticks: isLangCn ? cnyTicks : usdTicks,
+      nice: true,
+      alias: isLangCn ? '价格(￥)' : 'Price($)'
     }
   }
   return (
@@ -171,18 +208,18 @@ export default connect(mapStateToProps)(function TxChart({
               tickLine={{ length: 0 }}
               line={{ lineDash: [4], stroke: '#e5e5e5' }}
             />
-            <Axis name="value" label={labelY} title={title} />
-            <Axis name="price" label={labelY} position="right" />
+            <Axis name="number" label={labelY} title={title} />
+            <Axis name="price" label={labelY} position="right" title={title} />
             <Geom
               type="area"
-              position="time*value"
+              position="time*number"
               tooltip={false}
               color={['type', [mainColor.areaColor, 'white']]}
               shape="smooth"
             />
             <Geom
               type="line"
-              position="time*value"
+              position="time*number"
               shape="smooth"
               size={2}
               color={['type', [mainColor.lineColor, 'white']]}

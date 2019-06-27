@@ -54,7 +54,7 @@ export default withLang(function BriefInfo(props) {
         </span>
         <span
           className={styles['brief-item__tiny']}
-        >{`${innerPercentChange24h}%`}</span>
+        >{`${innerPercentChange24h > 0 ? '+' : ''}${innerPercentChange24h}%`}</span>
       </div>
     )
   }
