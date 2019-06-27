@@ -74,21 +74,22 @@ export default withRouter(
 
     const { index: currentIndex, filterParam } = (() => {
       const a = location.pathname.split('/').filter(item => item)
-      let index = isNaN(parseInt(a[a.length - 1], 10))
+      let index = isNaN(parseInt(a[a.length - 1]))
         ? 1
-        : parseInt(a[a.length - 1], 10)
+        : parseInt(a[a.length - 1])
 
       let filterParam = ''
       if (
-        (a.length === 2 && isNaN(parseInt(a[a.length - 1], 10))) ||
+        (a.length === 2 && isNaN(parseInt(a[a.length - 1]))) ||
         a.length === 3
       ) {
         filterParam = `&${a[1]}`
-        if(index < 1){
-          a.pop()
-          props.dispatch(replace(`/${a.join('/')}/1`))
-          index = 1
-        }
+      }
+      //console.log(a,index) //eslint-disable-line
+      if(index < 1){
+        a.pop()
+        props.dispatch(replace(`/${a.join('/')}/1`))
+        index = 1
       }
       return { index, filterParam }
     })()
