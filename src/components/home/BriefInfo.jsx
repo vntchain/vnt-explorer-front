@@ -62,7 +62,6 @@ export default withLang(function BriefInfo(props) {
   const isExist = data => {
     return typeof data !== 'undefined'
   }
-
   const briefInfoFields = {
     Height: isExist(Height) ? Height : '--',
     TxCount: isExist(TxCount) ? TxCount : '--',
