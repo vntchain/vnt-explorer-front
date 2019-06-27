@@ -57,8 +57,8 @@ export default {
   hbFieldAvailableSupply: 'Circulating Supply',
   hbFieldPriceCny: 'Price（24h Change）',
   hbFieldSuperNode: 'Super/Candidate Nodes',
-  hbFieldUnit: '10k',
-  hbFieldFlag: '$',
+  hbFieldUnit: ' k',
+  hbFieldFlag: '$ ',
   /*
  ** Home brief info box (left and right)
  */
