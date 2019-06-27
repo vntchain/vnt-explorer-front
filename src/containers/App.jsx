@@ -84,11 +84,11 @@ export default withRouter(
         a.length === 3
       ) {
         filterParam = `&${a[1]}`
-      }
-      if(index < 1){
-        a.pop()
-        props.dispatch(replace(`/${a.join('/')}/1`))
-        index = 1
+        if(index < 1){
+          a.pop()
+          props.dispatch(replace(`/${a.join('/')}/1`))
+          index = 1
+        }
       }
       return { index, filterParam }
     })()
