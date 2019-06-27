@@ -4,6 +4,7 @@ import LocalText from 'i18n/LocalText'
 import withLang from 'i18n/withLang'
 
 import { blockBriefLogo } from 'utils/images'
+import { fixTwo, thousandth } from 'utils/helper'
 
 import styles from './BriefInfo.scss'
 
@@ -73,13 +74,13 @@ export default withLang(function BriefInfo(props) {
     MarketCapCny: isExist(MarketCapCny) ? (
       <Fragment>
         <LocalText id={'hbFieldFlag'} />
-        {props.language === 'cn' ? `${MarketCapCny}` : `${MarketCapUsd}`}
+        {props.language === 'cn' ? `${fixTwo(MarketCapCny/Math.pow(10, 4))}` : `${fixTwo(MarketCapUsd/Math.pow(10, 3))}`}
         <LocalText id={'hbFieldUnit'} />
       </Fragment>
     ) : (
       '--'
     ),
-    AvailableSupply: isExist(AvailableSupply) ? `${AvailableSupply} VNT` : '--',
+    AvailableSupply: isExist(AvailableSupply) ? `${thousandth(AvailableSupply)} VNT` : '--',
     PriceCny: renderPriceCny(),
     SuperNode:
       isExist(SuperNode) && isExist(CandiNode)
