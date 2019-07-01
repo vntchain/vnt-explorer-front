@@ -18,9 +18,6 @@ body {
 
 // horizontal menu generates submenu outside root node dynamically !
 :global {
-  .ant-menu-submenu-title {
-    padding: 0 0.1rem;
-  }
   .ant-menu-submenu-popup {
     .ant-menu-vertical.ant-menu-sub {
       min-width: 1.3rem;

@@ -23,3 +23,12 @@ export const formatAddr = (addr, limitBefore=12, limitAfter=8) => {
 export const formatVname = (vname, limit=12) => {
   return vname.length > limit ? vname.slice(0,limit)+'...' : vname
 }
+
+export const setBalancePrecision = (balance, precision=8) => {
+  let balanceStr = balance.toString()
+  let index = balanceStr.indexOf('.')
+  if(index !== -1){
+    balanceStr = balanceStr.substring(0, index+ precision+1)
+  } 
+  return balanceStr
+}

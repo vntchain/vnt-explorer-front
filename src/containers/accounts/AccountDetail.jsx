@@ -18,6 +18,7 @@ import styles from 'containers/Common.scss'
 
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
+import { setBalancePrecision } from 'utils/common'
 
 const mapStateToProps = ({ accounts: { accountDetail } }) => {
   return {
@@ -53,7 +54,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail &&
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('Balance')
-          ? `${props.accountDetail.data.Balance} VNT`
+          ? `${setBalancePrecision(props.accountDetail.data.Balance)} VNT`
           : '-/-',
       dataIndex: 'value',
       key: 'value'

@@ -11,7 +11,7 @@ import { pageSize } from 'constants/config'
 
 import styles from 'containers/Common.scss'
 
-import { formatAddr, formatVname } from 'utils/common'
+import { formatAddr, formatVname, setBalancePrecision } from 'utils/common'
 
 /*
 ** props.context: null --> {} --> multiple { isLoading } -->
@@ -37,7 +37,7 @@ export default withLang(function AccountList(props) {
           addr: item.Address,
           name: item.Vname
         },
-        balance: item.Balance + ' VNT',
+        balance: setBalancePrecision(item.Balance) + ' VNT',
         percentage: item.Percent + '%',
         txCount: item.TxCount
       })
