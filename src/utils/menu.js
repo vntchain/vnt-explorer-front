@@ -162,6 +162,22 @@ export const devGuideMenu = [
     title: 'dgNav4Sub3',
     key: 'invoke',
     path: '/developer/dapp/invoke'
+  },
+  {
+    title: 'dgNav6',
+    key: 'extension',
+    children: [
+      {
+        title: 'dgNav6Sub1',
+        key: 'install',
+        path: '/developer/wallet/install'
+      },
+      {
+        title: 'dgNav6Sub2',
+        key: 'use',
+        path: '/developer/wallet/use'
+      },
+    ]
   }
 ]
 

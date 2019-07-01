@@ -84,6 +84,20 @@ export default function DevGuideIndex() {
               <MarkdownConverter filePath="dapp/deploy-contract-tutorial.md" />
             )}
           />
+          <Route
+            exact
+            path="/developer/wallet/install"
+            render={() => (
+              <MarkdownConverter filePath="wallet/载入chrome插件.md" />
+            )}
+          />
+          <Route
+            exact
+            path="/developer/wallet/use"
+            render={() => (
+              <MarkdownConverter filePath="wallet/dapp与插件交互说明.md" />
+            )}
+          />
         </main>
       </div>
     </div>
