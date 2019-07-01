@@ -276,6 +276,9 @@ export default {
   dgNav4Sub2: '如何编译合约',
   dgNav4Sub3: '如何部署调用合约',
   dgNav5: '加入VNT Hubble测试网',
+  dgNav6: '钱包插件',
+  dgNav6Sub1: '安装',
+  dgNav6Sub2: '使用方法',
 
   /*
   ** Super Node page

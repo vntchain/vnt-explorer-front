@@ -283,6 +283,9 @@ export default {
   dgNav4Sub2: 'How to Build a Smart Contract',
   dgNav4Sub3: 'How to Deploy a Smart Contract',
   dgNav5: ' Join the Hubble VNT Testnet',
+  dgNav6: '钱包插件',
+  dgNav6Sub1: '安装',
+  dgNav6Sub2: '使用方法',
 
   /*
   ** Super Node page
