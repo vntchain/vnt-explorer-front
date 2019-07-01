@@ -12,7 +12,7 @@ export const voteDetail = {
   key: 'vote'
 }
 
-export default [
+const menu = [
   {
     title: 'nav1',
     key: 'blockchain',
@@ -68,11 +68,11 @@ export default [
         key: 'chaincodeTools',
         path: '/chaincode'
       }, */
-      {
-        title: 'nav2Sub3',
-        key: 'faucet',
-        path: r.faucet
-      }
+      // {
+      //   title: 'nav2Sub3',
+      //   key: 'faucet',
+      //   path: r.faucet
+      // }
     ]
   },
   {
@@ -120,6 +120,24 @@ export default [
     ]
   }
 ]
+
+export default menu
+
+const faucetMenu = {
+  title: 'nav2Sub3',
+  key: 'faucet',
+  path: r.faucet
+}
+const newMenu = []
+menu.map(item => {
+  let tempObj = {}
+  tempObj = JSON.parse(JSON.stringify(item))
+  if(tempObj.key === 'develop'){
+    tempObj.children.push(faucetMenu)
+  }
+  newMenu.push(tempObj)
+})
+export const testMenu = newMenu
 
 // menu for developer guide page
 export const devGuideMenu = [
