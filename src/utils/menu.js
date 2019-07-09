@@ -214,6 +214,12 @@ export const moreMenu = {
       key: 'vntBox',
       path: r.vntBox,
       friendLink: true
+    },
+    {
+      title: 'nav4Sub3',
+      key: 'vntTokenMap',
+      path: r.vntTokenMap,
+      friendLink: true
     }
   ]
 }

@@ -40,6 +40,7 @@ export default {
   nav4: '更多',
   nav4Sub1: 'VNT官网',
   nav4Sub2: 'VNT Box',
+  nav4Sub3: '主网映射',
   hdSearchPh: '搜索地址，区块，交易', // placeholder for header search box
   nav5: '主网',
   nav5Sub1: '主网',

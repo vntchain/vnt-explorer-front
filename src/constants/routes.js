@@ -15,6 +15,7 @@ export default {
   faucet: '/faucet',
   vntOfficialWebsite: 'http://www.vntchain.io/',
   vntBox: 'https://vnt.link/',
+  vntTokenMap: 'https://token.vntchain.io',
   'create-wallet': '/create-wallet',
   'open-wallet': '/open-wallet',
   'wallet-account': '/wallet',
