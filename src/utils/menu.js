@@ -7,7 +7,7 @@ import hotIcon from 'assets/images/hot.png'
 
 export const voteDetail = {
   title: 'vote',
-  path: '//votes.vnt.link',
+  path: 'https://vote.vntchain.io',
   imgSrc: hotIcon,
   key: 'vote'
 }
