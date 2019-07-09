@@ -225,28 +225,38 @@ module.exports = {
           },
           {
             test: /\.less$/,
-            use: [
-              {
-                loader: require.resolve('style-loader'),
-              }, 
-              {
-                loader: require.resolve('css-loader'), // translates CSS into CommonJS
-                options: {
-                  importLoaders: 1,
-                },
-              }, 
-              {
-                loader: require.resolve('less-loader'), // compiles Less to CSS
-                options: {
-                  sourceMap: true,
-                  modifyVars: {
-                    '@primary-color': process.env.REACT_APP_NET==='mainnet'? '#3389ff': '#4cc159',
-                    '@link-color': process.env.REACT_APP_NET==='mainnet'? '#3389ff':'#4cc159',
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    }
                   },
-                  javascriptEnabled: true,
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'), // translates CSS into CommonJS
+                      options: {
+                        importLoaders: 1,
+                      },
+                    }, 
+                    {
+                      loader: require.resolve('less-loader'), // compiles Less to CSS
+                      options: {
+                        sourceMap: true,
+                        modifyVars: {
+                          '@primary-color': process.env.REACT_APP_NET==='mainnet'? '#3389ff': '#4cc159',
+                          '@link-color': process.env.REACT_APP_NET==='mainnet'? '#3389ff':'#4cc159',
+                        },
+                        javascriptEnabled: true,
+                      },
+                    }
+                  ],
                 },
-              } 
-            ]
+                extractTextPluginOptions
+              )
+            )
           },
           {
             test: /\.scss$/,
