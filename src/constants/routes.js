@@ -1,3 +1,8 @@
+const tokenMapUrl = 
+  process.env.REACT_APP_NET === 'mainnet' 
+    ? 'https://migration.vntchain.io' 
+    : 'https://migration.vnt.link'
+
 export default {
   home: '/',
   blockList: '/blocks',
@@ -15,6 +20,7 @@ export default {
   faucet: '/faucet',
   vntOfficialWebsite: 'http://www.vntchain.io/',
   vntBox: 'https://vnt.link/',
+  vntTokenMap: tokenMapUrl,
   'create-wallet': '/create-wallet',
   'open-wallet': '/open-wallet',
   'wallet-account': '/wallet',

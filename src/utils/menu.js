@@ -7,7 +7,7 @@ import hotIcon from 'assets/images/hot.png'
 
 export const voteDetail = {
   title: 'vote',
-  path: '//votes.vnt.link',
+  path: 'https://vote.vntchain.io',
   imgSrc: hotIcon,
   key: 'vote'
 }
@@ -218,6 +218,12 @@ export const moreMenu = {
       title: 'nav4Sub2',
       key: 'vntBox',
       path: r.vntBox,
+      friendLink: true
+    },
+    {
+      title: 'nav4Sub3',
+      key: 'vntTokenMap',
+      path: r.vntTokenMap,
       friendLink: true
     }
   ]

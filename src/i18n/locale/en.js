@@ -42,6 +42,7 @@ export default {
   nav4: 'More',
   nav4Sub1: 'VNT Official Website',
   nav4Sub2: 'VNT Box',
+  nav4Sub3: 'ERC20 Migration',
   hdSearchPh: 'Search address, block, transaction', // placeholder for header search box
   nav5: 'MainNet',
   nav5Sub1: 'MainNet',
@@ -342,7 +343,7 @@ export default {
   owMethod2Field1: 'Please input private key: ',
   owMethod2Ph: 'Please input your wallet password',
   owBtn: 'Open wallet',
-
+  
   /*
   ** Wallet account
   */
