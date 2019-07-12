@@ -158,6 +158,11 @@ export const devGuideMenu = [
   },
   {
     title: 'dgNav5',
+    key: 'test',
+    path: '/developer/test'
+  },
+  {
+    title: 'dgNav7',
     key: 'join',
     path: '/developer/join'
   },

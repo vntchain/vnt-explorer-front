@@ -279,6 +279,7 @@ export default {
   dgNav6: '钱包插件',
   dgNav6Sub1: '安装',
   dgNav6Sub2: '使用方法',
+  dgNav7: '加入VNT Hubble主网',
 
   /*
   ** Super Node page

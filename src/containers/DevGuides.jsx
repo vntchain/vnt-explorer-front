@@ -25,7 +25,7 @@ export default function DevGuideIndex() {
     <div className={styles.devGuides}>
       <div className={styles.main}>
         <nav className={styles.nav}>
-          <Menu selectedKeys={[activeNav]} mode="inline">
+          <Menu selectedKeys={[activeNav]} mode="inline" openKeys={["extension"]}>
             {menuItemFactory(devGuideMenu, false, true, () => {})}
           </Menu>
         </nav>
@@ -53,9 +53,16 @@ export default function DevGuideIndex() {
           />
           <Route
             exact
+            path="/developer/test"
+            render={() => (
+              <MarkdownConverter filePath="connect-to-hubble-testnet.md" />
+            )}
+          />
+          <Route
+            exact
             path="/developer/join"
             render={() => (
-              <MarkdownConverter filePath="如何加入VNT Hubble测试网.md" />
+              <MarkdownConverter filePath="connect-to-hubble-network.md" />
             )}
           />
           <Route

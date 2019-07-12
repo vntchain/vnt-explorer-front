@@ -38,7 +38,10 @@
     .content {
       flex: 1;
       // max-height: 11rem;
-      overflow: scroll;
+      overflow: auto;
+      img {
+        max-width: 100%;
+      }
     }
   }
 }

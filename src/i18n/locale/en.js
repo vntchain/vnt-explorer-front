@@ -282,10 +282,11 @@ export default {
   dgNav4Sub1: 'How to Create a Smart Contract',
   dgNav4Sub2: 'How to Build a Smart Contract',
   dgNav4Sub3: 'How to Deploy a Smart Contract',
-  dgNav5: ' Join the Hubble VNT Testnet',
+  dgNav5: 'Join the Hubble VNT Testnet',
   dgNav6: 'Wallet plugin',
   dgNav6Sub1: 'Installation',
   dgNav6Sub2: 'Instructions',
+  dgNav7: 'Join the Hubble VNT network',
 
   /*
   ** Super Node page
