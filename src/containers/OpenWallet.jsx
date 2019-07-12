@@ -47,7 +47,7 @@ export default connect()(
 
       return false
     }
-
+    
     const handleOpenWallet = () => {
       if (method === 'ks') {
         try {
@@ -69,7 +69,7 @@ export default connect()(
                 }
               }
             })
-            props.history.push(r.wallet)
+            props.history.push(r.wallet) 
           } catch (e) {
             message.error(props.locale[props.language].pkErr)
           }
@@ -104,7 +104,7 @@ export default connect()(
     const [ksContent, setKsContent] = useState([])
     const [password, setPassword] = useState(null)
     const [privateKey, setPrivateKey] = useState(null)
-
+    
     const canSubmit =
       (method === 'ks' && password && fileList.length === 1) ||
       (method === 'pk' && privateKey)
@@ -179,12 +179,12 @@ export default connect()(
             )}
 
             <Button
-              disabled={!canSubmit}
-              type="primary"
-              onClick={handleOpenWallet}
-            >
-              <LocalText id="owBtn" />
-            </Button>
+                disabled={!canSubmit}
+                type="primary"
+                onClick={handleOpenWallet}
+              >
+                <LocalText id="owBtn" />
+              </Button> 
           </div>
         </div>
       </div>

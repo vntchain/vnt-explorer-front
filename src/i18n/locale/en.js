@@ -342,7 +342,7 @@ export default {
   owMethod2Field1: 'Please input private key: ',
   owMethod2Ph: 'Please input your wallet password',
   owBtn: 'Open wallet',
-
+  
   /*
   ** Wallet account
   */
