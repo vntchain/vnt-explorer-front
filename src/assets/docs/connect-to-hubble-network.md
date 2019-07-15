@@ -106,20 +106,6 @@ cd vntnode
     "gasLimit": "0x47b760",
     "difficulty": "0x1",
     "coinbase": "0x0000000000000000000000000000000000000000",
-    "alloc": {
-        "0x91837ff26639700c9688cf8f3fe92bd8b2ec806d": {
-            "balance": "0x9b18ab5df7180b6b8000000"
-        },
-        "0x3c60a032ba3c6177e50188748e55e5894fb241e4": {
-            "balance": "0x6765c793fa10079d0000000"
-        },
-        "0xaa2b5f39fb2a4aee56db3ee19567f699d30df1a1": {
-            "balance": "0x6765c793fa10079d0000000"
-        },
-        "0x61a6e04c737483d72c20de6e71dd8cbb6f6c747d": {
-            "balance": "0x6765c793fa10079d0000000"
-        }
-    },
     "witnesses": [
         "0x91837ff26639700c9688cf8f3fe92bd8b2ec806d",
         "0x3c60a032ba3c6177e50188748e55e5894fb241e4",
