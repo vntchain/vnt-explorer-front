@@ -1,6 +1,8 @@
+$net: testnet;
 /* colors */
-$color-primary: #3389ff;
-$color-primary-light: #65b6ff;
+$color-primary: if($net == "mainnet", #3389ff, #4cc159);
+$color-primary-light: if($net == "mainnet", #65b6ff, #4cc159);
+$color-primary-dark: if($net == "mainnet", #2194ff, #13e92c);
 $color-dark-1: #333;
 $color-light-1: #999;
 $color-light-2: #dbdbdb;
@@ -8,6 +10,8 @@ $color-light-3: #f3f3f3;
 $color-light-4: #e6e6e6;
 $color-light-5: #e5e5e5;
 $color-light-6: #666;
+$color-light-7: #808080;
+$color-footer: #30323d;
 
 /* breakpoints */
 $bp-desktop: 76.875em; // 1230px

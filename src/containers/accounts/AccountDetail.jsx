@@ -18,6 +18,7 @@ import styles from 'containers/Common.scss'
 
 import apis from 'utils/apis'
 import { pageSize } from 'constants/config'
+import { setBalancePrecision } from 'utils/common'
 
 const mapStateToProps = ({ accounts: { accountDetail } }) => {
   return {
@@ -27,7 +28,6 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
 
 export default connect(mapStateToProps)(function AccountDetail(props) {
   const { accountDetail } = props
-
   // 点击发送方、接收方链接时更新表单数据
   useEffect(
     () => {
@@ -54,7 +54,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail &&
         props.accountDetail.data &&
         props.accountDetail.data.hasOwnProperty('Balance')
-          ? `${props.accountDetail.data.Balance} VNT`
+          ? `${setBalancePrecision(props.accountDetail.data.Balance)} VNT`
           : '-/-',
       dataIndex: 'value',
       key: 'value'
@@ -71,6 +71,16 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
         props.accountDetail.data.hasOwnProperty('TxCount')
           ? `${props.accountDetail.data.TxCount}`
           : '-/-'
+    },
+    {
+      key: 'remark',
+      fieldName: <LocalText id="adpField10" />,
+      value:
+        props.accountDetail &&
+        props.accountDetail.data &&
+        props.accountDetail.data.hasOwnProperty('Vname')
+          ? `${props.accountDetail.data.Vname}`
+          : '-'
     }
   ]
 

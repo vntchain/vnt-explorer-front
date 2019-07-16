@@ -1,4 +1,4 @@
-@import '../../assets/base';
+@import "../../assets/base";
 
 .content {
   display: flex;
@@ -8,19 +8,20 @@
 
   & > * {
     &:not(:last-child) {
-      margin-bottom: .4rem;
+      margin-bottom: 0.4rem;
     }
   }
 
   :global {
     .ant-input-password {
-      margin-bottom: .2rem;
+      margin-bottom: 0.2rem;
     }
     .anticon-copy {
       cursor: pointer;
     }
-    .ant-btn, .ant-input-password {
-      height: .54rem;
+    .ant-btn,
+    .ant-input-password {
+      height: 0.54rem;
     }
   }
 }
@@ -29,12 +30,17 @@
 }
 
 .title {
-  font-size: .2rem;
+  font-size: 0.2rem;
 }
 
 .list {
   list-style: none;
-  font-size: .14rem;
+  font-size: 0.14rem;
 }
 
-
+.error {
+  color: red;
+  font-size: 0.14rem;
+  width: 100%;
+  text-align: left;
+}

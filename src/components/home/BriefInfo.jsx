@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import LocalText from 'i18n/LocalText'
+import withLang from 'i18n/withLang'
+
+import { blockBriefLogo } from 'utils/images'
+import { fixTwo, thousandth } from 'utils/helper'
 
 import styles from './BriefInfo.scss'
 
-export default function BriefInfo(props) {
-  const initial = ['--', '--', '--/--', '--', '--/--']
+export default withLang(function BriefInfo(props) {
   const formattedData = context => {
+    const initial = {}
     if (context === null && typeof context === 'object') {
       return initial
     }
@@ -16,29 +20,89 @@ export default function BriefInfo(props) {
     if (context !== null && context.hasOwnProperty('error') && context.error) {
       return initial
     }
-    const { data } = context
 
-    return [
-      data.Height,
-      data.TxCount,
-      `${Math.round(data.CurrTps * 100) / 100}/${data.TopTps}`,
-      data.AccountCount,
-      `${data.SuperNode}/${data.CandiNode}`
-    ]
+    return context.data
   }
+  const { stats = {}, market = {} } = props.context
 
+  const {
+    Height,
+    CurrTps,
+    TopTps,
+    TxCount,
+    AccountCount,
+    SuperNode,
+    CandiNode
+  } = formattedData(stats)
+  const {
+    PriceCny,
+    PriceUsd,
+    AvailableSupply,
+    MarketCapCny,
+    MarketCapUsd,
+    PercentChange24h
+  } = formattedData(market)
+
+  const renderPriceCny = () => {
+    const innerPriceCny = isExist(PriceCny) ? PriceCny : '--'
+    const innerPriceUsd = isExist(PriceUsd) ? PriceUsd : '--'
+    const innerPercentChange24h = isExist(PercentChange24h) ? PercentChange24h : '--'
+    return (
+      <div style={{ display: 'flex', alignItems: 'bottom' }}>
+        <span>
+          <LocalText id={'hbFieldFlag'} />
+          {props.language === 'cn' ? `${innerPriceCny}` : `${innerPriceUsd}`}
+        </span>
+        <span
+          className={styles['brief-item__tiny']}
+        >{`${innerPercentChange24h > 0 ? '+' : ''}${innerPercentChange24h}%`}</span>
+      </div>
+    )
+  }
+  const isExist = data => {
+    return typeof data !== 'undefined'
+  }
+  const briefInfoFields = {
+    Height: isExist(Height) ? Height : '--',
+    TxCount: isExist(TxCount) ? TxCount : '--',
+    AccountCount: isExist(AccountCount) ? AccountCount : '--',
+    CurrTps:
+      isExist(CurrTps) && isExist(TopTps)
+        ? `${Math.round(CurrTps * 100) / 100}/${TopTps}`
+        : '--/--',
+    MarketCapCny: isExist(MarketCapCny) ? (
+      <Fragment>
+        <LocalText id={'hbFieldFlag'} />
+        {props.language === 'cn' ? `${fixTwo(MarketCapCny/Math.pow(10, 4))}` : `${fixTwo(MarketCapUsd/Math.pow(10, 4))}`}
+        <LocalText id={'hbFieldUnit'} />
+      </Fragment>
+    ) : (
+      '--'
+    ),
+    AvailableSupply: isExist(AvailableSupply) ? `${thousandth(AvailableSupply)} VNT` : '--',
+    PriceCny: renderPriceCny(),
+    SuperNode:
+      isExist(SuperNode) && isExist(CandiNode)
+        ? `${SuperNode}/${CandiNode}`
+        : '--/--'
+  }
   return (
     <div className={styles.brief}>
-      {formattedData(props.context).map((item, i) => {
+      {Object.keys(briefInfoFields).map((item, i) => {
         return (
           <div key={i} className={styles['brief-item']}>
-            <p className={styles['brief-item__title']}>
-              <LocalText id={'hbField' + (i + 1)} />
-            </p>
-            <p className={styles['brief-item__number']}>{item}</p>
+            <div className={styles['brief-item__number']}>
+              {briefInfoFields[item]}
+            </div>
+            <div className={styles['brief-item__title']}>
+              <LocalText id={'hbField' + item} />
+            </div>
+            <div className={styles['brief-item__img']}>
+              <img alt="" src={blockBriefLogo[i].src} />
+            </div>
           </div>
         )
       })}
     </div>
   )
-}
+})

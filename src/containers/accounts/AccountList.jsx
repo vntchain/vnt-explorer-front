@@ -11,6 +11,8 @@ import { pageSize } from 'constants/config'
 
 import styles from 'containers/Common.scss'
 
+import { formatAddr, formatVname, setBalancePrecision } from 'utils/common'
+
 /*
 ** props.context: null --> {} --> multiple { isLoading } -->
 ** { error, data, isLoading: boolean, count: int }
@@ -31,8 +33,11 @@ export default withLang(function AccountList(props) {
       result.push({
         index: ++index,
         key: item.Address + i,
-        address: item.Address,
-        balance: item.Balance + ' VNT',
+        address: {
+          addr: item.Address,
+          name: item.Vname
+        },
+        balance: setBalancePrecision(item.Balance) + ' VNT',
         percentage: item.Percent + '%',
         txCount: item.TxCount
       })
@@ -88,10 +93,18 @@ const columns = [
     dataIndex: 'address',
     key: 'address',
     // eslint-disable-next-line react/display-name
-    render: address => {
+    render: info => {
       return (
-        <Link to={`/account/${address}`}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>{address}</div>
+        <Link to={`/account/${info.addr}`}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {formatAddr(info.addr,12,8)}
+            {info.name !=='' && info.name !== info.addr ? (
+              '  ' +
+              `(${
+                formatVname(info.name,12)
+              })`
+            ) : ''}
+          </div>
         </Link>
       )
     }

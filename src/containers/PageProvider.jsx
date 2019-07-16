@@ -58,7 +58,10 @@ function PageProvider(props) {
 }
 
 PageProvider.propTypes = {
-  comp: PropTypes.element.isRequired,
+  comp: PropTypes.oneOfType([
+    PropTypes.element.isRequired,
+    PropTypes.func.isRequired
+  ]),
   refreshProof: PropTypes.bool.isRequired,
   currentIndex: PropTypes.number.isRequired,
   options: PropTypes.shape({

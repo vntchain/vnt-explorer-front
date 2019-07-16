@@ -1,4 +1,4 @@
-@import '../../assets/base';
+@import "../../assets/base";
 
 .block-tx {
   display: flex;
@@ -10,9 +10,9 @@
 }
 
 .section {
-  flex-basis: calc(50% - .1rem);
+  flex-basis: calc(50% - 0.1rem);
   background-color: #fff;
-  border-radius: .04rem;
+  border-radius: 0.04rem;
 
   position: relative;
   min-height: 5.5rem;
@@ -20,27 +20,27 @@
   @include respondTo($bp-phone) {
     flex-basis: 100%;
 
-    margin-bottom: .3rem;
+    margin-bottom: 0.3rem;
   }
 }
 
 .header {
-  padding: .15rem .3rem;
+  padding: 0.15rem 0.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid $color-light-5;
 
-  font-size: .14rem;
+  font-size: 0.14rem;
   &__title {
     span {
-      font-size: .2rem;
+      font-size: 0.2rem;
       color: $color-dark-1;
     }
   }
 
   @include respondTo($bp-phone) {
-    padding: .2rem .15rem;
+    padding: 0.2rem 0.15rem;
   }
 }
 
@@ -51,14 +51,14 @@
 }
 
 .item {
-  padding: .2rem .3rem;
+  padding: 0.2rem 0.3rem;
 
   @include respondTo($bp-phone) {
-    padding: .15rem;
+    padding: 0.15rem;
   }
 
   .icon {
-    height: .2rem;
+    height: 0.2rem;
   }
 
   &__row {
@@ -69,7 +69,7 @@
     flex-wrap: wrap;
 
     &:not(:last-child) {
-      margin-bottom: .1rem;
+      margin-bottom: 0.1rem;
     }
   }
 
@@ -80,67 +80,67 @@
       align-items: center;
     }
     & > span {
-      margin-left: .1rem;
+      margin-left: 0.1rem;
       align-items: center;
-      font-size: .2rem;
+      font-size: 0.2rem;
       color: $color-dark-1;
 
       @include respondTo($bp-phone) {
-        font-size: .16rem;
+        font-size: 0.16rem;
       }
     }
   }
   &__row--2 {
     color: $color-dark-1;
-    font-size: .14rem;
+    font-size: 0.14rem;
     span:last-child {
-      font-size: .16rem;
+      font-size: 0.16rem;
 
       @include respondTo($bp-phone) {
-        font-size: .12rem;
+        font-size: 0.12rem;
       }
     }
   }
   &__row--3 {
     color: $color-light-1;
-    font-size: .12rem;
+    font-size: 0.12rem;
 
     @include respondTo($bp-phone) {
-      font-size: .1rem;
+      font-size: 0.1rem;
     }
   }
 
   &__row--resp {
     color: $color-dark-1;
-    font-size: .14rem;
-    /* span:last-child {
-      font-size: .16rem;
+    font-size: 0.14rem;
 
-      @include respondTo($bp-phone) {
-        font-size: .12rem;
-      }
-    } */
     span:last-child {
       display: inline-block;
-      margin-top: .13rem;
+      margin-top: 0.12rem;
       flex: 0 1 100%;
       color: $color-light-1;
-      font-size: .12rem;
+      font-size: 0.12rem;
+    }
+    span:nth-child(2) {
+      margin-right: auto;
     }
 
     @include respondTo($bp-phone) {
       span {
-        font-size: .12rem;
+        font-size: 0.12rem;
       }
       span:last-child {
-        font-size: .1rem;
+        font-size: 0.1rem;
         flex: 0 0 50%;
         text-align: right;
       }
       span:nth-child(3) {
-        font-size: .14rem;
+        font-size: 0.14rem;
         flex: 0 0 50%;
-        margin-top: .13rem;
+        margin-top: 0.13rem;
+      }
+      span:nth-child(2) {
+        margin-right: 0;
       }
     }
   }

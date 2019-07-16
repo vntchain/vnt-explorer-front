@@ -1,0 +1,51 @@
+@import "../../assets/base";
+.partners {
+  background-color: #fff;
+  border-radius: 0.04rem;
+}
+
+.heading {
+  padding: 0.15rem 0.3rem;
+  border-bottom: 1px solid $color-light-5;
+  color: #333;
+  font-size: 0.18rem;
+  margin-bottom: 0;
+
+  @include respondTo($bp-phone) {
+    padding: 0.1rem 0.15rem;
+    font-size: 0.16rem;
+  }
+}
+
+.content {
+  padding: 0.3rem 0;
+  > ul {
+    height: 3rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+
+    > li {
+      list-style: none;
+      width: 2.24rem;
+      height: 0.6rem;
+      text-align: center;
+      line-height: 0.6rem;
+    }
+  }
+
+  @include respondTo($bp-phone) {
+    padding: 0;
+    > ul {
+      height: 7rem;
+      justify-content: flex-start;
+      > li {
+        width: 33.33%;
+        height: 1rem;
+        line-height: 1rem;
+      }
+    }
+  }
+}

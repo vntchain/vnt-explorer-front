@@ -40,7 +40,7 @@ function BriefBox(props) {
 }
 
 BriefBox.propTypes = {
-  comp: PropTypes.element.isRequired,
+  comp: PropTypes.func.isRequired,
   redirect: PropTypes.string.isRequired
 }
 

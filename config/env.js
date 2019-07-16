@@ -32,7 +32,7 @@ var dotenvFiles = [
 // https://github.com/motdotla/dotenv-expand
 dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
-    require('dotenv-expand')(
+    const result = require('dotenv-expand')(
       require('dotenv').config({
         path: dotenvFile,
       })
@@ -86,8 +86,8 @@ function getClientEnvironment(publicUrl) {
       return env;
     }, {}),
   };
-
   return { raw, stringified };
 }
+
 
 module.exports = getClientEnvironment;

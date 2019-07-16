@@ -6,7 +6,6 @@ import BriefBlockBox from 'components/home/BriefBlockBox'
 import BriefTxBox from 'components/home/BriefTxBox'
 
 import apis from 'utils/apis'
-import { pollingInterval } from 'constants/config'
 import r from 'constants/routes'
 
 import styles from './BlockTx.scss'
@@ -19,7 +18,7 @@ export default function BlockTx() {
           path: apis.blocks + '?offset=0&limit=5',
           ns: 'blocks',
           field: 'blocks',
-          polling: pollingInterval
+          polling: 2
         }}
         render={data => (
           <BriefBox
@@ -36,7 +35,7 @@ export default function BlockTx() {
           path: apis.txs + '?offset=0&limit=5',
           ns: 'transactions',
           field: 'txs',
-          polling: pollingInterval
+          polling: 2
         }}
         render={data => (
           <BriefBox

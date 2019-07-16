@@ -21,11 +21,10 @@
           }
 
           // hard code
-          &:nth-last-child(1),
-          &:nth-last-child(2),
-          &:nth-last-child(3) {
+          &:nth-child(7),
+          &:nth-child(8) {
             a {
-              margin-left: 0.3rem;
+              margin-left: 0.25rem;
               font-size: 0.13rem;
             }
           }
@@ -39,7 +38,10 @@
     .content {
       flex: 1;
       // max-height: 11rem;
-      overflow: scroll;
+      overflow: auto;
+      img {
+        max-width: 100%;
+      }
     }
   }
 }

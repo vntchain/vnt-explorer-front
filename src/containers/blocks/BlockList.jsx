@@ -77,7 +77,13 @@ const genTableData = (data, lang) => {
         ) : (
           item.TxCount
         ),
-      producer: item.Producer,
+      producer: {
+        addr: item.ProducerDetail.Address || item.Producer,
+        name:
+          item.ProducerDetail.Vname ||
+          item.ProducerDetail.Address ||
+          item.Producer
+      },
       blockReward: item.BlockReward,
       capacity: item.Size + ' bytes'
     })
@@ -119,7 +125,9 @@ const columns = [
     key: 'producer',
     dataIndex: 'producer',
     // eslint-disable-next-line react/display-name
-    render: producer => <Link to={`/account/${producer}`}>{producer}</Link>
+    render: producer => (
+      <Link to={`/account/${producer.addr}`}>{producer.name}</Link>
+    )
   },
   {
     title: <LocalText id="blpColumn5" />,

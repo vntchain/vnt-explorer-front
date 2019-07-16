@@ -589,68 +589,71 @@ address addr = Address("0xaaa");
 二、类型转化
 ==========
 
-| from\to | int32                 | int64                              | uint32                             | uint64                              | string     | address        | uint256        | bool    |
-| ------- | --------------------- | ---------------------------------- | ---------------------------------- | ----------------------------------- | ---------- | -------------- | -------------- | ------- |
-| int32   |                       | (int64)x                           | (uint32)x                          | (uint64)x                           | FromI64(x) |                | U256FromI64(x) | (bool)x |
-| int64   | (int32)x              |                                    | (uint32)x                          | (uint64)x                           | FromI64(x) |                | U256FromI64(x) | (bool)x |
-| uint32  | (int32)x             | (int64)x                           |                                    | (uint64)x                           | FromU64(x) |                | U256FromU64(x) | (bool)x |
-| uint64  | (int32)x              | (int64)x                           | (uint32)x                          |                                     | FromU64(x) |                | U256FromU64(x) | (bool)x |
-| string  | ToI64(x) 或者 atol(x) | ToI64(x) 或者 strtoll(x, NULL, 10) | ToU64(x) 或者 strtoul(x, NULL, 10) | Tou64(x) 或者 strtoull(a, NULL, 10) |            | AddressFrom(x) | U256From(x)    |
-| address |                       |                                    |                                    |                                     |            |                |                |
-| uint256 |                       |                                    |                                    |                                     | x          |                |                |
-| bool    | (int32)x              | (int64)x                           | (uint32)x                          | (uint64)x                           | FromI64(x) |                | U256FromI64(x) |
+| from\to | int32    | int64    | uint32    | uint64    | string     | address        | uint256        | bool    |
+| ------- | -------- | -------- | --------- | --------- | ---------- | -------------- | -------------- | ------- |
+| int32   |          | (int64)x | (uint32)x | (uint64)x | FromI64(x) |                | U256FromI64(x) | (bool)x |
+| int64   | (int32)x |          | (uint32)x | (uint64)x | FromI64(x) |                | U256FromI64(x) | (bool)x |
+| uint32  | (int32)x | (int64)x |           | (uint64)x | FromU64(x) |                | U256FromU64(x) | (bool)x |
+| uint64  | (int32)x | (int64)x | (uint32)x |           | FromU64(x) |                | U256FromU64(x) | (bool)x |
+| string  | ToI64(x) | ToI64(x) | ToU64(x)  | Tou64(x)  |            | AddressFrom(x) | U256From(x)    |
+| address |          |          |           |           |            |                |                |
+| uint256 |          |          |           |           | x          |                |                |
+| bool    | (int32)x | (int64)x | (uint32)x | (uint64)x | FromI64(x) |                | U256FromI64(x) |
 
-注意：
-* ``string``转``整形``使用的``atol``,``strtoll``,``strtoul``,``strtoull``为c语言标准库方法，需要引入``<stdlib.h>``
 
 三、标准库方法
 
-| 方法名                | 方法描述                                                                                          | 参数类型                       | 返回值类型       | gas消耗                                                                                                                             |
-| --------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| GetSender             | 获取交易发起者地址                                                                                |                                | address          | 2 + 40                                                                                                                              |
-| GetOrigin             | 获取交易最初的发起者地址                                                                          |                                | address          | 2 + 40                                                                                                                              |
-| GetValue              | 获取合约创建、调用时，同时发生的转账值                                                            |                                | uint256          | 2 + 64                                                                                                                              |
-| GetDifficulty         | 获取当前区块的难度                                                                                |                                | uint256          | 2 + 64                                                                                                                              |
-| GetBalanceFromAddress | 获取某个地址的原生代币余额                                                                        | address addr                   | uint256          | 2 + 64                                                                                                                              |
-| GetContractAddress    | 获取当前正在执行合约的地址                                                                        |                                | address          | 2 + 40                                                                                                                              |
-| GetBlockHash          | 根据区块高度获取区块hash，只能获取最新的256个区块，不包括当前区块                                 | uint64 blocknumber             | string           | 20 + 64                                                                                                                             |
-| GetBlockNumber        | 获取区块高度                                                                                      |                                | uint64           | 2                                                                                                                                   |
-| GetTimestamp          | 获取区块生成的时间戳                                                                              |                                | uint64           | 2                                                                                                                                   |
-| GetCoinBase           | 获取区块生产者的地址                                                                              |                                | address          | 2 + 40                                                                                                                              |
-| SHA3                  | SHA3加密运算                                                                                      | string data                    | string           | 30 + 6 * size of string data                                                                                                        |
-| GetGas                | 获取剩余GAS                                                                                       |                                | uint64           | 2                                                                                                                                   |
-| GetGasLimit           | 获取当前交易的GasLimit                                                                            |                                | uint64           | 2                                                                                                                                   |
-| Assert                | 判断条件，如果失败则返回msg，交易失败并消耗完所有的gas。该函数通常用来调试，生产环境请使用require | bool condition, string msg     | void           | true : 2 ; false : all gas                                                                                                          |
-| Revert                | 回滚交易，中断合约运行                                                                            | string msg                     | void             | 2  + 2 * size of string data                                                                                                        |
-| Require               | 判断条件是否成立，如果失败则交易失败                                                              | bool condition, string msg     | void             | true : 0 ; false : 2  + 2 * size of string data                                                                                     |
-| SendFromContract      | 合约向addr转账，转账金额为amount,转账失败会revert                                                 | (address addr, uint256 amount) | void             | 2300                                                                                                                                |
-| TransferFromContract  | 合约向addr转账，转账金额为amount,转账失败返回false                                                | (address addr, uint256 amount) | bool             | 2300                                                                                                                                |
-| FromI64               | 将int64的数值转化为字符串                                                                         | int64 value                    | string           | 2                                                                                                                                   |
-| FromU64               | 将uint64的数值转化为字符串                                                                        | uint64 value                   | string           | 2                                                                                                                                   |
-| ToI64                 | 将字符串转化为int64                                                                               | string value                   | int64            | 2                                                                                                                                   |
-| ToU64                 | 将字符串转化为uint64                                                                              | string value                   | uint64           | 2                                                                                                                                   |
-| Concat                | 连接两个字符串                                                                                    | string str1, string str2       | string           | 2 * (size of str1 and str2)                                                                                                         |
-| Equal                 | 判断两个字符串是否相等                                                                            | char *str1, char *str2         | bool             | 2                                                                                                                                   |
-| AddressFrom           | 将一个地址字符串转化成一个地址                                                                    | string addrStr                 | address          | 2 + 40                                                                                                                              |
-| Pow                   | uint64位的Pow运算                                                                                 | uint64 x, uint64 y             | uint64           | 50 * int((y bitlen + 7) / 8) + 2                                                                                                         |
-| U256From              | string转成uint256                                                                                 | string x                       | uint256          | 2 + 64                                                                                                                              |
-| U256FromU64           | uint64转成uint256                                                                                 | uint64 x                       | uint256          | 3 + 64                                                                                                                              |
-| U256FromI64           | int64转成uint256                                                                                  | int64 x                        | uint256          | 3 + 64                                                                                                                              |
-| U256_Add              | uint256加法                                                                                       | uint256 x, uint256 y           | uint256          | 3 + 64                                                                                                                              |
-| U256_Sub              | uint256减法                                                                                       | uint256 x, uint256 y           | uint256          | 3 + 64                                                                                                                              |
-| U256_Mul              | uint256乘法                                                                                       | uint256 x, uint256 y           | uint256          | 3 + 64                                                                                                                              |
-| U256_Div              | uint256除法                                                                                       | uint256 x, uint256 y           | uint256          | 3 + 64                                                                                                                              |
-| U256_Pow              | uint256幂运算                                                                                     | uint256 x, uint256 y           | uint256          | 50 * int((y bitlen + 7) / 8) + 2  + 64                                                                                                    |
-| U256_Cmp              | uint256比较运算                                                                                   | uint256 x, uint256 y           | int32            | 3                                                                                                                                   |
-| PrintAddress          | 打印一个地址变量                                                                                  | string remark, address a       | void             |                                                                                                                                     |
-| PrintStr              | 打印一个字符串变量                                                                                | string remark, string s        | void             |                                                                                                                                     |
-| PrintUint64T          | 打印一个uint64数字                                                                                | string remark, uint64 num      | void             |                                                                                                                                     |
-| PrintUint32T          | 打印一个uint32数字                                                                                | string remark, uint32 num      | void             |                                                                                                                                     |
-| PrintInt64T           | 打印一个int64数字                                                                                 | string remark, int64 num       | void             |                                                                                                                                     |
-| PrintInt32T           | 打印一个int32数字                                                                                 | string remark, int32 num       | void             |                                                                                                                                     |
-| PrintUint256T         | 打印一个uint256数字                                                                               | string remark, uint256 num     | void             |                                                                                                                                     |
-| EVENT                 | 事件                                                                                              | 可变参数                       | void             | 375 + topics * 375 + data * 8                                                                                                       |
-| CALL                  | 跨合约调用                                                                                        | 可变参数                       | 规定的任意返回值 | 40 + (新地址：25000,老地址：0 ) + （value!=0 : 9000 , value=0 : 0） + 被调用方法的gas消耗 - （value!=0 : 赠送的2300 , value=0 : 0） |
+| 方法名                | 方法描述                                                                                          | 参数类型                                  | 返回值类型       | gas消耗                                                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| GetSender             | 获取交易发起者地址                                                                                |                                           | address          | 2 + 40                                                                                                                               |
+| GetOrigin             | 获取交易最初的发起者地址                                                                          |                                           | address          | 2 + 40                                                                                                                               |
+| GetValue              | 获取合约创建、调用时，同时发生的转账值                                                            |                                           | uint256          | 2 + 64                                                                                                                               |
+| GetBalanceFromAddress | 获取某个地址的原生代币余额                                                                        | address addr                              | uint256          | 2 + 64                                                                                                                               |
+| GetContractAddress    | 获取当前正在执行合约的地址                                                                        |                                           | address          | 2 + 40                                                                                                                               |
+| GetBlockHash          | 根据区块高度获取区块hash，只能获取最新的256个区块，不包括当前区块                                 | uint64 blocknumber                        | string           | 20 + 64                                                                                                                              |
+| GetBlockNumber        | 获取区块高度                                                                                      |                                           | uint64           | 2                                                                                                                                    |
+| GetTimestamp          | 获取区块生成的时间戳                                                                              |                                           | uint64           | 2                                                                                                                                    |
+| GetBlockProduser      | 获取区块生产者的地址                                                                              |                                           | address          | 2 + 40                                                                                                                               |
+| SHA3                  | SHA3加密运算                                                                                      | string data                               | string           | 30 + 6 * size of string data                                                                                                         |
+| Ecrecover             | 从签名的hash中恢复账号地址                                                                        | string hash, string v, string r, string s | string           | 3000 + 40                                                                                                                                |
+| GetGas                | 获取剩余GAS                                                                                       |                                           | uint64           | 2                                                                                                                                    |
+| GetGasLimit           | 获取当前交易的GasLimit                                                                            |                                           | uint64           | 2                                                                                                                                    |
+| Assert                | 判断条件，如果失败则返回msg，交易失败并消耗完所有的gas。该函数通常用来调试，生产环境请使用require | bool condition, string msg                | void             | true : 2 ; false : all gas                                                                                                           |
+| Revert                | 回滚交易，中断合约运行                                                                            | string msg                                | void             | 2  + 2 * size of string data                                                                                                         |
+| Require               | 判断条件是否成立，如果失败则交易失败                                                              | bool condition, string msg                | void             | true : 0 ; false : 2  + 2 * size of string data                                                                                      |
+| SendFromContract      | 合约向addr转账，转账金额为amount,转账失败会revert                                                 | (address addr, uint256 amount)            | void             | 2300                                                                                                                                 |
+| TransferFromContract  | 合约向addr转账，转账金额为amount,转账失败返回false                                                | (address addr, uint256 amount)            | bool             | 2300                                                                                                                                 |
+| FromI64               | 将int64的数值转化为字符串                                                                         | int64 value                               | string           | 2                                                                                                                                    |
+| FromU64               | 将uint64的数值转化为字符串                                                                        | uint64 value                              | string           | 2                                                                                                                                    |
+| ToI64                 | 将字符串转化为int64                                                                               | string value                              | int64            | 2                                                                                                                                    |
+| ToU64                 | 将字符串转化为uint64                                                                              | string value                              | uint64           | 2                                                                                                                                    |
+| Concat                | 连接两个字符串                                                                                    | string str1, string str2                  | string           | 2 * (size of str1 and str2)                                                                                                          |
+| Equal                 | 判断两个字符串是否相等                                                                            | char *str1, char *str2                    | bool             | 2                                                                                                                                    |
+| AddressFrom           | 将一个地址字符串转化成一个地址                                                                    | string addrStr                            | address          | 2 + 40                                                                                                                               |
+| Pow                   | uint64位的Pow运算                                                                                 | uint64 x, uint64 y                        | uint64           | 50 * int((y bitlen + 7) / 8) + 2                                                                                                     |
+| U256From              | string转成uint256                                                                                 | string x                                  | uint256          | 2 + 64                                                                                                                               |
+| U256FromU64           | uint64转成uint256                                                                                 | uint64 x                                  | uint256          | 3 + 64                                                                                                                               |
+| U256FromI64           | int64转成uint256                                                                                  | int64 x                                   | uint256          | 3 + 64                                                                                                                               |
+| U256_Add              | uint256加法                                                                                       | uint256 x, uint256 y                      | uint256          | 3 + 64                                                                                                                               |
+| U256_Sub              | uint256减法                                                                                       | uint256 x, uint256 y                      | uint256          | 3 + 64                                                                                                                               |
+| U256_Mul              | uint256乘法                                                                                       | uint256 x, uint256 y                      | uint256          | 3 + 64                                                                                                                               |
+| U256_Div              | uint256除法                                                                                       | uint256 x, uint256 y                      | uint256          | 3 + 64                                                                                                                               |
+| U256_Pow              | uint256幂运算                                                                                     | uint256 x, uint256 y                      | uint256          | 50 * int((y bitlen + 7) / 8) + 2  + 64                                                                                               |
+| U256_Shl              | uint256左移运算                                                                                   | uint256 value, uint256 shift              | uint256          | 3 + 64                                                                                                                               |
+| U256_Shr              | uint256右移运算                                                                                   | uint256 value, uint256 shift              | uint256          | 3 + 64                                                                                                                               |
+| U256_And              | uint256与运算                                                                                     | uint256 x, uint256 y                      | uint256          | 3 + 64                                                                                                                               |
+| U256_Or               | uint256或运算                                                                                     | uint256 x, uint256 y                      | uint256          | 3 + 64                                                                                                                               |
+| U256_Xor              | uint256异或运算                                                                                   | uint256 x, uint256 y                      | uint256          | 3 + 64                                                                                                                               |
+| U256_Cmp              | uint256比较运算                                                                                   | uint256 x, uint256 y                      | int32            | 3                                                                                                                                    |
+| PrintAddress          | 打印一个地址变量                                                                                  | string remark, address a                  | void             |                                                                                                                                      |
+| PrintStr              | 打印一个字符串变量                                                                                | string remark, string s                   | void             |                                                                                                                                      |
+| PrintUint64T          | 打印一个uint64数字                                                                                | string remark, uint64 num                 | void             |                                                                                                                                      |
+| PrintUint32T          | 打印一个uint32数字                                                                                | string remark, uint32 num                 | void             |                                                                                                                                      |
+| PrintInt64T           | 打印一个int64数字                                                                                 | string remark, int64 num                  | void             |                                                                                                                                      |
+| PrintInt32T           | 打印一个int32数字                                                                                 | string remark, int32 num                  | void             |                                                                                                                                      |
+| PrintUint256T         | 打印一个uint256数字                                                                               | string remark, uint256 num                | void             |                                                                                                                                      |
+| EVENT                 | 事件                                                                                              | 可变参数                                  | void             | 375 + topics * 375 + data * 8                                                                                                        |
+| CALL                  | 跨合约调用                                                                                        | 可变参数                                  | 规定的任意返回值 | 700 + (新地址：25000,老地址：0 ) + （value!=0 : 9000 , value=0 : 0） + 被调用方法的gas消耗 - （value!=0 : 赠送的2300 , value=0 : 0） |
 
 
 
@@ -667,27 +670,10 @@ address addr = Address("0xaaa");
 
 读取
 ----
-gas消耗50
+gas消耗200
 
-五、C语言标准库的使用
-=================
 
-vnt合约支持C语言的c99标准库，在使用标准库时，需要引入标准库的头文件，部分标准库方法会调用系统方法，则不支持这些方法，当调用了不支持的方法后，虚拟机会报类似"wasm: couldn't find export with name xxx in module env"的错误
-
-```c
-
-#include <string.h>
-#include <math.h>
-
-VNT_WASM_EXPORT
-int32 getStrlen(string str) { return strlen(str); }
-
-VNT_WASM_EXPORT
-uint64 testPow(uint64 x, uint64 y) { return pow(x, y); }
-
-```
-
-六、复杂状态变量的多种处理方法
+五、复杂状态变量的多种处理方法
 ======================
 
 对于一些复杂状态变量，比如``mapping(string,mapping(string,string))``的嵌套，在取值或者赋值时，通常使用下面的方式
@@ -710,16 +696,17 @@ string val = map.value.value;
 或者
 
 ```c
-KEY mapping(string,mapping(string,string)) map;
+typedef mapping(string,string) mapdef;
+KEY mapping(string,mapdef) map;
 //赋值
 map.key = "testkey1";
-KEY mapping(string,string) *tmpmap = &map.value; //临时变量
+KEY mapdef *tmpmap = &map.value; //临时变量
 tmpmap->key = "testkey2";
 tmpmap->value = "testvalue";
 
 //取值
 map.key = "testkey1";
-KEY mapping(string,string) *tmpmap = &map.value; //临时变量
+KEY mapdef *tmpmap = &map.value; //临时变量
 tmpmap->key = "testkey2";
 string val = tmpmap->value;
 ```
@@ -828,13 +815,13 @@ uint256 h = s0->h;
 * ``mapping``和``array``本质上是匿名结构体，只能使用通常方式和匿名结构体的方式进行取值和赋值
 
 
-7、随机数
+六、随机数
 ========
 
 生成随机数在一个可验证的确定性系统是非常困难的，但又是必不可少的，比如博彩。
 在对随机数的随机性要求不高的情况下，可以使用tx hash,nonce等区块链上的随机数据，但这里会有一些风险，超级节点是有能力影响这些数据的产生，进而影响随机数
 
-8、SendFromContract,TransferFromContract,ContractCall
+七、SendFromContract,TransferFromContract,ContractCall
 ========================================
 
 三个方法都能往一个地址上发送一定数量的vnt

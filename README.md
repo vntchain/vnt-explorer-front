@@ -28,6 +28,17 @@ npm install
   export const chainId = // VNT 网络的 chain ID
   ```
 
+## 修改主网测试网
+
+- `./env` 文件
+  ```js
+    REACT_APP_NET= // mainnet testnet 
+  ```
+- `src/assets/_base.scss`文件
+  ```js
+    $net: // testnet mainnet
+  ```
+
 ## 运行
 
 ```bash

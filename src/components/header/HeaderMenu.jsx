@@ -3,7 +3,6 @@ import { Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import LocalText from 'i18n/LocalText'
-import menu from 'utils/menu.js'
 
 import styles from './HeaderMenu.scss'
 
@@ -40,6 +39,10 @@ export const menuItemFactory = (menu, auth, isMobile = false, dispatch) => {
           >
             <LocalText id={m.title} />
           </span>
+        ) : m.hasOwnProperty('friendLink') ? (
+          <a href={m.path} target="_blank">
+            <LocalText id={m.title} />
+          </a>
         ) : (
           <Link to={m.path}>
             <LocalText id={m.title} />
@@ -54,7 +57,12 @@ export default function HeaderMenu(props) {
   return (
     <div className={styles.menu}>
       <Menu theme="light" mode="horizontal">
-        {menuItemFactory(menu, props.auth, props.isMobile, props.dispatch)}
+        {menuItemFactory(
+          props.menu,
+          props.auth,
+          props.isMobile,
+          props.dispatch
+        )}
       </Menu>
     </div>
   )

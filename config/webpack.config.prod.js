@@ -156,7 +156,7 @@ module.exports = {
                     {
                       libraryName: 'antd',
                       libraryDirectory: 'es',
-                      style: 'css'
+                      style: true
                     }
                   ]
                 ]
@@ -222,6 +222,41 @@ module.exports = {
               )
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
+            test: /\.less$/,
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    }
+                  },
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'), // translates CSS into CommonJS
+                      options: {
+                        importLoaders: 1,
+                      },
+                    }, 
+                    {
+                      loader: require.resolve('less-loader'), // compiles Less to CSS
+                      options: {
+                        sourceMap: true,
+                        modifyVars: {
+                          '@primary-color': process.env.REACT_APP_NET==='mainnet'? '#3389ff': '#4cc159',
+                          '@link-color': process.env.REACT_APP_NET==='mainnet'? '#3389ff':'#4cc159',
+                        },
+                        javascriptEnabled: true,
+                      },
+                    }
+                  ],
+                },
+                extractTextPluginOptions
+              )
+            )
           },
           {
             test: /\.scss$/,

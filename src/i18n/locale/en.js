@@ -1,8 +1,9 @@
 export default {
-  language: '中文',
+  language: 'English',
 
   blank: '',
   rank: '#',
+  confirmPage: 'OK',
 
   /*
   ** Prompt msg
@@ -17,6 +18,8 @@ export default {
   /*
   ** Header Fields
   */
+  logoText: '',
+  vote: 'Vote',
   nav1: 'Blockchain',
   nav1Sub1: 'Overview',
   nav1Sub2: 'Blocks',
@@ -36,23 +39,38 @@ export default {
   nav3AuthSub2: 'Send',
   nav3AuthSub3: 'Receive',
   nav3AuthSub4: 'Logout',
+  nav4: 'More',
+  nav4Sub1: 'VNT Official Website',
+  nav4Sub2: 'VNT Box',
+  nav4Sub3: 'ERC20 Migration',
   hdSearchPh: 'Search address, block, transaction', // placeholder for header search box
+  nav5: 'MainNet',
+  nav5Sub1: 'MainNet',
+  nav5Sub2: 'TestNet',
   /*
  ** Home banner
  */
-  hbField1: 'Block Height',
-  hbField2: 'Transactions',
-  hbField3: 'Current/Max TPS',
-  hbField4: 'Total Accounts',
-  hbField5: 'Super/Candidate Nodes',
+  hbFieldHeight: 'Block Height',
+  hbFieldTxCount: 'Transactions',
+  hbFieldAccountCount: 'Total Accounts',
+  hbFieldCurrTps: 'Current/Max TPS',
+  hbFieldMarketCapCny: 'Market Cap',
+  hbFieldAvailableSupply: 'Circulating Supply',
+  hbFieldPriceCny: 'Price（24h Change）',
+  hbFieldSuperNode: 'Super/Candidate Nodes',
+  hbFieldUnit: ' k',
+  hbFieldFlag: '$ ',
   /*
  ** Home brief info box (left and right)
  */
-  lTitle: 'Blocks',
+  lTitle: 'Latest Blocks',
   lField1: 'View All >',
   lField2: 'Transactions: ',
   lField3: 'Block Reward ',
   lField4: 'Produced by: ',
+  lField5: 'Transactions in this Block',
+  lField6: 'Static Block Reward',
+  lField7: 'Txn Fees',
 
   rTitle: 'Transactions',
   rField1: 'View All >',
@@ -62,7 +80,7 @@ export default {
   /*
   ** Home chart
   */
-  chartTitle: 'VNT 14 days Transaction History',
+  chartTitle: 'VNT Price Charts（14 days）',
 
   /*
   ** Create wallet
@@ -79,7 +97,9 @@ export default {
     'This password encrypts your private key. This does not act as a seed to generate your keys.',
   st1Note2:
     'You will need this password and your private key to unlock your wallet.',
-  st1InputPH: 'Please Enter at least 6 characters',
+  st1InputPH: 'Use 8 to 16 characters with letters and numbers',
+  st1NoteError1: 'Must contain at least one number',
+  st1NoteError2: 'Must contain at least one letter',
   st1Btn: 'Create New Wallet',
   /*
   ** Create wallet stage2
@@ -131,6 +151,7 @@ export default {
   bdpField8: 'Gas Limit',
   bdpField9: 'Block Reward',
   bdpField10: 'Extra Data',
+  bdpField11: 'Witness Switching Time ：',
 
   /*
   ** Tx list page
@@ -148,6 +169,7 @@ export default {
   txFilterByBlockSub: num =>
     `A Total of ${num} Transaction${num > 1 ? 's' : ''}`,
   tlpColumn01: 'Amount',
+  contractToolTip: 'contract',
 
   /*
   ** Tx detail page
@@ -178,7 +200,7 @@ export default {
   */
   alpTitle: 'Accounts',
   alpSubTitle: num => `A Total of ${num} Account${num > 1 ? 's' : ''}`,
-  alpColumn1: '#',
+  alpColumn1: 'Rank',
   alpColumn2: 'Address',
   alpColumn3: 'Balance',
   alpColumn4: 'Percentage',
@@ -196,6 +218,7 @@ export default {
   adpField7: 'Token',
   adpField8: 'Price',
   adpField9: 'Value in VNT',
+  adpField10: 'Memo',
   adpCount1: num => `A Total of ${num} Tx${num > 1 ? 's' : ''}`,
   adpCount2: num => `A Total of ${num} Token Tx${num > 1 ? 's' : ''}`,
   adpCount3: num => `A Total of ${num} Token${num > 1 ? 's' : ''}`,
@@ -252,15 +275,19 @@ export default {
   /*
   ** Developer guide page
   */
-  dgTitle: 'VNT开发者指南',
-  dgNav1: 'VNT介绍',
-  dgNav2: '网络搭建',
-  dgNav3: '共识投票',
-  dgNav4: 'DAPP开发指南',
-  dgNav4Sub1: '如何开发合约',
-  dgNav4Sub2: '如何编译合约',
-  dgNav4Sub3: '如何部署调用合约',
-  dgNav5: '加入VNT Hubble测试网',
+  dgTitle: 'VNT Developer Guidlines',
+  dgNav1: 'VNT Introduction',
+  dgNav2: 'Network Setup',
+  dgNav3: 'Vote and Consensus',
+  dgNav4: 'DAPP Development',
+  dgNav4Sub1: 'How to Create a Smart Contract',
+  dgNav4Sub2: 'How to Build a Smart Contract',
+  dgNav4Sub3: 'How to Deploy a Smart Contract',
+  dgNav5: 'Join the Hubble VNT Testnet',
+  dgNav6: 'Wallet plugin',
+  dgNav6Sub1: 'Installation',
+  dgNav6Sub2: 'Instructions',
+  dgNav7: 'Join the Hubble VNT network',
 
   /*
   ** Super Node page
@@ -281,6 +308,7 @@ export default {
   ** Test network faucet
   */
   tnfBanner: 'VNT Faucet',
+  tnfBannerSubTitle: 'Get it now',
   tnfTitle: 'Enter your testnet account address',
   tnfPlaceholder1: 'Testnet account address',
   tnfBtn: 'Claim',
@@ -304,18 +332,18 @@ export default {
   /*
   ** Open wallet
   */
-  owBanner: '打开你的钱包',
-  owTitle: '请选择打开钱包的方式：',
+  owBanner: 'Open your wallet',
+  owTitle: 'Select type: ',
   owMethod1: 'Keystore File',
-  owMethod1Field1: '请选择Keystore文件：',
+  owMethod1Field1: 'Choose Keystore file：',
   owMethod1Field2: 'Select File',
-  owMethod1Field3: '请输入密码：',
+  owMethod1Field3: 'Please input password：',
   owMethod1Ph: 'Please input password',
   owMethod2: 'Private Key',
-  owMethod2Field1: '请输入私钥：',
-  owMethod2Ph: '请输入你的钱包私钥',
-  owBtn: '打开钱包',
-
+  owMethod2Field1: 'Please input private key: ',
+  owMethod2Ph: 'Please input your wallet password',
+  owBtn: 'Open wallet',
+  
   /*
   ** Wallet account
   */
@@ -345,7 +373,31 @@ export default {
   spPh2: 'Amount',
   spTitle5: 'Additional',
   spPh3: 'Optional',
+  sendTip: 'Send At Least : ',
   spField1: 'Balance: ',
   spBtn1: 'All',
-  spBtn2: 'Confirmed'
+  spBtn2: 'Confirmed',
+
+  /*
+  ** partners 
+  */
+  partners: 'Business Partner',
+
+  /*
+  ** footer 
+  */
+  footerLogoText: 'Distributed Smart Value Network',
+  subscribe_hint: 'Subscribe for more VNT Chain Infomation',
+  footerPlaceholder: 'Enter your email',
+  submitBtn: 'Submit',
+  inputSyntaxError: 'Invalid Email Address',
+  submit_success: 'Thank you for subscribing',
+  submit_failed: 'Submit failed',
+  nav_home: 'Home',
+  nav_tech: 'Technology',
+  nav_developer: 'Developer',
+  nav_news: 'News',
+  nav_community: 'Community',
+  nav_cooperation: 'Cooperation',
+  nav_about: 'About Us'
 }

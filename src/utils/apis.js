@@ -1,10 +1,12 @@
 export default {
   stats: '/stats',
+  market: '/market',
   blocks: '/blocks',
   block: '/block',
   blockCount: '/blocks/count',
   txs: '/txs',
   txHistory: '/txs/history',
+  priceLine: 'kline',
   txCount: '/txs/count',
   tx: '/tx',
   accounts: '/accounts',
@@ -14,5 +16,6 @@ export default {
   search: '/search',
   nodes: '/nodes',
   nodesCount: '/nodes/count',
-  faucet: '/hydrant'
+  faucet: '/hydrant',
+  subscribe: '/subscribe'
 }

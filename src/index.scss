@@ -12,7 +12,8 @@ html {
 }
 
 body {
-  font-family: "Microsoft YaHei", "微软雅黑", "PingFangSC-Regular", sans-serif;
+  font-family: "PingFangSC-Regular", "Microsoft YaHei", "微软雅黑", sans-serif;
+  overflow-x: hidden;
 }
 
 // horizontal menu generates submenu outside root node dynamically !
@@ -22,7 +23,7 @@ body {
       min-width: 1.3rem;
     }
     .ant-menu-item > a {
-      font-size: .14rem;
+      font-size: 0.14rem;
       color: #333;
     }
     .ant-menu-item:not(:last-child) {
@@ -42,5 +43,87 @@ body {
   }
   .contractIcon {
     width: 11px;
+  }
+
+  .langIcon {
+    width: 16px;
+  }
+
+  .hotIcon {
+    width: 12px;
+  }
+
+  .ant-select-dropdown {
+    .ant-select-dropdown-menu {
+      .ant-select-dropdown-menu-item {
+        border-bottom: 1px solid #e6e6e6;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 16px;
+        span {
+          font-size: 0.14rem;
+          color: #333;
+          margin-left: 0.05rem;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &.ant-select-dropdown-menu-item-active {
+          background: none;
+        }
+
+        &.ant-select-dropdown-menu-item-selected {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  .ant-dropdown-menu {
+    min-width: 1.1rem;
+    padding: 0;
+    .ant-dropdown-menu-item {
+      height: 40px;
+      line-height: 40px;
+      padding: 0 16px;
+      font-size: 0.14rem;
+      border-bottom: 1px solid #e6e6e6;
+      overflow: hidden;
+
+      & > a {
+        color: #333;
+      }
+
+      &:last-child {
+        border-bottom: 1px solid transparent;
+        border-radius: 0 0 4px 4px;
+      }
+
+      &.ant-dropdown-menu-item-active {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .ant-tooltip-content {
+    .ant-tooltip-arrow {
+      border: none;
+    }
+    .ant-tooltip-inner {
+      background: #fff;
+      color: #333;
+    }
+  }
+
+  .ant-pagination.ant-table-pagination {
+    .ant-pagination-options-quick-jumper {
+      > input {
+        width: 100px;
+      }
+    }
   }
 }

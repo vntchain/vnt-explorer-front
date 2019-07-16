@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router-dom'
+import { replace } from 'react-router-redux'
 
 import Header from 'components/header/Header'
+import Footer from 'components/footer/Footer'
 import Home from 'containers/Home'
 
 import PageProvider from 'containers/PageProvider'
@@ -72,16 +74,22 @@ export default withRouter(
 
     const { index: currentIndex, filterParam } = (() => {
       const a = location.pathname.split('/').filter(item => item)
-      const index = isNaN(parseInt(a[a.length - 1], 10))
+      let index = isNaN(parseInt(a[a.length - 1]))
         ? 1
-        : parseInt(a[a.length - 1], 10)
+        : parseInt(a[a.length - 1])
 
       let filterParam = ''
       if (
-        (a.length === 2 && isNaN(parseInt(a[a.length - 1], 10))) ||
+        (a.length === 2 && isNaN(parseInt(a[a.length - 1]))) ||
         a.length === 3
       ) {
         filterParam = `&${a[1]}`
+      }
+      //console.log(a,index) //eslint-disable-line
+      if(index < 1){
+        a.pop()
+        props.dispatch(replace(`/${a.join('/')}/1`))
+        index = 1
       }
       return { index, filterParam }
     })()
@@ -107,7 +115,13 @@ export default withRouter(
         )}
 
         <div className={styles.margin}>
-          <div>
+          <div
+            style={{
+              minHeight: location.pathname.startsWith(r.devGuides)
+                ? 'calc(100vh - 6rem)'
+                : 'calc(100vh - 5.18rem)'
+            }}
+          >
             <Route exact path={r.home} component={Home} />
 
             <Route
@@ -272,6 +286,10 @@ export default withRouter(
             <Route exact path={r.send} component={requireAuth(Send)} />
             <Route exact path={r.wallet} component={requireAuth(Wallet)} />
           </div>
+        </div>
+
+        <div className={styles.margin}>
+          <Footer />
         </div>
       </div>
     )
