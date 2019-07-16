@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Spin } from 'antd'
+import { Spin, Tooltip } from 'antd'
 import { Link } from 'react-router-dom'
 
 import SubTitle from 'components/SubTitle'
@@ -9,8 +9,10 @@ import withLang from 'i18n/withLang'
 import { calcAge } from 'utils/time'
 import apis from 'utils/apis'
 import contractIcon from 'assets/images/合约.png'
-
+import failedIcon from 'assets/images/failed.png'
 import styles from 'containers/Common.scss'
+
+import { formatVname, formatAddr } from 'utils/common'
 
 /*
 ** props.context: null --> {} --> multiple { isLoading } -->
@@ -61,34 +63,35 @@ const genTableData = (data, address, language, comparedAddr) => {
 
   const result = []
   data.forEach((item, i) => {
-    var d = {
+    let d = {
       key: item.Hash + i,
-      tx: item.Hash,
+      tx: {
+        hash: item.Hash,
+        successStatus: item.Status == 1
+      },
       height: item.BlockNumber,
       age: calcAge(item.TimeStamp, language),
       from: {
-        addr: item.From,
-        redirect: item.From !== comparedAddr
+        address: item.From,
+        redirect: item.From !== comparedAddr,
+        isContract: item.FromDetail ? item.FromDetail.IsContract : false,
+        contractName: item.FromDetail ? item.FromDetail.ContractName : '',
+        isToken: item.FromDetail ? item.FromDetail.IsToken : false,
+        name: item.FromDetail ? (
+          item.FromDetail.Vname ? formatVname(item.FromDetail.Vname,10) :  (item.FromDetail.Address ? formatAddr(item.FromDetail.Address,6,6) : '') 
+        ) : ''
+      },
+      to: {
+        isContract: item.To ? item.To.IsContract : false,
+        contractName: item.To ? item.To.ContractName : '',
+        isToken: item.To ? item.To.IsToken : false,
+        address: item.To ? item.To.Address : '',
+        name: item.To ? (
+          item.To.Vname ? formatVname(item.To.Vname,10) :  (item.To.Address ? formatAddr(item.To.Address,6,6) : '') 
+        ) : '',
+        redirect: item.To ? item.To.Address !== comparedAddr : false
       },
       value: item.Value
-    }
-
-    if (item.To) {
-      d.to = {
-        isContract: item.To.IsContract,
-        isToken: item.To.IsToken,
-        address: item.To.Address,
-        name: item.To.ContractName,
-        redirect: item.To.Address !== comparedAddr
-      }
-    } else {
-      d.to = {
-        isContract: null,
-        isToken: null,
-        address: null,
-        name: null,
-        redirect: false
-      }
     }
 
     if (item.To) {
@@ -106,6 +109,45 @@ const genTableData = (data, address, language, comparedAddr) => {
   return result
 }
 
+const tooltipText = (
+  <span>
+    <LocalText id="contractToolTip" />
+  </span>
+)
+
+const renderSendAndReceive = ({
+  isContract,
+  isToken,
+  address,
+  name,
+  contractName,
+  redirect
+}) => {
+  if (!address) {
+    return '-'
+  }
+
+  if (isToken || isContract) {
+    let url = isToken ? '/token/' : '/contract/'
+    url = url + address
+    return (
+      <Tooltip title={tooltipText} placement="bottom">
+        <Link to={url}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img className="contractIcon" src={contractIcon} />
+            &nbsp;
+            {contractName || ' ' + name}
+          </div>
+        </Link>
+      </Tooltip>
+    )
+  }
+
+  return redirect ? (
+    <Link to={`/account/${address}`}>{name}</Link>
+  ) : name
+}
+
 const columns = [
   {
     title: <LocalText id="tlpColumn1" />,
@@ -113,7 +155,19 @@ const columns = [
     key: 'tx',
     // eslint-disable-next-line react/display-name
     render: tx => (
-      <Link to={`/transaction/${tx}`}>{tx.slice(0, 12) + '...'}</Link>
+      <Link to={`/transaction/${tx.hash}`}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {!tx.successStatus && (
+            <img
+              style={{ width: '.16rem' }}
+              src={failedIcon}
+              alt="failed icon"
+            />
+          )}
+          &nbsp;
+          {tx.hash.slice(0, 12) + '...'}
+        </div>
+      </Link>
     )
   },
   {
@@ -133,12 +187,7 @@ const columns = [
     key: 'from',
     dataIndex: 'from',
     // eslint-disable-next-line react/display-name
-    render: ({ addr, redirect }) =>
-      redirect ? (
-        <Link to={`/account/${addr}`}>{addr.slice(0, 12) + '...'}</Link>
-      ) : (
-        addr.slice(0, 12) + '...'
-      )
+    render: renderSendAndReceive
   },
   {
     title: <LocalText id="blank" />,
@@ -150,41 +199,7 @@ const columns = [
     key: 'to',
     dataIndex: 'to',
     // eslint-disable-next-line react/display-name
-    render: ({ isContract, isToken, address, name, redirect }) => {
-      if (!address) {
-        return '-'
-      }
-
-      if (isToken) {
-        return (
-          <Link to={`/token/${address}`}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img className="contractIcon" src={contractIcon} />
-              &nbsp;
-              {name || ' ' + address.slice(0, 12) + '...'}
-            </div>
-          </Link>
-        )
-      }
-
-      if (isContract) {
-        return (
-          <Link to={`/contract/${address}`}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img className="contractIcon" src={contractIcon} />
-              &nbsp;
-              {name || ' ' + address.slice(0, 12) + '...'}
-            </div>
-          </Link>
-        )
-      }
-
-      return redirect ? (
-        <Link to={`/account/${address}`}>{address.slice(0, 12) + '...'}</Link>
-      ) : (
-        address.slice(0, 12) + '...'
-      )
-    }
+    render: renderSendAndReceive
   },
   {
     title: <LocalText id="tlpColumn6" />,

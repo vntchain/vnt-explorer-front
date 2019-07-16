@@ -66,6 +66,42 @@ export default withLang(
   })
 )
 
+function genSendAndReceiveData(dataSrc) {
+  if (!dataSrc) {
+    return '-'
+  }
+
+  if (dataSrc.IsToken) {
+    return (
+      <Fragment>
+        <LocalText id="tdpField16" />
+        <Link to={`/token/${dataSrc.Address}`}>
+          <Icon type="project" /> {dataSrc.Vname || dataSrc.Address}
+        </Link>{' '}
+        ({dataSrc.ContractName})
+      </Fragment>
+    )
+  }
+
+  if (dataSrc.IsContract) {
+    return (
+      <Fragment>
+        <LocalText id="tdpField15" />
+        <Link to={`/contract/${dataSrc.Address}`}>
+          <Icon type="project" /> {dataSrc.Vname || dataSrc.Address}
+        </Link>
+        {dataSrc.ContractName? ` (${dataSrc.ContractName})` : ''}
+      </Fragment>
+    )
+  }
+
+  return (
+    <Link to={`/account/${dataSrc.Address}`}>
+      {dataSrc.Vname || dataSrc.Address}
+    </Link>
+  )
+}
+
 function DetailTable(props) {
   const columns = [
     {
@@ -88,6 +124,7 @@ function DetailTable(props) {
       Status,
       BlockNumber,
       From,
+      FromDetail,
       To,
       IsToken,
       TokenTo,
@@ -100,7 +137,8 @@ function DetailTable(props) {
       Value,
       Index
     } = props.context.data
-
+    // eslint-disable-next-line
+    //console.log(props.context.data)
     data.push({
       key: 'status',
       fieldName: <LocalText id="tdpField2" />,
@@ -128,63 +166,35 @@ function DetailTable(props) {
     data.push({
       key: 'from',
       fieldName: <LocalText id="tdpField5" />,
-      value: <Link to={`/account/${From}`}>{From}</Link>
+      value: genSendAndReceiveData(FromDetail)
     })
     data.push({
       key: 'to',
       fieldName: <LocalText id="tdpField6" />,
-      value: (function() {
-        if (!To) {
-          return '-'
-        }
+      value: genSendAndReceiveData(To)
+    })
 
-        if (To.IsToken) {
-          return (
+    // 此时才为代币转移，才显示代币转移
+    if (IsToken && TokenTo !== '') {
+      data.push({
+        key: 'transfer',
+        fieldName: <LocalText id="tdpField7" />,
+        value: (
             <Fragment>
-              <LocalText id="tdpField16" />
-              <Link to={`/token/${To.Address}`}>
-                <Icon type="project" /> {To.Address}
+              <LocalText id="tdpField5" />
+              <Link to={`/account/${From}`}>
+                {From.slice(0, 12) + '...'}
               </Link>{' '}
-              ({To.ContractName})
-            </Fragment>
-          )
-        }
-
-        if (To.IsContract) {
-          return (
-            <Fragment>
-              <LocalText id="tdpField15" />
-              <Link to={`/contract/${To.Address}`}>
-                <Icon type="project" /> {To.Address}
+              <LocalText id="tdpField6" />{' '}
+              <Link to={`/account/${TokenTo}`}>
+                {TokenTo.slice(0, 12) + '...'}
               </Link>
+              <LocalText id="tdpField14" /> {TokenAmount}{' '}
+              <Link to={`/token/${To.Address}`}>{To.TokenSymbol}</Link>
             </Fragment>
-          )
-        }
-
-        return <Link to={`/account/${To.Address}`}>{To.Address}</Link>
-      })()
-    })
-    data.push({
-      key: 'transfer',
-      fieldName: <LocalText id="tdpField7" />,
-      value:
-        TokenTo !== '' && IsToken === true ? (
-          <Fragment>
-            <LocalText id="tdpField5" />
-            <Link to={`/account/${From}`}>
-              {From.slice(0, 12) + '...'}
-            </Link>{' '}
-            <LocalText id="tdpField6" />{' '}
-            <Link to={`/account/${TokenTo}`}>
-              {TokenTo.slice(0, 12) + '...'}
-            </Link>
-            <LocalText id="tdpField14" /> {TokenAmount}{' '}
-            <Link to={`/token/${To.Address}`}>{To.TokenSymbol}</Link>
-          </Fragment>
-        ) : (
-          '-'
-        )
-    })
+          ) 
+      })
+    }
     data.push({
       key: 'value',
       fieldName: <LocalText id="tdpField8" />,

@@ -1,12 +1,12 @@
-@import '../assets/base';
+@import "../assets/base";
 
 .main {
 }
 
 .content {
-  border-radius: .04rem;
+  border-radius: 0.04rem;
   background-color: #fff;
-  padding: .6rem 0 1rem;
+  padding: 0.6rem 0 1rem;
   & > * {
     width: 50%;
     margin: 0 auto;
@@ -15,20 +15,27 @@
   color: $color-dark-1;
 
   .field:not(:last-child) {
-    margin-bottom: .4rem;
+    margin-bottom: 0.4rem;
   }
   .title {
-    font-size: .16rem;
-    margin-bottom: .2rem;
+    font-size: 0.16rem;
+    margin-bottom: 0.2rem;
   }
   .addr {
-    font-size: .14rem;
+    font-size: 0.14rem;
+  }
+  .sendMsg {
+    float: left;
+    margin-bottom: 0;
+    margin-top: 0.05rem;
+    font-size: 0.14rem;
+    color: $color-light-6;
   }
   .balance {
     float: right;
     margin-bottom: 0;
-    margin-top: .05rem;
-    font-size: .14rem;
+    margin-top: 0.05rem;
+    font-size: 0.14rem;
     color: $color-light-6;
 
     span {
@@ -36,12 +43,17 @@
     }
   }
   .qrcode {
-    margin-top: -.2rem;
-    margin-left: -.2rem;
+    margin-top: -0.2rem;
+    margin-left: -0.2rem;
   }
   :global {
-    .ant-input, .ant-select-selection, .ant-input-search-button, .ant-btn-primary, .ant-select-selection-selected-value, .ant-select-search--inline {
-      height: .54rem;
+    .ant-input,
+    .ant-select-selection,
+    .ant-input-search-button,
+    .ant-btn-primary,
+    .ant-select-selection-selected-value,
+    .ant-select-search--inline {
+      height: 0.54rem;
     }
     textarea.ant-input {
       height: 1.2rem;
@@ -49,7 +61,8 @@
     .ant-btn-primary {
       width: 100%;
     }
-    .ant-select-selection-selected-value, .ant-select-search--inline {
+    .ant-select-selection-selected-value,
+    .ant-select-search--inline {
       display: flex !important;
       align-items: center;
     }

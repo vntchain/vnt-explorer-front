@@ -1,4 +1,4 @@
-@import '../../assets/base';
+@import "../../assets/base";
 
 .menu {
   color: $color-dark-1;
@@ -10,7 +10,8 @@
   :global {
     // change submenu text font-size
     .ant-menu-submenu-title {
-      font-size: .16rem;
+      font-size: 0.16rem;
+      padding: 0 0.1rem;
     }
     // hide border-bottom
     .ant-menu-horizontal {
@@ -24,9 +25,9 @@
     }
 
     .anticon {
-      font-size: .08rem;
+      font-size: 0.12rem;
       margin-right: 0;
-      margin-left: .03rem;
+      margin-left: 0.03rem;
       line-height: 1;
     }
   }

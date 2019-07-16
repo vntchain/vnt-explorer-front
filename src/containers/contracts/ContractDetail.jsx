@@ -29,7 +29,6 @@ const mapStateToProps = ({ accounts: { accountDetail } }) => {
 
 export default connect(mapStateToProps)(function AccountDetail(props) {
   const { accountDetail } = props
-
   // 点击发送方、接收方链接时更新表单数据
   useEffect(
     () => {
@@ -109,6 +108,7 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
   const tabs = [
     {
       btnName: <LocalText id="adpField4" />,
+      show: true,
       comp: (
         <Fragment key="1">
           {/* 获取当前账户第一分页的交易 */}
@@ -141,6 +141,12 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
     },
     {
       btnName: <LocalText id="adpField5" />,
+      show:
+        accountDetail &&
+        accountDetail.data &&
+        accountDetail.data.hasOwnProperty('IsToken')
+          ? accountDetail.data.IsToken
+          : true,
       comp: (
         <Fragment key="2">
           {/* 获取当前账户第一分页的代币交易 */}
@@ -173,6 +179,12 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
     },
     {
       btnName: <LocalText id="adpField6" />,
+      show:
+        accountDetail &&
+        accountDetail.data &&
+        accountDetail.data.hasOwnProperty('IsToken')
+          ? accountDetail.data.IsToken
+          : true,
       comp: (
         <Fragment key="3">
           {/* 获取当前账户第一分页的代币 */}
@@ -233,7 +245,11 @@ export default connect(mapStateToProps)(function AccountDetail(props) {
           <Margin size="medium" />
           {accountDetail &&
             !accountDetail.isLoading && (
-              <Tabs key={Date.now()} tabs={tabs} dispatch={props.dispatch} />
+              <Tabs
+                key={Date.now()}
+                tabs={tabs.filter(t => t.show)}
+                dispatch={props.dispatch}
+              />
             )}
         </div>
       </Spin>

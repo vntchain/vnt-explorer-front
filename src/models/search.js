@@ -1,7 +1,6 @@
 import { message } from 'antd'
 import { push } from 'react-router-redux'
 import { effects } from 'redux-sirius'
-
 import apis from 'utils/apis'
 import r from 'constants/routes'
 
@@ -21,7 +20,7 @@ export default {
       const { field, ...data } = payload
       return {
         ...state,
-        [field]: { ...data }
+        [field]: { ...state[field], ...data }
       }
     }
   },
@@ -29,7 +28,10 @@ export default {
     setState: takeEvery(function*({ payload }) {
       const { error, data } = payload
       if (error) {
-        message.error(error)
+        yield put({
+          type: 'search/setError',
+          payload: error
+        })
       } else if (data) {
         let searchType = null
         const keys = Object.keys(data)

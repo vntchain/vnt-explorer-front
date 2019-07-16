@@ -3,11 +3,12 @@ import { Menu } from 'antd'
 
 import { menuItemFactory } from './HeaderMenu'
 
-import menu from 'utils/menu.js'
+import menu, { vntNetMenu, moreMenu } from 'utils/menu.js'
 
 import styles from './MobileHeaderMenu.scss'
 
 const SubMenu = Menu.SubMenu
+const totalMenu = menu.concat([moreMenu, vntNetMenu])
 
 export default function MobileHeaderMenu(props) {
   const toggleNav = () => {
@@ -30,7 +31,7 @@ export default function MobileHeaderMenu(props) {
 
       <nav className={styles.navigation__nav}>
         <Menu theme="light" mode="inline">
-          {menuItemFactory(menu, props.auth, true, props.dispatch)}
+          {menuItemFactory(totalMenu, props.auth, true, props.dispatch)}
           <SubMenu key="lang" title="中/EN" />
         </Menu>
       </nav>

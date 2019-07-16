@@ -8,7 +8,7 @@ import {
   ConnectedRouter,
   routerMiddleware as RouterMiddleware
 } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 // import registerServiceWorker from 'registerServiceWorker'
 
 import App from 'containers/App'
@@ -17,7 +17,7 @@ import LangProvider from 'i18n/LangProvider'
 import 'normalize.css'
 import './index.scss'
 
-const history = createHistory()
+const history = createBrowserHistory()
 const routerMiddleware = RouterMiddleware(history)
 
 let mode = process.env.NODE_ENV // eslint-disable-line no-undef

@@ -1,52 +1,74 @@
-@import '../../assets/base';
+@import "../../assets/base";
 
 .brief {
-  background-color: $color-primary;
-  border-radius: .04rem;
-  padding: .4rem .5rem;
-
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-content: space-between;
+  min-height: 2.6rem;
 
   @include respondTo($bp-phone) {
     flex-wrap: wrap;
     background-color: transparent;
     padding: 0 0rem;
-    margin: 0 -.075rem;
+    margin: 0 -0.075rem;
   }
 }
 
 .brief-item {
-  color: #fff;
-  &__title {
-    margin-bottom: .2rem;
-    font-size: .14rem;
-  }
+  position: relative;
+  padding: 0.36rem 0 0 0.2rem;
+  height: 1.2rem;
+  width: calc(25% - 0.15rem);
+  background: #fff;
+  border-radius: 0.04rem;
+  box-shadow: 0px 0px 20px 0px rgba(30, 30, 30, 0.05);
   &__number {
-    margin-bottom: 0;
-    font-size: .28rem;
+    font-size: 0.26rem;
+    height: 0.2rem;
+    line-height: 0.2rem;
+    color: $color-dark-1;
+  }
+  &__title {
+    margin-top: 0.15rem;
+    font-size: 0.14rem;
+    color: $color-light-7;
+  }
+  &__tiny {
+    font-size: 0.12rem;
+    padding: 0 0.06rem;
+    margin-left: 0.06rem;
+    border-radius: 2px;
+    background: $color-primary;
+    color: #fff;
+  }
+
+  &__img {
+    position: absolute;
+    bottom: 0;
+    right: 0.2rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    > img {
+      height: 0.4rem;
+    }
   }
 
   @include respondTo($bp-phone) {
-    border-radius: .04rem;
-
-    flex: 0 1 calc(50% - .15rem);
+    flex: 0 1 calc(50% - 0.15rem);
     background-color: #fff;
-    color: $color-primary;
 
-    padding: .2rem .15rem;
-
-    margin: 0 .075rem;
+    margin: 0 0.075rem;
     margin-bottom: 5%;
 
-    &__title {
-      color: $color-dark-1;
-      font-size: .12rem;
-    }
-
     &__number {
-      font-size: .2rem;
+      font-size: 0.24rem;
     }
 
+    &__title {
+      font-size: 0.14rem;
+    }
   }
 }

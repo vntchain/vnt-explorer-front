@@ -6,12 +6,12 @@ import withLang from 'i18n/withLang'
 import { calcAge } from 'utils/time'
 
 import contractIcon from 'assets/images/合约.png'
-import txIcon from 'assets/images/icon-trading.png'
+import { txIcon } from 'utils/images.js'
 import styles from './BlockTx.scss'
 
 export default withLang(function TxBrief(props) {
   const formattedData = data => {
-    return data.map(item => ({
+    return data.slice(0, 5).map(item => ({
       from: item.From,
       to: {
         isNull: !item.To ? true : false,
@@ -32,7 +32,11 @@ export default withLang(function TxBrief(props) {
           <div className={styles.item}>
             <div className={`${styles['item__row']} ${styles['item__row--1']}`}>
               <img className={styles.icon} src={txIcon} alt="" />
-              <span>{item.txHash.slice(0, 24) + '...'}</span>
+              <span>
+                <Link to={`/transaction/${item.txHash}`}>
+                  {item.txHash.slice(0, 24) + '...'}
+                </Link>
+              </span>
             </div>
 
             <div
@@ -41,8 +45,9 @@ export default withLang(function TxBrief(props) {
               <span>
                 <LocalText id="rField2" />
                 <Link to={`/account/${item.from}`}>
-                  {item.from.slice(0, 15) + '...'}
+                  {item.from.slice(0, 12) + '...'}
                 </Link>
+                &nbsp;&nbsp;
               </span>
               <span
                 style={{

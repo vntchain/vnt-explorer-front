@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
 
 import { pageSize } from 'constants/config'
-
+import LocalText from 'i18n/LocalText'
 import styles from 'components/BaseTable.scss'
 
 function BaseTable(props) {
@@ -23,6 +23,7 @@ function BaseTable(props) {
       tableClass = styles.revTable4C
       break
   }
+
   return (
     <Table
       style={data.length === 0 ? { paddingTop: '0.6rem' } : {}}
@@ -36,7 +37,13 @@ function BaseTable(props) {
               position: 'both',
               pageSize: pageSize,
               total: props.data.length === 0 ? 0 : props.count,
-              showQuickJumper: true,
+              showQuickJumper: {
+                goButton: (
+                  <Button className={styles.confirmButton}>
+                    <LocalText id="confirmPage" />
+                  </Button>
+                )
+              },
               onChange: p => flipPage(p),
               current: currentIndex
             }
