@@ -27,7 +27,7 @@ export default {
   send: '/send',
   receive: '/receive',
   wallet: '/wallet',
-  mainNet: 'https://www.vntchain.io/',
+  mainNet: 'https://scan.vntchain.io/',
   testNet: 'https://hubscan.vnt.link/',
   vntOfficialWebsiteTech: 'http://www.vntchain.io/technology',
   vntOfficialWebsiteDeveloper: 'http://www.vntchain.io/developers',
