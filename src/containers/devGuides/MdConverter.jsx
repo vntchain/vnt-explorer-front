@@ -10,10 +10,10 @@ export default function MarkdownConverter(props) {
   const [mdContent, setMdContent] = useState('')
   // const file = require(`../../assets/docs/${props.filePath}`)
   const { filePath } = props
-
+  const fileUrl = 'https://github.com/vntchain/vnt-documentation/blob/master/'
+  const fileAPi = 'https://api.github.com'
+  const fileRepo = 'vntchain/vnt-documentation'
   useEffect(() => {
-    const fileAPi = 'https://api.github.com'
-    const fileRepo = 'vntchain/vnt-documentation'
     // fetch(file)
     fetch(`${fileAPi}/repos/${fileRepo}/contents/${filePath}`)
       .then(res => {
@@ -42,9 +42,9 @@ export default function MarkdownConverter(props) {
           dangerouslySetInnerHTML={{ __html: mdContent }}
         /> : (
           <div className={styles.tip}>
-            <p>内容来自<a href="" target="_blank">github</a></p>
+            <p>内容来自<a href={`${fileUrl}${filePath}`} target="_blank">github</a></p>
             <p>加载中……</p>
-            <p>或者<a href={`https://github.com/vntchain/vnt-documentation/blob/master/${filePath}`} target="_blank">直接点击来源</a>查看</p>
+            <p>或者<a href={`${fileUrl}${filePath}`} target="_blank">直接点击来源</a>查看</p>
           </div>
         )
       }
