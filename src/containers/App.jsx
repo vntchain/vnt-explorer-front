@@ -86,7 +86,7 @@ export default withRouter(
         filterParam = `&${a[1]}`
       }
       //console.log(a,index) //eslint-disable-line
-      if(index < 1){
+      if(index < 0){
         a.pop()
         props.dispatch(replace(`/${a.join('/')}/1`))
         index = 1
