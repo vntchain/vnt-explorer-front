@@ -35,74 +35,74 @@ export default function DevGuideIndex() {
           <Route
             exact
             path="/developer"
-            render={() => <MarkdownConverter filePath="index.md" />}
+            render={() => <MarkdownConverter filePath="developer-guide/01-introduction/hubble.md" />}
           />
           <Route
             exact
             path="/developer/network"
             render={() => (
-              <MarkdownConverter filePath="set-up-vnt-network/set-up-4-node-vnt-network.md" />
+              <MarkdownConverter filePath="introduction/set-up-vnt-network/set-up-4-node-vnt-network.md" />
             )}
           />
           <Route
             exact
             path="/developer/consensus"
             render={() => (
-              <MarkdownConverter filePath="take-part-in-witness-election/take-part-in-witness-election.md" />
+              <MarkdownConverter filePath="introduction/take-part-in-witness-election/take-part-in-witness-election.md" />
             )}
           />
           <Route
             exact
             path="/developer/test"
             render={() => (
-              <MarkdownConverter filePath="connect-to-hubble-testnet.md" />
+              <MarkdownConverter filePath="developer-guide/05-network/connect-to-hubble-testnet.md" />
             )}
           />
           <Route
             exact
             path="/developer/join"
             render={() => (
-              <MarkdownConverter filePath="connect-to-hubble-network.md" />
+              <MarkdownConverter filePath="developer-guide/05-network/connect-to-hubble-network.md" />
             )}
           />
           <Route
             exact
             path="/developer/dapp"
-            render={() => <MarkdownConverter filePath="dapp/index.md" />}
+            render={() => <MarkdownConverter filePath="dapp/guide.md" />}
           />
           <Route
             exact
             path="/developer/dapp/develop"
             render={() => (
-              <MarkdownConverter filePath="dapp/howto-write-contract.md" />
+              <MarkdownConverter filePath="smart-contract/write-contract.md" />
             )}
           />
           <Route
             exact
             path="/developer/dapp/compile"
             render={() => (
-              <MarkdownConverter filePath="dapp/compile-contract.md" />
+              <MarkdownConverter filePath="smart-contract/compile-contract.md" />
             )}
           />
           <Route
             exact
             path="/developer/dapp/invoke"
             render={() => (
-              <MarkdownConverter filePath="dapp/deploy-contract-tutorial.md" />
+              <MarkdownConverter filePath="smart-contract/deploy-contract-tutorial.md" />
             )}
           />
           <Route
             exact
             path="/developer/wallet/install"
             render={() => (
-              <MarkdownConverter filePath="wallet/载入chrome插件.md" />
+              <MarkdownConverter filePath="wallet/load-chrome-extension.md" />
             )}
           />
           <Route
             exact
             path="/developer/wallet/use"
             render={() => (
-              <MarkdownConverter filePath="wallet/dapp与插件交互说明.md" />
+              <MarkdownConverter filePath="wallet/dapp-deploy-wallet.md" />
             )}
           />
         </main>
