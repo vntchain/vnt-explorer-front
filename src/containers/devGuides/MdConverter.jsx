@@ -8,15 +8,23 @@ import styles from './MdConverter.scss'
 
 export default function MarkdownConverter(props) {
   const [mdContent, setMdContent] = useState('')
-  const file = require(`../../assets/docs/${props.filePath}`)
-
+  // const file = require(`../../assets/docs/${props.filePath}`)
+  const { filePath } = props
+  const fileUrl = 'https://github.com/vntchain/vnt-documentation/blob/master/'
+  const fileAPi = 'https://api.github.com'
+  const fileRepo = 'vntchain/vnt-documentation'
   useEffect(() => {
-    fetch(file)
+    // fetch(file)
+    fetch(`${fileAPi}/repos/${fileRepo}/contents/${filePath}`)
       .then(res => {
         return res.text()
       })
       .then(text => {
-        setMdContent(marked(text))
+        const obj = JSON.parse(text)
+        const content = obj.content
+        const encoding = obj.encoding
+        const str = new Buffer(content, encoding).toString()
+        setMdContent(marked(str))
       })
   }, [])
   useEffect(
@@ -28,10 +36,18 @@ export default function MarkdownConverter(props) {
 
   return (
     <div className={styles.container}>
-      <div
-        className={styles.md}
-        dangerouslySetInnerHTML={{ __html: mdContent }}
-      />
+      {
+        mdContent ? <div
+          className={styles.md}
+          dangerouslySetInnerHTML={{ __html: mdContent }}
+        /> : (
+          <div className={styles.tip}>
+            <p>内容来自<a href={`${fileUrl}${filePath}`} target="_blank">github</a></p>
+            <p>加载中……</p>
+            <p>或者<a href={`${fileUrl}${filePath}`} target="_blank">直接点击来源</a>查看</p>
+          </div>
+        )
+      }
     </div>
   )
 }
