@@ -57,7 +57,7 @@ export default {
   hbFieldMarketCapCny: 'Market Cap',
   hbFieldAvailableSupply: 'Circulating Supply',
   hbFieldPriceCny: 'Price（24h Change）',
-  hbFieldSuperNode: 'Super Nodes/(Comming soon...)',
+  hbFieldSuperNode: 'Super Nodes(Comming soon...)',
   hbFieldUnit: ' k',
   hbFieldFlag: '$ ',
   /*
