@@ -53,7 +53,7 @@ export default {
   hbFieldHeight: '区块高度',
   hbFieldTxCount: '交易数',
   hbFieldAccountCount: '总账户数',
-  hbFieldCurrTps: '当前/峰值 TPS',
+  hbFieldCurrTps: '当前/历史峰值 TPS',
   hbFieldMarketCapCny: 'VNT 市值',
   hbFieldAvailableSupply: 'VNT 流通量',
   hbFieldPriceCny: 'VNT 价格（24h涨跌）',
