@@ -1,7 +1,7 @@
 const tokenMapUrl = 
   process.env.REACT_APP_NET === 'mainnet' 
     ? 'https://migration.vntchain.io' 
-    : 'https://migration.vnt.link'
+    : 'https://migration.vntchain.io'  // https://migration.vnt.link
 
 export default {
   home: '/',
