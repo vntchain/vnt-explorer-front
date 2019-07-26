@@ -53,7 +53,7 @@ export default {
   hbFieldHeight: 'Block Height',
   hbFieldTxCount: 'Transactions',
   hbFieldAccountCount: 'Total Accounts',
-  hbFieldCurrTps: 'Current/Max TPS',
+  hbFieldCurrTps: 'Current/Max',
   hbFieldMarketCapCny: 'Market Cap',
   hbFieldAvailableSupply: 'Circulating Supply',
   hbFieldPriceCny: 'Price（24h Change）',
