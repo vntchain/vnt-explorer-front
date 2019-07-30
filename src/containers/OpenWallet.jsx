@@ -47,7 +47,7 @@ export default connect()(
 
       return false
     }
-    
+
     const handleOpenWallet = () => {
       if (method === 'ks') {
         try {
@@ -69,7 +69,7 @@ export default connect()(
                 }
               }
             })
-            props.history.push(r.wallet) 
+            props.history.push(r.wallet)
           } catch (e) {
             message.error(props.locale[props.language].pkErr)
           }
@@ -78,10 +78,14 @@ export default connect()(
         }
       } else {
         try {
+          var privK = privateKey
+          if (!privK.startsWith("0x")) {
+            privK = "0x" + privK
+          }
           const {
             address,
             privateKey: pk
-          } = vntKit.account.privateKeyToAccount(privateKey)
+          } = vntKit.account.privateKeyToAccount(privK)
 
           props.dispatch({
             type: 'auth/setState',
@@ -104,7 +108,7 @@ export default connect()(
     const [ksContent, setKsContent] = useState([])
     const [password, setPassword] = useState(null)
     const [privateKey, setPrivateKey] = useState(null)
-    
+
     const canSubmit =
       (method === 'ks' && password && fileList.length === 1) ||
       (method === 'pk' && privateKey)
@@ -184,7 +188,7 @@ export default connect()(
                 onClick={handleOpenWallet}
               >
                 <LocalText id="owBtn" />
-              </Button> 
+              </Button>
           </div>
         </div>
       </div>
