@@ -128,6 +128,17 @@ module.exports = {
         ],
         include: paths.appSrc,
       },
+      //"worker" loader
+      {
+        test: /\.worker\.js$/,
+        use: {
+          loader: require.resolve('worker-loader'),
+          options: {
+            name: 'static/js/[name]:[hash:8].js',
+            publicPath: publicPath
+          }
+        }
+      },
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall

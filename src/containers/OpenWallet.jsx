@@ -9,8 +9,11 @@ import Banner from 'components/Banner'
 import Margin from 'components/Margin'
 import LocalText from 'i18n/LocalText'
 import r from 'constants/routes'
+import Worker from '../worker/decrypt.worker.js'
 
 import styles from 'containers/OpenWallet.scss'
+
+const worker = new Worker()
 
 export default connect()(
   withLang(function OpenWallet(props) {
@@ -53,23 +56,28 @@ export default connect()(
         try {
           const ksObj = JSON.parse(ksContent)
           try {
-            const { address, privateKey: pk } = vntKit.account.decrypt(
-              ksObj,
-              password,
-              false
-            )
-
-            props.dispatch({
-              type: 'auth/setState',
-              payload: {
-                auth: true,
-                account: {
-                  address: address.toLowerCase(),
-                  pk
+            worker.onmessage = function(e){
+              console.log('Message from web Work') //eslint-disable-line
+              const {data: { address, pk }} = e
+              props.dispatch({
+                type: 'auth/setState',
+                payload: {
+                  auth: true,
+                  account: {
+                    address: address.toLowerCase(),
+                    pk
+                  }
                 }
-              }
-            })
-            props.history.push(r.wallet)
+              })
+              setIsSubmitLoading(false)
+              props.history.push(r.wallet)
+              worker.terminate() //stop web worker
+            }
+            worker.onerror = function(e){
+                console.log('web work error',e) //eslint-disable-line
+            }
+            setIsSubmitLoading(true)
+            worker.postMessage({ ksObj, password, method })
           } catch (e) {
             message.error(props.locale[props.language].pkErr)
           }
@@ -108,6 +116,7 @@ export default connect()(
     const [ksContent, setKsContent] = useState([])
     const [password, setPassword] = useState(null)
     const [privateKey, setPrivateKey] = useState(null)
+    const [isSubmitLoading, setIsSubmitLoading] = useState(false)
 
     const canSubmit =
       (method === 'ks' && password && fileList.length === 1) ||
@@ -186,6 +195,7 @@ export default connect()(
                 disabled={!canSubmit}
                 type="primary"
                 onClick={handleOpenWallet}
+                loading={isSubmitLoading}
               >
                 <LocalText id="owBtn" />
               </Button>
