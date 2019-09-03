@@ -73,7 +73,7 @@ const genTableData = (data, address, language, comparedAddr) => {
       age: calcAge(item.TimeStamp, language),
       from: {
         address: item.From,
-        redirect: item.From !== comparedAddr,
+        redirect: item.From.toLowerCase() !== comparedAddr.toLowerCase(),
         isContract: item.FromDetail ? item.FromDetail.IsContract : false,
         contractName: item.FromDetail ? item.FromDetail.ContractName : '',
         isToken: item.FromDetail ? item.FromDetail.IsToken : false,
@@ -89,7 +89,7 @@ const genTableData = (data, address, language, comparedAddr) => {
         name: item.To ? (
           item.To.Vname ? formatVname(item.To.Vname,10) :  (item.To.Address ? formatAddr(item.To.Address,6,6) : '') 
         ) : '',
-        redirect: item.To ? item.To.Address !== comparedAddr : false
+        redirect: item.To ? item.To.Address.toLowerCase() !== comparedAddr.toLowerCase() : false
       },
       value: item.Value
     }
