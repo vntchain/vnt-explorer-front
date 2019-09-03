@@ -21,7 +21,7 @@ import { formatVname, formatAddr } from 'utils/common'
 export default withLang(function TabTxList(props) {
   const { context, address, language, flipPage, currentIndex } = props
   const finishFetching = context && context.hasOwnProperty('data')
-  const comparedAddr = location.pathname.split('/').filter(item => item)[1]
+  const comparedAddr = location.pathname.split('/').filter(item => item)[1] || address
   return (
     <div className={styles.container}>
       <Spin spinning={context && context.isLoading}>
