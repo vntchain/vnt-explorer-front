@@ -21,7 +21,7 @@ import { formatVname, formatAddr } from 'utils/common'
 export default withLang(function TabTxList(props) {
   const { context, address, language, flipPage, currentIndex } = props
   const finishFetching = context && context.hasOwnProperty('data')
-  const comparedAddr = location.pathname.split('/').filter(item => item)[1] || address
+  const comparedAddr = location.pathname.split('/').filter(item => item)[1] || address || ''
   return (
     <div className={styles.container}>
       <Spin spinning={context && context.isLoading}>
@@ -95,7 +95,7 @@ const genTableData = (data, address, language, comparedAddr) => {
     }
 
     if (item.To) {
-      if (address == d.from) {
+      if (address == d.from.address) {
         d.direction = <span style={{ color: '#ff9603' }}>OUT</span>
       } else if (address == d.to.address) {
         d.direction = <span style={{ color: '#4cc159' }}>IN</span>
