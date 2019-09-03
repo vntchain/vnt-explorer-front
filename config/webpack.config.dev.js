@@ -122,6 +122,16 @@ module.exports = {
         ],
         include: paths.appSrc,
       },
+      //"worker" loader
+      {
+        test: /\.worker\.js$/,
+        use: { 
+          loader: require.resolve('worker-loader'),
+          options: {
+            name: '[name]:[hash:8].js',
+          }
+        }
+      },
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
