@@ -13,6 +13,7 @@ import failedIcon from 'assets/images/failed.png'
 import styles from 'containers/Common.scss'
 
 import { formatVname, formatAddr } from 'utils/common'
+import { lowerCase } from 'utils/helper'
 
 /*
 ** props.context: null --> {} --> multiple { isLoading } -->
@@ -21,7 +22,7 @@ import { formatVname, formatAddr } from 'utils/common'
 export default withLang(function TabTxList(props) {
   const { context, address, language, flipPage, currentIndex } = props
   const finishFetching = context && context.hasOwnProperty('data')
-  const comparedAddr = location.pathname.split('/').filter(item => item)[1]
+  const comparedAddr = location.pathname.split('/').filter(item => item)[1] || address || ''
   return (
     <div className={styles.container}>
       <Spin spinning={context && context.isLoading}>
@@ -73,7 +74,7 @@ const genTableData = (data, address, language, comparedAddr) => {
       age: calcAge(item.TimeStamp, language),
       from: {
         address: item.From,
-        redirect: item.From.toLowerCase() !== comparedAddr.toLowerCase(),
+        redirect: lowerCase(item.From) !== lowerCase(comparedAddr),
         isContract: item.FromDetail ? item.FromDetail.IsContract : false,
         contractName: item.FromDetail ? item.FromDetail.ContractName : '',
         isToken: item.FromDetail ? item.FromDetail.IsToken : false,
@@ -89,15 +90,15 @@ const genTableData = (data, address, language, comparedAddr) => {
         name: item.To ? (
           item.To.Vname ? formatVname(item.To.Vname,10) :  (item.To.Address ? formatAddr(item.To.Address,6,6) : '') 
         ) : '',
-        redirect: item.To ? item.To.Address.toLowerCase() !== comparedAddr.toLowerCase() : false
+        redirect: item.To ? lowerCase(item.To.Address) !== lowerCase(comparedAddr) : false
       },
       value: item.Value
     }
 
     if (item.To) {
-      if (address == d.from) {
+      if (lowerCase(address) == lowerCase(d.from.address)) {
         d.direction = <span style={{ color: '#ff9603' }}>OUT</span>
-      } else if (address == d.to.address) {
+      } else if (lowerCase(address) == lowerCase(d.to.address)) {
         d.direction = <span style={{ color: '#4cc159' }}>IN</span>
       } else {
         d.direction = ''

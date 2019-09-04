@@ -139,6 +139,7 @@ export default connect(mapStateToProps)(
                     refreshProof={false}
                     context={data}
                     currentIndex={1}
+                    address={this.props.account.address}
                   />
                 )}
               />
