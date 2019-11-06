@@ -21,8 +21,9 @@ const superNodecolor = isMainnet ? '#3389ff' : '#4cc159'
 */
 export default withLang(
   connect()(function ListNew(props) {
-    const { context, currentIndex, basePath, dispatch } = props
-    const finishFetching = context && context.hasOwnProperty('data')
+    const { context: { nodes, nodesCount }, currentIndex, basePath, dispatch } = props
+    console.log(nodesCount) //eslint-disable-line
+    const finishFetching = nodes && nodes.hasOwnProperty('data')
 
     const handleFlipPage = p => {
       dispatch(push(`${r.nodeList}/${p}`))
@@ -37,29 +38,26 @@ export default withLang(
       })
     }
 
-    const genSubTitle = context => {
-      let superNode = 0
-      if (context && context.data) {
-        context.data.forEach(
-          ({ IsSuper }) => (IsSuper === 1 ? superNode++ : superNode)
-        )
+    const genSubTitle = nodesCount => {
+      if (nodesCount) {
+        const { Super, Candi, Total } = nodesCount.data
         return (
           <div className={styles.multiTitle}>
             <span className={styles.multiTitle__1}>
               <span style={{ color: superNodecolor }}>•</span>
               <LocalText id="snSubTitleComp1" />
-              {superNode}
+              {Super}
             </span>
 
             <span className={styles.multiTitle__2}>
               <span style={{ color: '#ff9603' }}>•</span>
               <LocalText id="snSubTitleComp2" />
-              {context.count - superNode}
+              {Candi}
             </span>
 
             <span className={styles.multiTitle__3}>
               <LocalText id="snSubTitleComp3" />
-              {context.count}
+              {Total}
             </span>
           </div>
         )
@@ -88,7 +86,7 @@ export default withLang(
 
     return (
       <div className={styles.container}>
-        <Spin spinning={context && context.isLoading}>
+        <Spin spinning={nodes && nodes.isLoading}>
           {/* set min-height for the div */}
           <div
             className={styles.tableWithCount}
@@ -97,12 +95,12 @@ export default withLang(
             {finishFetching && (
               <Fragment>
                 {/* 请求越界的分页时，data 为 []，count 仍返回总区块数，区块数组件和表单分页栏需要作判断 */}
-                {genSubTitle(context)}
+                {genSubTitle(nodesCount)}
 
                 <NodeListTable
                   columns={columns}
-                  data={genTableData(context.data, currentIndex)}
-                  count={context.count}
+                  data={genTableData(nodes.data, currentIndex)}
+                  count={nodes.count}
                   currentIndex={currentIndex}
                   flipPage={handleFlipPage}
                   tableType="tabList"
