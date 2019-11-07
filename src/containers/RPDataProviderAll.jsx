@@ -42,11 +42,13 @@ function RPDataProvider(props) {
       const requirePolling = options.polling && options.polling > 0
       if (requirePolling) {
         pollingArr[ns] = setInterval(() => {
-          props.dispatch({
-            type: 'dataRelayNew/fetchData',
-            payload: { path, ns, method: props.method || 'get', field },
-            callback: handleResult
-          })
+          if(!document.hidden){
+            props.dispatch({
+              type: 'dataRelayNew/fetchData',
+              payload: { path, ns, method: props.method || 'get', field },
+              callback: handleResult
+            })
+          }
         }, options.polling * 1000)
       }
     })
