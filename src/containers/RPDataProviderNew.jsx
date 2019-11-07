@@ -24,10 +24,13 @@ function RPDataProvider(props) {
     let polling = null
     if (requirePolling) {
       polling = setInterval(() => {
-        props.dispatch({
-          type: 'dataRelayNew/fetchData',
-          payload: { path, ns, method: props.method || 'get', field }
-        })
+        //当前页面激活的时候发起请求
+        if(!document.hidden){
+          props.dispatch({
+            type: 'dataRelayNew/fetchData',
+            payload: { path, ns, method: props.method || 'get', field }
+          })
+        }
       }, props.options.polling * 1000)
     }
     return () => {
