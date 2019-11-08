@@ -73,7 +73,7 @@ export default withLang(function BriefInfo(props) {
     MarketCapCny: isExist(MarketCapCny) ? (
       <Fragment>
         <LocalText id={'hbFieldFlag'} />
-        {props.language === 'cn' ? `${fixTwo(MarketCapCny/Math.pow(10, 4))}` : `${fixTwo(MarketCapUsd/Math.pow(10, 4))}`}
+        {props.language === 'cn' ? `${fixTwo(MarketCapCny/Math.pow(10, 4))}` : `${fixTwo(MarketCapUsd/Math.pow(10, 3))}`}
         <LocalText id={'hbFieldUnit'} />
       </Fragment>
     ) : (
