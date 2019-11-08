@@ -21,21 +21,20 @@ const superNodecolor = isMainnet ? '#3389ff' : '#4cc159'
 */
 export default withLang(
   connect()(function ListNew(props) {
-    const { context: { nodes, nodesCount }, currentIndex, basePath, dispatch } = props
-    console.log(nodesCount) //eslint-disable-line
+    const { context: { nodes, nodesCount }, currentIndex, dispatch } = props
     const finishFetching = nodes && nodes.hasOwnProperty('data')
 
     const handleFlipPage = p => {
       dispatch(push(`${r.nodeList}/${p}`))
 
-      dispatch({
-        type: 'dataRelayNew/fetchData',
-        payload: {
-          path: `${basePath}&offset=${(p - 1) * pageSize}`,
-          ns: 'blocks',
-          field: 'blocks'
-        }
-      })
+      // dispatch({
+      //   type: 'dataRelayNew/fetchData',
+      //   payload: {
+      //     path: `${basePath}&offset=${(p - 1) * pageSize}`,
+      //     ns: 'nodes',
+      //     field: 'nodes'
+      //   }
+      // })
     }
 
     const genSubTitle = nodesCount => {

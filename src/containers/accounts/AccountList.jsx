@@ -58,7 +58,7 @@ export default withLang(function AccountList(props) {
               <SubTitle
                 id="alpSubTitle"
                 arg={
-                  finishFetching
+                  finishFetching && context.data
                     ? context.data.length === 0
                       ? 0
                       : context.count

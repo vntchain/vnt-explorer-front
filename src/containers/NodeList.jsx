@@ -50,21 +50,6 @@ export default connect(mapStateToProps)(function Nodes(props) {
               basePath={`${apis.nodes}?limit=${pageSize}`}
             />}
         />
-        // <DataProvider
-        //   options={{
-        //     path: `${apis.nodes}?offset=${(currentIndex - 1) *
-        //       pageSize}&limit=${pageSize}`,
-        //     ns: 'nodes',
-        //     field: 'nodes'
-        //   }}
-        //   render={data => (
-        //     <NodeList
-        //       context={data}
-        //       currentIndex={currentIndex}
-        //       basePath={`${apis.nodes}?limit=${pageSize}`}
-        //     />
-        //   )}
-        // />
       )
     }
     // {

@@ -9,6 +9,7 @@ import { blockIcon } from 'utils/images.js'
 import styles from './BlockTx.scss'
 
 export default withLang(function BlockBrief(props) {
+  console.warn(props.data, props) //eslint-disable-line
   const formattedData = data => {
     return data.slice(0, 5).map(item => {
       let blockReward, reward, fee
