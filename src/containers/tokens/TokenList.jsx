@@ -57,7 +57,7 @@ export default withLang(function TokenList(props) {
               <SubTitle
                 id="tklpSubTitle"
                 arg={
-                  finishFetching
+                  finishFetching && context.data
                     ? context.data.length === 0
                       ? 0
                       : context.count

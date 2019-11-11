@@ -35,7 +35,7 @@ export default withLang(function TxList(props) {
               <SubTitle
                 id="tlpSubTitle"
                 arg={
-                  finishFetching
+                  finishFetching && context.data
                     ? context.data.length === 0
                       ? 0
                       : context.count

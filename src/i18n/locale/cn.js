@@ -57,7 +57,7 @@ export default {
   hbFieldMarketCapCny: 'VNT 市值',
   hbFieldAvailableSupply: 'VNT 流通量',
   hbFieldPriceCny: 'VNT 价格（24h涨跌）',
-  hbFieldSuperNode: '超级节点',
+  hbFieldSuperNode: '超级节点/候选节点',
   hbFieldUnit: ' 万',
   hbFieldFlag: '￥ ',
   /*
