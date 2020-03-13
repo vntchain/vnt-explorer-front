@@ -269,6 +269,7 @@ export default {
   ** Developer guide page
   */
   dgTitle: 'VNT开发者指南',
+  dgExtra: '去github上查阅开发者文档',
   dgNav1: 'VNT介绍',
   dgNav2: '网络搭建',
   dgNav3: '共识投票',

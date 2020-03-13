@@ -276,6 +276,7 @@ export default {
   ** Developer guide page
   */
   dgTitle: 'VNT Developer Guidlines',
+  dgExtra: 'Go to developer documentation on GitHub',
   dgNav1: 'VNT Introduction',
   dgNav2: 'Network Setup',
   dgNav3: 'Vote and Consensus',
