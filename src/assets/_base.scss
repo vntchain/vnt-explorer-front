@@ -1,4 +1,4 @@
-$net: testnet;
+/* $net: testnet; // delete this due to config of sass-loader in webpack.config */
 /* colors */
 $color-primary: if($net == "mainnet", #3389ff, #4cc159);
 $color-primary-light: if($net == "mainnet", #65b6ff, #4cc159);

@@ -249,7 +249,10 @@ module.exports = {
                 },
               },
               {
-                loader: require.resolve('sass-loader')
+                loader: require.resolve('sass-loader'),
+                options: {
+                  data: `$net: ${process.env.REACT_APP_NET==='mainnet'? 'mainnet': 'testnet'};`
+                }
               },
               {
                 loader: require.resolve('postcss-loader'),

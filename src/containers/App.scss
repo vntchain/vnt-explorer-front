@@ -9,11 +9,22 @@
       width: 12rem;
     }
     h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       color: #fff;
-      padding: 0.3rem 0;
+      padding: 0.26rem 0;
       font-size: 0.18rem;
       margin-bottom: 0;
       width: 12rem;
+
+      a {
+        padding: 0.08rem 0.12rem;
+        color: #fff;
+        font-size: 0.12rem;
+        border: 1px solid #fff;
+        border-radius: 0.04rem;
+      }
 
       @include respondTo($bp-desktop) {
         padding-left: 0.3rem;

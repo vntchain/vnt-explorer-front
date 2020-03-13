@@ -86,7 +86,7 @@ export default withRouter(
         filterParam = `&${a[1]}`
       }
       //console.log(a,index) //eslint-disable-line
-      if(index < 0){
+      if (index < 0) {
         a.pop()
         props.dispatch(replace(`/${a.join('/')}/1`))
         index = 1
@@ -109,7 +109,17 @@ export default withRouter(
         {location.pathname.startsWith(r.devGuides) && (
           <div className={styles.strTitle}>
             <h2>
-              <LocalText id="dgTitle" />
+              <span>
+                <LocalText id="dgTitle" />
+              </span>
+              <a
+                href={
+                  'https://github.com/vntchain/vnt-documentation/tree/master/developer-guide'
+                }
+                target="_blank"
+              >
+                <LocalText id="dgExtra" />
+              </a>
             </h2>
           </div>
         )}

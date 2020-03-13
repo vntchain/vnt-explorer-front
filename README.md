@@ -1,4 +1,5 @@
 # VNT Explorer 前端运行指南
+
 ## 下载代码
 
 ```bash
@@ -6,7 +7,9 @@ git clone https://github.com/vntchain/vnt-explorer-front.git
 ```
 
 ## 安装 npm
+
 - [Get npm](https://www.npmjs.com/get-npm)
+
 ## 安装依赖
 
 ```bash
@@ -14,6 +17,7 @@ npm install
 ```
 
 ## 配置环境变量
+
 - `./env` 文件
 
   ```
@@ -32,11 +36,7 @@ npm install
 
 - `./env` 文件
   ```js
-    REACT_APP_NET= // mainnet testnet 
-  ```
-- `src/assets/_base.scss`文件
-  ```js
-    $net: // testnet mainnet
+    REACT_APP_NET= // mainnet testnet
   ```
 
 ## 运行
@@ -49,26 +49,26 @@ npm start
 
 步骤：
 
-* 项目地址更新最新代码
+- 项目地址更新最新代码
 
 ```bash
 git pull
 ```
 
-* 编译代码,并去除js map文件
+- 编译代码,并去除 js map 文件
 
 ```bash
 npm run build
 rm build/static/js/*.map
 ```
 
-* 复制build内容到部署地址
+- 复制 build 内容到部署地址
 
 ```bash
 cp -r <origin path> <target path>
 ```
 
-* 重启nginx
+- 重启 nginx
 
 ```bash
 nginx -s reload
